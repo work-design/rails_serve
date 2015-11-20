@@ -1,0 +1,7 @@
+<%= form_tag create_rule_admin_role_sections_path(@role), class: 'ui form' do %>
+  <div class="inline fields">
+    <%= select_tag :section_name, options_for_select(@role.to_hash), class: 'three wide field', placeholder: t('.new_section_placeholder') %>
+    <%= text_field_tag :rule_name, '', class: 'three wide field', placeholder: t('.new_section_placeholder') %>
+    <%= submit_tag t('.create_section'), class: 'ui button' %>
+  </div>
+<% end %>

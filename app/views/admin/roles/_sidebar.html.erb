@@ -1,0 +1,13 @@
+<div class="ui menu vertical fluid">
+  <div class="item">
+    <span>角色列表</span>
+    <div class="menu">
+      <% Role.all.each do |role| %>
+        <div class="item">
+        <%= link_to role.title, admin_role_path(role) %>
+        (<%= role.users.count %>)
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

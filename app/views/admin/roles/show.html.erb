@@ -1,0 +1,51 @@
+<div class="three wide column">
+  <%= render partial: 'sidebar' %>
+</div>
+
+<div class="thirteen wide column">
+
+  <div class="ui top attached menu borderless">
+    <div class="item"><strong>权限列表</strong></div>
+  </div>
+
+  <div class="ui segment bottom attached">
+    <%= render 'section_form' %>
+    <%= render 'rule_form' %>
+  </div>
+
+  <table class="ui celled table">
+    <thead>
+      <tr>
+        <th>Section名称</th>
+        <th>Rule名称</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @role.to_hash.each_pair do |section, rules| %>
+      <tr>
+        <td><%= section %></td>
+        <td>
+          <% rules.each_pair do |rule, value| %>
+          <p>
+            <% if value %>
+              <span class="ui green label">
+                <i class="checkmark icon"><%= rule %></i>
+              </span>
+            <% else %>
+              <span class="ui red label">
+                <i class="remove icon"><%= rule %></i>
+              </span>
+            <% end %>
+            <%= link_to '开启', rule_on_admin_role_section_path(@role, section, name: rule), method: :put %>
+            <%= link_to '关闭', rule_off_admin_role_section_path(@role, section, name: rule), method: :put %>
+          </p>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+</div>
+
+
