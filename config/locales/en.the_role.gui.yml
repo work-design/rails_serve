@@ -1,49 +1,62 @@
 en:
-  the_role_gui:
-    role_created:             Role created
-    role_updated:             Role updated
-    role_deleted:             Role deleted
-    section_created:          Section created
-    section_not_created:      Section not created
-    section_rule_created:     "Section rule created"
-    section_rule_not_created: "Section rule not created"
-    section_rule_on:          "Section rule is enable"
-    section_rule_off:         "Section rule is disable"
-    state_not_changed:        "Section rule not changed"
-    section_deleted:          Section deleted
-    section_not_deleted:      Section not deleted
-    section_rule_deleted:     "Section rule deleted"
-    section_rule_not_deleted: "Section rule not deleted"
-    imported_roles:           "Imported roles: %{roles_list}"
-
+  the_role:
+    access_denied: 没有权限
+  admin:
+    role_sections:
+      create:
+        section_created: 章节已创建
+        section_not_created: 章节没有被创建
+      create_rule:
+        section_rule_created: 章节的规则已创建
+        section_rule_not_created: 章节的规则没有被创建
+      rule_on:
+        section_rule_on: 章节的规则可有
+        state_not_changed: 章节的规则没有改变
+      rule_off:
+        section_rule_off: 章节的规则不可有
+        state_not_changed: 章节的规则没有改变
+      destroy:
+        section_deleted: 章节已删除
+        section_not_deleted: 章节没有被删除
+      destroy_rule:
+        section_rule_deleted: 章节的规则已被删除
+        section_rule_not_deleted: 章节的规则没有被删除
     roles:
+      create:
+        role_created: 角色已创建
+      update:
+        role_updated: 角色已更新
+      change:
+        role_updated: 角色已更新
+      destroy:
+        role_deleted: 角色已删除
+      rule_form:
+        new_section_placeholder: 新章节名称
+        create_section: 创建新章节
+        new_rule_placeholder: 新规则名称
+        create_rule: 创建新规则
+      section_form:
+        new_section_placeholder: 新章节名称
+        create_section: 创建新章节
+        new_rule_placeholder: 新规则名称
+        create_rule: 创建新规则
+
       new:
-        create: Create new Role
-        name: Name of role (underscored latin string)
-        title: Title of role (text)
-        description: Description of role (text)
-        based_on_role: "New role will be based on:"
+        create: 创建新角色
+        name: 角色名称 (字符串)
+        title: 角色标题 (文本)
+        description: 角色描述 (文本)
       role:
-        role_name: Role name
-        title:     Title
-        role_description: Description of role
-        delete_section: Delete section
-        section_delete_confirm: 'Do you want to delete section?'
-        rule_delete_confirm: 'Do you want to delete rule?'
-        enable: Enable
-        disable: Disable
-        delete_rule: Delete rule
-        new_section_placeholder: New section name
-        create_section: Create new section
-        new_rule_placeholder: New rule name
-        create_rule: Create new rule
-        role_export: "Export role"
+        role_name: 角色名称
+        title:     角色标题
+        role_description: 角色描述
+        delete_section: 删除章节
+        section_delete_confirm: '你想要删除章节?'
+        rule_delete_confirm: '你想删除规则?'
+        enable: 可用
+        disable: 不可用
+        delete_rule: 删除规则
       sidebar:
-        roles_list: Roles list
-        new_role: Create new role
-        delete_role_confirm: 'Are you sure? It can be dangerous!'
-
-        roles_export: "Roles Export"
-        roles_import: "Roles Import"
-        roles_import_confirm: 'It can change role policy of your system. Are you sure?'
-
+        roles_list: 角色列表
+        new_role: 创建新角色
+        delete_role_confirm: '你确定? 可能存在风险!'

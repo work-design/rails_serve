@@ -1,6 +1,8 @@
 <%= form_tag admin_role_sections_path(@role), class: 'ui form' do %>
   <div class="inline fields">
-    <%= text_field_tag :section_name, '', class: 'three wide field', placeholder: t('.new_section_placeholder') %>
+    <div class="field">
+      <%= text_field_tag :section_name, '', placeholder: t('.new_section_placeholder') %>
+    </div>
     <%= submit_tag t('.create_section'), class: 'ui button' %>
   </div>
 <% end %>
