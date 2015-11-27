@@ -2,7 +2,7 @@ module TheRole
   module Role
     extend ActiveSupport::Concern
 
-    include TheRole::Api::BaseMethods
+    include TheRole::BaseMethods
 
     # HELPERS
 

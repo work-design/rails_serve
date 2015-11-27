@@ -2,6 +2,7 @@ module TheRole; end
 require 'the_role/hash'
 require 'the_role/config'
 require 'the_role/version'
+require 'the_role/engine'
 
 require 'multi_json'
 require 'the_string_to_slug'

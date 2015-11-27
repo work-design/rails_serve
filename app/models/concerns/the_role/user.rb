@@ -2,16 +2,13 @@ module TheRole
   module User
     extend ActiveSupport::Concern
 
-    include TheRole::Api::BaseMethods
+    include TheRole::BaseMethods
 
-    # HELPERS
 
     # version for `User`  model
     def role_hash
       @role_hash ||= role.try(:to_hash) || {}
     end
-
-    # ~ HELPERS
 
     included do
       belongs_to :role

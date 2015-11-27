@@ -4,7 +4,7 @@ require 'the_role/version'
 
 Gem::Specification.new do |spec|
   spec.name = 'the_role'
-  spec.version = TheRoleGui::VERSION
+  spec.version = TheRole::VERSION
   spec.authors = ['qinmingyuan']
   spec.email = ['mingyuan0715@foxmail.com']
   spec.summary = 'The Role GUI'
