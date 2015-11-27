@@ -1,9 +1,9 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'the_role_gui/version'
+require 'the_role/version'
 
 Gem::Specification.new do |spec|
-  spec.name = 'the_role_gui'
+  spec.name = 'the_role'
   spec.version = TheRoleGui::VERSION
   spec.authors = ['qinmingyuan']
   spec.email = ['mingyuan0715@foxmail.com']
