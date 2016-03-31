@@ -1,5 +1,6 @@
 module TheRole
   module Controller
+
     def login_required
       send TheRole.config.login_required_method
     end

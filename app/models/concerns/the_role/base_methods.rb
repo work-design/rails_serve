@@ -2,25 +2,23 @@ module TheRole
   module BaseMethods
 
     def has_section? section_name
-      hash         =  role_hash
-      section_name =  section_name.to_slug_param(sep: '_')
-      return true  if hash[section_name]
+      section_name =  section_name.to_s
+      return true if the_role[section_name]
 
       false
     end
 
     def has_role? section_name, rule_name
-      hash         =  role_hash
-      section_name =  section_name.to_slug_param(sep: '_')
-      rule_name    =  rule_name.to_slug_param(sep: '_')
+      section_name = section_name.to_s
+      rule_name = rule_name.to_s
 
-      return true  if hash.try(:[], 'system').try(:[], 'administrator')
-      return true  if hash.try(:[], 'moderator').try(:[], section_name)
+      return true if admin?
+      return true if moderator? section_name
 
-      return false unless hash[section_name]
-      return false unless hash[section_name].key? rule_name
+      return false unless the_role[section_name]
+      return false unless the_role[section_name].key? rule_name
 
-      hash[section_name][rule_name]
+      the_role[section_name][rule_name]
     end
 
     def any_role? roles_hash = {}
@@ -34,12 +32,16 @@ module TheRole
     end
 
     def moderator? section_name
-      section_name = section_name.to_slug_param(sep: '_')
-      has_role? section_name, 'any_crazy_name'
+      true if moderators[section_name]
+    end
+
+    def moderators
+      the_role['moderator'].to_h
     end
 
     def admin?
-      has_role? 'any_crazy_name', 'any_crazy_name'
+      true if the_role['system']
     end
+
   end
 end

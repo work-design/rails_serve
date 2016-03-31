@@ -1,43 +1,12 @@
 module TheRole
   module Role
-    extend ActiveSupport::Concern
-
     include TheRole::BaseMethods
-
-    # HELPERS
-
-    # version for `Role` model
-    def role_hash
-      to_hash
-    end
-
-    def the_role= val
-      self[:the_role] = _jsonable val
-    end
-
-    def _jsonable val
-      val.is_a?(Hash) ? val.to_json : val.to_s
-    end
-
-    def to_hash
-      begin JSON.load(the_role) rescue {} end
-    end
-
-    def to_json
-      the_role
-    end
-
-    # ~ HELPERS
-
-    alias_method :has?, :has_role?
-    alias_method :any?, :any_role?
-
-    def has_section? section_name
-      to_hash.key? section_name.to_slug_param(sep: '_')
-    end
+    extend ActiveSupport::Concern
 
     included do
       attr_accessor :based_on_role
+
+      serialize :the_role, JSON
 
       has_many  :users, dependent: TheRole.config.destroy_strategy
       validates :name,  presence: true, uniqueness: true
@@ -46,14 +15,6 @@ module TheRole
 
       private
 
-      before_save do
-        self.name = name.to_slug_param(sep: '_')
-
-        rules_set     = self.the_role
-        self.the_role = {}.to_json        if rules_set.blank?
-        self.the_role = rules_set.to_json if rules_set.is_a?(Hash)
-      end
-
       after_create do
         if based_on_role.present?
           if base_role = self.class.where(id: based_on_role).first
@@ -61,6 +22,12 @@ module TheRole
           end
         end
       end
+
+    end
+
+
+    def has_section? section_name
+      to_hash.key? section_name.to_slug_param(sep: '_')
     end
 
     module ClassMethods
@@ -70,7 +37,6 @@ module TheRole
     end
 
     # C
-
     def create_section section_name = nil
       return false unless section_name
 
@@ -99,7 +65,6 @@ module TheRole
     end
 
     # U
-
     # source_hash will be reset to false
     # except true items from new_role_hash
     # all keys will become 'strings'
@@ -141,7 +106,6 @@ module TheRole
     end
 
     # D
-
     def delete_section section_name = nil
       return false unless section_name
 

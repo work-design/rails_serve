@@ -5,15 +5,15 @@ module TheRole
     include TheRole::BaseMethods
 
 
-    # version for `User`  model
-    def role_hash
-      @role_hash ||= role.try(:to_hash) || {}
-    end
-
     included do
       belongs_to :role
       before_validation :set_default_role, on: :create
       after_save { |user| user.instance_variable_set(:@role_hash, nil) }
+    end
+
+    # version for `User`  model
+    def role_hash
+      @role_hash ||= role.try(:to_hash) || {}
     end
 
     module ClassMethods
