@@ -25,111 +25,73 @@ module TheRole
 
     end
 
-
-    def has_section? section_name
-      to_hash.key? section_name.to_slug_param(sep: '_')
-    end
-
-    module ClassMethods
-      def with_name name
-        ::Role.where(name: name).first
-      end
-    end
-
     # C
     def create_section section_name = nil
-      return false unless section_name
-
-      role         = to_hash
-      section_name = section_name.to_slug_param(sep: '_')
+      section_name = section_name.to_s
 
       return false if section_name.blank?
-      return true  if role[section_name]
+      return true if the_role[section_name]
 
-      role[section_name] = {}
-      update_attribute(:the_role, _jsonable(role))
+      the_role[section_name] = {}
+      save
     end
 
     def create_rule section_name, rule_name
-      return false if     rule_name.blank?
+      rule_name = rule_name.to_s
+      section_name = section_name.to_s
+
+      return false if rule_name.to_s.blank?
       return false unless create_section(section_name)
 
-      role         = to_hash
-      rule_name    = rule_name.to_slug_param(sep: '_')
-      section_name = section_name.to_slug_param(sep: '_')
+      return true if the_role[section_name][rule_name]
 
-      return true if role[section_name][rule_name]
-
-      role[section_name][rule_name] = false
-      update_attribute(:the_role,  _jsonable(role))
+      the_role[section_name][rule_name] = false
+      save
     end
 
-    # U
-    # source_hash will be reset to false
-    # except true items from new_role_hash
-    # all keys will become 'strings'
-    # look at lib/the_role/hash.rb to find definition of *underscorify_keys* method
-    def update_role new_role_hash
-      new_role_hash = new_role_hash.try(:to_hash) || {}
 
-      new_role = new_role_hash.underscorify_keys
-      role     = to_hash.underscorify_keys.deep_reset(false)
-
-      role.deep_merge! new_role
-      update_attribute(:the_role,  _jsonable(role))
-    end
-
+    # Update
     def rule_on section_name, rule_name
-      role         = to_hash
-      rule_name    = rule_name.to_slug_param(sep: '_')
-      section_name = section_name.to_slug_param(sep: '_')
+      rule_name = rule_name.to_s
+      section_name = section_name.to_s
 
-      return false unless role[section_name]
-      return false unless role[section_name].key? rule_name
-      return true  if     role[section_name][rule_name]
+      return false unless the_role[section_name]
 
-      role[section_name][rule_name] = true
-      update_attribute(:the_role,  _jsonable(role))
+      the_role[section_name][rule_name] = true
+      save
     end
 
     def rule_off section_name, rule_name
-      role         = to_hash
-      rule_name    = rule_name.to_slug_param(sep: '_')
-      section_name = section_name.to_slug_param(sep: '_')
+      rule_name = rule_name.to_s
+      section_name = section_name.to_s
 
-      return false unless role[section_name]
-      return false unless role[section_name].key? rule_name
-      return true  unless role[section_name][rule_name]
+      return false unless the_role[section_name]
 
       role[section_name][rule_name] = false
-      update_attribute(:the_role,  _jsonable(role))
+      save
     end
 
-    # D
+    # Delete
     def delete_section section_name = nil
-      return false unless section_name
-
-      role = to_hash
-      section_name = section_name.to_slug_param(sep: '_')
+      section_name = section_name.to_s
 
       return false if section_name.blank?
-      return false unless role[section_name]
+      return false unless the_role[section_name]
 
-      role.delete section_name
-      update_attribute(:the_role,  _jsonable(role))
+      the_role.delete section_name
+      save
     end
 
     def delete_rule section_name, rule_name
-      role         = to_hash
-      rule_name    = rule_name.to_slug_param(sep: '_')
-      section_name = section_name.to_slug_param(sep: '_')
+      rule_name    = rule_name.to_s
+      section_name = section_name.to_s
 
-      return false unless role[section_name]
-      return false unless role[section_name].key? rule_name
+      return false unless the_role[section_name]
+      return false unless the_role[section_name].key? rule_name
 
-      role[section_name].delete rule_name
-      update_attribute(:the_role,  _jsonable(role))
+      the_role[section_name].delete rule_name
+      save
     end
-  end
 
+  end
 end
