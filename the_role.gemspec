@@ -7,9 +7,9 @@ Gem::Specification.new do |spec|
   spec.version = TheRole::VERSION
   spec.authors = ['qinmingyuan']
   spec.email = ['mingyuan0715@foxmail.com']
-  spec.summary = 'The Role GUI'
+  spec.summary = 'The Role'
   spec.description = 'Management panel for TheRole on Semantic-UI'
-  spec.homepage = 'https://github.com/yigexiangfa/the_role_gui'
+  spec.homepage = 'https://github.com/yigexiangfa/the_role'
   spec.license = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")

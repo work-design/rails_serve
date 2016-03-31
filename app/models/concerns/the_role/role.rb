@@ -4,28 +4,15 @@ module TheRole
     extend ActiveSupport::Concern
 
     included do
-      attr_accessor :based_on_role
-
       serialize :the_role, JSON
 
-      has_many  :users, dependent: TheRole.config.destroy_strategy
+      has_many :users, dependent: :nullify
+
       validates :name,  presence: true, uniqueness: true
-      validates :title, presence: true, uniqueness: true
       validates :description, presence: true
-
-      private
-
-      after_create do
-        if based_on_role.present?
-          if base_role = self.class.where(id: based_on_role).first
-            update_role base_role.to_hash
-          end
-        end
-      end
-
     end
 
-    # C
+    # Create
     def create_section section_name = nil
       section_name = section_name.to_s
 
@@ -40,12 +27,9 @@ module TheRole
       rule_name = rule_name.to_s
       section_name = section_name.to_s
 
-      return false if rule_name.to_s.blank?
-      return false unless create_section(section_name)
+      return false if section_name.to_s.blank? && rule_name.to_s.blank?
 
-      return true if the_role[section_name][rule_name]
-
-      the_role[section_name][rule_name] = false
+      the_role[section_name] = { rule_name => true }
       save
     end
 
