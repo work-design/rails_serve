@@ -9,9 +9,6 @@ class Admin::RolesController < Admin::BaseController
     @role = Role.new
   end
 
-  def edit
-  end
-
   def create
     @role = Role.new role_params
 
@@ -21,6 +18,9 @@ class Admin::RolesController < Admin::BaseController
     else
       render action: :new
     end
+  end
+
+  def edit
   end
 
   def update

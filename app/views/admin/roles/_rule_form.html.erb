@@ -1,7 +1,7 @@
 <%= form_tag create_rule_admin_role_sections_path(@role), class: 'ui form' do %>
   <div class="inline fields">
     <div class="field">
-      <%= select_tag :section_name, options_for_select(@role.to_hash), class: 'ui dropdown', placeholder: t('.new_section_placeholder') %>
+      <%= select_tag :section_name, options_for_select(@role.the_role), class: 'ui dropdown', placeholder: t('.new_section_placeholder') %>
     </div>
     <div class="field">
       <%= text_field_tag :rule_name, '', placeholder: t('.new_section_placeholder') %>
