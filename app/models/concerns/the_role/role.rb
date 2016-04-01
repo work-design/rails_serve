@@ -29,7 +29,7 @@ module TheRole
 
       return false if section_name.to_s.blank? && rule_name.to_s.blank?
 
-      the_role[section_name] = { rule_name => true }
+      the_role[section_name].merge! rule_name => true
       save
     end
 
@@ -51,7 +51,7 @@ module TheRole
 
       return false unless the_role[section_name]
 
-      role[section_name][rule_name] = false
+      the_role[section_name][rule_name] = false
       save
     end
 
