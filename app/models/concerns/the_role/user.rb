@@ -4,8 +4,17 @@ module TheRole
     include TheRole::BaseMethods
 
     included do
-      belongs_to :role
+      belongs_to :role, required: false
       before_validation :set_default_role, on: :create
+    end
+
+    def the_role
+      result = {}
+      roles.map do |r|
+        result.deep_merge! r.the_role.to_h
+      end
+
+      result
     end
 
     def owner? obj
