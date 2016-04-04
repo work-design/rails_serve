@@ -4,8 +4,6 @@ module TheRole
     include TheRole::BaseMethods
 
     included do
-      belongs_to :role, required: false
-      before_validation :set_default_role, on: :create
     end
 
     def the_role
@@ -31,14 +29,6 @@ module TheRole
       return id == obj[:user][:id] if obj[:user]
 
       false
-    end
-
-    private
-    def set_default_role
-      unless role
-        default_role = Role.find_by(name: TheRole.config.default_user_role)
-        self.role = default_role if default_role
-      end
     end
 
   end
