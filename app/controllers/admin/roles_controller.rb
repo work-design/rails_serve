@@ -53,7 +53,7 @@ class Admin::RolesController < Admin::BaseController
                          :title,
                          :description,
                          :the_role,
-                         :based_on_role)
+                         :type)
   end
 
   def set_role

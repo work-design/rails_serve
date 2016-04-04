@@ -10,7 +10,9 @@
   </div>
 
   <div>
-    <%= render 'form' %>
+    <%= default_form_for @role, as: :role, url: admin_roles_path do |f| %>
+      <%= render partial: 'form', locals: { f: f } %>
+    <% end %>
   </div>
 </div>
 
