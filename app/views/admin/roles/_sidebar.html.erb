@@ -5,7 +5,6 @@
       <% Role.all.each do |role| %>
         <div class="item">
         <%= link_to role.title, admin_role_path(role) %>
-        (<%= role.users.count %>)
         </div>
       <% end %>
     </div>
