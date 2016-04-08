@@ -9,7 +9,7 @@ module TheRole
     def the_role
       result = {}
       roles.map do |r|
-        result.deep_merge! r.the_role.to_h
+        result.deep_merge!(r.the_role.to_h) { |_, t, o| t || o }
       end
 
       result
