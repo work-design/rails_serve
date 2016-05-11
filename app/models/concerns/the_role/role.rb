@@ -5,12 +5,11 @@ module TheRole
 
     included do
       serialize :the_role, JSON
-      validates :name,  presence: true, uniqueness: true
+      validates :name, presence: true, uniqueness: true
       validates :description, presence: true
     end
 
-    # Create
-    def create_section section_name = nil
+    def create_section(section_name = nil)
       section_name = section_name.to_s
 
       return false if section_name.blank?
@@ -20,7 +19,7 @@ module TheRole
       save
     end
 
-    def create_rule section_name, rule_name
+    def create_rule(section_name, rule_name)
       rule_name = rule_name.to_s
       section_name = section_name.to_s
 
@@ -30,9 +29,7 @@ module TheRole
       save
     end
 
-
-    # Update
-    def rule_on section_name, rule_name
+    def rule_on(section_name, rule_name)
       rule_name = rule_name.to_s
       section_name = section_name.to_s
 
@@ -42,7 +39,7 @@ module TheRole
       save
     end
 
-    def rule_off section_name, rule_name
+    def rule_off(section_name, rule_name)
       rule_name = rule_name.to_s
       section_name = section_name.to_s
 
@@ -52,8 +49,7 @@ module TheRole
       save
     end
 
-    # Delete
-    def delete_section section_name = nil
+    def delete_section(section_name = nil)
       section_name = section_name.to_s
 
       return false if section_name.blank?
@@ -63,7 +59,7 @@ module TheRole
       save
     end
 
-    def delete_rule section_name, rule_name
+    def delete_rule(section_name, rule_name)
       rule_name    = rule_name.to_s
       section_name = section_name.to_s
 

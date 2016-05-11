@@ -1,7 +1,4 @@
-# TheRole.config.param_name => value
-
 TheRole.configure do |config|
-  # [ Devise => :authenticate_user! | Sorcery => :require_login ]
   # config.login_required_method = :authenticate_user!
 
   # layout for Management panel
