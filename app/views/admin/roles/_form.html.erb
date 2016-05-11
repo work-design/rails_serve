@@ -1,5 +1,4 @@
 <%= f.text_field :name, label: '名称:' %>
-<%= f.text_field :title, label: '概要:' %>
 <%= f.select :type, options_for_select(Role.options_i18n(:type), @role.type), { include_blank: true } %>
 <%= f.text_area :description, label: '描述:' %>
 <%= f.submit %>

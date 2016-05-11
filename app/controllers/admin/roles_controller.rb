@@ -50,7 +50,6 @@ class Admin::RolesController < Admin::BaseController
   private
   def role_params
     params[:role].permit(:name,
-                         :title,
                          :description,
                          :the_role,
                          :type)

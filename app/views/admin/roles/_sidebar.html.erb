@@ -4,7 +4,7 @@
     <div class="menu">
       <% Role.all.each do |role| %>
         <div class="item">
-        <%= link_to role.title, admin_role_path(role) %>
+        <%= link_to role.name, admin_role_path(role) %>
         </div>
       <% end %>
     </div>

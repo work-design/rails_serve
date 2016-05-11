@@ -27,7 +27,7 @@
       <tr>
         <td><%= role.id %></td>
         <td><%= role.name %></td>
-        <td><%= role.title %></td>
+        <td><%= role.description %></td>
         <td><%= link_to '权限管理', admin_role_path(role) %></td>
         <td><%= link_to '编辑', edit_admin_role_path(role) %></td>
         <td><%= link_to '删除', admin_role_path(role), method: :delete, data: { confirm: 'Are you sure?' } %></td>
