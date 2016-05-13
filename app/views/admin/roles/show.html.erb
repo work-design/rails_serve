@@ -36,8 +36,8 @@
                 <i class="remove icon"><%= rule %></i>
               </span>
             <% end %>
-            <%= link_to '开启', rule_on_admin_role_section_path(@role, section, name: rule), method: :put %>
-            <%= link_to '关闭', rule_off_admin_role_section_path(@role, section, name: rule), method: :put %>
+            <%= link_to '开启', rule_on_admin_role_section_path(@role, section, name: rule), method: :patch %>
+            <%= link_to '关闭', rule_off_admin_role_section_path(@role, section, name: rule), method: :patch %>
           </p>
           <% end %>
         </td>
