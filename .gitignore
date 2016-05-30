@@ -1,5 +1,4 @@
 .bundle
-Gemfile.lock
 doc/
 test/tmp
 test/version_tmp

@@ -6,9 +6,7 @@
 
   <div class="ui top attached menu borderless">
     <div class="item"><strong>权限列表</strong></div>
-    <div class="item">
-      <%= link_to '用户列表' %>
-    </div>
+    <%= link_to '用户列表', users_admin_role_path(@role), class: 'item' %>
   </div>
 
   <div class="ui segment bottom attached">
