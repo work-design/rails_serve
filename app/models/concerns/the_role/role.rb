@@ -6,7 +6,6 @@ module TheRole
     included do
       serialize :the_role, JSON
       validates :name, presence: true, uniqueness: true
-      validates :description, presence: true
     end
 
     def create_section(section_name = nil)

@@ -20,6 +20,10 @@ class Admin::RolesController < Admin::BaseController
     end
   end
 
+  def users
+
+  end
+
   def edit
   end
 

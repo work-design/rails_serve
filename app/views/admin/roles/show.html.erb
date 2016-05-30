@@ -6,6 +6,9 @@
 
   <div class="ui top attached menu borderless">
     <div class="item"><strong>权限列表</strong></div>
+    <div class="item">
+      <%= link_to '用户列表' %>
+    </div>
   </div>
 
   <div class="ui segment bottom attached">
@@ -23,7 +26,10 @@
     <tbody>
     <% @role.the_role.each_pair do |section, rules| %>
       <tr>
-        <td><%= section %></td>
+        <td>
+          <%= section %>
+          <%= link_to '删除', admin_role_section_path(@role, section), method: :delete %>
+        </td>
         <td>
           <% rules.each_pair do |rule, value| %>
           <p>
@@ -38,6 +44,7 @@
             <% end %>
             <%= link_to '开启', rule_on_admin_role_section_path(@role, section, name: rule), method: :patch %>
             <%= link_to '关闭', rule_off_admin_role_section_path(@role, section, name: rule), method: :patch %>
+            <%= link_to '删除', destroy_rule_admin_role_section_path(@role, section, name: rule), method: :delete %>
           </p>
           <% end %>
         </td>

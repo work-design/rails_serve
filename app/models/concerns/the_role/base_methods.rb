@@ -32,15 +32,7 @@ module TheRole
     end
 
     def moderator? section_name
-      true if moderators[section_name]
-    end
-
-    def moderators
-      the_role['moderator'].to_h
-    end
-
-    def admin?
-      true if the_role['system']
+      the_role[section_name] && the_role[section_name]['admin']
     end
 
   end

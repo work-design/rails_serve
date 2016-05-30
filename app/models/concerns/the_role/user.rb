@@ -33,8 +33,7 @@ module TheRole
     end
 
     def admin?
-      return true if respond_to?(:email) && email == TheRole.default_admin_email
-      super
+      true if respond_to?(:email) && TheRole.default_admin_emails.include?(email)
     end
 
   end

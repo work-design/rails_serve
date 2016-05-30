@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :roles do
       patch :change, on: :member
+      get :users, on: :member
 
       resources :sections, controller: :role_sections, only: :none do
         post :create, on: :collection
