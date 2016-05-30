@@ -1,5 +1,5 @@
 class Admin::RolesController < Admin::BaseController
-  before_action :set_role, only: [:show, :users, :edit, :update, :destroy, :change]
+  before_action :set_role, only: [:show, :users, :edit, :update, :destroy, :delete_user, :change]
 
   def index
     @roles = Role.order('created_at ASC')

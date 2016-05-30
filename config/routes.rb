@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :roles do
       patch :change, on: :member
       get :users, on: :member
-      delete :delete_user, on: :member
+      delete 'user/:user_id' => :delete_user, on: :member, as: :user
 
       resources :sections, controller: :role_sections, only: :none do
         post :create, on: :collection
