@@ -4,9 +4,7 @@
       <span>角色列表</span>
       <div class="menu">
         <% Role.all.each do |role| %>
-            <div class="item">
-              <%= link_to role.name, users_admin_role_path(role) %>
-            </div>
+          <%= link_to role.name, users_admin_role_path(role), class: active_object(role.id) %>
         <% end %>
       </div>
     </div>

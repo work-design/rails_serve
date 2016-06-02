@@ -56,7 +56,6 @@ class Admin::RolesController < Admin::BaseController
     @role.users.delete(user)
 
     redirect_to users_admin_role_url(@role)
-
   end
 
   private

@@ -13,6 +13,7 @@ module TheRole
       rule_name = rule_name.to_s
 
       return true if admin?
+
       return true if moderator? section_name
 
       return false unless the_role[section_name]
@@ -33,6 +34,10 @@ module TheRole
 
     def moderator? section_name
       the_role[section_name] && the_role[section_name]['admin']
+    end
+
+    def write? section_name
+
     end
 
   end
