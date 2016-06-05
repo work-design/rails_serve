@@ -12,7 +12,7 @@ module TheRole
       section_name = section_name.to_s
       rule_name = rule_name.to_s
 
-      return true if admin?
+      return true if respond_to?(:admin?) && admin?
 
       return true if moderator? section_name
 
