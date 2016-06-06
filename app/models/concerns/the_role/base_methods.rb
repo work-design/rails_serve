@@ -49,9 +49,9 @@ module TheRole::BaseMethods
 
       value.each_with_object({}) do |(k, v), result2|
         if I18n.exists?("#{key}.#{k}")
-          t2 = ::I18n.t("#{key}.#{k}")
+          t2 = I18n.t("#{key}.#{k}")
         else
-          t2 = key
+          t2 = k
         end
 
         result2[t2] = v
