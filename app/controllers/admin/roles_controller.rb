@@ -20,6 +20,9 @@ class Admin::RolesController < Admin::BaseController
     end
   end
 
+  def show
+  end
+
   def users
     @users = @role.users.page(params[:page])
   end
