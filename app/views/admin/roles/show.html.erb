@@ -22,10 +22,10 @@
       </tr>
     </thead>
     <tbody>
-    <% @role.the_role_i18n.each_pair do |section, rules| %>
+    <% @role.the_role.each_pair do |section, rules| %>
       <tr>
         <td>
-          <%= section %>
+          <%= the_role_t(section) %>
           <%= link_to '删除', admin_role_section_path(@role, section), method: :delete %>
         </td>
         <td>
@@ -33,11 +33,11 @@
           <p>
             <% if value %>
               <span class="ui green label">
-                <i class="checkmark icon"><%= rule %></i>
+                <i class="checkmark icon"><%= the_role_t(section, rule) %></i>
               </span>
             <% else %>
               <span class="ui red label">
-                <i class="remove icon"><%= rule %></i>
+                <i class="remove icon"><%= the_role_t(section, rule) %></i>
               </span>
             <% end %>
             <%= link_to '开启', rule_on_admin_role_section_path(@role, section, name: rule), method: :patch %>
