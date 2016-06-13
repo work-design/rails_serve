@@ -1,5 +1,5 @@
 class Admin::RolesController < Admin::BaseController
-  before_action :set_role, only: [:show, :users, :edit, :update, :destroy, :delete_user, :change]
+  before_action :set_role, only: [:show, :toggle, :users, :edit, :update, :destroy, :delete_user, :change]
 
   def index
     @roles = Role.order('created_at ASC')
@@ -36,6 +36,16 @@ class Admin::RolesController < Admin::BaseController
       redirect_to admin_roles_url
     else
       render action: :edit
+    end
+  end
+
+  def toggle
+    rule = Rule.find params[:rule_id]
+
+    if params[:toggle] == 'on'
+      @role.role_rules.find_or_create_by(rule_id: params[:rule_id])
+    else
+      @role.rules.destroy(rule)
     end
   end
 

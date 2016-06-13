@@ -1,4 +1,5 @@
 class Admin::RulesController < Admin::BaseController
+  before_action :set_section
   before_action :set_rule, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -9,18 +10,18 @@ class Admin::RulesController < Admin::BaseController
   end
 
   def new
-    @rule = Rule.new
+    @rule = @section.rules.build
   end
 
   def edit
   end
 
   def create
-    @rule = Rule.new(rule_params)
+    @rule = @section.rules.build(rule_params)
 
     respond_to do |format|
       if @rule.save
-        format.html { redirect_to admin_rules_url, notice: 'Rule was successfully created.' }
+        format.html { redirect_to admin_sections_url, notice: 'Rule was successfully created.' }
         format.json { render :show, status: :created, location: @rule }
       else
         format.html { render :new }
@@ -32,7 +33,7 @@ class Admin::RulesController < Admin::BaseController
   def update
     respond_to do |format|
       if @rule.update(rule_params)
-        format.html { redirect_to admin_rules_url, notice: 'Rule was successfully updated.' }
+        format.html { redirect_to admin_sections_url, notice: 'Rule was successfully updated.' }
         format.json { render :show, status: :ok, location: @rule }
       else
         format.html { render :edit }
@@ -44,12 +45,16 @@ class Admin::RulesController < Admin::BaseController
   def destroy
     @rule.destroy
     respond_to do |format|
-      format.html { redirect_to admin_rules_url, notice: 'Rule was successfully destroyed.' }
+      format.html { redirect_to admin_sections_url, notice: 'Rule was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
+  def set_section
+    @section = Section.find params[:section_id]
+  end
+
   def set_rule
     @rule = Rule.find(params[:id])
   end

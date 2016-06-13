@@ -18,6 +18,7 @@
 			<th>ID</th>
 			<th>名称</th>
 			<th>code</th>
+			<th>规则列表</th>
 			<th colspan="3"></th>
 		</tr>
 		</thead>
@@ -28,7 +29,20 @@
 					<td><%= section.id %></td>
 					<td><%= section.name %></td>
 					<td><%= section.code %></td>
-					<td><%= link_to '编辑', edit_admin_section_path(section) %></td>
+					<td>
+						<% section.rules.each do |rule| %>
+						  <p>
+							  <%= rule.name %>
+							  <%= rule.code %>
+								<%= link_to '编辑', edit_admin_section_rule_path(section, rule) %>
+								<%= link_to '删除', admin_section_rule_path(section, rule), method: :delete, data: { confirm: 'Are you sure?' } %>
+						  </p>
+						<% end %>
+					</td>
+					<td>
+						<%= link_to '新建', new_admin_section_rule_path(section), class: 'ui teal mini button' %>
+						<%= link_to '编辑', edit_admin_section_path(section), class: 'ui red mini button' %>
+					</td>
 					<td><%= link_to '删除', admin_section_path(section), method: :delete, data: { confirm: 'Are you sure?' } %></td>
 				</tr>
 		<% end %>

@@ -10,8 +10,6 @@
   </div>
 
   <div class="ui segment bottom attached">
-    <%= render 'section_form' %>
-    <%= render 'rule_form' %>
   </div>
 
   <table class="ui celled table">
@@ -22,30 +20,15 @@
       </tr>
     </thead>
     <tbody>
-    <% @role.the_role.each_pair do |section, rules| %>
+    <% Section.includes(:rules).all.each do |section| %>
       <tr>
         <td>
-          <%= the_role_t(section) %>
-          <%= link_to '删除', admin_role_section_path(@role, section), method: :delete %>
+          <%= section.name %>
         </td>
         <td>
-          <% rules.each_pair do |rule, value| %>
+          <% section.rules.each do |rule| %>
           <p>
-            <% if value %>
-              <span class="ui green label">
-                <i class="checkmark icon"><%= the_role_t(section, rule) %></i>
-              </span>
-            <% else %>
-              <span class="ui red label">
-                <i class="remove icon"><%= the_role_t(section, rule) %></i>
-              </span>
-            <% end %>
-
-            <span class="ui toggle checkbox">
-	            <input type="checkbox" name="public" data-section="<%= section %>" data-rule="<%= rule %>" >
-            </span>
-
-            <%= link_to '删除', destroy_rule_admin_role_section_path(@role, section, name: rule), method: :delete %>
+	          <%= render partial: 'toggle_form', locals: { rule: rule } %>
           </p>
           <% end %>
         </td>
@@ -58,23 +41,9 @@
 
 <script>
 	$('.ui.checkbox').checkbox({
-		onChecked: function(){
-			var section = $(this).data('section');
-			var rule = $(this).data('rule');
-			var token = $('meta[name="csrf-token"]').attr('content');
-			var request = {};
-			request.method = 'PATCH';
-			request.headers = { 'X-CSRF-Token': token };
-			fetch('<%= admin_role_url(@role) %>' + '/sections/' + encodeURIComponent(section) + '/rule_on?name=' + rule, request).then(function(response) {
-				return response.json()
-			})
-		},
-		onUnchecked: function() {
-			console.log('onUnchecked called<br>');
+		onChange: function(){
+			$(this).parent().parent().submit();
 		}
 	});
 </script>
-
-<%# link_to '开启', rule_on_admin_role_section_path(@role, section, name: rule), method: :patch %>
-<%# link_to '关闭', rule_off_admin_role_section_path(@role, section, name: rule), method: :patch %>
 

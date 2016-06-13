@@ -4,13 +4,13 @@
 
 <div class="thirteen wide column">
 	<div class="ui breadcrumb">
-		<%= link_to '返回', admin_rules_path, class: 'section' %>
+		<%= link_to '返回', admin_sections_path, class: 'section' %>
 		<div class="divider"> / </div>
 		<div class="active section">新建</div>
 	</div>
 
 	<div class="ui segment">
-		<%= default_form_for @rule, as: :rule, url: admin_rule_path(@rule) do |f| %>
+		<%= default_form_for @rule, as: :rule, url: admin_section_rule_path(@section, @rule) do |f| %>
 				<%= render partial: 'form', locals: { f: f } %>
 		<% end %>
 	</div>

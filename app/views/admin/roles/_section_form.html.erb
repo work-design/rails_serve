@@ -1,6 +1,4 @@
 <%= form_tag admin_role_sections_path(@role), class: 'ui form' do %>
-  <div class="inline fields">
-    <div class="field">
       <%= text_field_tag :section_name, '', placeholder: t('.new_section_placeholder') %>
     </div>
     <%= submit_tag t('.create_section'), class: 'ui button' %>
@@ -8,3 +6,6 @@
 <% end %>
 
 
+<span class="ui toggle checkbox">
+	            <input type="checkbox" name="public" data-section="<%= section %>" data-rule="<%= rule %>" >
+            </span>

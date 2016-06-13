@@ -1,6 +1,4 @@
-
 <%= f.text_field :code, label: 'Code:' %>
 <%= f.text_field :name, label: '名称:' %>
-<%= f.collection_select :section_id, Section.all, :id, :name, label: 'section' %>
 <%= f.submit %>
 
