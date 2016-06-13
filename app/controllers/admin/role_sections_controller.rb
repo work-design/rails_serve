@@ -1,6 +1,7 @@
 class Admin::RoleSectionsController < Admin::BaseController
   include TheRole::Admin
   before_action :set_role
+  skip_before_action :verify_authenticity_token
 
 
   protected

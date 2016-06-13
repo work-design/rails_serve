@@ -40,8 +40,11 @@
                 <i class="remove icon"><%= the_role_t(section, rule) %></i>
               </span>
             <% end %>
-            <%= link_to '开启', rule_on_admin_role_section_path(@role, section, name: rule), method: :patch %>
-            <%= link_to '关闭', rule_off_admin_role_section_path(@role, section, name: rule), method: :patch %>
+
+            <span class="ui toggle checkbox">
+	            <input type="checkbox" name="public" data-section="<%= section %>" data-rule="<%= rule %>" >
+            </span>
+
             <%= link_to '删除', destroy_rule_admin_role_section_path(@role, section, name: rule), method: :delete %>
           </p>
           <% end %>
@@ -53,4 +56,25 @@
 
 </div>
 
+<script>
+	$('.ui.checkbox').checkbox({
+		onChecked: function(){
+			var section = $(this).data('section');
+			var rule = $(this).data('rule');
+			var token = $('meta[name="csrf-token"]').attr('content');
+			var request = {};
+			request.method = 'PATCH';
+			request.headers = { 'X-CSRF-Token': token };
+			fetch('<%= admin_role_url(@role) %>' + '/sections/' + encodeURIComponent(section) + '/rule_on?name=' + rule, request).then(function(response) {
+				return response.json()
+			})
+		},
+		onUnchecked: function() {
+			console.log('onUnchecked called<br>');
+		}
+	});
+</script>
+
+<%# link_to '开启', rule_on_admin_role_section_path(@role, section, name: rule), method: :patch %>
+<%# link_to '关闭', rule_off_admin_role_section_path(@role, section, name: rule), method: :patch %>
 

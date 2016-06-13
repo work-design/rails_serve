@@ -15,6 +15,8 @@ Rails.application.routes.draw do
         delete :destroy_rule, on: :member
       end
     end
+    resources :rules
+    resources :sections
   end
 
 

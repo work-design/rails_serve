@@ -4,8 +4,7 @@ module TheRole
     extend ActiveSupport::Concern
 
     included do
-      has_many :role_rules, dependent: :destroy
-      has_many :rules, through: :role_rules
+      has_many :rules
       serialize :the_role, JSON
     end
 
