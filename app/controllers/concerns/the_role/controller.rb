@@ -29,6 +29,10 @@ module TheRole::Controller
       return true
     end
 
+    if ['new', 'edit'].include?(action_name) && the_role_user.has_role?(controller_path, 'write')
+      return true
+    end
+
     if ['DELETE'].include?(request.method) && the_role_user.has_role?(controller_path, 'delete')
       return true
     end
