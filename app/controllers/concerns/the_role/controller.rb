@@ -12,8 +12,28 @@ module TheRole::Controller
     @owner_check_object = obj
   end
 
-  def role_required
-    role_access_denied unless the_role_user.has_role? controller_path, action_name
+  def role_required(section = nil, rule = nil, &block)
+    if block_given?
+      yield block
+    end
+
+    if the_role_user.has_role? controller_path, action_name
+      return true
+    end
+
+    if ['GET'].include?(request.method) && the_role_user.has_role?(controller_path, 'read')
+      return true
+    end
+
+    if ['POST', 'PUT', 'PATCH'].include?(request.method) && the_role_user.has_role?(controller_path, 'write')
+      return true
+    end
+
+    if ['DELETE'].include?(request.method) && the_role_user.has_role?(controller_path, 'delete')
+      return true
+    end
+
+    role_access_denied
   end
 
   def owner_required
