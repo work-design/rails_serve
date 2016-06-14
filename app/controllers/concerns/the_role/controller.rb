@@ -39,6 +39,7 @@ module TheRole::Controller
 
     role_access_denied
   end
+  alias :require_role :role_required
 
   def owner_required
     role_access_denied unless the_role_user.owner? @owner_check_object
