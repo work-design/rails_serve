@@ -35,8 +35,4 @@ module TheRole::BaseMethods
     the_role[section_name] && the_role[section_name]['admin']
   end
 
-  def write? section_name
-
-  end
-
 end
