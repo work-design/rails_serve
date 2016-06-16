@@ -1,6 +1,6 @@
 class Admin::RulesController < Admin::BaseController
   before_action :set_section
-  before_action :set_rule, only: [:show, :edit, :update, :destroy]
+  before_action :set_rule, only: [:show, :edit, :update, :move_higher, :move_lower, :destroy]
 
   def index
     @rules = Rule.all
@@ -42,6 +42,16 @@ class Admin::RulesController < Admin::BaseController
     end
   end
 
+  def move_higher
+    @rule.move_higher
+    redirect_to admin_sections_url(params.to_h)
+  end
+
+  def move_lower
+    @rule.move_lower
+    redirect_to admin_sections_url(params.to_h)
+  end
+
   def destroy
     @rule.destroy
     respond_to do |format|
@@ -60,7 +70,7 @@ class Admin::RulesController < Admin::BaseController
   end
 
   def rule_params
-    params.fetch(:rule, {}).permit(:code, :name, :section_id)
+    params.fetch(:rule, {}).permit(:code, :name, :position)
   end
 
 

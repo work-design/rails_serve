@@ -7,7 +7,12 @@ Rails.application.routes.draw do
       delete 'user/:user_id' => :delete_user, on: :member, as: :user
     end
     resources :sections do
-      resources :rules
+      patch 'move_lower', on: :member
+      patch 'move_higher', on: :member
+      resources :rules do
+        patch 'move_lower', on: :member
+        patch 'move_higher', on: :member
+      end
     end
   end
 

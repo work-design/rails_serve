@@ -1,5 +1,5 @@
 class Admin::SectionsController < Admin::BaseController
-  before_action :set_section, only: [:show, :edit, :update, :destroy]
+  before_action :set_section, only: [:show, :edit, :update, :move_higher, :move_lower, :destroy]
 
   def index
     @sections = Section.all
@@ -12,11 +12,10 @@ class Admin::SectionsController < Admin::BaseController
     @section = Section.new
   end
 
-  def edit
-  end
-
   def create
     @section = Section.new(section_params)
+    codes = params[:section][:codes].split(/\s+/)
+    @section.codes = codes
 
     respond_to do |format|
       if @section.save
@@ -29,9 +28,15 @@ class Admin::SectionsController < Admin::BaseController
     end
   end
 
+  def edit
+  end
+
   def update
+    @section.assign_attributes(section_params)
+    codes = params[:section][:codes].split(/\s+/)
+    @section.codes = codes
     respond_to do |format|
-      if @section.update(section_params)
+      if @section.save
         format.html { redirect_to admin_sections_url, notice: 'Section was successfully updated.' }
         format.json { render :show, status: :ok, location: @section }
       else
@@ -39,6 +44,16 @@ class Admin::SectionsController < Admin::BaseController
         format.json { render json: @section.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def move_higher
+    @section.move_higher
+    redirect_to admin_sections_url(params.to_h)
+  end
+
+  def move_lower
+    @section.move_lower
+    redirect_to admin_sections_url(params.to_h)
   end
 
   def destroy
@@ -55,7 +70,7 @@ class Admin::SectionsController < Admin::BaseController
   end
 
   def section_params
-    params.fetch(:section, {}).permit(:code, :name)
+    params.fetch(:section, {}).permit(:code, :name, :position)
   end
 
 end
