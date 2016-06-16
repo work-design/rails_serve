@@ -38,9 +38,9 @@
 					<td>
 						<% section.rules.each do |rule| %>
 						  <p>
-							  <%= rule.name %>
-							  <%= rule.code %>
                 <%= rule.position %>
+                <%= rule.name %>
+							  <%= rule.code %>
                 <%= link_to '上移', move_higher_admin_section_rule_path(section, rule), method: :patch %>
                 <%= link_to '下移', move_lower_admin_section_rule_path(section, rule), method: :patch %>
 								<%= link_to '编辑', edit_admin_section_rule_path(section, rule) %>

@@ -28,7 +28,7 @@
     <% Section.includes(:rules).all.each do |section| %>
       <tr>
         <td>
-          <%= section.name %> (<%= section.code %>)
+          <%= section.name %> <%= section.codes %>
         </td>
         <td>
           <% section.rules.each do |rule| %>
