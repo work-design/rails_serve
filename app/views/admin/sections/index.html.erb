@@ -29,7 +29,7 @@
 				<tr>
 					<td><%= section.id %></td>
 					<td><%= section.name %></td>
-					<td><%= simple_format section.codes.join("\n\n") %></td>
+					<td><%= section.code %></td>
           <td>
             <%= section.position %>
             <%= link_to '上移', move_higher_admin_section_path(section), method: :patch %>

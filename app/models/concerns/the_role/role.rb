@@ -13,11 +13,9 @@ module TheRole
       Rails.cache.fetch("roles/#{self.id}") do
         result = {}
         sections.each do |section|
-          section.codes.each do |code|
-            result[code] ||= {}
-            rules.where(section_id: section.id).each do |rule|
-              result[code].merge! rule.code => true
-            end
+          result[section.code] ||= {}
+          rules.where(section_id: section.id).each do |rule|
+            result[section.code].merge! rule.code => true
           end
         end
         result
