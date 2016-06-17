@@ -5,7 +5,14 @@ module TheRole
 
     included do
       belongs_to :who, optional: true
-      delegate :the_role, to: :who, allow_nil: true
+    end
+
+    def the_role
+      if who
+        who.the_role
+      else
+        {}
+      end
     end
 
     def owner?(obj, user_id = nil)
