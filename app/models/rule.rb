@@ -1,5 +1,5 @@
 class Rule < ApplicationRecord
-  acts_as_list scope: :section, top_of_list: 0
+  acts_as_list scope: :section
   default_scope -> { order(position: :asc, id: :asc) }
 
   belongs_to :section
