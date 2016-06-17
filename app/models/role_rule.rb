@@ -7,7 +7,7 @@ class RoleRule < ApplicationRecord
 
   def delete_cache
     Rails.cache.delete("roles/#{role_id}")
-    Rails.cache.delete_matched('who/*')
+    Rails.cache.clear
   end
 
 end
