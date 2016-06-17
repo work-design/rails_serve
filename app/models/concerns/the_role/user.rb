@@ -4,7 +4,7 @@ module TheRole
     include TheRole::BaseMethods
 
     included do
-      belongs_to :who
+      belongs_to :who, optional: true
       delegate :the_role, to: :who, allow_nil: true
     end
 
