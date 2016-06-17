@@ -14,7 +14,7 @@ module TheRole
         result = {}
         sections.each do |section|
           section.codes.each do |code|
-            result[code] = {}
+            result[code] ||= {}
             rules.where(section_id: section.id).each do |rule|
               result[code].merge! rule.code => true
             end
