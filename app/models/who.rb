@@ -3,7 +3,6 @@ class Who < ApplicationRecord
   has_many :who_roles, dependent: :destroy
   has_many :roles, through: :who_roles
 
-
   def the_role
     Rails.cache.fetch("who/#{self.id}") do
       result = {}
