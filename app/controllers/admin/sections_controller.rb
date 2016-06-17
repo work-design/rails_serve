@@ -14,8 +14,6 @@ class Admin::SectionsController < Admin::BaseController
 
   def create
     @section = Section.new(section_params)
-    codes = params[:section][:codes].split(/\s+/)
-    @section.codes = codes
 
     respond_to do |format|
       if @section.save
@@ -33,8 +31,6 @@ class Admin::SectionsController < Admin::BaseController
 
   def update
     @section.assign_attributes(section_params)
-    codes = params[:section][:codes].split(/\s+/)
-    @section.codes = codes
     respond_to do |format|
       if @section.save
         format.html { redirect_to admin_sections_url, notice: 'Section was successfully updated.' }
