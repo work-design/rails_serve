@@ -67,7 +67,7 @@ module TheRole::Controller
       }, status: 401
     else
       if request.referer.present?
-        redirect_back fallback_location: root_url, flash: { error: access_denied_msg }
+        redirect_to root_url, flash: { error: access_denied_msg }
       else
         redirect_to root_path, flash: { error: access_denied_msg }
       end
