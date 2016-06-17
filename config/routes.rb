@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   namespace :admin do
+    resources :whos
     resources :roles do
       patch 'toggle/:rule_id' => :toggle, on: :member, as: :toggle
       get :users, on: :member

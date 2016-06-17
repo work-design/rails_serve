@@ -4,15 +4,8 @@ module TheRole
     include TheRole::BaseMethods
 
     included do
-    end
-
-    def the_role
-      result = {}
-      roles.map do |r|
-        result.deep_merge!(r.the_role.to_h) { |_, t, o| t || o }
-      end
-
-      result
+      belongs_to :who
+      delegate :the_role, to: :who, allow_nil: true
     end
 
     def owner?(obj, user_id = nil)

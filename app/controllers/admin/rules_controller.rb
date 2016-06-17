@@ -73,5 +73,4 @@ class Admin::RulesController < Admin::BaseController
     params.fetch(:rule, {}).permit(:code, :name, :position)
   end
 
-
 end
