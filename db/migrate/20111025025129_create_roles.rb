@@ -1,9 +1,25 @@
 class CreateRoles < ActiveRecord::Migration
 
   def change
+
+    create_table :sections do |t|
+      t.string :name
+      t.string :code
+      t.integer :position, default: 0
+      t.timestamps
+    end
+
+    create_table :rules do |t|
+      t.string :name
+      t.string :code
+      t.references :section
+      t.integer :position, default: 0
+      t.timestamps
+    end
+
     create_table :roles do |t|
       t.string :name, null: false
-      t.text   :description, null: false
+      t.text :description
       t.timestamps
     end
 
@@ -13,16 +29,15 @@ class CreateRoles < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :sections do |t|
-      t.string :name
-      t.string :code
+    create_table :whos do |t|
+      t.string :name, null: false
+      t.string :type
       t.timestamps
     end
 
-    create_table :rules do |t|
-      t.string :name
-      t.string :code
-      t.references :section
+    create_table :who_roles do |t|
+      t.references :who
+      t.references :role
       t.timestamps
     end
 

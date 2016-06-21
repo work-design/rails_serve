@@ -2,7 +2,7 @@ class Admin::SectionsController < Admin::BaseController
   before_action :set_section, only: [:show, :edit, :update, :move_higher, :move_lower, :destroy]
 
   def index
-    @sections = Section.all
+    @sections = Section.includes(:rules).all
   end
 
   def show

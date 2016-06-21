@@ -1,4 +1,5 @@
 class Who < ApplicationRecord
+  include TheRole::User
 
   has_many :who_roles, dependent: :destroy
   has_many :roles, through: :who_roles

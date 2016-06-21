@@ -7,7 +7,9 @@ class RoleRule < ApplicationRecord
 
   def delete_cache
     Rails.cache.delete("roles/#{role_id}")
-    Rails.cache.clear
+    Who.pluck(:id).each do |who_id|
+      Rails.cache.delete("who/#{who_id}")
+    end
   end
 
 end

@@ -2,7 +2,7 @@ class Admin::WhosController < Admin::BaseController
   before_action :set_who, only: [:show, :edit, :update, :destroy]
 
   def index
-    @whos = Who.all
+    @whos = Who.includes(:roles).all
   end
 
   def new
