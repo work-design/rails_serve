@@ -117,7 +117,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  rails (= 5.0.0.rc1)
   the_role!
 
 BUNDLED WITH

@@ -14,4 +14,5 @@ class Who < ApplicationRecord
       result
     end
   end
+
 end
