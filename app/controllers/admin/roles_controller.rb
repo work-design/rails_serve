@@ -75,8 +75,7 @@ class Admin::RolesController < Admin::BaseController
   def role_params
     params[:role].permit(:name,
                          :description,
-                         :the_role,
-                         :type)
+                         :the_role)
   end
 
   def set_role
