@@ -6,7 +6,7 @@ class Rule < ApplicationRecord
   has_many :role_rules, dependent: :destroy
   has_many :roles, through: :role_rules
 
-  validates :code, uniqueness: { scope: :section_id }
+  #validates :code, uniqueness: { scope: :section_id }
 
   after_commit :delete_cache
 
