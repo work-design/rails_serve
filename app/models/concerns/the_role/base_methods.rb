@@ -13,7 +13,7 @@ module TheRole::BaseMethods
     rules = the_role[section_name][rule_name]
 
     if rules.is_a?(Array) && params.present?
-      rules.include? params
+      rules.include? params.to_s
     else
       rules
     end

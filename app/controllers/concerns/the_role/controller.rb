@@ -1,23 +1,27 @@
 module TheRole::Controller
+  extend ActiveSupport::Concern
+  included do
+    helper_method :the_role_user
+  end
 
-  def require_role
-    if the_role_user.has_role? controller_path, action_name, params[:id]
+  def require_role(the_params = params['id'])
+    if the_role_user.has_role? controller_path, action_name, the_params
       return true
     end
 
-    if ['GET'].include?(request.method) && the_role_user.has_role?(controller_path, 'read')
+    if ['GET'].include?(request.method) && the_role_user.has_role?(controller_path, 'read', the_params)
       return true
     end
 
-    if ['POST', 'PUT', 'PATCH'].include?(request.method) && the_role_user.has_role?(controller_path, 'write')
+    if ['POST', 'PUT', 'PATCH'].include?(request.method) && the_role_user.has_role?(controller_path, 'write', the_params)
       return true
     end
 
-    if ['new', 'edit'].include?(action_name) && the_role_user.has_role?(controller_path, 'write')
+    if ['new', 'edit'].include?(action_name) && the_role_user.has_role?(controller_path, 'write', the_params)
       return true
     end
 
-    if ['DELETE'].include?(request.method) && the_role_user.has_role?(controller_path, 'delete')
+    if ['DELETE'].include?(request.method) && the_role_user.has_role?(controller_path, 'delete', the_params)
       return true
     end
 

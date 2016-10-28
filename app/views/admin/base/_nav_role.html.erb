@@ -1,0 +1,10 @@
+<div class="ui menu vertical fluid">
+  <div class="item">
+    <span>角色管理</span>
+    <div class="menu">
+      <%= link_to '角色列表', admin_whos_path, class: active_controller('whos') %>
+      <%= link_to '角色权限', admin_roles_path, class: active_controller('roles') %>
+      <%= link_to '默认选项', admin_sections_path, class: active_controller('sections') %>
+    </div>
+  </div>
+</div>
