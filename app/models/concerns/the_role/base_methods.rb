@@ -1,6 +1,6 @@
 module TheRole::BaseMethods
 
-  def has_role?(section_name, rule_name, params: nil)
+  def has_role?(section_name, rule_name, params = nil)
     section_name = section_name.to_s
     rule_name = rule_name.to_s
 
@@ -12,10 +12,10 @@ module TheRole::BaseMethods
     return false unless the_role[section_name].key? rule_name
     rules = the_role[section_name][rule_name]
 
-    if rules.is_a? Array
+    if rules.is_a?(Array) && params.present?
       rules.include? params
     else
-      true
+      rules
     end
   end
 

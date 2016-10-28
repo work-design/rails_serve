@@ -14,7 +14,11 @@ module TheRole::Role
       sections.each do |section|
         result[section.code] ||= {}
         rules.where(section_id: section.id).each do |rule|
-          result[section.code].merge! rule.code => true
+          if rule.serialize_params.blank?
+            result[section.code].merge! rule.code => true
+          else
+            result[section.code].merge! rule.code => rule.serialize_params
+          end
         end
       end
       result

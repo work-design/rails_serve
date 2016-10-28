@@ -70,7 +70,7 @@ class Admin::RulesController < Admin::BaseController
   end
 
   def rule_params
-    params.fetch(:rule, {}).permit(:code, :name, :position)
+    params.fetch(:rule, {}).permit(:code, :name, :params, :position)
   end
 
 end

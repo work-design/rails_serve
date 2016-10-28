@@ -1,7 +1,7 @@
 module TheRole::Controller
 
   def require_role
-    if the_role_user.has_role? controller_path, action_name
+    if the_role_user.has_role? controller_path, action_name, params[:id]
       return true
     end
 
