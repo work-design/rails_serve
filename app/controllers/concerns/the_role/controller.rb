@@ -54,21 +54,7 @@ module TheRole::Controller
     access_denied_msg = t(:access_denied, scope: :the_role)
 
     if request.xhr?
-      render json: {
-        errors: { the_role: [ access_denied_msg ] },
-
-        controller_name: controller_path,
-        action_name: action_name,
-        has_access_to_action: the_role_user.try(:has_role?, controller_path, action_name),
-        the_role_user: {
-          id: the_role_user.try(:id)
-        },
-        owner_check_object: {
-          owner_check_object_id: @owner_check_object.try(:id),
-          owner_check_object_class: @owner_check_object.class.to_s
-        },
-        has_access_to_object: the_role_user.try(:owner?, @owner_check_object)
-      }, status: 401
+      render file: TheRole::Engine.root + 'app/views/admin/base/errors.js.erb', status: 401
     else
       redirect_back fallback_location: root_url, flash: { error: access_denied_msg }
     end
