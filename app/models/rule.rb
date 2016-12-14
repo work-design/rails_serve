@@ -3,7 +3,7 @@ class Rule < ApplicationRecord
   default_scope -> { order(position: :asc, id: :asc) }
 
   belongs_to :section
-  has_many :role_rules, dependent: :destroy
+  has_many :role_rules, dependent: :delete_all
   has_many :roles, through: :role_rules
 
   after_commit :delete_cache
