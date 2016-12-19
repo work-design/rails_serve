@@ -1,0 +1,5 @@
+$('body').append('<%= j(render 'roles') %>');
+
+$('#roles_<%= @rule.id %>').popup({
+  popup: '#show_roles_<%= @rule.id %>'
+}).popup('show');

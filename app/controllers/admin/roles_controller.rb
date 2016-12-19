@@ -1,5 +1,5 @@
 class Admin::RolesController < Admin::BaseController
-  before_action :set_role, only: [:show, :toggle, :users, :edit, :update, :destroy, :delete_user, :change]
+  before_action :set_role, only: [:show, :toggle, :whos, :edit, :update, :destroy, :delete_who, :change]
 
   def index
     @roles = Role.order('created_at ASC')
@@ -23,8 +23,8 @@ class Admin::RolesController < Admin::BaseController
   def show
   end
 
-  def users
-    @users = @role.users.page(params[:page])
+  def whos
+    @whos = @role.whos.page(params[:page])
   end
 
   def edit
@@ -64,11 +64,11 @@ class Admin::RolesController < Admin::BaseController
     redirect_to admin_roles_url
   end
 
-  def delete_user
-    user = User.find params[:user_id]
-    @role.users.delete(user)
+  def delete_who
+    user = Who.find params[:who_id]
+    @role.whos.delete(user)
 
-    redirect_to users_admin_role_url(@role)
+    redirect_to whos_admin_role_url(@role)
   end
 
   private

@@ -1,19 +1,9 @@
 class Admin::RulesController < Admin::BaseController
   before_action :set_section
-  before_action :set_rule, only: [:show, :edit, :update, :move_higher, :move_lower, :destroy]
+  before_action :set_rule, only: [:show, :roles, :edit, :update, :move_higher, :move_lower, :destroy]
 
   def index
     @rules = Rule.all
-  end
-
-  def show
-  end
-
-  def new
-    @rule = @section.rules.build
-  end
-
-  def edit
   end
 
   def create
@@ -21,7 +11,7 @@ class Admin::RulesController < Admin::BaseController
 
     respond_to do |format|
       if @rule.save
-        format.html { redirect_to admin_sections_url, notice: 'Rule was successfully created.' }
+        format.html { redirect_to admin_sections_url(anchor: "tr_#{@section.id}"), notice: 'Rule was successfully created.' }
         format.json { render :show, status: :created, location: @rule }
       else
         format.html { render :new }
@@ -46,13 +36,27 @@ class Admin::RulesController < Admin::BaseController
       end
     end
 
-    redirect_to admin_sections_url
+    redirect_to admin_sections_url(anchor: "tr_#{@section.id}")
+  end
+
+  def new
+    @rule = @section.rules.build
+  end
+
+  def show
+  end
+
+  def roles
+    @roles = @rule.roles
+  end
+
+  def edit
   end
 
   def update
     respond_to do |format|
       if @rule.update(rule_params)
-        format.html { redirect_to admin_sections_url, notice: 'Rule was successfully updated.' }
+        format.html { redirect_to admin_sections_url(anchor: "tr_#{@section.id}"), notice: 'Rule was successfully updated.' }
         format.json { render :show, status: :ok, location: @rule }
       else
         format.html { render :edit }
@@ -74,7 +78,7 @@ class Admin::RulesController < Admin::BaseController
   def destroy
     @rule.destroy
     respond_to do |format|
-      format.html { redirect_to admin_sections_url, notice: 'Rule was successfully destroyed.' }
+      format.html { redirect_to admin_sections_url(anchor: "tr_#{@section.id}"), notice: 'Rule was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

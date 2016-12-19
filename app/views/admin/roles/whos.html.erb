@@ -4,7 +4,7 @@
       <span>角色列表</span>
       <div class="menu">
         <% Role.all.each do |role| %>
-          <%= link_to role.name, users_admin_role_path(role), class: active_object(role.id) %>
+          <%= link_to role.name, whos_admin_role_path(role), class: active_page(id: role.id) %>
         <% end %>
       </div>
     </div>
@@ -16,7 +16,7 @@
   <div class="ui top attached menu borderless">
     <%= link_to '权限列表', admin_role_path(@role), class: 'item' %>
     <div class="item">
-      <strong>用户列表</strong>
+      <strong>角色列表</strong>
     </div>
   </div>
 
@@ -36,12 +36,11 @@
     </thead>
 
     <tbody>
-    <% @users.each do |user| %>
+    <% @whos.each do |who| %>
       <tr>
-        <td><%= user.id %></td>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><%= link_to '删除', user_admin_role_path(@role, user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= who.id %></td>
+        <td><%= who.name %></td>
+        <td><%= link_to '删除', who_admin_role_path(@role, who), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
     </tbody>

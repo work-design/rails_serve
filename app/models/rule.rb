@@ -5,6 +5,7 @@ class Rule < ApplicationRecord
   belongs_to :section
   has_many :role_rules, dependent: :delete_all
   has_many :roles, through: :role_rules
+  has_many :whos, through: :roles
 
   after_commit :delete_cache
 

@@ -1,0 +1,14 @@
+<div class="ui popup" id="show_roles_<%= @rule.id %>">
+  <div class="content">
+    <p>
+      <% @rule.roles.each do |role| %>
+        <label class="ui blue label"><%= role.name %></label>
+      <% end %>
+    </p>
+    <p>
+      <% @rule.whos.each do |who| %>
+        <label class="ui green label"><%= who.name %></label>
+      <% end %>
+    </p>
+  </div>
+</div>
