@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       patch 'move_lower', on: :member
       patch 'move_higher', on: :member
       resources :rules do
+        patch 'sync', on: :collection
         patch 'move_lower', on: :member
         patch 'move_higher', on: :member
       end

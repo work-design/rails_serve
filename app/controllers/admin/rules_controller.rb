@@ -30,6 +30,25 @@ class Admin::RulesController < Admin::BaseController
     end
   end
 
+  def sync
+    controller = (@section.code + '_controller').camelize.safe_constantize
+    if controller
+      all_actions = (controller.instance_methods(false) - [:new]).map(&:to_s)
+      section_rules = @section.rules.pluck(:code)
+
+      (all_actions - section_rules).each do |la|
+        @section.rules.create(code: la)
+      end
+
+      invalid_rules = (section_rules - all_actions) - ['admin', 'read', 'write']
+      invalid_rules.each do |la|
+        @section.rules.find_by(code: la).destroy
+      end
+    end
+
+    redirect_to admin_sections_url
+  end
+
   def update
     respond_to do |format|
       if @rule.update(rule_params)

@@ -21,7 +21,7 @@
     <thead>
       <tr>
         <th>Section名称</th>
-        <th>Rule名称</th>
+        <th>Allow Rule</th>
       </tr>
     </thead>
     <tbody>
@@ -32,9 +32,7 @@
         </td>
         <td>
           <% section.rules.each do |rule| %>
-          <p>
-	          <%= render partial: 'toggle_form', locals: { rule: rule } %>
-          </p>
+            <p><%= render partial: 'toggle_form', locals: { rule: rule } %></p>
           <% end %>
         </td>
       </tr>
