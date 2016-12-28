@@ -34,7 +34,7 @@
       </tr>
       </thead>
       <tbody>
-      <% Section.includes(:rules).all.each do |section| %>
+      <% @role.sections.includes(:rules).each do |section| %>
         <tr>
           <td>
             <%= section.name %> (<%= section.code %>)

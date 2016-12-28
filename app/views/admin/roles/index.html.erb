@@ -13,4 +13,46 @@
   <div class="two wide column">
     <%= render 'sidebar' %>
   </div>
+
+  
+
+  <div class="fourteen wide column">
+    <table class="ui celled table">
+      <thead>
+      <tr>
+        <th></th>
+        <th>Role</th>
+        <th>Section</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @roles.each do |role| %>
+      <tr>
+        <td>
+          <%= form_for role, as: :role, url: admin_role_path(role), html: { class: '', id: "edit_role_#{role.id}" } do |f| %>
+            <%= hidden_field_tag :'role[section_ids][]', nil, form: "edit_role_#{role.id}" %>
+          <% end %>
+        </td>
+        <td><%= role.name %></td>
+        <td>
+          <% Section.all.each do |section| %>
+            <% if role.section_ids.include?(section.id) %>
+              <div class="ui label teal checkbox">
+                <%= check_box_tag :'role[section_ids][]', section.id, true, form: "edit_role_#{role.id}" %>
+                <label><%= section.desc %></label>
+              </div>
+            <% else %>
+              <div class="ui label checkbox">
+                <%= check_box_tag :'role[section_ids][]', section.id, false, form: "edit_role_#{role.id}" %>
+                <label><%= section.desc %></label>
+              </div>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+
 </div>
