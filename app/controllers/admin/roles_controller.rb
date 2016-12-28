@@ -33,7 +33,7 @@ class Admin::RolesController < Admin::BaseController
   def update
     if @role.update role_params
       flash[:notice] = t('.role_updated')
-      redirect_to admin_roles_url
+      redirect_to admin_role_url(@role)
     else
       render action: :edit
     end
@@ -75,7 +75,7 @@ class Admin::RolesController < Admin::BaseController
   def role_params
     params[:role].permit(:name,
                          :description,
-                         :the_role)
+                         :the_role, rule_ids: [])
   end
 
   def set_role

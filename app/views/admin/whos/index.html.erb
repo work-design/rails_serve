@@ -28,7 +28,7 @@
           <%= link_to '编辑', edit_admin_who_path(who) %>
         </td>
         <td>
-          <%= hidden_field_tag :'who[role_ids][]', nil, form: "edit_who_#{who.id}"  %>
+          <%= hidden_field_tag :'who[role_ids][]', nil, form: "edit_who_#{who.id}" %>
           <% Role.all.each do |role| %>
             <% if who.role_ids.include?(role.id) %>
               <div class="ui label teal checkbox">

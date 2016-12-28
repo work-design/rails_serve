@@ -1,41 +1,16 @@
-<div class="three wide column">
-  <%= render 'admin/base/nav_role' %>
-</div>
-
-<div class="thirteen wide column">
+<div class="sixteen wide column">
 
   <div class="ui top attached menu borderless">
-    <div class="item"><strong>角色权限</strong></div>
+    <%= render 'admin/base/nav_role' %>
     <div class="right menu">
       <div class="item"><%= link_to '新建', new_admin_role_path, class: 'ui teal button' %></div>
     </div>
   </div>
 
-  <table class="ui table">
-    <thead>
-    <tr>
-      <th>ID</th>
-      <th>名称</th>
-      <th>描述</th>
-      <th>编辑</th>
-      <th></th>
-    </tr>
-    </thead>
+</div>
 
-    <tbody>
-    <% @roles.each do |role| %>
-      <tr>
-        <td><%= role.id %></td>
-        <td><%= role.name %></td>
-        <td><%= role.description %></td>
-        <td><%= link_to '权限管理', admin_role_path(role) %></td>
-        <td>
-          <%= link_to '编辑', edit_admin_role_path(role), class: 'ui teal label' %>
-          <%= link_to '删除', admin_role_path(role), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red label' %>
-        </td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
-
+<div class="row">
+  <div class="two wide column">
+    <%= render 'sidebar' %>
+  </div>
 </div>
