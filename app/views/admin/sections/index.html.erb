@@ -34,8 +34,6 @@
 							  <%= rule.code %>
                 <%= rule.params %>
                 <%= link_to 'roles', roles_admin_section_rule_path(section, rule), remote: true, id: "roles_#{rule.id}" %>
-                <%= link_to '上移', move_higher_admin_section_rule_path(section, rule), method: :patch %>
-                <%= link_to '下移', move_lower_admin_section_rule_path(section, rule), method: :patch %>
 								<%= link_to '编辑', edit_admin_section_rule_path(section, rule) %>
 								<%= link_to '删除', admin_section_rule_path(section, rule), method: :delete, data: { confirm: 'Are you sure?' } %>
 						  </p>
