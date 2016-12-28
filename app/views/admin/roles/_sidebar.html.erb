@@ -1,10 +1,5 @@
 <div class="ui menu vertical fluid">
-  <div class="item">
-    <span>角色列表</span>
-    <div class="menu">
-      <% Role.all.each do |role| %>
-        <%= link_to role.name, admin_role_path(role), class: active_page(id: role.id) %>
-      <% end %>
-    </div>
-  </div>
+  <% Role.all.each do |role| %>
+    <%= link_to role.name, admin_role_path(role), class: active_page(id: role.id) %>
+  <% end %>
 </div>

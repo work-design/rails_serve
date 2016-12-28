@@ -1,52 +1,47 @@
-<div class="three wide column">
-  <%= render partial: 'sidebar' %>
+<div class="ui container menu borderless">
+  <%= render 'nav_role' %>
+  <%= link_to '角色列表', whos_admin_role_path(@role), class: 'item' %>
 </div>
 
-<div class="thirteen wide column">
-	<div class="ui breadcrumb">
-		<%= link_to '返回', admin_roles_path, class: 'section' %>
-		<div class="divider"> / </div>
-		<div class="active section">管理</div>
-	</div>
-
-  <div class="ui top attached menu borderless">
-    <div class="item"><strong>权限列表</strong></div>
-    <%= link_to '角色列表', whos_admin_role_path(@role), class: 'item' %>
+<div class="row">
+  <div class="two wide column">
+    <%= render 'sidebar' %>
   </div>
 
-  <div class="ui segment bottom attached">
-  </div>
-
-  <table class="ui celled table">
-    <thead>
+  <div class="fourteen wide column">
+    <table class="ui celled table">
+      <thead>
       <tr>
         <th>Section名称</th>
         <th>Allow Rule</th>
       </tr>
-    </thead>
-    <tbody>
-    <% Section.includes(:rules).all.each do |section| %>
-      <tr>
-        <td>
-          <%= section.name %> (<%= section.code %>)
-        </td>
-        <td>
-          <% section.rules.each do |rule| %>
-            <p><%= render partial: 'toggle_form', locals: { rule: rule } %></p>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+      <% Section.includes(:rules).all.each do |section| %>
+        <tr>
+          <td>
+            <%= section.name %> (<%= section.code %>)
+          </td>
+          <td>
+            <% section.rules.each do |rule| %>
+              <p><%= render partial: 'toggle_form', locals: { rule: rule } %></p>
+            <% end %>
+            <%= default_form_for @role, as: :role, url: admin_who_path(who), html: { class: '', id: "edit_who_#{who.id}" } do |f| %>
+              <%= f.collection_check_boxes :role_ids, Role.all, :id, :name, { label: false }, { } %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
 
 </div>
 
 <script>
-	$('.ui.checkbox').checkbox({
-		onChange: function(){
-			$(this).parent().parent().submit();
-		}
-	});
+  $('.ui.checkbox').checkbox({
+    onChange: function(){
+      $(this).parent().parent().submit();
+    }
+  });
 </script>
-
