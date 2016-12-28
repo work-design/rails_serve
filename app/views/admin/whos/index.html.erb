@@ -20,7 +20,9 @@
     <tbody>
     <% @whos.each do |who| %>
       <tr>
-        <td><%= form_tag admin_who_path(who), method: :patch, id: "edit_who_#{who.id}" %></td>
+        <td>
+          <%= form_for [:admin, who] do %><% end %>
+        </td>
         <td>
           <%= who.name %>
           <%= link_to '编辑', edit_admin_who_path(who) %>
