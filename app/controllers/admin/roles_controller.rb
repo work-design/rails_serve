@@ -39,25 +39,6 @@ class Admin::RolesController < Admin::BaseController
     end
   end
 
-  def toggle
-    rule = Rule.find params[:rule_id]
-
-    if params[:toggle] == 'on'
-      @role.role_rules.find_or_create_by(rule_id: params[:rule_id])
-    else
-      @role.rules.destroy(rule)
-    end
-  end
-
-  def change
-    if @role.update!(role_params)
-      flash[:notice] = t('.role_updated')
-      redirect_to admin_roles_url
-    else
-      render action: :edit
-    end
-  end
-
   def destroy
     @role.destroy
     flash[:notice] = t('.role_deleted')
