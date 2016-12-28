@@ -10,6 +10,7 @@
   <table class="ui table">
     <thead>
     <tr>
+      <th></th>
       <th>名称</th>
       <th>包含权限</th>
       <th colspan="2"></th>
@@ -19,13 +20,25 @@
     <tbody>
     <% @whos.each do |who| %>
       <tr>
+        <td><%= form_tag admin_who_path(who), method: :patch, id: "edit_who_#{who.id}" %></td>
         <td>
           <%= who.name %>
           <%= link_to '编辑', edit_admin_who_path(who) %>
         </td>
         <td>
-          <%= default_form_for who, as: :who, url: admin_who_path(who), html: { class: '', id: "edit_who_#{who.id}" } do |f| %>
-            <%= f.collection_check_boxes :role_ids, Role.all, :id, :name, { label: false }, { } %>
+          <%= hidden_field_tag :'who[role_ids][]', nil, form: "edit_who_#{who.id}"  %>
+          <% Role.all.each do |role| %>
+            <% if who.role_ids.include?(role.id) %>
+              <div class="ui label teal checkbox">
+                <%= check_box_tag :'who[role_ids][]', role.id, true, form: "edit_who_#{who.id}" %>
+                <label><%= role.name %></label>
+              </div>
+            <% else %>
+              <div class="ui label checkbox">
+                <%= check_box_tag :'who[role_ids][]', role.id, false, form: "edit_who_#{who.id}" %>
+                <label><%= role.name %></label>
+              </div>
+            <% end %>
           <% end %>
         </td>
         <td><%= submit_tag '保存', class: 'ui mini blue button', form: "edit_who_#{who.id}" %></td>
@@ -38,3 +51,7 @@
   </table>
 
 </div>
+
+<script>
+  $('.ui.checkbox').checkbox({})
+</script>

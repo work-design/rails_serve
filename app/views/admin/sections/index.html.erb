@@ -1,11 +1,7 @@
-<div class="three wide column">
-  <%= render 'admin/base/nav_role' %>
-</div>
-
-<div class="thirteen wide column">
+<div class="sixteen wide column">
 
 	<div class="ui top attached menu borderless">
-		<div class="item"><strong>默认权限列表</strong></div>
+		<%= render 'nav_role' %>
 		<div class="right menu">
 			<div class="item"><%= link_to '新建', new_admin_section_path, class: 'ui teal button' %></div>
 		</div>
@@ -14,26 +10,22 @@
 	<table class="ui table">
 		<thead>
 		<tr>
-			<th>ID</th>
 			<th>名称</th>
 			<th>code</th>
-      <th>Position</th>
 			<th>规则列表</th>
-			<th colspan="3"></th>
+			<th>操作</th>
 		</tr>
 		</thead>
 
 		<tbody>
 		<% @sections.each do |section| %>
 				<tr id="tr_<%= section.id %>">
-					<td><%= section.id %></td>
-					<td><%= section.name %></td>
-					<td><%= section.code %></td>
-          <td>
-            <%= section.position %>
+					<td>
+            <%= section.name %>
             <%= link_to '上移', move_higher_admin_section_path(section), method: :patch %>
             <%= link_to '下移', move_lower_admin_section_path(section), method: :patch %>
           </td>
+					<td><%= section.code %></td>
 					<td>
 						<% section.rules.each do |rule| %>
 						  <p>
@@ -53,8 +45,8 @@
 						<%= link_to '新建rule', new_admin_section_rule_path(section), class: 'ui teal mini button' %>
             <%= link_to '更新rule', sync_admin_section_rules_path(section), method: :patch, class: 'ui pink mini button' %>
             <%= link_to '编辑', edit_admin_section_path(section), class: 'ui red mini button' %>
-					</td>
-					<td><%= link_to '删除', admin_section_path(section), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <%= link_to '删除', admin_section_path(section), method: :delete, class: 'ui mini red button', data: { confirm: 'Are you sure?' } %>
+          </td>
 				</tr>
 		<% end %>
 		</tbody>

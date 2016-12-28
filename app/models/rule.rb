@@ -19,6 +19,10 @@ class Rule < ApplicationRecord
     end
   end
 
+  def desc
+    "#{name}(#{code} #{params})"
+  end
+
   def delete_cache
     self.roles.each do |role|
       Rails.cache.delete("roles/#{role.id}")

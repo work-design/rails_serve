@@ -1,8 +1,0 @@
-<%= form_tag toggle_admin_role_path(@role, rule), method: :patch do %>
-	<span class="ui toggle checkbox">
-		<label><%= rule.name %> (<%= rule.code %> <%= rule.params %>)</label>
-		<%= check_box_tag :toggle, nil, @role.rule_ids.include?(rule.id) %>
-	</span>
-<% end %>
-
-

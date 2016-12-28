@@ -23,11 +23,8 @@
             <%= section.name %> (<%= section.code %>)
           </td>
           <td>
-            <% section.rules.each do |rule| %>
-              <p><%= render partial: 'toggle_form', locals: { rule: rule } %></p>
-            <% end %>
-            <%= default_form_for @role, as: :role, url: admin_who_path(who), html: { class: '', id: "edit_who_#{who.id}" } do |f| %>
-              <%= f.collection_check_boxes :role_ids, Role.all, :id, :name, { label: false }, { } %>
+            <%= default_form_for @role, as: :role, url: admin_role_path(@role), html: { class: '', id: "edit_role_#{@role.id}" } do |f| %>
+              <%= f.collection_check_boxes :rule_ids, section.rules, :id, :desc, { label: false }, { } %>
             <% end %>
           </td>
         </tr>
@@ -37,11 +34,3 @@
   </div>
 
 </div>
-
-<script>
-  $('.ui.checkbox').checkbox({
-    onChange: function(){
-      $(this).parent().parent().submit();
-    }
-  });
-</script>
