@@ -1,8 +1,4 @@
-<div class="three wide column">
-  <%= render 'admin/base/nav_role' %>
-</div>
-
-<div class="thirteen wide column">
+<div class="sixteen wide column">
   <div class="ui breadcrumb">
     <%= link_to '返回', admin_whos_path, class: 'section' %>
     <div class="divider"> / </div>
@@ -11,7 +7,9 @@
 
   <div class="ui segment">
     <%= default_form_for @who, as: :who, url: admin_whos_path do |f| %>
-      <%= render partial: 'form', locals: { f: f } %>
+      <%= f.text_field :name, label: '名称:' %>
+      <%= f.collection_check_boxes :role_ids, Role.all, :id, :name %>
+      <%= f.submit %>
     <% end %>
   </div>
 </div>
