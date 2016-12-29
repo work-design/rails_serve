@@ -26,6 +26,7 @@ class CreateRoles < ActiveRecord::Migration
     create_table :role_rules do |t|
       t.references :role
       t.references :rule
+      t.references :section
       t.timestamps
     end
 
