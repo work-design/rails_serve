@@ -10,46 +10,52 @@
 </div>
 
 <div class="row">
-  <div class="two wide column">
-    <%= render 'sidebar' %>
-  </div>
 
-  
-
-  <div class="fourteen wide column">
-    <table class="ui celled table">
+  <div class="sixteen wide column">
+    <table class="ui celled structured striped table">
       <thead>
       <tr>
-        <th></th>
         <th>Role</th>
-        <th>Section</th>
+        <th>Sections</th>
+        <th>Rules</th>
+        <th></th>
+        <th></th>
       </tr>
       </thead>
       <tbody>
       <% @roles.each do |role| %>
-      <tr>
-        <td>
-          <%= form_for role, as: :role, url: admin_role_path(role), html: { class: '', id: "edit_role_#{role.id}" } do |f| %>
-            <%= hidden_field_tag :'role[section_ids][]', nil, form: "edit_role_#{role.id}" %>
-          <% end %>
-        </td>
-        <td><%= role.name %></td>
-        <td>
-          <% Section.all.each do |section| %>
-            <% if role.section_ids.include?(section.id) %>
-              <div class="ui label teal checkbox">
-                <%= check_box_tag :'role[section_ids][]', section.id, true, form: "edit_role_#{role.id}" %>
-                <label><%= section.desc %></label>
-              </div>
-            <% else %>
-              <div class="ui label checkbox">
-                <%= check_box_tag :'role[section_ids][]', section.id, false, form: "edit_role_#{role.id}" %>
-                <label><%= section.desc %></label>
+        <tr>
+          <td rowspan="<%= role.sections.count %>"><%= role.name %></td>
+          <td><div class="ui teal label"><%= role.sections.first.desc %></div></td>
+          <td>
+            <% role.rules.where(section_id: role.sections.first.id).each do |rule| %>
+              <div class="ui label"><%= rule.desc %></div>
+            <% end %>
+          </td>
+          <td rowspan="<%= role.sections.count %>">
+            <% role.whos.each do |who| %>
+              <div class="ui label">
+                <%= who.name %>
+                <%= link_to who_admin_role_path(role, who), method: :delete, data: { confirm: 'Are you sure?' } do %><i class="delete icon"></i><% end %>
               </div>
             <% end %>
-          <% end %>
-        </td>
-      </tr>
+          </td>
+          <td rowspan="<%= role.sections.count %>">
+            <%= link_to '管理', admin_role_path(role), class: 'ui mini blue button' %>
+          </td>
+        </tr>
+        <% role.sections.uniq[1..role.sections.size].each do |section| %>
+          <tr>
+            <td>
+              <div class="ui teal label"><%= section.desc %></div>
+            </td>
+            <td>
+            <% section.rules.where(section_id: section.id).each do |rule| %>
+              <div class="ui label"><%= rule.desc %></div>
+            <% end %>
+            </td>
+          </tr>
+        <% end %>
       <% end %>
       </tbody>
     </table>

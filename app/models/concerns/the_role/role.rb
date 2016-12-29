@@ -5,7 +5,7 @@ module TheRole::Role
   included do
     has_many :role_rules, dependent: :destroy
     has_many :rules, through: :role_rules
-    has_many :sections, through: :rules
+    has_many :sections, ->{ distinct }, through: :role_rules, source: 'section', dependent: :nullify
   end
 
   def the_role

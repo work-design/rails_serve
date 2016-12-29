@@ -12,6 +12,7 @@
   <div class="ui segment">
     <%= default_form_for @who, as: :who, url: admin_who_path(@who) do |f| %>
       <%= f.text_field :name, label: '名称:' %>
+      <%= f.collection_check_boxes :role_ids, Role.all, :id, :name %>
       <%= f.submit %>
     <% end %>
   </div>

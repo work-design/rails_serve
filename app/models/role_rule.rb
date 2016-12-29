@@ -1,6 +1,7 @@
 class RoleRule < ApplicationRecord
   belongs_to :role
   belongs_to :rule
+  belongs_to :section
 
   after_commit :delete_cache, on: [:create, :destroy]
 

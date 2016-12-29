@@ -10,7 +10,6 @@
   <table class="ui table">
     <thead>
     <tr>
-      <th></th>
       <th>名称</th>
       <th>包含权限</th>
       <th colspan="2"></th>
@@ -21,29 +20,20 @@
     <% @whos.each do |who| %>
       <tr>
         <td>
-          <%= form_for [:admin, who] do %><% end %>
-        </td>
-        <td>
           <%= who.name %>
-          <%= link_to '编辑', edit_admin_who_path(who) %>
         </td>
         <td>
-          <%= hidden_field_tag :'who[role_ids][]', nil, form: "edit_who_#{who.id}" %>
           <% Role.all.each do |role| %>
             <% if who.role_ids.include?(role.id) %>
-              <div class="ui label teal checkbox">
-                <%= check_box_tag :'who[role_ids][]', role.id, true, form: "edit_who_#{who.id}" %>
-                <label><%= role.name %></label>
-              </div>
+              <%= link_to role.name, admin_role_path(role), class: 'ui teal label' %>
             <% else %>
-              <div class="ui label checkbox">
-                <%= check_box_tag :'who[role_ids][]', role.id, false, form: "edit_who_#{who.id}" %>
-                <label><%= role.name %></label>
-              </div>
+              <%= link_to role.name, admin_role_path(role), class: 'ui label' %>
             <% end %>
           <% end %>
         </td>
-        <td><%= submit_tag '保存', class: 'ui mini blue button', form: "edit_who_#{who.id}" %></td>
+        <td>
+          <%= link_to '编辑', edit_admin_who_path(who), class: 'ui mini blue button' %>
+        </td>
         <td>
           <%= link_to '删除', admin_who_path(who), method: :delete, class: 'ui mini red button', data: { confirm: 'Are you sure?' } %>
         </td>
