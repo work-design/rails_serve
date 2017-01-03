@@ -4,12 +4,17 @@ class RoleRule < ApplicationRecord
   belongs_to :section, optional: true
 
   after_commit :delete_cache, on: [:create, :destroy]
-  after_save :sync_section_id
+  before_save :sync_section_id
 
   def delete_cache
-    Rails.cache.delete("roles/#{role_id}")
-    Who.pluck(:id).each do |who_id|
-      Rails.cache.delete("who/#{who_id}")
+    if Rails.cache.delete("roles/#{role_id}")
+      puts "-----> Cache key roles/#{role_id} deleted"
+    end
+
+    role.who_ids.each do |who_id|
+      if Rails.cache.delete("who/#{who_id}")
+        puts "-----> Cache key who/#{who_id} deleted"
+      end
     end
   end
 

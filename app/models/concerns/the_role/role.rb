@@ -3,8 +3,8 @@ module TheRole::Role
   extend ActiveSupport::Concern
 
   included do
-    has_many :role_rules, dependent: :destroy
-    has_many :rules, through: :role_rules
+    has_many :role_rules, dependent: :destroy, inverse_of: :role
+    has_many :rules, through: :role_rules, dependent: :destroy
     has_many :sections, ->{ distinct }, through: :role_rules, source: 'section', dependent: :nullify
   end
 
