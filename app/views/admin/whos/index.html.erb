@@ -27,7 +27,7 @@
             <% if who.role_ids.include?(role.id) %>
               <%= link_to role.name, admin_role_path(role), class: 'ui teal label' %>
             <% else %>
-              <%= link_to role.name, admin_role_path(role), class: 'ui label' %>
+              <span class="ui label"><%= role.name %></span>
             <% end %>
           <% end %>
         </td>
