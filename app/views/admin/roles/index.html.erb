@@ -26,9 +26,9 @@
       <% @roles.each do |role| %>
         <tr>
           <td rowspan="<%= role.sections.count %>"><%= role.name %></td>
-          <td><div class="ui teal label"><%= role.sections.first.desc %></div></td>
+          <td><div class="ui teal label"><%= role.sections.first&.desc %></div></td>
           <td>
-            <% role.rules.where(section_id: role.sections.first.id).each do |rule| %>
+            <% role.rules.where(section_id: role.sections.first&.id).each do |rule| %>
               <div class="ui label"><%= rule.desc %></div>
             <% end %>
           </td>
@@ -44,7 +44,7 @@
             <%= link_to '管理', admin_role_path(role), class: 'ui mini blue button' %>
           </td>
         </tr>
-        <% role.sections.uniq[1..role.sections.size].each do |section| %>
+        <% role.sections.uniq[1..role.sections.size].to_a.each do |section| %>
           <tr>
             <td>
               <div class="ui teal label"><%= section.desc %></div>
