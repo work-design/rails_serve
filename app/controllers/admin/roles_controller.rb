@@ -23,10 +23,6 @@ class Admin::RolesController < Admin::BaseController
   def show
   end
 
-  def whos
-    @whos = @role.whos.page(params[:page])
-  end
-
   def edit
   end
 
@@ -49,7 +45,7 @@ class Admin::RolesController < Admin::BaseController
     user = Who.find params[:who_id]
     @role.whos.delete(user)
 
-    redirect_to whos_admin_role_url(@role)
+    redirect_to admin_roles_url
   end
 
   private
