@@ -1,19 +1,16 @@
-<div class="three wide column">
-  <%= render 'admin/base/nav_role' %>
+<div class="sixteen wide column">
+
+  <div class="ui breadcrumb">
+    <%= link_to '返回', admin_sections_path, class: 'section' %>
+    <div class="divider"> / </div>
+    <div class="active section">新建</div>
+  </div>
+
+  <div class="ui segment">
+    <%= default_form_for @rule, as: :rule, url: admin_section_rules_path(@section) do |f| %>
+        <%= render partial: 'form', locals: { f: f } %>
+    <% end %>
+  </div>
+
 </div>
-
-<div class="thirteen wide column">
-	<div class="ui breadcrumb">
-		<%= link_to '返回', admin_sections_path, class: 'section' %>
-		<div class="divider"> / </div>
-		<div class="active section">新建</div>
-	</div>
-
-	<div class="ui segment">
-		<%= default_form_for @rule, as: :rule, url: admin_section_rules_path(@section) do |f| %>
-				<%= render partial: 'form', locals: { f: f } %>
-		<% end %>
-	</div>
-</div>
-
 

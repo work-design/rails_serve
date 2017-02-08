@@ -12,7 +12,7 @@
 <div class="row">
 
   <div class="sixteen wide column">
-    <table class="ui celled selectable structured table">
+    <table class="ui celled structured table">
       <thead>
       <tr>
         <th>Role</th>
@@ -27,12 +27,12 @@
         <tr>
           <td rowspan="<%= role.sections.count %>"><%= role.name %></td>
           <td><div class="ui teal label"><%= role.sections.first&.desc %></div></td>
-          <td>
+          <td class="ui labels">
             <% role.rules.where(section_id: role.sections.first&.id).each do |rule| %>
               <div class="ui label"><%= rule.desc %></div>
             <% end %>
           </td>
-          <td rowspan="<%= role.sections.count %>">
+          <td rowspan="<%= role.sections.count %>" class="ui labels">
             <% role.whos.each do |who| %>
               <div class="ui label">
                 <%= who.name %>
@@ -49,7 +49,7 @@
             <td>
               <div class="ui teal label"><%= section.desc %></div>
             </td>
-            <td>
+            <td class="ui labels">
             <% section.rules.where(section_id: section.id).each do |rule| %>
               <div class="ui label"><%= rule.desc %></div>
             <% end %>

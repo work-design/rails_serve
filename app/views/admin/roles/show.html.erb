@@ -6,8 +6,8 @@
   </div>
 
   <div class="ui top attached segment">
-    <%= link_to '编辑', edit_admin_role_path(@role), class: 'ui teal label' %>
-    <%= link_to '删除', admin_role_path(@role), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red label' %>
+    <%= link_to '编辑', edit_admin_role_path(@role), class: 'ui mini teal button' %>
+    <%= link_to '删除', admin_role_path(@role), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui mini red button' %>
     <%= submit_tag '保存', class: 'ui mini blue button', form: "edit_role_#{@role.id}" %>
   </div>
 
@@ -28,7 +28,7 @@
         <td>
           <%= section.name %> (<%= section.code %>)
         </td>
-        <td>
+        <td class="ui labels">
           <% section.rules.each do |rule| %>
             <% if @role.rule_ids.include?(rule.id) %>
               <div class="ui label teal checkbox">
