@@ -1,0 +1,16 @@
+<td><%= form_tag admin_who_path(@who), method: :patch, id: 'edit_who' %></td>
+<td><%= text_field_tag 'who[name]', @who.name, placeholder: '称呼：', form: 'edit_who' %></td>
+<td class="ui labels">
+  <% Role.all.each do |role| %>
+    <div class="ui label checkbox">
+      <%= check_box_tag 'who[role_ids][]', role.id, @who.role_ids.include?(role.id), form: 'edit_who' %>
+      <%= label_tag role.name %>
+    </div>
+  <% end %>
+</td>
+<td>
+  <%= submit_tag '存储', form: 'edit_who', class: 'ui blue button' %>
+</td>
+<td>
+  <%= link_to '返回', admin_whos_path, class: 'ui gray button' %>
+</td>

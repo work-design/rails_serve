@@ -7,9 +7,10 @@
     </div>
   </div>
 
-  <table class="ui table">
+  <table class="ui bottom attached table">
     <thead>
     <tr>
+      <th></th>
       <th>名称</th>
       <th>包含权限</th>
       <th colspan="2"></th>
@@ -18,11 +19,12 @@
 
     <tbody>
     <% @whos.each do |who| %>
-      <tr>
+      <tr id="who_<%= who.id %>">
+        <td></td>
         <td>
           <%= who.name %>
         </td>
-        <td>
+        <td class="ui labels">
           <% Role.all.each do |role| %>
             <% if who.role_ids.include?(role.id) %>
               <%= link_to role.name, admin_role_path(role), class: 'ui teal label' %>
@@ -32,7 +34,7 @@
           <% end %>
         </td>
         <td>
-          <%= link_to '编辑', edit_admin_who_path(who), class: 'ui mini blue button' %>
+          <%= link_to '编辑', edit_admin_who_path(who), remote: true, class: 'ui mini blue button' %>
         </td>
         <td>
           <%= link_to '删除', admin_who_path(who), method: :delete, class: 'ui mini red button', data: { confirm: 'Are you sure?' } %>
