@@ -1,12 +1,10 @@
 <div class="sixteen wide column">
 
-	<div class="ui top attached menu borderless">
-		<%= render 'nav_role' %>
-		<div class="right menu">
-			<div class="item"><%= link_to '新建', new_admin_section_path, class: 'ui teal button' %></div>
-		</div>
-	</div>
+  <%= render 'nav_role' %>
 
+  <div class="ui top attached segment">
+    <div class="item"><%= link_to '新建', new_admin_section_path, class: 'ui teal button' %></div>
+  </div>
 	<%= render 'sections' %>
 
 </div>

@@ -10,19 +10,7 @@ module TheRole::Controller
     end
 
     if ['GET'].include?(request.method) && the_role_user.has_role?(controller_path, 'read', the_params)
-      return true
-    end
-
-    if ['POST', 'PUT', 'PATCH'].include?(request.method) && the_role_user.has_role?(controller_path, 'write', the_params)
-      return true
-    end
-
-    if ['new', 'edit'].include?(action_name) && the_role_user.has_role?(controller_path, 'write', the_params)
-      return true
-    end
-
-    if ['DELETE'].include?(request.method) && the_role_user.has_role?(controller_path, 'delete', the_params)
-      return true
+      return true unless action_name.start_with?('new', 'edit')
     end
 
     role_access_denied

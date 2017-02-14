@@ -1,13 +1,12 @@
 <div class="sixteen wide column">
-  <div class="ui breadcrumb">
-    <%= link_to '返回', admin_roles_path, class: 'section' %>
-    <div class="divider"> / </div>
-    <div class="active section"><%= @role.name %></div>
-  </div>
+  <%= render 'admin/base/nav_role' %>
 
   <div class="ui top attached segment">
-    <%= link_to '编辑', edit_admin_role_path(@role), class: 'ui mini teal button' %>
-    <%= link_to '删除', admin_role_path(@role), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui mini red button' %>
+    <div class="ui breadcrumb">
+      <%= link_to '返回', admin_roles_path, class: 'section' %>
+      <div class="divider"> / </div>
+      <div class="active section"><%= @role.name %></div>
+    </div>
     <%= submit_tag '保存', class: 'ui mini blue button', form: "edit_role_#{@role.id}" %>
   </div>
 

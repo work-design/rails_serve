@@ -21,14 +21,14 @@ class Admin::RulesController < Admin::BaseController
   end
 
   def sync
-    all_actions = TheRole::Routes.actions(@section.code)
+    all_actions = TheRole::Routes.actions(@section.code) + ['admin', 'read']
     section_rules = @section.rules.pluck(:code)
 
     (all_actions - section_rules).each do |la|
       @section.rules.create(code: la)
     end
 
-    invalid_rules = (section_rules - all_actions) - ['admin', 'read', 'write']
+    invalid_rules = (section_rules - all_actions)
     invalid_rules.each do |la|
       @section.rules.find_by(code: la).destroy
     end

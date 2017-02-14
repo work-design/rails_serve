@@ -1,3 +1,5 @@
-<%= link_to '角色列表', admin_whos_path, class: active_helper(controller: 'whos') %>
-<%= link_to '权限列表', admin_roles_path, class: active_helper(controller: 'roles') %>
-<%= link_to '默认选项', admin_sections_path, class: active_helper(controller: 'sections') %>
+<div class="ui tabular menu">
+  <%= link_to '角色列表', admin_whos_path, class: active_helper(controller: 'whos') %>
+  <%= link_to '权限列表', admin_roles_path, class: active_helper(controller: 'roles') %>
+  <%= link_to '默认选项', admin_sections_path, class: active_helper(controller: 'sections') %>
+</div>

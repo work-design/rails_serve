@@ -1,15 +1,18 @@
 zh:
   activerecord:
     models:
-      role: "角色"
+      role: 角色
     attributes:
       role:
-        name: "角色名"
-        title: "角色代码"
-        description: "角色描述"
+        name: 角色名
+        title: 角色代码
+        description: 角色描述
+      rule/code:
+        admin: 管理
+        read: 读取
 
   the_role:
-    access_denied: "拒绝访问"
+    access_denied: 拒绝访问
   the_role:
     access_denied: 没有权限
   admin:
