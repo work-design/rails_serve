@@ -1,0 +1,42 @@
+<%= form_for @role, as: :role, url: admin_role_path(@role), html: { class: '', id: "edit_role_#{@role.id}" } do |f| %>
+  <%= hidden_field_tag :'role[rule_ids][]', nil, form: "edit_role_#{@role.id}" %>
+<% end %>
+
+<table class="ui striped bottom attached table">
+  <thead>
+  <tr>
+    <th class="three wide">名称 (Code)</th>
+    <th class="ten wide">规则列表</th>
+    <th class="three wide"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% Section.includes(:rules).each do |section| %>
+    <tr>
+      <td>
+        <%= section.name %> (<%= section.code %>)
+      </td>
+      <td class="ui labels">
+        <% section.rules.each do |rule| %>
+          <% if @role.rule_ids.include?(rule.id) %>
+            <div class="ui label teal checkbox">
+              <%= check_box_tag :'role[rule_ids][]', rule.id, true, form: "edit_role_#{@role.id}" %>
+              <label><%= rule.desc %></label>
+            </div>
+          <% else %>
+            <div class="ui label checkbox">
+              <%= check_box_tag :'role[rule_ids][]', rule.id, false, form: "edit_role_#{@role.id}" %>
+              <label><%= rule.desc %></label>
+            </div>
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<script>
+  $('.ui.checkbox').checkbox({})
+</script>

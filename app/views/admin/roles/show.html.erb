@@ -11,45 +11,7 @@
     <%= submit_tag '保存', class: 'ui mini blue button', form: "edit_role_#{@role.id}" %>
   </div>
 
-  <%= form_for @role, as: :role, url: admin_role_path(@role), html: { class: '', id: "edit_role_#{@role.id}" } do |f| %>
-    <%= hidden_field_tag :'role[rule_ids][]', nil, form: "edit_role_#{@role.id}" %>
-  <% end %>
-
-  <table class="ui celled bottom attached table">
-    <thead>
-    <tr>
-      <th>Section名称</th>
-      <th>Allow Rule</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% Section.includes(:rules).each do |section| %>
-      <tr>
-        <td>
-          <%= section.name %> (<%= section.code %>)
-        </td>
-        <td class="ui labels">
-          <% section.rules.each do |rule| %>
-            <% if @role.rule_ids.include?(rule.id) %>
-              <div class="ui label teal checkbox">
-                <%= check_box_tag :'role[rule_ids][]', rule.id, true, form: "edit_role_#{@role.id}" %>
-                <label><%= rule.desc %></label>
-              </div>
-            <% else %>
-              <div class="ui label checkbox">
-                <%= check_box_tag :'role[rule_ids][]', rule.id, false, form: "edit_role_#{@role.id}" %>
-                <label><%= rule.desc %></label>
-              </div>
-            <% end %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
+  <%= render 'sections' %>
 
 </div>
 
-<script>
-  $('.ui.checkbox').checkbox({})
-</script>
