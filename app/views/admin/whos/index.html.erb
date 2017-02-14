@@ -2,13 +2,10 @@
 
   <%= render 'nav_role' %>
 
-  <div class="ui top attached segment">
-    <div class="right menu">
-      <div class="item"><%= link_to '新建', new_admin_who_path, class: 'ui teal button' %></div>
-    </div>
-  </div>
-
   <table class="ui striped bottom attached table">
+    <caption>
+      <%= link_to '新建', new_admin_who_path, class: 'ui teal right floated button' %>
+    </caption>
     <thead>
     <tr>
       <th></th>

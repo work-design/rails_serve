@@ -1,5 +1,5 @@
 <td><%= form_tag admin_who_path(@who), method: :patch, id: 'edit_who' %></td>
-<td><%= text_field_tag 'who[name]', @who.name, placeholder: '称呼：', form: 'edit_who' %></td>
+<td class="ui input"><%= text_field_tag 'who[name]', @who.name, placeholder: '称呼：', form: 'edit_who' %></td>
 <td class="ui labels">
   <% Role.all.each do |role| %>
     <div class="ui label checkbox">

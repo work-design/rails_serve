@@ -2,11 +2,10 @@
 
   <%= render 'admin/base/nav_role' %>
 
-  <div class="ui top attached segment">
-    <div class="item"><%= link_to '新建', new_admin_role_path, class: 'ui teal button' %></div>
-  </div>
-
   <table class="ui celled striped bottom attached table">
+    <caption>
+      <%= link_to '新建', new_admin_role_path, class: 'ui teal right floated button' %>
+    </caption>
     <thead>
       <tr>
         <th class="two wide"></th>

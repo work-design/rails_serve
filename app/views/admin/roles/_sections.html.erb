@@ -1,8 +1,10 @@
-<%= form_for @role, as: :role, url: admin_role_path(@role), html: { class: '', id: "edit_role_#{@role.id}" } do |f| %>
-  <%= hidden_field_tag :'role[rule_ids][]', nil, form: "edit_role_#{@role.id}" %>
-<% end %>
-
 <table class="ui striped bottom attached table">
+  <caption>
+    <%= form_for @role, as: :role, url: admin_role_path(@role), html: { class: '', id: "edit_role_#{@role.id}" } do |f| %>
+      <%= hidden_field_tag :'role[rule_ids][]', nil, form: "edit_role_#{@role.id}" %>
+    <% end %>
+    <%= submit_tag '保存', class: 'ui mini blue right floated button', form: "edit_role_#{@role.id}" %>
+  </caption>
   <thead>
   <tr>
     <th class="three wide">名称 (Code)</th>
