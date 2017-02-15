@@ -26,7 +26,7 @@
           </div>
           <div class="ui labels content">
           <% role.rules.where(section_id: section.id).each do |rule| %>
-            <div class="ui label"><%= rule.desc %></div>
+            <div class="ui label"><i class="green checkmark icon"></i><%= rule.desc %></div>
           <% end %>
           </div>
         </div>
