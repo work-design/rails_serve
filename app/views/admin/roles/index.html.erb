@@ -19,13 +19,13 @@
     <tr>
       <td><%= role.name %></td>
       <td class="ui divided items">
-      <% role.sections.uniq.to_a.each do |section| %>
+      <% role.sections.each do |section| %>
         <div class="item">
           <div class="image">
             <div class="ui label"><%= section.desc %></div>
           </div>
           <div class="ui labels content">
-          <% section.rules.where(section_id: section.id).each do |rule| %>
+          <% role.rules.where(section_id: section.id).each do |rule| %>
             <div class="ui label"><%= rule.desc %></div>
           <% end %>
           </div>
