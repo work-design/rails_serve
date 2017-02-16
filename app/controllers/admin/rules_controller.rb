@@ -21,7 +21,7 @@ class Admin::RulesController < Admin::BaseController
   end
 
   def sync
-    all_actions = ['admin', 'read'] + TheRole::Routes.actions(@section.code)
+    all_actions = ['admin', 'read'] + RailsCom::Routes.actions(@section.code)
     section_rules = @section.rules.pluck(:code)
 
     (all_actions - section_rules).each do |la|

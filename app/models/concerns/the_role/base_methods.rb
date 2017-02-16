@@ -4,18 +4,20 @@ module TheRole::BaseMethods
     section_name = section_name.to_s
     rule_name = rule_name.to_s
 
-    return true if respond_to?(:admin?) && admin?
+    if respond_to?(:admin?) && admin?
+      return true
+    end
 
-    return false unless the_role[section_name]
-    return true if moderator? section_name
+    unless the_role[section_name] && the_role[section_name].key?(rule_name)
+      return false
+    end
 
-    return false unless the_role[section_name].key? rule_name
-    rules = the_role[section_name][rule_name]
+    rule = the_role[section_name][rule_name] || the_role[section_name]['admin']
 
-    if rules.is_a?(Array) && params.present?
-      rules.include? params.to_s
+    if rule.is_a?(Array) && params.present?
+      rule.include? params.to_s
     else
-      rules
+      rule
     end
   end
 
@@ -27,10 +29,6 @@ module TheRole::BaseMethods
     end
 
     false
-  end
-
-  def moderator? section_name
-    the_role[section_name] && the_role[section_name]['admin']
   end
 
 end

@@ -19,7 +19,7 @@ module TheRole::User
     return true if admin?
 
     section_name = obj.class.to_s.tableize
-    return true if moderator?(section_name)
+    #return true if moderator?(section_name)
 
     return id == obj.id if obj.is_a?(self.class)
 
