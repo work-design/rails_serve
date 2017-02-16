@@ -8,7 +8,7 @@ module TheRole::BaseMethods
       return true
     end
 
-    unless the_role[section_name] && the_role[section_name].key?(rule_name)
+    unless the_role[section_name]
       return false
     end
 
