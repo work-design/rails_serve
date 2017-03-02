@@ -3,8 +3,8 @@
 <td class="ui labels">
   <% Role.all.each do |role| %>
     <div class="ui label checkbox">
-      <%= check_box_tag 'who[role_ids][]', role.id, @who.role_ids.include?(role.id), form: 'edit_who' %>
-      <%= label_tag role.name %>
+      <%= check_box_tag 'who[role_ids][]', role.id, @who.role_ids.include?(role.id), form: 'edit_who', id: "who_role_ids_#{@who.id}_#{role.id}" %>
+      <%= label_tag role.name, nil, { for: "who_role_ids_#{@who.id}_#{role.id}" } %>
     </div>
   <% end %>
 </td>
