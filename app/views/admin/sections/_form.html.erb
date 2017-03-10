@@ -1,5 +1,9 @@
 <%= f.text_field :name, label: '名称:' %>
 <%= f.text_field :code, label: 'Code:' %>
+<%= f.select :section_taxon_id, options_from_collection_for_select(@options, :id, :name, @section.section_taxon_id), { label: 'Parent:', include_blank: true }, { class: 'ui search selection dropdown' } %>
 <%= f.number_field :position, label: '位置:' %>
 <%= f.submit %>
 
+<script>
+  $('.ui.dropdown.search').dropdown();
+</script>

@@ -9,43 +9,26 @@
     <thead>
       <tr>
         <th class="two wide"></th>
-        <th class="eleven wide"></th>
-        <th class="two wide"></th>
-        <th class="one wide"></th>
+        <th class=""></th>
+        <th class=""></th>
       </tr>
     </thead>
     <tbody>
     <% @roles.each do |role| %>
     <tr>
       <td><%= role.name %></td>
-      <td class="ui divided items">
-      <% role.sections.each do |section| %>
-        <div class="item">
-          <div class="image">
-            <div class="ui label"><%= section.desc %></div>
-          </div>
-          <div class="ui labels content">
-          <% role.rules.where(section_id: section.id).each do |rule| %>
-            <div class="ui label"><i class="green checkmark icon"></i><%= rule.desc %></div>
-          <% end %>
-          </div>
-        </div>
-      <% end %>
-      </td>
       <td class="ui labels">
         <% role.whos.each do |who| %>
-          <div class="ui green label">
+          <div class="ui label">
             <%= who.name %>
             <%= link_to who_admin_role_path(role, who), method: :delete, data: { confirm: 'Are you sure?' } do %><i class="delete icon"></i><% end %>
           </div>
         <% end %>
       </td>
       <td>
-        <div class="ui vertical buttons">
-          <%= link_to '管理', admin_role_path(role), class: 'ui mini blue button' %>
-          <%= link_to '编辑', edit_admin_role_path(role), class: 'ui mini teal button' %>
-          <%= link_to '删除', admin_role_path(role), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui mini red button' %>
-        </div>
+        <%= link_to '分配权限', admin_role_path(role), class: 'ui mini blue button' %>
+        <%= link_to '编辑', edit_admin_role_path(role), class: 'ui mini teal button' %>
+        <%= link_to '删除', admin_role_path(role), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui mini red button' %>
       </td>
     </tr>
     <% end %>

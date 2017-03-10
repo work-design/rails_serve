@@ -9,7 +9,8 @@ class Admin::SectionsController < Admin::BaseController
   end
 
   def new
-    @section = Section.new
+    @section = Section.new(section_taxon_id: params[:section_taxon_id])
+    @options = SectionTaxon.select(:id, :name).all
   end
 
   def create
@@ -27,6 +28,7 @@ class Admin::SectionsController < Admin::BaseController
   end
 
   def edit
+    @options = Section.select(:id, :name).all
   end
 
   def update
@@ -66,7 +68,7 @@ class Admin::SectionsController < Admin::BaseController
   end
 
   def section_params
-    params.fetch(:section, {}).permit(:code, :name, :position)
+    params.fetch(:section, {}).permit(:code, :name, :position, :section_taxon_id)
   end
 
 end

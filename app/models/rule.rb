@@ -19,14 +19,16 @@ class Rule < ApplicationRecord
     end
   end
 
-  def desc
+  def desc_name
     if name.blank?
-      _name = Rule.enum_i18n :code, self.code
+      Rule.enum_i18n :code, self.code
     else
-      _name = name
+      name
     end
+  end
 
-    "#{_name}(#{code} #{params})"
+  def desc
+    "#{desc_name}(#{code} #{params})"
   end
 
   def delete_cache

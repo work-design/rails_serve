@@ -1,50 +1,56 @@
-<table class="ui striped bottom attached table">
+<table class="ui bottom attached selectable structured celled table">
   <caption>
     <%= link_to '新建', new_admin_section_path, class: 'ui teal right floated button' %>
   </caption>
   <thead>
   <tr>
-    <th>名称 (Code)</th>
-    <th>规则列表</th>
-    <th>操作</th>
+    <th class="two wide">分类</th>
+    <th class="two wide">名称 (Code)</th>
+    <th class="ten wide">规则列表</th>
+    <th class="two wide">操作</th>
   </tr>
   </thead>
 
   <tbody>
-  <% @sections.each do |section| %>
-      <tr id="tr_<%= section.id %>">
+  <% Section.roots.each do |section| %>
+    <tr>
+      <td rowspan="<%= section.children_count + 1 %>"><%= section.desc %></td>
+    </tr>
+    <% section.children.each do |child| %>
+      <tr id="tr_<%= child.id %>">
         <td class="three wide">
-          <%= section.name %> (<%= section.code %>)
-          <%= link_to move_higher_admin_section_path(section), method: :patch do %>
+          <%= child.desc %>
+          <%= link_to move_higher_admin_section_path(child), method: :patch do %>
             <i class="arrow up icon"></i>
           <% end %>
-          <%= link_to move_lower_admin_section_path(section), method: :patch do %>
+          <%= link_to move_lower_admin_section_path(child), method: :patch do %>
             <i class="arrow down icon"></i>
           <% end %>
         </td>
         <td class="ui labels ten wide">
-          <% section.rules.each do |rule| %>
+          <% child.rules.each do |rule| %>
             <div class="ui label">
               <%= rule.desc %>
-              <%= link_to roles_admin_section_rule_path(section, rule), remote: true, id: "roles_#{rule.id}" do %>
+              <%= link_to roles_admin_section_rule_path(child, rule), remote: true, id: "roles_#{rule.id}" do %>
                 <i class="users icon"></i>
               <% end %>
-              <%= link_to edit_admin_section_rule_path(section, rule) do %>
+              <%= link_to edit_admin_section_rule_path(child, rule) do %>
                 <i class="write icon"></i>
               <% end %>
-              <%= link_to admin_section_rule_path(section, rule), method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <%= link_to admin_section_rule_path(child, rule), method: :delete, data: { confirm: 'Are you sure?' } do %>
                 <i class="remove icon"></i>
               <% end %>
             </div>
           <% end %>
         </td>
         <td class="three wide">
-          <%= link_to '新建rule', new_admin_section_rule_path(section), class: 'ui teal mini button' %>
-          <%= link_to '更新rule', sync_admin_section_rules_path(section), method: :patch, class: 'ui pink mini button' %>
-          <%= link_to '编辑', edit_admin_section_path(section), class: 'ui red mini button' %>
-          <%= link_to '删除', admin_section_path(section), method: :delete, class: 'ui mini red button', data: { confirm: 'Are you sure?' } %>
+          <%= link_to '新建rule', new_admin_section_rule_path(child), class: 'ui teal mini button' %>
+          <%= link_to '更新rule', sync_admin_section_rules_path(child), method: :patch, class: 'ui pink mini button' %>
+          <%= link_to '编辑', edit_admin_section_path(child), class: 'ui red mini button' %>
+          <%= link_to '删除', admin_section_path(child), method: :delete, class: 'ui mini red button', data: { confirm: 'Are you sure?' } %>
         </td>
       </tr>
+    <% end %>
   <% end %>
   </tbody>
 </table>
