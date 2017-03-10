@@ -1,6 +1,9 @@
 <%= f.text_field :name, label: '名称:' %>
 <%= f.text_field :code, label: 'Code:' %>
-<%= f.select :section_taxon_id, options_from_collection_for_select(@options, :id, :name, @section.section_taxon_id), { label: 'Parent:', include_blank: true }, { class: 'ui search selection dropdown' } %>
+<div class="inline field">
+  <%= f.select :section_taxon_id, options_from_collection_for_select(@options, :id, :name, @section.section_taxon_id), { label: 'Parent:', include_blank: true, on: { wrapper_all: false } }, { class: 'ui search selection dropdown' } %>
+  <%= link_to '添加类别', new_admin_section_taxon_path, class: 'ui button' %>
+</div>
 <%= f.number_field :position, label: '位置:' %>
 <%= f.submit %>
 

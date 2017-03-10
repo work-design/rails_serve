@@ -12,9 +12,9 @@
   </thead>
 
   <tbody>
-  <% Section.roots.each do |section| %>
+  <% SectionTaxon.all.each do |taxon| %>
     <tr>
-      <td rowspan="<%= section.children_count + 1 %>"><%= section.desc %></td>
+      <td rowspan="<%= taxon.sections_count + 1 %>"><%= taxon.name %></td>
     </tr>
     <% section.children.each do |child| %>
       <tr id="tr_<%= child.id %>">

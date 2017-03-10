@@ -17,6 +17,7 @@ Rails.application.routes.draw do
         get 'roles', on: :member
       end
     end
+    resources :section_taxons
   end
 
 
