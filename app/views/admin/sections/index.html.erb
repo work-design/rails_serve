@@ -16,9 +16,14 @@
     </thead>
 
     <tbody>
-      <% SectionTaxon.all.each do |taxon| %>
+      <% SectionTaxon.where('sections_count > 0').each do |taxon| %>
         <tr>
-          <td rowspan="<%= taxon.sections_count + 1 %>"><%= taxon.name %></td>
+          <td rowspan="<%= taxon.sections_count + 1 %>">
+            <%= taxon.name %>
+            <%= link_to edit_admin_section_taxon_path(taxon) do %>
+              <i class="write icon"></i>
+            <% end %>
+          </td>
         </tr>
         <% taxon.sections.each do |section| %>
           <%= render partial: 'section', locals: { section: section } %>

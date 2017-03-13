@@ -20,7 +20,7 @@ class Admin::SectionTaxonsController < Admin::BaseController
 
   def update
     if @section_taxon.update(section_taxon_params)
-      redirect_to params[:return_to], notice: 'Section taxon 更新成功。'
+      redirect_to admin_sections_url, notice: 'Section taxon 更新成功。'
     else
       render action: 'edit'
     end
