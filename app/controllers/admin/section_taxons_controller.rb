@@ -1,5 +1,5 @@
 class Admin::SectionTaxonsController < Admin::BaseController
-  before_action :set_section_taxon, only: [:show, :edit, :update, :destroy]
+  before_action :set_section_taxon, only: [:edit, :update, :destroy]
 
   def new
     @section_taxon = SectionTaxon.new
@@ -12,15 +12,15 @@ class Admin::SectionTaxonsController < Admin::BaseController
     @section_taxon = SectionTaxon.new(section_taxon_params)
 
     if @section_taxon.save
-      redirect_to :back, notice: 'Section taxon 创建成功。'
+      redirect_to params[:return_to], notice: 'Section taxon 创建成功。'
     else
       render action: 'new'
     end
   end
 
   def update
-    if @section_taxon.update_attributes(params[:section_taxon].permit!)
-      redirect_to(section_taxons_path, notice: 'Section taxon 更新成功。')
+    if @section_taxon.update(section_taxon_params)
+      redirect_to params[:return_to], notice: 'Section taxon 更新成功。'
     else
       render action: 'edit'
     end

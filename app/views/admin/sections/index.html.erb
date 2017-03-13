@@ -2,6 +2,36 @@
 
   <%= render 'nav_role' %>
 
-	<%= render 'sections' %>
+  <table class="ui bottom attached selectable structured celled table">
+    <caption>
+      <%= link_to '新建', new_admin_section_path, class: 'ui teal right floated button' %>
+    </caption>
+    <thead>
+    <tr>
+      <th class="two wide">分类</th>
+      <th class="two wide">名称 (Code)</th>
+      <th class="ten wide">规则列表</th>
+      <th class="two wide">操作</th>
+    </tr>
+    </thead>
+
+    <tbody>
+      <% SectionTaxon.all.each do |taxon| %>
+        <tr>
+          <td rowspan="<%= taxon.sections_count + 1 %>"><%= taxon.name %></td>
+        </tr>
+        <% taxon.sections.each do |section| %>
+          <%= render partial: 'section', locals: { section: section } %>
+        <% end %>
+      <% end %>
+      <tr>
+        <td rowspan="<%= Section.without_taxon.count + 1 %>">未分类</td>
+      </tr>
+      <% Section.without_taxon.each do |section| %>
+        <%= render partial: 'section', locals: { section: section } %>
+      <% end %>
+    </tbody>
+  </table>
+
 
 </div>

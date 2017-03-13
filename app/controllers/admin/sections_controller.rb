@@ -28,7 +28,7 @@ class Admin::SectionsController < Admin::BaseController
   end
 
   def edit
-    @options = Section.select(:id, :name).all
+    @options = SectionTaxon.select(:id, :name).all
   end
 
   def update
