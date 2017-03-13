@@ -9,9 +9,9 @@
     <thead>
     <tr>
       <th></th>
-      <th>名称</th>
-      <th>包含权限</th>
-      <th colspan="2"></th>
+      <th class="there wide">名称</th>
+      <th class="thirteen wide">包含权限</th>
+      <th class="two wide"></th>
     </tr>
     </thead>
 
@@ -29,8 +29,6 @@
         </td>
         <td>
           <%= link_to '编辑', edit_admin_who_path(who), remote: true, class: 'ui mini blue button' %>
-        </td>
-        <td>
           <%= link_to '删除', admin_who_path(who), method: :delete, class: 'ui mini red button', data: { confirm: 'Are you sure?' } %>
         </td>
       </tr>

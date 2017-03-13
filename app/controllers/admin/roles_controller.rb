@@ -1,5 +1,5 @@
 class Admin::RolesController < Admin::BaseController
-  before_action :set_role, only: [:show, :toggle, :whos, :edit, :update, :destroy, :delete_who, :change]
+  before_action :set_role, only: [:show, :edit, :update, :destroy]
 
   def index
     @roles = Role.order('created_at ASC')
@@ -38,13 +38,6 @@ class Admin::RolesController < Admin::BaseController
   def destroy
     @role.destroy
     flash[:notice] = t('.role_deleted')
-    redirect_to admin_roles_url
-  end
-
-  def delete_who
-    user = Who.find params[:who_id]
-    @role.whos.delete(user)
-
     redirect_to admin_roles_url
   end
 

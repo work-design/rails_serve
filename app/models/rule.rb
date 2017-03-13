@@ -28,7 +28,7 @@ class Rule < ApplicationRecord
   end
 
   def desc
-    "#{desc_name}(#{code} #{params})"
+    "#{desc_name} [ #{code} #{params}]"
   end
 
   def delete_cache

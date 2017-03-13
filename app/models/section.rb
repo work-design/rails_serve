@@ -10,7 +10,7 @@ class Section < ApplicationRecord
   validates :code, uniqueness: true
 
   def desc
-    "#{name} (#{code})"
+    "#{name} [#{code}]"
   end
 
 end

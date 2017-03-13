@@ -2,10 +2,18 @@ class CreateRoles < ActiveRecord::Migration
 
   def change
 
+    create_table :section_taxons do |t|
+      t.string :name
+      t.integer :position, default: 0
+      t.integer :sections_count, default: 0
+      t.timestamps
+    end
+
     create_table :sections do |t|
       t.string :name
       t.string :code
       t.integer :position, default: 0
+      t.references :section_taxon
       t.timestamps
     end
 

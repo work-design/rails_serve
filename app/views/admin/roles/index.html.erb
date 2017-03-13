@@ -8,21 +8,20 @@
     </caption>
     <thead>
       <tr>
-        <th class="two wide"></th>
-        <th class=""></th>
-        <th class=""></th>
+        <th class="two wide">名称</th>
+        <th class="four wide">描述</th>
+        <th class="seven wide">所属职位</th>
+        <th class="three wide"></th>
       </tr>
     </thead>
     <tbody>
     <% @roles.each do |role| %>
     <tr>
       <td><%= role.name %></td>
+      <td><%= role.description %></td>
       <td class="ui labels">
         <% role.whos.each do |who| %>
-          <div class="ui label">
-            <%= who.name %>
-            <%= link_to who_admin_role_path(role, who), method: :delete, data: { confirm: 'Are you sure?' } do %><i class="delete icon"></i><% end %>
-          </div>
+          <div class="ui label"><%= who.name %></div>
         <% end %>
       </td>
       <td>
