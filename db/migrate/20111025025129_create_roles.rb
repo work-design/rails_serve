@@ -1,4 +1,4 @@
-class CreateRoles < ActiveRecord::Migration
+class CreateRoles < ActiveRecord::Migration[5.0]
 
   def change
 
@@ -20,6 +20,7 @@ class CreateRoles < ActiveRecord::Migration
     create_table :rules do |t|
       t.string :name
       t.string :code
+      t.string :params
       t.references :section
       t.integer :position, default: 0
       t.timestamps
@@ -27,7 +28,7 @@ class CreateRoles < ActiveRecord::Migration
 
     create_table :roles do |t|
       t.string :name, null: false
-      t.text :description
+      t.string :description, limit: 1024
       t.timestamps
     end
 
@@ -40,7 +41,6 @@ class CreateRoles < ActiveRecord::Migration
 
     create_table :whos do |t|
       t.string :name, null: false
-      t.string :type
       t.timestamps
     end
 
