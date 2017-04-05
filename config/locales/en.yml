@@ -8,12 +8,12 @@ en:
         title: 角色代码
         description: 角色描述
       rule/code:
-        admin: 管理
-        read: 读取
-        index: 列表页
-        new: 新建
-        edit: 编辑
-        update: 更新
+        admin: Admin
+        read: Read
+        index: List
+        new: New
+        edit: Edit
+        update: Update
 
   the_role:
     access_denied: 没有权限

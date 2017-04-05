@@ -24,10 +24,10 @@
       </div>
     <% end %>
   </td>
-  <td class="three wide">
-    <%= link_to '新建rule', new_admin_section_rule_path(section), class: 'ui teal mini button' %>
-    <%= link_to '更新rule', sync_admin_section_rules_path(section), method: :patch, class: 'ui pink mini button' %>
-    <%= link_to '编辑', edit_admin_section_path(section), class: 'ui red mini button' %>
-    <%= link_to '删除', admin_section_path(section), method: :delete, class: 'ui mini red button', data: { confirm: 'Are you sure?' } %>
+  <td class="three wide ui labels">
+    <%= link_to '新建rule', new_admin_section_rule_path(section), class: 'ui teal mini label' %>
+    <%= link_to '更新rule', sync_admin_section_rules_path(section), method: :patch, class: 'ui pink mini label' %>
+    <%= link_to '编辑', edit_admin_section_path(section), class: 'ui red mini label' %>
+    <%= link_to '删除', admin_section_path(section), method: :delete, class: 'ui mini red label', data: { confirm: 'Are you sure?' } %>
   </td>
 </tr>
