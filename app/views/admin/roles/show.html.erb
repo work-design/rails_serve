@@ -33,11 +33,13 @@
           <%= render partial: 'section', locals: { section: section } %>
         <% end %>
       <% end %>
+      <% if Section.without_taxon.count > 0 %>
       <tr>
         <td rowspan="<%= Section.without_taxon.count + 1 %>">未分类</td>
       </tr>
       <% Section.without_taxon.each do |section| %>
         <%= render partial: 'section', locals: { section: section } %>
+      <% end %>
       <% end %>
     </tbody>
   </table>
