@@ -4,13 +4,13 @@
 
   <table class="ui striped bottom attached table">
     <caption>
-      <%= link_to '新建', new_admin_who_path, class: 'ui teal right floated button' %>
+      <%= link_to 'Add New', new_admin_who_path, class: 'ui teal right floated button' %>
     </caption>
     <thead>
     <tr>
       <th></th>
-      <th class="there wide">名称</th>
-      <th class="thirteen wide">包含权限</th>
+      <th class="there wide">Name</th>
+      <th class="thirteen wide">Contains</th>
       <th class="two wide"></th>
     </tr>
     </thead>
@@ -28,8 +28,8 @@
           <% end %>
         </td>
         <td>
-          <%= link_to '编辑', edit_admin_who_path(who), remote: true, class: 'ui mini blue button' %>
-          <%= link_to '删除', admin_who_path(who), method: :delete, class: 'ui mini red button', data: { confirm: 'Are you sure?' } %>
+          <%= link_to 'Edit', edit_admin_who_path(who), remote: true, class: 'ui mini blue button' %>
+          <%= link_to 'Delete', admin_who_path(who), method: :delete, class: 'ui mini red button', data: { confirm: 'Are you sure?' } %>
         </td>
       </tr>
     <% end %>

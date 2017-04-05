@@ -18,6 +18,12 @@ en:
   the_role:
     access_denied: 没有权限
   admin:
+    base:
+      nav_role:
+        whos: Roles
+        roles: Authorisation Management
+        sections: Authorisation List
+
     role_sections:
       create:
         section_created: 章节已创建

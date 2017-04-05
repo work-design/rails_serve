@@ -4,13 +4,13 @@
 
   <table class="ui celled striped bottom attached table">
     <caption>
-      <%= link_to '新建', new_admin_role_path, class: 'ui teal right floated button' %>
+      <%= link_to 'Add New', new_admin_role_path, class: 'ui teal right floated button' %>
     </caption>
     <thead>
       <tr>
-        <th class="two wide">名称</th>
-        <th class="four wide">描述</th>
-        <th class="seven wide">所属职位</th>
+        <th class="two wide">Authorisation</th>
+        <th class="four wide">Description</th>
+        <th class="seven wide">Roles Involved</th>
         <th class="three wide"></th>
       </tr>
     </thead>
@@ -25,9 +25,9 @@
         <% end %>
       </td>
       <td>
-        <%= link_to '分配权限', admin_role_path(role), class: 'ui mini blue button' %>
-        <%= link_to '编辑', edit_admin_role_path(role), class: 'ui mini teal button' %>
-        <%= link_to '删除', admin_role_path(role), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui mini red button' %>
+        <%= link_to 'Assign', admin_role_path(role), class: 'ui mini blue button' %>
+        <%= link_to 'Edit', edit_admin_role_path(role), class: 'ui mini teal button' %>
+        <%= link_to 'Delete', admin_role_path(role), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui mini red button' %>
       </td>
     </tr>
     <% end %>

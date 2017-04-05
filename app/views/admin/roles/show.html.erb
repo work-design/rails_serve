@@ -3,7 +3,7 @@
 
   <div class="ui top attached segment">
     <div class="ui breadcrumb">
-      <%= link_to '返回', admin_roles_path, class: 'section' %>
+      <%= link_to 'Back', admin_roles_path, class: 'section' %>
       <div class="divider"> / </div>
       <div class="active section"><%= @role.name %></div>
     </div>
@@ -14,13 +14,13 @@
       <%= form_for @role, as: :role, url: admin_role_path(@role), html: { class: '', id: "edit_role_#{@role.id}" } do |f| %>
         <%= hidden_field_tag :'role[rule_ids][]', nil, form: "edit_role_#{@role.id}" %>
       <% end %>
-      <%= submit_tag '保存', class: 'ui mini blue right floated button', form: "edit_role_#{@role.id}" %>
+      <%= submit_tag 'Save', class: 'ui mini blue right floated button', form: "edit_role_#{@role.id}" %>
     </caption>
     <thead>
     <tr>
-      <th class="two wide">分类</th>
-      <th class="two wide">名称 (Code)</th>
-      <th class="ten wide">规则列表</th>
+      <th class="two wide">Category</th>
+      <th class="two wide">Section (Code)</th>
+      <th class="ten wide">Actions</th>
     </tr>
     </thead>
 
