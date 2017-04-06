@@ -4,9 +4,8 @@ en:
       role: 角色
     attributes:
       role:
-        name: 角色名
-        title: 角色代码
-        description: 角色描述
+        name: Name
+        description: Description
       rule/code:
         admin: Admin
         read: Read
