@@ -1,12 +1,12 @@
 <%= f.text_field :name, label: 'Section:' %>
 <%= f.text_field :code, label: 'Code:' %>
-<div class="inline field">
-  <%= f.select :section_taxon_id, options_from_collection_for_select(@options, :id, :name, @section.section_taxon_id), { label: 'Category:', include_blank: true, on: { wrapper_all: false } }, { class: 'ui search selection dropdown' } %>
+<div class="inline fields">
+  <%= f.select :section_taxon_id, options_from_collection_for_select(@options, :id, :name, @section.section_taxon_id), { label: 'Category:', include_blank: true, on: { wrapper_all: false } }, { class: 'ui fluid dropdown' } %>
   <%= link_to 'Add Category', new_admin_section_taxon_path(return_to: request.path), class: 'ui button' %>
 </div>
 <%= f.number_field :position, label: 'position:' %>
 <%= f.submit %>
 
 <script>
-  $('.ui.dropdown.search').dropdown();
+  $('#section_section_taxon_id').dropdown();
 </script>

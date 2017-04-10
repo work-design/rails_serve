@@ -1,7 +1,7 @@
 en:
   activerecord:
     models:
-      role: 角色
+      role: Role
     attributes:
       role:
         name: Name
