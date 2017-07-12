@@ -10,7 +10,11 @@ module TheRoleHelper
     end
 
     if _options.is_a? String
-      path_params = Rails.application.routes.recognize_path _options, { method: _html_options&.fetch(:method, nil) }
+      begin
+        path_params = Rails.application.routes.recognize_path _options, { method: _html_options&.fetch(:method, nil) }
+      rescue ActionController::RoutingError
+        return super
+      end
     else
       path_params = _options.slice(:controller, :action)
     end
