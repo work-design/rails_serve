@@ -1,7 +1,8 @@
 module TheRole::Owner
 
   def permit_with(the_role_user, options = {})
-    refs = reflections.select { |_, v| v.class_name == the_role_user.class.name }
+    refs = reflections.select { |_, v| the_role_user.class.name == v.class_name }
+    refs = reflections.select { |_, v| the_role_user.class.base_class.name == v.class_name } if refs.blank?
 
     scope = {}
     refs.each do |_, ref|
