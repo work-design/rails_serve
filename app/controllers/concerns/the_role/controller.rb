@@ -4,7 +4,11 @@ module TheRole::Controller
     controller.helper_method :the_role_user
   end
 
-  def require_role(the_params = params['id'])
+  def require_role(the_params = params['id'], &block)
+    if block_given?
+      yield block and return
+    end
+
     if the_role_user.has_role? controller_path, action_name, the_params
       return true
     end
@@ -16,26 +20,12 @@ module TheRole::Controller
     role_access_denied
   end
 
-  def require_owner
-    role_access_denied unless the_role_user.owner? @owner_check_object
-  end
-
-  def check_role(section = nil, rule = nil, &block)
-    if block_given?
-      yield block
-    end
-  end
-
   private
   def role_access_denied
     access_denied_method = TheRole.config.access_denied_method
     return send(access_denied_method) if access_denied_method && respond_to?(access_denied_method)
 
     default_access_denied_response
-  end
-
-  def for_ownership_check obj
-    @owner_check_object = obj
   end
 
   def default_access_denied_response
