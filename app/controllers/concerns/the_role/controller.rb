@@ -6,7 +6,7 @@ module TheRole::Controller
 
   def require_role(the_params = params['id'], &block)
     if block_given?
-      yield block and return
+      yield block
     end
 
     if the_role_user.has_role? controller_path, action_name, the_params
