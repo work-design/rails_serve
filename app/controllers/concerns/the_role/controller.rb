@@ -4,11 +4,7 @@ module TheRole::Controller
     controller.helper_method :the_role_user
   end
 
-  def require_role(the_params = params['id'], &block)
-    if block_given?
-      yield block
-    end
-
+  def require_role(the_params = params['id'])
     if the_role_user.has_role? controller_path, action_name, the_params
       return true
     end
