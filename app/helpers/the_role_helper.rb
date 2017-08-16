@@ -15,6 +15,8 @@ module TheRoleHelper
       rescue ActionController::RoutingError
         return super
       end
+    elsif _options.is_a? Symbol
+      return super
     else
       path_params = _options.slice(:controller, :action)
     end
