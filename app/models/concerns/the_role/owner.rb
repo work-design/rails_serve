@@ -6,7 +6,9 @@ module TheRole::Owner
 
     scope = {}
     refs.each do |_, ref|
-      scope[ref.foreign_key] = the_role_user.allow_ids
+      unless ref.through_reflection?
+        scope[ref.foreign_key] = the_role_user.allow_ids
+      end
     end
 
     default_or(scope)
