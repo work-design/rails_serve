@@ -31,4 +31,13 @@ module TheRole::BaseMethods
     false
   end
 
+  def xxx
+    RailsCom::Routes.verbs 'admin/users', 'index'
+
+    if ['GET'].include?(request.method) && the_role_user.has_role?(controller_path, 'read', the_params)
+      return true unless action_name.start_with?('new', 'edit')
+    end
+  end
+
+
 end

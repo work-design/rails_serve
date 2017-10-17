@@ -2,10 +2,6 @@ class Admin::RulesController < Admin::BaseController
   before_action :set_section
   before_action :set_rule, only: [:show, :roles, :edit, :update, :move_higher, :move_lower, :destroy]
 
-  def index
-    @rules = Rule.all
-  end
-
   def create
     @rule = @section.rules.build(rule_params)
 
