@@ -14,6 +14,13 @@ module TheRole::BaseMethods
 
     rule = the_role[section_name][rule_name] || the_role[section_name]['admin']
 
+    if rule.blank?
+      verbs = RailsCom::Routes.verbs section_name, rule_name
+      if verbs.include?('GET') && !rule_name.start_with?('new', 'edit')
+        rule = the_role[section_name]['read']
+      end
+    end
+
     if rule.is_a?(Array) && params.present?
       rule.include? params.to_s
     else
@@ -29,14 +36,6 @@ module TheRole::BaseMethods
     end
 
     false
-  end
-
-  def xxx
-    RailsCom::Routes.verbs 'admin/users', 'index'
-
-    if ['GET'].include?(request.method) && the_role_user.has_role?(controller_path, 'read', the_params)
-      return true unless action_name.start_with?('new', 'edit')
-    end
   end
 
 
