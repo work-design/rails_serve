@@ -9,8 +9,6 @@ module TheRole::Controller
       return true
     end
 
-
-
     role_access_denied
   end
 
