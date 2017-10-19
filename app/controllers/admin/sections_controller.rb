@@ -3,8 +3,6 @@ class Admin::SectionsController < Admin::BaseController
 
   def index
     @sections = Section.includes(:rules).all
-
-    binding.pry
   end
 
   def show
