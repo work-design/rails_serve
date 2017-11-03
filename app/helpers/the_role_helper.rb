@@ -29,7 +29,7 @@ module TheRoleHelper
       return super
     end
 
-    if defined?(the_role_user) && the_role_user.has_role?(path_params[:controller], path_params[:action])
+    if defined?(the_role_user) && the_role_user&.has_role?(path_params[:controller], path_params[:action])
       super
     end
   end
