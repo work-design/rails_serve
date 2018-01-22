@@ -21,7 +21,10 @@ class Admin::SectionsController < Admin::BaseController
         format.html { redirect_to admin_sections_url, notice: 'Section was successfully created.' }
         format.json { render :show, status: :created, location: @section }
       else
-        format.html { render :new }
+        format.html {
+          @options = SectionTaxon.select(:id, :name).all
+          render :new
+        }
         format.json { render json: @section.errors, status: :unprocessable_entity }
       end
     end
