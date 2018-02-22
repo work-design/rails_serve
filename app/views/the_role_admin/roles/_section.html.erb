@@ -1,0 +1,21 @@
+<tr>
+  <td>
+    <%= govern.name %> (<%= govern.code %>)
+  </td>
+  <td class="ui labels">
+    <% govern.rules.each do |rule| %>
+      <% if @role.rule_ids.include?(rule.id) %>
+        <div class="ui label teal checkbox">
+          <%= check_box_tag :'role[rule_ids][]', rule.id, true, form: "edit_role_#{@role.id}" %>
+          <label><%= rule.desc_name %></label>
+        </div>
+      <% else %>
+        <div class="ui label checkbox">
+          <%= check_box_tag :'role[rule_ids][]', rule.id, false, form: "edit_role_#{@role.id}" %>
+          <label><%= rule.desc_name %></label>
+        </div>
+      <% end %>
+    <% end %>
+  </td>
+</tr>
+

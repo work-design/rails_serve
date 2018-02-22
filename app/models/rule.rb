@@ -1,8 +1,8 @@
 class Rule < ApplicationRecord
-  acts_as_list scope: :section
+  acts_as_list scope: :govern
   default_scope -> { order(position: :asc, id: :asc) }
 
-  belongs_to :section
+  belongs_to :govern
   has_many :role_rules, dependent: :delete_all
   has_many :roles, through: :role_rules
   has_many :whos, through: :roles

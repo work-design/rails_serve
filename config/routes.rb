@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :whos
     resources :roles
-    resources :sections do
+    resources :governs do
       patch 'move_lower', on: :member
       patch 'move_higher', on: :member
       resources :rules do
@@ -13,7 +13,7 @@ Rails.application.routes.draw do
         get 'roles', on: :member
       end
     end
-    resources :section_taxons
+    resources :govern_taxons
   end
 
 

@@ -1,0 +1,33 @@
+<tr id="tr_<%= govern.id %>">
+  <td class="three wide">
+    <%= govern.desc %>
+    <%= link_to move_higher_admin_govern_path(govern), method: :patch do %>
+      <i class="arrow up icon"></i>
+    <% end %>
+    <%= link_to move_lower_admin_govern_path(govern), method: :patch do %>
+      <i class="arrow down icon"></i>
+    <% end %>
+  </td>
+  <td class="ui labels ten wide">
+    <% govern.rules.each do |rule| %>
+      <div class="ui label">
+        <%= rule.desc %>
+        <%= link_to roles_admin_govern_rule_path(govern, rule), remote: true, id: "roles_#{rule.id}" do %>
+          <i class="users icon"></i>
+        <% end %>
+        <%= link_to edit_admin_govern_rule_path(govern, rule) do %>
+          <i class="write icon"></i>
+        <% end %>
+        <%= link_to admin_govern_rule_path(govern, rule), method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <i class="remove icon"></i>
+        <% end %>
+      </div>
+    <% end %>
+  </td>
+  <td class="three wide ui labels">
+    <%= link_to 'Add rule', new_admin_govern_rule_path(govern), class: 'ui teal mini label' %>
+    <%= link_to 'Sync rules', sync_admin_govern_rules_path(govern), method: :patch, class: 'ui pink mini label' %>
+    <%= link_to 'Edit', edit_admin_govern_path(govern), class: 'ui red mini label' %>
+    <%= link_to 'Delete', admin_govern_path(govern), method: :delete, class: 'ui mini red label', data: { confirm: 'Are you sure?' } %>
+  </td>
+</tr>

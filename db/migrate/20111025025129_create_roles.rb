@@ -2,18 +2,18 @@ class CreateRoles < ActiveRecord::Migration[5.0]
 
   def change
 
-    create_table :section_taxons do |t|
+    create_table :govern_taxons do |t|
       t.string :name
       t.integer :position, default: 0
-      t.integer :sections_count, default: 0
+      t.integer :governs_count, default: 0
       t.timestamps
     end
 
-    create_table :sections do |t|
+    create_table :governs do |t|
       t.string :name
       t.string :code
       t.integer :position, default: 0
-      t.references :section_taxon
+      t.references :govern_taxon
       t.timestamps
     end
 
@@ -21,7 +21,7 @@ class CreateRoles < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :code
       t.string :params
-      t.references :section
+      t.references :govern
       t.integer :position, default: 0
       t.timestamps
     end
@@ -35,17 +35,12 @@ class CreateRoles < ActiveRecord::Migration[5.0]
     create_table :role_rules do |t|
       t.references :role
       t.references :rule
-      t.references :section
-      t.timestamps
-    end
-
-    create_table :whos do |t|
-      t.string :name, null: false
+      t.references :govern
       t.timestamps
     end
 
     create_table :who_roles do |t|
-      t.references :who
+      t.references :who, polymorphic: true
       t.references :role
       t.timestamps
     end

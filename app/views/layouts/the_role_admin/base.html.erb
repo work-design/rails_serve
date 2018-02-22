@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TheRole Management</title>
+    <%= stylesheet_link_tag 'admin/application' %>
+    <%= javascript_include_tag 'admin/application' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+
+    <%= render 'admin/base/nav_bar' %>
+    <%= render 'shared/alert' %>
+
+    <div class="ui invisible side">
+      <div class="sidebar">
+        <%= render 'admin/base/nav_payment' %>
+      </div>
+      <div class="content">
+        <%= yield %>
+      </div>
+    </div>
+
+    <%= js_load(root: TheTrade::Engine.root) %>
+  </body>
+</html>

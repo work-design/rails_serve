@@ -21,27 +21,27 @@ en:
       nav_role:
         whos: Roles
         roles: Authorisation Management
-        sections: Authorisation List
+        governs: Authorisation List
 
-    role_sections:
+    role_governs:
       create:
-        section_created: 章节已创建
-        section_not_created: 章节没有被创建
+        govern_created: 章节已创建
+        govern_not_created: 章节没有被创建
       create_rule:
-        section_rule_created: 章节的规则已创建
-        section_rule_not_created: 章节的规则没有被创建
+        govern_rule_created: 章节的规则已创建
+        govern_rule_not_created: 章节的规则没有被创建
       rule_on:
-        section_rule_on: 章节的规则可有
+        govern_rule_on: 章节的规则可有
         state_not_changed: 章节的规则没有改变
       rule_off:
-        section_rule_off: 章节的规则不可有
+        govern_rule_off: 章节的规则不可有
         state_not_changed: 章节的规则没有改变
       destroy:
-        section_deleted: 章节已删除
-        section_not_deleted: 章节没有被删除
+        govern_deleted: 章节已删除
+        govern_not_deleted: 章节没有被删除
       destroy_rule:
-        section_rule_deleted: 章节的规则已被删除
-        section_rule_not_deleted: 章节的规则没有被删除
+        govern_rule_deleted: 章节的规则已被删除
+        govern_rule_not_deleted: 章节的规则没有被删除
     roles:
       create:
         role_created: 角色已创建
@@ -52,13 +52,13 @@ en:
       destroy:
         role_deleted: 角色已删除
       rule_form:
-        new_section_placeholder: 新章节名称
-        create_section: 创建新章节
+        new_govern_placeholder: 新章节名称
+        create_govern: 创建新章节
         new_rule_placeholder: 新规则名称
         create_rule: 创建新规则
-      section_form:
-        new_section_placeholder: 新章节名称
-        create_section: 创建新章节
+      govern_form:
+        new_govern_placeholder: 新章节名称
+        create_govern: 创建新章节
         new_rule_placeholder: 新规则名称
         create_rule: 创建新规则
 
@@ -71,8 +71,8 @@ en:
         role_name: 角色名称
         title:     角色标题
         role_description: 角色描述
-        delete_section: 删除章节
-        section_delete_confirm: '你想要删除章节?'
+        delete_govern: 删除章节
+        govern_delete_confirm: '你想要删除章节?'
         rule_delete_confirm: '你想删除规则?'
         enable: 可用
         disable: 不可用

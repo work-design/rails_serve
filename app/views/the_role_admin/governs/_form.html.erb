@@ -1,0 +1,12 @@
+<%= f.text_field :name, label: 'Govern:' %>
+<%= f.text_field :code, label: 'Code:' %>
+<div class="inline fields">
+  <%= f.select :govern_taxon_id, options_from_collection_for_select(@options, :id, :name, @govern.govern_taxon_id), { label: 'Category:', include_blank: true, on: { wrapper_all: false } }, { class: 'ui fluid dropdown' } %>
+  <%= link_to 'Add Category', new_admin_govern_taxon_path(return_to: request.path), class: 'ui button' %>
+</div>
+<%= f.number_field :position, label: 'position:' %>
+<%= f.submit %>
+
+<script>
+  $('#govern_govern_taxon_id').dropdown();
+</script>

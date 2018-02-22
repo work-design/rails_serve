@@ -1,0 +1,13 @@
+<div class="sixteen wide column">
+	<div class="ui breadcrumb">
+		<%= link_to '返回', admin_governs_path, class: 'govern' %>
+		<div class="divider"> / </div>
+		<div class="active govern">新建</div>
+	</div>
+
+	<div class="ui segment">
+		<%= default_form_for @rule, as: :rule, url: admin_govern_rule_path(@govern, @rule) do |f| %>
+				<%= render partial: 'form', locals: { f: f } %>
+		<% end %>
+	</div>
+</div>

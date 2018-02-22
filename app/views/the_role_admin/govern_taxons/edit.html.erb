@@ -1,0 +1,14 @@
+<div class="sixteen wide column">
+  <div class="ui breadcrumb">
+    <%= link_to 'Back', admin_governs_path, class: 'govern' %>
+    <div class="divider"> / </div>
+    <div class="active govern">Edit</div>
+  </div>
+
+  <div class="ui segment">
+    <%= default_form_for @govern_taxon, as: :govern_taxon, url: admin_govern_taxon_path(@govern_taxon, return_to: params[:return_to]) do |f| %>
+      <%= render partial: 'form', locals: { f: f } %>
+    <% end %>
+  </div>
+</div>
+

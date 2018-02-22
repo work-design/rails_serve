@@ -5,6 +5,7 @@ module TheRole
   configure do |config|
     config.access_denied_method = nil
     config.default_admin_emails = []
+    config.admin_class = 'Admin::BaseController'
   end
 
 end
