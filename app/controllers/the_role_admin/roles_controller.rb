@@ -2,7 +2,7 @@ class TheRoleAdmin::RolesController < TheRoleAdmin::BaseController
   before_action :set_role, only: [:show, :edit, :update, :destroy]
 
   def index
-    @roles = Role.order('created_at ASC')
+    @roles = Role.order(created_at: :asc)
   end
 
   def new

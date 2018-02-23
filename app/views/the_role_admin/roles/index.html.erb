@@ -1,6 +1,6 @@
 <div class="sixteen wide column">
 
-  <%= render 'admin/base/nav_role' %>
+  <%= render 'the_role_admin/base/nav_role' %>
 
   <table class="ui celled striped bottom attached table">
     <caption>
@@ -19,15 +19,11 @@
     <tr>
       <td><%= role.name %></td>
       <td><%= role.description %></td>
+      <td></td>
       <td class="ui labels">
-        <% role.whos.each do |who| %>
-          <div class="ui label"><%= who.name %></div>
-        <% end %>
-      </td>
-      <td>
-        <%= link_to 'Assign', admin_role_path(role), class: 'ui mini blue button' %>
-        <%= link_to 'Edit', edit_admin_role_path(role), class: 'ui mini teal button' %>
-        <%= link_to 'Delete', admin_role_path(role), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui mini red button' %>
+        <%= link_to 'Assign', admin_role_path(role), class: 'ui mini blue label' %>
+        <%= link_to 'Edit', edit_admin_role_path(role), class: 'ui mini teal label' %>
+        <%= link_to 'Delete', admin_role_path(role), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui mini red label' %>
       </td>
     </tr>
     <% end %>

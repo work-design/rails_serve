@@ -1,16 +1,16 @@
-class TheRoleAdmin::WhosController < TheRoleAdmin::BaseController
-  before_action :set_who, only: [:show, :edit, :update, :destroy]
+class TheRoleAdmin::WhoRolesController < TheRoleAdmin::BaseController
+  before_action :set_who, only: [:index, :new, :create]
 
   def index
-    @whos = Who.includes(:roles).all
+    @roles = @who.roles
   end
 
   def new
-    @who = Who.new
+    @who_role = WhoRole.new
   end
 
   def create
-    @who = Who.new(who_params)
+    @who_role = WhoRole.new(who_params)
 
     respond_to do |format|
       if @who.save
@@ -51,7 +51,7 @@ class TheRoleAdmin::WhosController < TheRoleAdmin::BaseController
 
   private
   def set_who
-    @who = Who.find(params[:id])
+    @who = params[:who_type].safe_constantize.find params[:who_id]
   end
 
   def who_params

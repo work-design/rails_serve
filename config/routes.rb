@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    resources :whos
+  scope :admin, as: 'admin', module: 'the_role_admin' do
+    scope path: ':who_type/:who_id' do
+      resources :who_roles
+    end
     resources :roles
     resources :governs do
       patch 'move_lower', on: :member

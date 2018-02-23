@@ -5,6 +5,7 @@
   <table class="ui bottom attached selectable structured celled table">
     <caption>
       <%= link_to 'Add New', new_admin_govern_path, class: 'ui teal right floated button' %>
+      <%= link_to 'Add Taxon', new_admin_govern_taxon_path, class: 'ui blue right floated button' %>
     </caption>
     <thead>
     <tr>
@@ -16,7 +17,7 @@
     </thead>
 
     <tbody>
-      <% GovernTaxon.where('governs_count > 0').each do |taxon| %>
+      <% GovernTaxon.where('governs_count >= 0').each do |taxon| %>
         <tr>
           <td rowspan="<%= taxon.governs_count + 1 %>">
             <%= taxon.name %>

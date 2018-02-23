@@ -1,3 +1,4 @@
+require 'acts_as_list'
 class Rule < ApplicationRecord
   acts_as_list scope: :govern
   default_scope -> { order(position: :asc, id: :asc) }
@@ -5,7 +6,6 @@ class Rule < ApplicationRecord
   belongs_to :govern
   has_many :role_rules, dependent: :delete_all
   has_many :roles, through: :role_rules
-  has_many :whos, through: :roles
 
   after_commit :delete_cache
 
@@ -34,9 +34,6 @@ class Rule < ApplicationRecord
   def delete_cache
     self.roles.each do |role|
       Rails.cache.delete("roles/#{role.id}")
-      role.who_ids.each do |who_id|
-        Rails.cache.delete("who/#{who_id}")
-      end
     end
   end
 

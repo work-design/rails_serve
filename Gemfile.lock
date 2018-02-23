@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     the_role (1.0.0)
-      acts_as_tree
+      acts_as_list
       rails (>= 4.2)
 
 GEM
@@ -45,8 +45,8 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    acts_as_tree (2.6.1)
-      activerecord (>= 3.0.0)
+    acts_as_list (0.9.5)
+      activerecord (>= 3.0)
     arel (8.0.0)
     builder (3.2.3)
     concurrent-ruby (1.0.5)

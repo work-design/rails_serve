@@ -2,24 +2,17 @@
 <html>
   <head>
     <title>TheRole Management</title>
-    <%= stylesheet_link_tag 'admin/application' %>
-    <%= javascript_include_tag 'admin/application' %>
+    <%= stylesheet_link_tag 'the_role/application' %>
+    <%= javascript_include_tag 'the_role/application' %>
     <%= csrf_meta_tags %>
   </head>
   <body>
 
-    <%= render 'admin/base/nav_bar' %>
+    <%= render 'the_role_admin/base/nav_role' %>
     <%= render 'shared/alert' %>
 
-    <div class="ui invisible side">
-      <div class="sidebar">
-        <%= render 'admin/base/nav_payment' %>
-      </div>
-      <div class="content">
-        <%= yield %>
-      </div>
-    </div>
+    <%= yield %>
 
-    <%= js_load(root: TheTrade::Engine.root) %>
+    <%= js_load %>
   </body>
 </html>

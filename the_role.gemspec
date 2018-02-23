@@ -18,5 +18,5 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency 'rails', '>= 4.2'
-  s.add_dependency 'acts_as_tree'
+  s.add_dependency 'acts_as_list'
 end

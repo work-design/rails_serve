@@ -3,15 +3,17 @@ module TheRole::User
   include TheRole::BaseMethods
 
   included do
-    belongs_to :who, optional: true
+    has_many :who_roles, as: :who, dependent: :destroy
+    has_many :roles, through: :who_roles
   end
 
   def the_role
-    if who
-      who.the_role
-    else
-      {}
+    result = {}
+    roles.map do |role|
+      result.deep_merge!(role.the_role.to_h) { |_, t, o| t || o }
     end
+
+    result
   end
 
   def admin?

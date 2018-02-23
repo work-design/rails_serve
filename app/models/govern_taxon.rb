@@ -1,3 +1,4 @@
+require 'acts_as_list'
 class GovernTaxon < ApplicationRecord
   acts_as_list
 

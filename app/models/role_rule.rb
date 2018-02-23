@@ -10,12 +10,6 @@ class RoleRule < ApplicationRecord
     if Rails.cache.delete("roles/#{role_id}")
       puts "-----> Cache key roles/#{role_id} deleted"
     end
-
-    role.who_ids.each do |who_id|
-      if Rails.cache.delete("who/#{who_id}")
-        puts "-----> Cache key who/#{who_id} deleted"
-      end
-    end
   end
 
   def sync_govern_id

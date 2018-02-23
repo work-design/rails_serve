@@ -12,7 +12,7 @@ class TheRoleAdmin::GovernTaxonsController < TheRoleAdmin::BaseController
     @govern_taxon = GovernTaxon.new(govern_taxon_params)
 
     if @govern_taxon.save
-      redirect_to params[:return_to], notice: 'Govern taxon 创建成功。'
+      redirect_to params[:return_to] || admin_governs_url, notice: 'Govern taxon 创建成功。'
     else
       render action: 'new'
     end
@@ -37,7 +37,7 @@ class TheRoleAdmin::GovernTaxonsController < TheRoleAdmin::BaseController
   end
 
   def govern_taxon_params
-    params.fetch(:govern_taxon, {}).permit(:name)
+    params.fetch(:govern_taxon, {}).permit(:name, :position)
   end
 
 end
