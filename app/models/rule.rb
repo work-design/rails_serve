@@ -33,7 +33,12 @@ class Rule < ApplicationRecord
 
   def delete_cache
     self.roles.each do |role|
-      Rails.cache.delete("roles/#{role.id}")
+      if Rails.cache.delete("the_role/#{role.id}")
+        puts "-----> Cache key the_role/#{role.id} deleted"
+      end
+      if Rails.cache.delete("verbose_role/#{role.id}")
+        puts "-----> Cache key verbose_role/#{role.id} deleted"
+      end
     end
   end
 

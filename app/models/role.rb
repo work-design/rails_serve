@@ -7,7 +7,7 @@ class Role < ApplicationRecord
   has_many :governs, ->{ distinct }, through: :role_rules, source: 'govern', dependent: :nullify
 
   def the_role
-    Rails.cache.fetch("roles/#{self.id}") do
+    Rails.cache.fetch("the_role/#{self.id}") do
       result = {}
       governs.each do |govern|
         result[govern.code] ||= {}
