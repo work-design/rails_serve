@@ -10,7 +10,6 @@
       <tr>
         <th class="two wide">Authorisation</th>
         <th class="four wide">Description</th>
-        <th class="seven wide">Roles Involved</th>
         <th class="three wide"></th>
       </tr>
     </thead>
@@ -19,8 +18,8 @@
     <tr>
       <td><%= role.name %></td>
       <td><%= role.description %></td>
-      <td></td>
       <td class="ui labels">
+        <%= link_to 'overview', overview_admin_role_path(role), class: 'ui mini label' %>
         <%= link_to 'Assign', admin_role_path(role), class: 'ui mini blue label' %>
         <%= link_to 'Edit', edit_admin_role_path(role), class: 'ui mini teal label' %>
         <%= link_to 'Delete', admin_role_path(role), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui mini red label' %>

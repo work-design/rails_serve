@@ -9,11 +9,7 @@
 
   <table class="ui bottom attached selectable structured celled table">
     <caption>
-      <%= form_for @role, as: :role, url: admin_role_path(@role), html: { class: '', id: "edit_role_#{@role.id}" } do |f| %>
-        <%= hidden_field_tag :'role[rule_ids][]', nil, form: "edit_role_#{@role.id}" %>
-      <% end %>
-      <%= submit_tag 'Save', class: 'ui mini blue right floated button', form: "edit_role_#{@role.id}" %>
-      <%= link_to 'Overview', overview_admin_role_path(@role), class: 'ui mini right floated button' %>
+      <%= link_to 'Assign', admin_role_path(@role), class: 'ui mini right floated blue button' %>
     </caption>
     <thead>
     <tr>
@@ -29,7 +25,7 @@
           <td rowspan="<%= taxon.governs_count + 1 %>"><%= taxon.name %></td>
         </tr>
         <% taxon.governs.each do |govern| %>
-          <%= render partial: 'govern', locals: { govern: govern } %>
+          <%= render partial: 'overview_govern', locals: { govern: govern } %>
         <% end %>
       <% end %>
       <% if Govern.without_taxon.count > 0 %>
@@ -37,7 +33,7 @@
         <td rowspan="<%= Govern.without_taxon.count + 1 %>">未分类</td>
       </tr>
       <% Govern.without_taxon.each do |govern| %>
-        <%= render partial: 'govern', locals: { govern: govern } %>
+        <%= render partial: 'overview_govern', locals: { govern: govern } %>
       <% end %>
       <% end %>
     </tbody>

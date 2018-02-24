@@ -16,6 +16,15 @@ module TheRole::User
     result
   end
 
+  def verbose_role
+    result = {}
+    roles.map do |role|
+      result.deep_merge!(role.verbose_role.to_h) { |_, t, o| t || o }
+    end
+
+    result
+  end
+
   def admin?
     if respond_to?(:email) && TheRole.default_admin_emails.include?(email)
       true

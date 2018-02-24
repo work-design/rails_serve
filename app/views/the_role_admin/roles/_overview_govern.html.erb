@@ -1,0 +1,13 @@
+<tr>
+  <td>
+    <%= govern.name %> (<%= govern.code %>)
+  </td>
+  <td class="ui labels">
+    <% govern.rules.each do |rule| %>
+      <% if @role.rule_ids.include?(rule.id) %>
+        <div class="ui label teal"><%= rule.desc_name %></div>
+      <% end %>
+    <% end %>
+  </td>
+</tr>
+

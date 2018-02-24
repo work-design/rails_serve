@@ -4,7 +4,9 @@ Rails.application.routes.draw do
     scope path: ':who_type/:who_id' do
       resources :who_roles
     end
-    resources :roles
+    resources :roles do
+      get :overview, on: :member
+    end
     resources :governs do
       patch 'move_lower', on: :member
       patch 'move_higher', on: :member

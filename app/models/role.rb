@@ -24,4 +24,22 @@ class Role < ApplicationRecord
     end
   end
 
+  def verbose_role
+    Rails.cache.fetch("verbose_role/#{self.id}") do
+      result = {}
+      governs.each do |govern|
+        result[[govern.code, govern.name]] ||= {}
+        rules.where(govern_id: govern.id).each do |rule|
+          if rule.serialize_params.blank?
+            result[[govern.code, govern.name]].merge! rule.code => [rule.desc_name]
+          else
+            result[[govern.code, govern.name]].merge! rule.code => [rule.desc_name, rule.serialize_params]
+          end
+        end
+      end
+
+      result
+    end
+  end
+
 end

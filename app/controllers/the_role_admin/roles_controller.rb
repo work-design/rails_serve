@@ -1,5 +1,5 @@
 class TheRoleAdmin::RolesController < TheRoleAdmin::BaseController
-  before_action :set_role, only: [:show, :edit, :update, :destroy]
+  before_action :set_role, only: [:show, :overview, :edit, :update, :destroy]
 
   def index
     @roles = Role.order(created_at: :asc)
@@ -21,6 +21,10 @@ class TheRoleAdmin::RolesController < TheRoleAdmin::BaseController
   end
 
   def show
+  end
+
+  def overview
+
   end
 
   def edit

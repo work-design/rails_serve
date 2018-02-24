@@ -3,33 +3,24 @@
   <%= render 'nav_role' %>
 
   <table class="ui striped bottom attached table">
-    <caption>
-      <%= link_to 'Add New', new_admin_who_path, class: 'ui teal right floated button' %>
-    </caption>
     <thead>
     <tr>
-      <th></th>
-      <th class="there wide">Name</th>
+      <th class="there wide">Govern</th>
       <th class="thirteen wide">Contains</th>
       <th class="two wide"></th>
     </tr>
     </thead>
 
     <tbody>
-    <% @whos.each do |who| %>
-      <tr id="who_<%= who.id %>">
-        <td></td>
-        <td>
-          <%= who.name %>
-        </td>
+    <% @who.verbose_role.each do |govern, rule| %>
+      <tr>
+        <td><%= govern[1] %></td>
         <td class="ui labels">
-          <% Role.all.each do |role| %>
-            <span class="<%= active_assert(who.role_ids.include?(role.id), expected: 'ui teal label', unexpected: 'ui label') %>"><%= role.name %></span>
+          <% rule.each do |key, name| %>
+          <span class="ui teal label"><%= name[0] %></span>
           <% end %>
         </td>
         <td>
-          <%= link_to 'Edit', edit_admin_who_path(who), remote: true, class: 'ui mini blue button' %>
-          <%= link_to 'Delete', admin_who_path(who), method: :delete, class: 'ui mini red button', data: { confirm: 'Are you sure?' } %>
         </td>
       </tr>
     <% end %>
@@ -37,7 +28,3 @@
   </table>
 
 </div>
-
-<script>
-  $('.ui.checkbox').checkbox({})
-</script>
