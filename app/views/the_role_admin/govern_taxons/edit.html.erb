@@ -6,7 +6,7 @@
   </div>
 
   <div class="ui segment">
-    <%= form_with model: @govern_taxon, as: :govern_taxon, url: admin_govern_taxon_path(@govern_taxon, return_to: params[:return_to]) do |f| %>
+    <%= form_with model: @govern_taxon, as: :govern_taxon, url: admin_govern_taxon_path(@govern_taxon, return_to: params[:return_to]), local: true do |f| %>
       <%= render partial: 'form', locals: { f: f } %>
     <% end %>
   </div>
