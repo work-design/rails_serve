@@ -1,5 +1,5 @@
 <div class="sixteen wide column">
-  <%= render 'admin/base/nav_role' %>
+  <%= render 'the_role_admin/base/nav_role' %>
 
   <div class="ui segment breadcrumb">
     <%= link_to 'Back', admin_roles_path, class: 'section' %>
@@ -8,7 +8,7 @@
   </div>
 
   <div class="ui segment">
-    <%= default_form_for @role, as: :role, url: admin_roles_path do |f| %>
+    <%= form_with model: @role, as: :role, url: admin_roles_path do |f| %>
       <%= render partial: 'form', locals: { f: f } %>
     <% end %>
   </div>
