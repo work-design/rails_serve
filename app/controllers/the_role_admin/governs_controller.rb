@@ -2,7 +2,7 @@ class TheRoleAdmin::GovernsController < TheRoleAdmin::BaseController
   before_action :set_govern, only: [:show, :edit, :update, :move_higher, :move_lower, :destroy]
 
   def index
-    @governs = Govern.includes(:rules).all
+    @governs = Govern.includes(:rules).page(params[:page])
   end
 
   def show
@@ -28,6 +28,12 @@ class TheRoleAdmin::GovernsController < TheRoleAdmin::BaseController
         format.json { render json: @govern.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def sync
+    Govern.sync_controllers
+
+    redirect_to admin_governs_url
   end
 
   def edit

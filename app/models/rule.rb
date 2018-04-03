@@ -3,7 +3,7 @@ class Rule < ApplicationRecord
   acts_as_list scope: :govern
   default_scope -> { order(position: :asc, id: :asc) }
 
-  belongs_to :govern
+  belongs_to :govern, touch: true
   has_many :role_rules, dependent: :delete_all
   has_many :roles, through: :role_rules
 

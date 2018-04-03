@@ -17,17 +17,7 @@ class TheRoleAdmin::RulesController < TheRoleAdmin::BaseController
   end
 
   def sync
-    all_actions = ['admin', 'read'] + RailsCom::Routes.actions(@govern.code)
-    govern_rules = @govern.rules.pluck(:code)
-
-    (all_actions - govern_rules).each do |la|
-      @govern.rules.create(code: la)
-    end
-
-    invalid_rules = (govern_rules - all_actions)
-    invalid_rules.each do |la|
-      @govern.rules.find_by(code: la).destroy
-    end
+    @govern.sync_rules
 
     redirect_to admin_governs_url(anchor: "tr_#{@govern.id}")
   end

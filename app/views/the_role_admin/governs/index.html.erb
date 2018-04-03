@@ -5,6 +5,7 @@
   <table class="ui bottom attached selectable structured celled table">
     <caption>
       <%= link_to 'Add New', new_admin_govern_path, class: 'ui teal right floated button' %>
+      <%= link_to 'Sync', sync_admin_governs_path, method: :post, class: 'ui red right floated button' %>
       <%= link_to 'Add Taxon', new_admin_govern_taxon_path, class: 'ui blue right floated button' %>
     </caption>
     <thead>
@@ -26,20 +27,16 @@
             <% end %>
           </td>
         </tr>
-        <% taxon.governs.each do |govern| %>
-          <%= render partial: 'govern', locals: { govern: govern } %>
-        <% end %>
+        <%= render partial: 'govern', collection: taxon.governs.includes(:rules), cached: true %>
       <% end %>
       <% if Govern.without_taxon.count > 0 %>
       <tr>
         <td rowspan="<%= Govern.without_taxon.count + 1 %>">未分类</td>
       </tr>
-      <% Govern.without_taxon.each do |govern| %>
-        <%= render partial: 'govern', locals: { govern: govern } %>
-      <% end %>
+      <%= render partial: 'govern', collection: Govern.includes(:rules).without_taxon, cached: true %>
       <% end %>
     </tbody>
   </table>
 
-
+  <%= paginate @governs %>
 </div>
