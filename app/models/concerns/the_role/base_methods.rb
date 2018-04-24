@@ -28,15 +28,13 @@ module TheRole::BaseMethods
     end
   end
 
-  def any_role?(any_roles)
-    if roles_hash.is_a?(Array)
+  def any_role?(*any_roles, **roles_hash)
+    if any_roles.is_a?(Array)
       return true if (any_roles.map(&:to_s) & the_role.keys).present?
     end
 
-    any_roles.stringify_keys!
-    any_roles.slice(*the_role.keys).each do |govern, rules|
-      return true if rules == []
-
+    roles_hash.stringify_keys!
+    roles_hash.slice(*the_role.keys).each do |govern, rules|
       h_keys = the_role[govern].select { |i| i }.keys
       rules = Array(rules).map { |i| i.to_s }
       return true if (h_keys & rules).present?
