@@ -1,0 +1,23 @@
+<div class="ui modal" id="who_roles_modal">
+  <i class="close icon"></i>
+  <div class="ui header blue">
+    Add Note
+  </div>
+
+  <div class="content">
+    <%= form_with model: @who, scope: :who, url: admin_who_roles_path(params[:who_type], params[:who_id]), method: :patch do |f| %>
+      <%= render 'shared/error_messages', target: @who %>
+      <%= f.collection_check_boxes :role_ids, Role.all, :id, :name, label: 'Roles:' %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+

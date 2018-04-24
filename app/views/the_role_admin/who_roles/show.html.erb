@@ -1,6 +1,7 @@
-<div class="sixteen wide column">
-
-  <%= render 'nav_role' %>
+<div>
+  <div class="ui top attached segment">
+    <%= link_to 'edit', edit_admin_who_roles_path(params[:who_type], params[:who_id]), remote: true, class: 'ui button' %>
+  </div>
 
   <table class="ui striped bottom attached table">
     <thead>
@@ -26,5 +27,7 @@
     <% end %>
     </tbody>
   </table>
+  
+  <div id="who_roles_modal"></div>
 
 </div>
