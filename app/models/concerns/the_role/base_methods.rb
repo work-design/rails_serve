@@ -33,6 +33,10 @@ module TheRole::BaseMethods
       return true if (any_roles.map(&:to_s) & the_role.keys).present?
     end
 
+    if respond_to?(:admin?) && admin?
+      return true
+    end
+
     roles_hash.stringify_keys!
     roles_hash.slice(*the_role.keys).each do |govern, rules|
       h_keys = the_role[govern].select { |i| i }.keys
