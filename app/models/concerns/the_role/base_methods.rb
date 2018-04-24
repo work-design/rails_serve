@@ -29,14 +29,16 @@ module TheRole::BaseMethods
   end
 
   def any_role?(roles_hash = {})
-    roles_hash.each_pair do |govern, rules|
-      return false unless[ Array, String, Symbol ].include?(rules.class)
-      return has_role?(govern, rules) if [ String, Symbol ].include?(rules.class)
-      rules.each{ |rule| return true if has_role?(govern, rule) }
+    roles_hash.stringify_keys!
+    roles_hash.slice(*the_role.keys).each do |govern, rules|
+      return true if rules == []
+
+      h_keys = the_role[govern].select { |i| i }.keys
+      rules = Array(rules).map { |i| i.to_s }
+      return true if (h_keys & rules).present?
     end
 
     false
   end
-
 
 end
