@@ -29,12 +29,12 @@ module TheRole::BaseMethods
   end
 
   def any_role?(*any_roles, **roles_hash)
-    if any_roles.is_a?(Array)
-      return true if (any_roles.map(&:to_s) & the_role.keys).present?
-    end
-
     if respond_to?(:admin?) && admin?
       return true
+    end
+    
+    if any_roles.is_a?(Array)
+      return true if (any_roles.map(&:to_s) & the_role.keys).present?
     end
 
     roles_hash.stringify_keys!
