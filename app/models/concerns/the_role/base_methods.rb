@@ -32,7 +32,7 @@ module TheRole::BaseMethods
     if respond_to?(:admin?) && admin?
       return true
     end
-    
+
     if any_roles.is_a?(Array)
       return true if (any_roles.map(&:to_s) & the_role.keys).present?
     end
