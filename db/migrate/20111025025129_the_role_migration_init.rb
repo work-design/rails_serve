@@ -4,12 +4,14 @@ class TheRoleMigrationInit < ActiveRecord::Migration[5.0]
 
     create_table :govern_taxons, force: true do |t|
       t.string :name
+      t.string :code
       t.integer :position, default: 0
       t.integer :governs_count, default: 0
       t.timestamps
     end
 
     create_table :governs, force: true do |t|
+      t.string :type
       t.string :name
       t.string :code
       t.integer :position, default: 0

@@ -22,6 +22,7 @@ en:
         whos: Roles
         roles: Authorisation Management
         governs: Authorisation List
+        govern_taxons: Govern Taxon
 
     role_governs:
       create:

@@ -1,0 +1,33 @@
+<%= render 'nav_role' %>
+
+<div class="ui top attached borderless menu">
+  <div class="header item">Lesson Taxons</div>
+  <div class="right menu">
+    <div class="item"><%= link_to 'New Lesson Taxon', new_admin_govern_taxon_path, class: 'ui teal button' %></div>
+  </div>
+</div>
+
+<table class="ui bottom attached table">
+  <thead>
+    <tr>
+      <th><%= GovernTaxon.human_attribute_name(:id) %></th>
+      <th><%= GovernTaxon.human_attribute_name(:name) %></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @govern_taxons.each do |govern_taxon| %>
+    <tr>
+      <td><%= govern_taxon.id %></td>
+      <td><%= govern_taxon.name %></td>
+      <td class="ui labels">
+        <%= link_to t('.edit'), edit_admin_govern_taxon_path(govern_taxon), class: 'ui pink label' %>
+        <%= link_to t('.destroy'), admin_govern_taxon_path(govern_taxon), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red label' %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @govern_taxons %>

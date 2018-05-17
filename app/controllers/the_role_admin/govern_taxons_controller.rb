@@ -1,11 +1,12 @@
 class TheRoleAdmin::GovernTaxonsController < TheRoleAdmin::BaseController
   before_action :set_govern_taxon, only: [:edit, :update, :destroy]
 
-  def new
-    @govern_taxon = GovernTaxon.new
+  def index
+    @govern_taxons = GovernTaxon.page(params[:page])
   end
 
-  def edit
+  def new
+    @govern_taxon = GovernTaxon.new
   end
 
   def create
@@ -16,6 +17,9 @@ class TheRoleAdmin::GovernTaxonsController < TheRoleAdmin::BaseController
     else
       render action: 'new'
     end
+  end
+
+  def edit
   end
 
   def update
