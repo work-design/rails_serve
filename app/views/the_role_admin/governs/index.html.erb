@@ -16,10 +16,10 @@
   </thead>
 
   <tbody>
-    <% GovernTaxon.where('governs_count >= 0').each do |taxon| %>
+    <% GovernTaxon.where('governs_count > 0').each do |taxon| %>
       <tr>
         <td rowspan="<%= taxon.governs_count + 1 %>">
-          <%= taxon.name %>
+          <%= taxon.name %>[<%= taxon.code %>]
           <%= link_to edit_admin_govern_taxon_path(taxon) do %>
             <i class="write icon"></i>
           <% end %>

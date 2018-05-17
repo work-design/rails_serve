@@ -16,5 +16,4 @@ class GovernTaxon < ApplicationRecord
     RailsCom::Routes.modules - GovernTaxon.unscoped.select(:code).distinct.pluck(:code)
   end
 
-
 end
