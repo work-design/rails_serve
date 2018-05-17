@@ -6,18 +6,14 @@ class GovernTaxon < ApplicationRecord
   default_scope -> { order(position: :asc, id: :asc) }
 
 
-  def self.sync_controllers
-    missing_controllers.each do |controller|
-      govern = Govern.create code: controller
-      govern.sync_rules
+  def self.sync_modules
+    missing_modules.each do |m|
+      GovernTaxon.create code: m
     end
   end
 
-  def self.missing_controllers
-    present_controllers = Govern.unscoped.select(:code).distinct.pluck(:code)
-    all_controllers = RailsCom::Routes.controllers - TheRole.config.ignore_controllers
-
-    all_controllers - present_controllers
+  def self.missing_modules
+    RailsCom::Routes.modules - GovernTaxon.unscoped.select(:code).distinct.pluck(:code)
   end
 
 

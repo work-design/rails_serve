@@ -18,7 +18,9 @@ Rails.application.routes.draw do
         get :roles, on: :member
       end
     end
-    resources :govern_taxons
+    resources :govern_taxons do
+      post :sync, on: :collection
+    end
   end
 
 
