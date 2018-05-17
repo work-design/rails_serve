@@ -31,7 +31,7 @@ class TheRoleAdmin::GovernsController < TheRoleAdmin::BaseController
   end
 
   def sync
-    Govern.sync_controllers
+    ControllerGovern.sync_controllers
 
     redirect_to admin_governs_url
   end

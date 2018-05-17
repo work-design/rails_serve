@@ -4,7 +4,7 @@ class GovernTaxon < ApplicationRecord
 
   has_many :governs, -> { order(position: :asc) }, dependent: :nullify
   default_scope -> { order(position: :asc, id: :asc) }
-
+  validates :code, uniqueness: true
 
   def self.sync_modules
     missing_modules.each do |m|
