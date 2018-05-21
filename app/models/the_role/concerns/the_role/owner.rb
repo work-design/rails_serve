@@ -1,14 +1,14 @@
 module TheRole::Owner
 
   def permit_with(the_role_user, options = {})
-    refs = reflections.select { |_, v| the_role_user.class.name == v.class_name }
-    refs = reflections.select { |_, v| the_role_user.class.base_class.name == v.class_name } if refs.blank?
+    refs = reflections.select { |_, v|
+      !v.through_reflection? && the_role_user.class.name == v.class_name
+    }
+    refs = reflections.select { |_, v| !v.through_reflection? && the_role_user.class.base_class.name == v.class_name } if refs.blank?
 
     scope = {}
     refs.each do |_, ref|
-      unless ref.through_reflection?
-        scope[ref.foreign_key] = the_role_user.allow_ids
-      end
+      scope[ref.foreign_key] = the_role_user.allow_ids
     end
 
     default_or(scope)
