@@ -1,32 +1,33 @@
-<div class="sixteen wide column">
+<%= render 'the_role_admin/base/nav_role' %>
 
-  <%= render 'the_role_admin/base/nav_role' %>
-
-  <table class="ui celled striped bottom attached table">
-    <caption>
-      <%= link_to 'Add New', new_admin_role_path, class: 'ui teal right floated button' %>
-    </caption>
-    <thead>
-      <tr>
-        <th class="two wide">Authorisation</th>
-        <th class="four wide">Description</th>
-        <th class="three wide"></th>
-      </tr>
-    </thead>
-    <tbody>
-    <% @roles.each do |role| %>
-    <tr>
-      <td><%= role.name %></td>
-      <td><%= role.description %></td>
-      <td class="ui labels">
-        <%= link_to 'overview', overview_admin_role_path(role), class: 'ui mini label' %>
-        <%= link_to 'Assign', admin_role_path(role), class: 'ui mini blue label' %>
-        <%= link_to 'Edit', edit_admin_role_path(role), class: 'ui mini teal label' %>
-        <%= link_to 'Delete', admin_role_path(role), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui mini red label' %>
-      </td>
-    </tr>
-    <% end %>
-    </tbody>
-  </table>
-
+<div class="ui top attached borderless menu">
+  <div class="right menu">
+    <div class="item">
+      <%= link_to 'Add New', new_admin_role_path, class: 'ui teal button' %>
+    </div>
+  </div>
 </div>
+
+<table class="ui celled striped bottom attached table">
+  <thead>
+    <tr>
+      <th class="two wide">Authorisation</th>
+      <th class="four wide">Description</th>
+      <th class="three wide"></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @roles.each do |role| %>
+  <tr>
+    <td><%= role.name %></td>
+    <td><%= role.description %></td>
+    <td class="ui labels">
+      <%= link_to 'overview', overview_admin_role_path(role), class: 'ui mini label' %>
+      <%= link_to 'Assign', admin_role_path(role), class: 'ui mini blue label' %>
+      <%= link_to 'Edit', edit_admin_role_path(role), class: 'ui mini teal label' %>
+      <%= link_to 'Delete', admin_role_path(role), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui mini red label' %>
+    </td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>

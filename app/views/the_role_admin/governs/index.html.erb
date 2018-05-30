@@ -1,13 +1,21 @@
 <%= render 'nav_role' %>
 
-<%= render 'search_form' %>
+<div class="ui top attached borderless menu">
+  <div class="right menu">
+    <div class="item">
+      <%= link_to 'Add New', new_admin_govern_path, class: 'ui teal right floated button' %>
+    </div>
+    <div class="item">
+      <%= link_to 'Sync', sync_admin_governs_path, method: :post, class: 'ui red right floated button' %>
+    </div>
+  </div>
+</div>
+
+<div class="ui attached segment">
+  <%= render 'search_form' %>
+</div>
 
 <table class="ui bottom attached selectable structured celled table">
-  <caption>
-    <%= link_to 'Add New', new_admin_govern_path, class: 'ui teal right floated button' %>
-    <%= link_to 'Sync', sync_admin_governs_path, method: :post, class: 'ui red right floated button' %>
-    <%= link_to 'Add Taxon', new_admin_govern_taxon_path, class: 'ui blue right floated button' %>
-  </caption>
   <thead>
     <tr>
       <th class="three wide">Govern (Code)</th>
