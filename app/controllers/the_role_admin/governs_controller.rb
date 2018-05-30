@@ -2,7 +2,12 @@ class TheRoleAdmin::GovernsController < TheRoleAdmin::BaseController
   before_action :set_govern, only: [:show, :edit, :update, :move_higher, :move_lower, :destroy]
 
   def index
-    @governs = Govern.includes(:rules).page(params[:page])
+    if params[:govern_taxon_id]
+      @govern_taxon = GovernTaxon.find params[:govern_taxon_id]
+      @governs = @govern_taxon.governs.includes(:rules)
+    else
+      @governs = Govern.includes(:rules).without_taxon
+    end
   end
 
   def show

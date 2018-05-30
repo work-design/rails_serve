@@ -6,6 +6,10 @@ class GovernTaxon < ApplicationRecord
   default_scope -> { order(position: :asc, id: :asc) }
   validates :code, uniqueness: true
 
+  def desc
+    "#{name} [#{code}]"
+  end
+
   def self.sync_modules
     missing_modules.each do |m|
       GovernTaxon.create code: m

@@ -21,6 +21,12 @@ class TheRoleAdmin::RolesController < TheRoleAdmin::BaseController
   end
 
   def show
+    if params[:govern_taxon_id]
+      @govern_taxon = GovernTaxon.find params[:govern_taxon_id]
+      @governs = @govern_taxon.governs.includes(:rules)
+    else
+      @governs = Govern.includes(:rules).without_taxon
+    end
   end
 
   def overview
@@ -33,7 +39,7 @@ class TheRoleAdmin::RolesController < TheRoleAdmin::BaseController
   def update
     if @role.update role_params
       flash[:notice] = t('.role_updated')
-      redirect_to admin_role_url(@role)
+      redirect_to admin_role_url(@role, govern_taxon_id: params[:govern_taxon_id])
     else
       render action: :edit
     end

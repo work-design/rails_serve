@@ -1,0 +1,1 @@
+$('.ui.checkbox').checkbox()

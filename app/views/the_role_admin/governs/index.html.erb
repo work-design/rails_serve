@@ -1,5 +1,7 @@
 <%= render 'nav_role' %>
 
+<%= render 'search_form' %>
+
 <table class="ui bottom attached selectable structured celled table">
   <caption>
     <%= link_to 'Add New', new_admin_govern_path, class: 'ui teal right floated button' %>
@@ -7,33 +9,14 @@
     <%= link_to 'Add Taxon', new_admin_govern_taxon_path, class: 'ui blue right floated button' %>
   </caption>
   <thead>
-  <tr>
-    <th class="two wide">Category</th>
-    <th class="two wide">Govern (Code)</th>
-    <th class="ten wide">Actions</th>
-    <th class="two wide"></th>
-  </tr>
+    <tr>
+      <th class="three wide">Govern (Code)</th>
+      <th class="three wide">Actions</th>
+      <th class="two wide"></th>
+    </tr>
   </thead>
 
   <tbody>
-    <% GovernTaxon.where('governs_count > 0').each do |taxon| %>
-      <tr>
-        <td rowspan="<%= taxon.governs_count + 1 %>">
-          <%= taxon.name %>[<%= taxon.code %>]
-          <%= link_to edit_admin_govern_taxon_path(taxon) do %>
-            <i class="write icon"></i>
-          <% end %>
-        </td>
-      </tr>
-      <%= render partial: 'govern', collection: taxon.governs.includes(:rules), cached: true %>
-    <% end %>
-    <% if Govern.without_taxon.count > 0 %>
-    <tr>
-      <td rowspan="<%= Govern.without_taxon.count + 1 %>">未分类</td>
-    </tr>
-    <%= render partial: 'govern', collection: Govern.includes(:rules).without_taxon, cached: true %>
-    <% end %>
+    <%= render partial: 'govern', collection: @governs, cached: true %>
   </tbody>
 </table>
-
-<%= paginate @governs %>

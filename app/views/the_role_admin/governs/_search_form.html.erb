@@ -1,0 +1,17 @@
+<%= search_form_with model: Govern.new do |f| %>
+  <div class="fields">
+    <%= f.text_field :name %>
+    <%= f.text_field :code %>
+    <%= f.submit 'Search' %>
+  </div>
+<% end %>
+
+<dl>
+  <dt>Taxon:</dt>
+  <dd>
+    <%= link_to '未分类', filter_params(except: [:govern_taxon_id]), class: active_params(govern_taxon_id: '', active_class: 'ui basic blue button', item_class: 'ui basic white button') %>
+    <% GovernTaxon.where('governs_count > 0').each do |taxon| %>
+      <%= link_to taxon.desc, filter_params(govern_taxon_id: taxon.id), class: active_params(govern_taxon_id: taxon.id, active_class: 'ui basic blue button', item_class: 'ui basic white button') %>
+    <% end %>
+  </dd>
+</dl>

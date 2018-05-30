@@ -6,7 +6,8 @@ class TheRole::Engine < Rails::Engine
     "#{config.root}/app/models/the_role/governs"
   ]
 
-  initializer 'the_role.prepare' do |app|
+  initializer 'the_role.assets.precompile' do |app|
+    app.config.assets.precompile += ['the_role_manifest.js']
   end
 
 end

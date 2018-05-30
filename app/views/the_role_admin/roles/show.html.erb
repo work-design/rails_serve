@@ -1,50 +1,39 @@
-<div class="sixteen wide column">
-  <%= render 'the_role_admin/base/nav_role' %>
+<%= render 'the_role_admin/base/nav_role' %>
 
-  <div class="ui top attached segment breadcrumb">
-    <%= link_to 'Back', admin_roles_path, class: 'section' %>
-    <div class="divider"> /</div>
-    <div class="active section"><%= @role.name %></div>
-  </div>
-
-  <table class="ui bottom attached selectable structured celled table">
-    <caption>
-      <%= form_for @role, as: :role, url: admin_role_path(@role), html: { class: '', id: "edit_role_#{@role.id}" } do |f| %>
-        <%= hidden_field_tag :'role[rule_ids][]', nil, form: "edit_role_#{@role.id}" %>
-      <% end %>
-      <%= submit_tag 'Save', class: 'ui mini blue right floated button', form: "edit_role_#{@role.id}" %>
-      <%= link_to 'Overview', overview_admin_role_path(@role), class: 'ui mini right floated button' %>
-    </caption>
-    <thead>
-    <tr>
-      <th class="two wide">Category</th>
-      <th class="two wide">Govern (Code)</th>
-      <th class="ten wide">Actions</th>
-    </tr>
-    </thead>
-
-    <tbody>
-      <% GovernTaxon.where('governs_count > 0').each do |taxon| %>
-        <tr>
-          <td rowspan="<%= taxon.governs_count + 1 %>"><%= taxon.name %></td>
-        </tr>
-        <% taxon.governs.each do |govern| %>
-          <%= render partial: 'govern', locals: { govern: govern } %>
-        <% end %>
-      <% end %>
-      <% if Govern.without_taxon.count > 0 %>
-      <tr>
-        <td rowspan="<%= Govern.without_taxon.count + 1 %>">未分类</td>
-      </tr>
-      <% Govern.without_taxon.each do |govern| %>
-        <%= render partial: 'govern', locals: { govern: govern } %>
-      <% end %>
-      <% end %>
-    </tbody>
-  </table>
-
+<div class="ui top attached segment breadcrumb">
+  <%= link_to 'Back', admin_roles_path, class: 'section' %>
+  <div class="divider"> /</div>
+  <div class="active section"><%= @role.name %></div>
 </div>
 
-<script>
-  $('.ui.checkbox').checkbox({})
-</script>
+<div class="ui attached segment">
+  <dl>
+    <dt>Taxon:</dt>
+    <dd>
+      <%= link_to '未分类', filter_params(except: [:govern_taxon_id]), class: active_params(govern_taxon_id: '', active_class: 'ui basic blue button', item_class: 'ui basic white button') %>
+      <% GovernTaxon.where('governs_count > 0').each do |taxon| %>
+        <%= link_to taxon.desc, filter_params(govern_taxon_id: taxon.id), class: active_params(govern_taxon_id: taxon.id, active_class: 'ui basic blue button', item_class: 'ui basic white button') %>
+      <% end %>
+    </dd>
+  </dl>
+</div>
+
+<table class="ui bottom attached selectable structured celled table">
+  <caption>
+    <%= form_for @role, as: :role, url: admin_role_path(@role, govern_taxon_id: params[:govern_taxon_id]), html: { class: '', id: "edit_role_#{@role.id}" } do |f| %>
+      <%= hidden_field_tag :'role[rule_ids][]', nil, form: "edit_role_#{@role.id}" %>
+    <% end %>
+    <%= submit_tag 'Save', class: 'ui mini blue right floated button', form: "edit_role_#{@role.id}" %>
+    <%= link_to 'Overview', overview_admin_role_path(@role), class: 'ui mini right floated button' %>
+  </caption>
+  <thead>
+    <tr>
+      <th class="four wide">Govern (Code)</th>
+      <th class="twelve wide">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render partial: 'govern', collection: @governs %>
+  </tbody>
+</table>
