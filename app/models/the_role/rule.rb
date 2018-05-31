@@ -7,6 +7,8 @@ class Rule < ApplicationRecord
   has_many :role_rules, dependent: :delete_all
   has_many :roles, through: :role_rules
 
+  scope :without_taxon, -> { where(govern_id: Govern.without_taxon.pluck(:id)) }
+
   after_commit :delete_cache
 
   def serialize_params

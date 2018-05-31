@@ -37,7 +37,24 @@ class TheRoleAdmin::RolesController < TheRoleAdmin::BaseController
   end
 
   def update
-    if @role.update role_params
+    new_ids = rule_ids_params['rule_ids'].reject(&:blank?).map { |i| i.to_i }
+    if params[:govern_taxon_id]
+      govern_taxon = GovernTaxon.find(params[:govern_taxon_id])
+      present_ids = govern_taxon.rule_ids & @role.rule_ids
+
+      add_ids = new_ids - present_ids
+      remove_ids = present_ids - new_ids
+    else
+      present_ids = Rule.without_taxon.pluck(:id) & @role.rule_ids
+
+      add_ids = new_ids - present_ids
+      remove_ids = present_ids - new_ids
+    end
+
+    @role.rule_ids += add_ids
+    @role.rule_ids -= remove_ids
+    @role.assign_attributes role_params
+    if @role.save
       flash[:notice] = t('.role_updated')
       redirect_to admin_role_url(@role, govern_taxon_id: params[:govern_taxon_id])
     else
@@ -53,9 +70,14 @@ class TheRoleAdmin::RolesController < TheRoleAdmin::BaseController
 
   private
   def role_params
-    params[:role].permit(:name,
-                         :description,
-                         :the_role, rule_ids: [])
+    params.fetch(:role, {}).permit(
+      :name,
+      :description
+    )
+  end
+
+  def rule_ids_params
+    params.fetch(:role, {}).permit(rule_ids: [])
   end
 
   def set_role

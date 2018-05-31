@@ -3,6 +3,7 @@ class GovernTaxon < ApplicationRecord
   acts_as_list
 
   has_many :governs, -> { order(position: :asc) }, dependent: :nullify
+  has_many :rules, through: :governs
   default_scope -> { order(position: :asc, id: :asc) }
   validates :code, uniqueness: true
 
