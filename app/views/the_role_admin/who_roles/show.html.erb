@@ -1,38 +1,35 @@
-<div>
-  <div class="ui top attached segment">
-    <div class="ui labels">
-      <% @who.roles.each do |role| %>
-        <span class="ui green label"><%= role.name %></span>
-      <% end %>
-    </div>
-    <%= link_to 'edit', edit_admin_who_roles_path(params[:who_type], params[:who_id]), remote: true, class: 'ui label' %>
-  </div>
-
-  <table class="ui striped bottom attached table">
-    <thead>
-    <tr>
-      <th class="there wide">Govern</th>
-      <th class="thirteen wide">Contain Rules</th>
-      <th class="two wide"></th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <% @who.verbose_role.each do |govern, rule| %>
-      <tr>
-        <td><%= govern[1] || govern[0] %></td>
-        <td class="ui labels">
-          <% rule.each do |key, name| %>
-          <span class="ui teal label"><%= name[0] %></span>
-          <% end %>
-        </td>
-        <td>
-        </td>
-      </tr>
+<div class="ui top attached segment">
+  <div class="ui labels">
+    <% @who.roles.each do |role| %>
+      <span class="ui green label"><%= role.name %></span>
     <% end %>
-    </tbody>
-  </table>
-  
-  <div id="who_roles_modal"></div>
-
+  </div>
+  <%= link_to 'edit', edit_admin_who_roles_path(params[:who_type], params[:who_id]), remote: true, class: 'ui label' %>
 </div>
+
+<table class="ui striped bottom attached table">
+  <thead>
+  <tr>
+    <th class="there wide">Govern</th>
+    <th class="thirteen wide">Contain Rules</th>
+    <th class="two wide"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @who.verbose_role.each do |govern, rule| %>
+    <tr>
+      <td><%= govern[1] || govern[0] %></td>
+      <td class="ui labels">
+        <% rule.each do |key, name| %>
+        <span class="ui teal label"><%= name[0] %></span>
+        <% end %>
+      </td>
+      <td>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<div id="who_roles_modal"></div>

@@ -1,46 +1,39 @@
-<div class="sixteen wide column">
-  <%= render 'the_role_admin/base/nav_role' %>
+<%= render 'the_role_admin/base/nav_role' %>
 
-  <div class="ui top attached segment breadcrumb">
-    <%= link_to 'Back', admin_roles_path, class: 'section' %>
-    <div class="divider"> /</div>
-    <div class="active section"><%= @role.name %></div>
-  </div>
-
-  <table class="ui bottom attached selectable structured celled table">
-    <caption>
-      <%= link_to 'Assign', admin_role_path(@role), class: 'ui mini right floated blue button' %>
-    </caption>
-    <thead>
-    <tr>
-      <th class="two wide">Category</th>
-      <th class="two wide">Govern (Code)</th>
-      <th class="ten wide">Actions</th>
-    </tr>
-    </thead>
-
-    <tbody>
-      <% GovernTaxon.where('governs_count > 0').each do |taxon| %>
-        <tr>
-          <td rowspan="<%= taxon.governs_count + 1 %>"><%= taxon.name %></td>
-        </tr>
-        <% taxon.governs.each do |govern| %>
-          <%= render partial: 'overview_govern', locals: { govern: govern } %>
-        <% end %>
-      <% end %>
-      <% if Govern.without_taxon.count > 0 %>
-      <tr>
-        <td rowspan="<%= Govern.without_taxon.count + 1 %>">未分类</td>
-      </tr>
-      <% Govern.without_taxon.each do |govern| %>
-        <%= render partial: 'overview_govern', locals: { govern: govern } %>
-      <% end %>
-      <% end %>
-    </tbody>
-  </table>
-
+<div class="ui top attached segment breadcrumb">
+  <%= link_to 'Back', admin_roles_path, class: 'section' %>
+  <div class="divider"> /</div>
+  <div class="active section"><%= @role.name %></div>
 </div>
 
-<script>
-  $('.ui.checkbox').checkbox({})
-</script>
+<table class="ui bottom attached selectable structured celled table">
+  <caption>
+    <%= link_to 'Assign', admin_role_path(@role), class: 'ui mini right floated blue button' %>
+  </caption>
+  <thead>
+  <tr>
+    <th class="two wide">Category</th>
+    <th class="two wide">Govern (Code)</th>
+    <th class="ten wide">Actions</th>
+  </tr>
+  </thead>
+
+  <tbody>
+    <% GovernTaxon.where('governs_count > 0').each do |taxon| %>
+      <tr>
+        <td rowspan="<%= taxon.governs_count + 1 %>"><%= taxon.name %></td>
+      </tr>
+      <% taxon.governs.each do |govern| %>
+        <%= render partial: 'overview_govern', locals: { govern: govern } %>
+      <% end %>
+    <% end %>
+    <% if Govern.without_taxon.count > 0 %>
+    <tr>
+      <td rowspan="<%= Govern.without_taxon.count + 1 %>">未分类</td>
+    </tr>
+    <% Govern.without_taxon.each do |govern| %>
+      <%= render partial: 'overview_govern', locals: { govern: govern } %>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
