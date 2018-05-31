@@ -37,7 +37,7 @@ class TheRoleAdmin::RolesController < TheRoleAdmin::BaseController
   end
 
   def update
-    new_ids = rule_ids_params['rule_ids'].reject(&:blank?).map { |i| i.to_i }
+    new_ids = rule_ids_params.fetch('rule_ids', []).reject(&:blank?).map { |i| i.to_i }
     if params[:govern_taxon_id]
       govern_taxon = GovernTaxon.find(params[:govern_taxon_id])
       present_ids = govern_taxon.rule_ids & @role.rule_ids
@@ -51,8 +51,8 @@ class TheRoleAdmin::RolesController < TheRoleAdmin::BaseController
       remove_ids = present_ids - new_ids
     end
 
-    @role.rule_ids += add_ids
-    @role.rule_ids -= remove_ids
+    @role.rule_ids += add_ids if add_ids
+    @role.rule_ids -= remove_ids if remove_ids
     @role.assign_attributes role_params
     if @role.save
       flash[:notice] = t('.role_updated')
