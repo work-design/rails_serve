@@ -30,7 +30,8 @@ class TheRoleAdmin::RolesController < TheRoleAdmin::BaseController
   end
 
   def overview
-
+    @taxon_ids = @role.governs.unscope(:order).pluck(:govern_taxon_id).uniq
+    @govern_taxons = GovernTaxon.where(id: @taxon_ids)
   end
 
   def edit

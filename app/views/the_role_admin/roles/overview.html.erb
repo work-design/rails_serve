@@ -19,19 +19,19 @@
   </thead>
 
   <tbody>
-    <% GovernTaxon.where('governs_count > 0').each do |taxon| %>
+    <% @govern_taxons.each do |taxon| %>
       <tr>
-        <td rowspan="<%= taxon.governs_count + 1 %>"><%= taxon.name %></td>
+        <td rowspan="<%= @role.governs.where(govern_taxon_id: taxon.id).count + 1 %>"><%= taxon.desc %></td>
       </tr>
-      <% taxon.governs.each do |govern| %>
+      <% @role.governs.includes(:rules).where(govern_taxon_id: taxon.id).each do |govern| %>
         <%= render partial: 'overview_govern', locals: { govern: govern } %>
       <% end %>
     <% end %>
-    <% if Govern.without_taxon.count > 0 %>
+    <% if @taxon_ids.include?(nil) %>
     <tr>
-      <td rowspan="<%= Govern.without_taxon.count + 1 %>">未分类</td>
+      <td rowspan="<%= @role.governs.without_taxon.count + 1 %>">未分类</td>
     </tr>
-    <% Govern.without_taxon.each do |govern| %>
+    <% @role.governs.without_taxon.each do |govern| %>
       <%= render partial: 'overview_govern', locals: { govern: govern } %>
     <% end %>
     <% end %>
