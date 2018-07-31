@@ -13,7 +13,7 @@ class TheRoleAdmin::GovernTaxonsController < TheRoleAdmin::BaseController
     @govern_taxon = GovernTaxon.new(govern_taxon_params)
 
     if @govern_taxon.save
-      redirect_to params[:return_to] || admin_governs_url, notice: 'Govern taxon 创建成功。'
+      redirect_to params[:return_to] || admin_governs_url, notice: 'Govern taxon was successfully created!'
     else
       render action: 'new'
     end
@@ -30,7 +30,7 @@ class TheRoleAdmin::GovernTaxonsController < TheRoleAdmin::BaseController
 
   def update
     if @govern_taxon.update(govern_taxon_params)
-      redirect_to admin_governs_url, notice: 'Govern taxon 更新成功。'
+      redirect_to admin_governs_url, notice: 'Govern taxon was successfully updated!'
     else
       render action: 'edit'
     end
@@ -38,7 +38,7 @@ class TheRoleAdmin::GovernTaxonsController < TheRoleAdmin::BaseController
 
   def destroy
     @govern_taxon.destroy
-    redirect_to govern_taxons_path, notice: '删除成功!'
+    redirect_to govern_taxons_path, notice: 'Govern taxon was successfully destroyed!'
   end
 
   private
