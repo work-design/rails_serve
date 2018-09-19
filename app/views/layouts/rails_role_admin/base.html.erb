@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RailsRole Management</title>
+    <%= stylesheet_link_tag 'rails_role/application' %>
+    <%= javascript_include_tag 'rails_role/application' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+
+    <%= render 'rails_role_admin/base/nav_role' %>
+    <%= render 'shared/alert' %>
+
+    <%= yield %>
+
+    <%= js_load %>
+  </body>
+</html>

@@ -5,3 +5,5 @@ test/version_tmp
 tmp
 
 # find . -name ".DS_Store" -delete
+
+*.gem

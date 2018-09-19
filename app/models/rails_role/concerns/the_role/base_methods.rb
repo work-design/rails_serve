@@ -1,4 +1,4 @@
-module TheRole::BaseMethods
+module RailsRole::BaseMethods
 
   def has_role?(govern_name, rule_name, params = nil)
     govern_name = govern_name.to_s
@@ -8,16 +8,16 @@ module TheRole::BaseMethods
       return true
     end
 
-    unless the_role[govern_name]
+    unless rails_role[govern_name]
       return false
     end
 
-    rule = the_role[govern_name][rule_name] || the_role[govern_name]['admin']
+    rule = rails_role[govern_name][rule_name] || rails_role[govern_name]['admin']
 
     if rule.blank?
       verbs = RailsCom::Routes.verbs govern_name, rule_name
       if verbs.include?('GET') && !rule_name.start_with?('new', 'edit')
-        rule = the_role[govern_name]['read']
+        rule = rails_role[govern_name]['read']
       end
     end
 
@@ -34,12 +34,12 @@ module TheRole::BaseMethods
     end
 
     if any_roles.is_a?(Array)
-      return true if (any_roles.map(&:to_s) & the_role.keys).present?
+      return true if (any_roles.map(&:to_s) & rails_role.keys).present?
     end
 
     roles_hash.stringify_keys!
-    roles_hash.slice(*the_role.keys).each do |govern, rules|
-      h_keys = the_role[govern].select { |i| i }.keys
+    roles_hash.slice(*rails_role.keys).each do |govern, rules|
+      h_keys = rails_role[govern].select { |i| i }.keys
       rules = Array(rules).map { |i| i.to_s }
       return true if (h_keys & rules).present?
     end

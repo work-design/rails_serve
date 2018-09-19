@@ -1,13 +1,13 @@
 class Role < ApplicationRecord
-  include TheRole::BaseMethods
+  include RailsRole::BaseMethods
 
   has_many :who_roles, dependent: :destroy
   has_many :role_rules, dependent: :destroy, inverse_of: :role
   has_many :rules, through: :role_rules, dependent: :destroy
   has_many :governs, ->{ distinct }, through: :role_rules, source: 'govern', dependent: :nullify
 
-  def the_role
-    Rails.cache.fetch("the_role/#{self.id}") do
+  def rails_role
+    Rails.cache.fetch("rails_role/#{self.id}") do
       result = {}
       governs.each do |govern|
         result[govern.code] ||= {}

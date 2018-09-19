@@ -34,7 +34,7 @@ class ControllerGovern < Govern
 
   def self.analyze_controllers
     present_controllers = ControllerGovern.unscoped.select(:code).distinct.pluck(:code)
-    all_controllers = RailsCom::Routes.controllers - TheRole.config.ignore_controllers
+    all_controllers = RailsCom::Routes.controllers - RailsRole.config.ignore_controllers
 
     missing_controllers = all_controllers - present_controllers
     invalid_controllers = present_controllers - all_controllers

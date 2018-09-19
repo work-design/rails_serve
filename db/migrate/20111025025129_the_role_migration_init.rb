@@ -1,4 +1,4 @@
-class TheRoleMigrationInit < ActiveRecord::Migration[5.0]
+class RailsRoleMigrationInit < ActiveRecord::Migration[5.0]
 
   def change
 

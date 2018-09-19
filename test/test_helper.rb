@@ -7,7 +7,7 @@ ActiveRecord::Migrator.migrations_paths = [File.expand_path('../test/dummy/db/mi
 Minitest.backtrace_filter = Minitest::BacktraceFilter.new
 
 if defined?(FactoryBot)
-  FactoryBot.definition_file_paths << TheRole::Engine.root.join('test/factories')
+  FactoryBot.definition_file_paths << RailsRole::Engine.root.join('test/factories')
   FactoryBot.find_definitions
 end
 

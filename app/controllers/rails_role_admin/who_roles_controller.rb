@@ -1,4 +1,4 @@
-class TheRoleAdmin::WhoRolesController < TheRoleAdmin::BaseController
+class RailsRoleAdmin::WhoRolesController < RailsRoleAdmin::BaseController
   before_action :set_who, only: [:show, :edit, :update]
 
   def show

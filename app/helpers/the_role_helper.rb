@@ -1,4 +1,4 @@
-module TheRoleHelper
+module RailsRoleHelper
 
   def link_to(name = nil, options = nil, html_options = nil, &block)
     if block_given?
@@ -29,7 +29,7 @@ module TheRoleHelper
       return super
     end
 
-    if defined?(the_role_user) && the_role_user&.has_role?(path_params[:controller], path_params[:action])
+    if defined?(rails_role_user) && rails_role_user&.has_role?(path_params[:controller], path_params[:action])
       super
     end
   end

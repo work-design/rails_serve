@@ -1,4 +1,4 @@
-module TheRole
+module RailsRole
   include ActiveSupport::Configurable
   config_accessor :access_denied_method, :default_admin_emails
 

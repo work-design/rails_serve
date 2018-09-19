@@ -1,5 +1,5 @@
 
-# TheRole GUI
+# RailsRole GUI
 
  Semantic-ui for the role admin
  

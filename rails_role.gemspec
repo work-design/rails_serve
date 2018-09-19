@@ -1,16 +1,16 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'the_role/version'
+require 'rails_role/version'
 
 Gem::Specification.new do |s|
-  s.name = 'the_role'
-  s.version = TheRole::VERSION
+  s.name = 'rails_role'
+  s.version = RailsRole::VERSION
   s.authors = ['qinmingyuan']
   s.email = ['mingyuan0715@foxmail.com']
-  s.summary = 'The Role'
-  s.description = 'Management panel for TheRole on Semantic-UI'
-  s.homepage = 'https://github.com/yigexiangfa/the_role'
-  s.license = 'MIT'
+  s.summary = 'Rails Role'
+  s.description = 'Management panel for RailsRole on Semantic-UI'
+  s.homepage = 'https://github.com/yougexiangfa/rails_role'
+  s.license = 'LGPL-3.0'
 
   s.files         = `git ls-files -z`.split("\x0")
   s.executables   = s.files.grep(%r{^bin/}) { |f| File.basename(f) }

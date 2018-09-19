@@ -1,40 +1,40 @@
 ---------------------------------------
-TheRole
+RailsRole
 ---------------------------------------
 
 !!! Description:
 
-  This generators helps to install TheRole gem into your Application
+  This generators helps to install RailsRole gem into your Application
 
 !!! This text:
 
-  > bundle exec rails g the_role help
+  > bundle exec rails g rails_role help
 
 !!! Generators:
 
-  > bundle exec rails g the_role install
+  > bundle exec rails g rails_role install
   - Install config file and models
 
-  > bundle exec rails g the_role config
+  > bundle exec rails g rails_role config
   - Install config file
 
-  > bundle exec rails g the_role models
+  > bundle exec rails g rails_role models
   - Install models
 
-  > bundle exec rails g the_role controllers
+  > bundle exec rails g rails_role controllers
   - Install controllers
 
-  > bundle exec rails g the_role locales
+  > bundle exec rails g rails_role locales
   - Install locales
 
 !!! Rake Tasks:
 
-  > rake db:the_role:admin
+  > rake db:rails_role:admin
   - Create Admin Role
 
 !!! Migrations:
-  > bundle exec rake the_role_engine:install:migrations
+  > bundle exec rake rails_role_engine:install:migrations
 
 ---------------------------------------
-~ TheRole
+~ RailsRole
 ---------------------------------------

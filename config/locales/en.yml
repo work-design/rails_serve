@@ -14,7 +14,7 @@ en:
         edit: Edit
         update: Update
 
-  the_role:
+  rails_role:
     access_denied: 没有权限
   admin:
     base:

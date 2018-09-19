@@ -1,4 +1,4 @@
-class TheRoleAdmin::RulesController < TheRoleAdmin::BaseController
+class RailsRoleAdmin::RulesController < RailsRoleAdmin::BaseController
   before_action :set_govern
   before_action :set_rule, only: [:show, :roles, :edit, :update, :move_higher, :move_lower, :destroy]
 

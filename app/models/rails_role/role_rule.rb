@@ -7,8 +7,8 @@ class RoleRule < ApplicationRecord
   before_save :sync_govern_id
 
   def delete_cache
-    if Rails.cache.delete("the_role/#{role_id}")
-      puts "-----> Cache key the_role/#{role_id} deleted"
+    if Rails.cache.delete("rails_role/#{role_id}")
+      puts "-----> Cache key rails_role/#{role_id} deleted"
     end
     if Rails.cache.delete("verbose_role/#{role_id}")
       puts "-----> Cache key verbose_role/#{role_id} deleted"

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    the_role (1.0.0)
+    rails_role (1.0.0)
       acts_as_list
       rails (>= 4.2)
 
@@ -140,7 +140,7 @@ DEPENDENCIES
   mysql2
   pry-rails
   rails (>= 5.2.0)
-  the_role!
+  rails_role!
 
 BUNDLED WITH
    1.16.3

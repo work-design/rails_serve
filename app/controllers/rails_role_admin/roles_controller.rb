@@ -1,4 +1,4 @@
-class TheRoleAdmin::RolesController < TheRoleAdmin::BaseController
+class RailsRoleAdmin::RolesController < RailsRoleAdmin::BaseController
   before_action :set_role, only: [:show, :overview, :edit, :update, :destroy]
 
   def index
