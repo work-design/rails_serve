@@ -1,4 +1,4 @@
-module RailsRole::Owner
+module RailsRoleOwner
 
   def permit_with(rails_role_user, options = {})
     refs = reflections.select { |_, v|

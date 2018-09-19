@@ -1,5 +1,5 @@
 class Role < ApplicationRecord
-  include RailsRole::BaseMethods
+  include RailsRoleBase
 
   has_many :who_roles, dependent: :destroy
   has_many :role_rules, dependent: :destroy, inverse_of: :role

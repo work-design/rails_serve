@@ -1,1 +1,3 @@
-require_relative '../../gem_version'
+module RailsRole
+  VERSION = '1.0.1'
+end

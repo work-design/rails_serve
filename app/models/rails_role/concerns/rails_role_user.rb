@@ -1,6 +1,6 @@
-module RailsRole::User
+module RailsRoleUser
   extend ActiveSupport::Concern
-  include RailsRole::BaseMethods
+  include RailsRoleBase
 
   included do
     has_many :who_roles, as: :who, dependent: :destroy
