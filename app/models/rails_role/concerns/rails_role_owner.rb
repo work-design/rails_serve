@@ -29,4 +29,4 @@ module RailsRoleOwner
 
 end
 
-ActiveRecord::Base.extend RailsRole::Owner
+ActiveRecord::Base.extend RailsRoleOwner

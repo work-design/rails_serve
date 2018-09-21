@@ -41,5 +41,4 @@ class ControllerGovern < Govern
     [missing_controllers, invalid_controllers]
   end
 
-
 end
