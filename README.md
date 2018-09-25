@@ -1,10 +1,8 @@
+# RailsRole
 
-# RailsRole GUI
-
- Semantic-ui for the role admin
+RailsRole 是一个基于Controller/Action的Rails权限控制系统，开箱即用，全程UI配置。
  
- 
-## 功能
+## 特性
 * 没有权限的链接不显示，不增加一行代码
  
 ## 默认规则
@@ -25,7 +23,12 @@ before_action :require_role
 # with params
 before_action do |t|
   require_role params.permit!
-end 
+end
+
+# default role user method, you can over
+def rails_role_user
+  current_user 
+end
 ```
  
  
