@@ -24,7 +24,9 @@ module RailsRoleController
     access_denied_msg = t(:access_denied, scope: :rails_role)
 
     if request.xhr?
-      render file: RailsRole::Engine.root + 'app/views/rails_role_admin/base/errors.js.erb', status: 401
+      render file: RailsRole::Engine.root + 'app/views/rails_role_admin/base/errors.js.erb', status: 403
+    elsif request.format.json?
+      raise ActionController::ForbiddenError
     else
       redirect_back fallback_location: root_url, flash: { error: access_denied_msg }
     end
