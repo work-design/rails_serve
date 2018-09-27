@@ -1,6 +1,5 @@
 require 'test_helper'
-
-class TheAuthUserTest < ActiveSupport::TestCase
+class GovernTaxonTest < ActiveSupport::TestCase
 
 
 

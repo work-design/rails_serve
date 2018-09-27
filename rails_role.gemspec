@@ -11,10 +11,18 @@ Gem::Specification.new do |s|
   s.homepage = 'https://github.com/yougexiangfa/rails_role'
   s.license = 'LGPL-3.0'
 
-  s.files = `git ls-files -z`.split("\x0")
-  s.test_files = s.files.grep(%r{^(test|s|features)/})
+  s.files = [
+    '{app,config,db,lib}/**/*',
+    'Rakefile',
+    'LICENSE',
+    'README.md'
+  ]
+  s.test_files = [
+    'test/**/*'
+  ]
   s.require_paths = ['lib']
 
-  s.add_dependency 'rails', '>= 4.2'
-  s.add_dependency 'acts_as_list'
+  s.add_dependency 'rails', '>= 5.0', '<= 6.0'
+  s.add_dependency 'acts_as_list', '~> 0.9'
+  s.add_dependency 'rails_com', '~> 1.2'
 end
