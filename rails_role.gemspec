@@ -11,13 +11,13 @@ Gem::Specification.new do |s|
   s.homepage = 'https://github.com/yougexiangfa/rails_role'
   s.license = 'LGPL-3.0'
 
-  s.files = [
+  s.files = Dir[
     '{app,config,db,lib}/**/*',
     'Rakefile',
     'LICENSE',
     'README.md'
   ]
-  s.test_files = [
+  s.test_files = Dir[
     'test/**/*'
   ]
   s.require_paths = ['lib']
