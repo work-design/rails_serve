@@ -1,4 +1,4 @@
-class RailsRoleAdmin::GovernTaxonsController < RailsRoleAdmin::BaseController
+class Role::Admin::GovernTaxonsController < Role::Admin::BaseController
   before_action :set_govern_taxon, only: [:edit, :update, :destroy]
 
   def index

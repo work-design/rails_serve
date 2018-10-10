@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  scope :admin, as: 'admin', module: 'rails_role_admin' do
+  scope :admin, module: 'role/admin', as: 'admin' do
     scope path: ':who_type/:who_id' do
       resource :who_roles
     end

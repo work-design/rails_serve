@@ -1,4 +1,4 @@
-class RailsRoleAdmin::GovernsController < RailsRoleAdmin::BaseController
+class Role::Admin::GovernsController < Role::Admin::BaseController
   before_action :set_govern, only: [:show, :edit, :update, :move_higher, :move_lower, :destroy]
 
   def index
