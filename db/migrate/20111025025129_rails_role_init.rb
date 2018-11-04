@@ -5,7 +5,7 @@ class RailsRoleInit < ActiveRecord::Migration[5.0]
     create_table :govern_taxons do |t|
       t.string :name
       t.string :code
-      t.integer :position, default: 0
+      t.integer :position, default: 1
       t.integer :governs_count, default: 0
       t.timestamps
     end
@@ -14,7 +14,7 @@ class RailsRoleInit < ActiveRecord::Migration[5.0]
       t.string :type
       t.string :name
       t.string :code
-      t.integer :position, default: 0
+      t.integer :position, default: 1
       t.references :govern_taxon
       t.timestamps
     end
@@ -24,7 +24,7 @@ class RailsRoleInit < ActiveRecord::Migration[5.0]
       t.string :code
       t.string :params
       t.references :govern
-      t.integer :position, default: 0
+      t.integer :position, default: 1
       t.timestamps
     end
 
