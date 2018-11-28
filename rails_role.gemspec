@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.email = ['mingyuan0715@foxmail.com']
   s.summary = 'Rails Role'
   s.description = 'Management panel for RailsRole on Semantic-UI'
-  s.homepage = 'https://github.com/yougexiangfa/rails_role'
+  s.homepage = 'https://github.com/work-design/rails_role'
   s.license = 'LGPL-3.0'
 
   s.files = Dir[

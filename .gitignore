@@ -7,3 +7,4 @@ tmp
 # find . -name ".DS_Store" -delete
 
 *.gem
+Gemfile.lock

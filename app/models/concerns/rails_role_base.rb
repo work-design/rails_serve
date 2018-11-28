@@ -40,7 +40,7 @@ module RailsRoleBase
     roles_hash.stringify_keys!
     roles_hash.slice(*rails_role.keys).each do |govern, rules|
       h_keys = rails_role[govern].select { |i| i }.keys
-      rules = Array(rules).map { |i| i.to_s }
+      rules = Array(rules).map(&:to_s)
       return true if (h_keys & rules).present?
     end
 
