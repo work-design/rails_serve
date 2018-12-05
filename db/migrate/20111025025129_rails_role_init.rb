@@ -31,6 +31,7 @@ class RailsRoleInit < ActiveRecord::Migration[5.0]
     create_table :roles do |t|
       t.string :name, null: false
       t.string :description, limit: 1024
+      t.string :code
       t.timestamps
     end
 

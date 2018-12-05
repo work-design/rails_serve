@@ -38,7 +38,7 @@ class Role::Admin::RolesController < Role::Admin::BaseController
   end
 
   def update
-    new_ids = rule_ids_params.fetch('rule_ids', []).reject(&:blank?).map { |i| i.to_i }
+    new_ids = rule_ids_params.fetch('rule_ids', []).reject(&:blank?).map(&:to_i)
     if params[:govern_taxon_id]
       govern_taxon = GovernTaxon.find(params[:govern_taxon_id])
       present_ids = govern_taxon.rule_ids & @role.rule_ids
@@ -73,6 +73,7 @@ class Role::Admin::RolesController < Role::Admin::BaseController
   def role_params
     params.fetch(:role, {}).permit(
       :name,
+      :code,
       :description
     )
   end

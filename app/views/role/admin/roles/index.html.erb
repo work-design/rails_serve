@@ -13,6 +13,7 @@
     <tr>
       <th class="two wide">Authorisation</th>
       <th class="four wide">Description</th>
+      <th><%= Role.human_attribute_name(:code) %></th>
       <th class="three wide"></th>
     </tr>
   </thead>
@@ -21,6 +22,7 @@
   <tr>
     <td><%= role.name %></td>
     <td><%= role.description %></td>
+    <td><%= role.code %></td>
     <td class="ui labels">
       <%= link_to 'overview', overview_admin_role_path(role), class: 'ui mini label' %>
       <%= link_to 'Assign', admin_role_path(role), class: 'ui mini blue label' %>
