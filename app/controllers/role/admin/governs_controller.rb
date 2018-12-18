@@ -60,12 +60,12 @@ class Role::Admin::GovernsController < Role::Admin::BaseController
 
   def move_higher
     @govern.move_higher
-    redirect_to admin_governs_url(params.to_h)
+    redirect_to admin_governs_url(request.query_parameters)
   end
 
   def move_lower
     @govern.move_lower
-    redirect_to admin_governs_url(params.to_h)
+    redirect_to admin_governs_url(request.query_parameters)
   end
 
   def destroy
@@ -82,7 +82,12 @@ class Role::Admin::GovernsController < Role::Admin::BaseController
   end
 
   def govern_params
-    params.fetch(:govern, {}).permit(:code, :name, :position, :govern_taxon_id)
+    params.fetch(:govern, {}).permit(
+      :code,
+      :name,
+      :position,
+      :govern_taxon_id
+    )
   end
 
 end
