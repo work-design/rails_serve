@@ -21,7 +21,7 @@ module RailsRoleController
   end
 
   def default_access_denied_response
-    access_denied_msg = t(:access_denied, scope: :rails_role)
+    access_denied_msg = I18n.t(:access_denied, scope: :rails_role)
 
     if request.xhr?
       render file: RailsRole::Engine.root + 'app/views/rails_role_admin/base/errors.js.erb', status: 403
