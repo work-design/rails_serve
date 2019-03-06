@@ -1,6 +1,7 @@
 class Role < ApplicationRecord
   include RailsRoleBase
 
+  attribute :code, :string
   has_many :who_roles, dependent: :destroy
   has_many :role_rules, dependent: :destroy, inverse_of: :role
   has_many :rules, through: :role_rules, dependent: :destroy

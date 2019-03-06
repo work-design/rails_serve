@@ -1,0 +1,15 @@
+<div class="ui vertical fluid secondary accordion menu">
+  <div class="item">
+    <a class="<%= active_helper(controllers: ['users', 'roles', 'governs', 'govern_taxons', 'who_roles'], active_class: 'title active', item_class: 'title') %>">
+      <i class="address book outline icon"></i>
+      <span>Role</span>
+      <i class="dropdown icon"></i>
+    </a>
+    <div class="<%= active_helper(controllers: ['users', 'roles', 'governs', 'govern_taxons', 'who_roles'], active_class: 'menu content active', item_class: 'menu content') %>">
+      <%= link_to t('.roles'), admin_roles_path, class: active_helper(controllers: 'roles') %>
+      <%= link_to t('.governs'), admin_governs_path, class: active_helper(controllers: 'governs') %>
+      <%= link_to t('.govern_taxons'), admin_govern_taxons_path, class: active_helper(controllers: 'govern_taxons') %>
+    </div>
+  </div>
+</div>
+
