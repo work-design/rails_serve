@@ -1,3 +1,4 @@
+require 'rails_com'
 class RailsRole::Engine < Rails::Engine
 
   config.eager_load_paths += Dir[

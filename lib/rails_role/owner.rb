@@ -1,4 +1,4 @@
-module RailsRoleOwner
+module RailsRole::Owner
 
   def permit_with(rails_role_user, options = {})
     refs = reflections.select { |_, v|
@@ -29,4 +29,6 @@ module RailsRoleOwner
 
 end
 
-ActiveRecord::Base.extend RailsRoleOwner
+ActiveSupport.on_load :active_record do
+  extend RailsRole::Owner
+end
