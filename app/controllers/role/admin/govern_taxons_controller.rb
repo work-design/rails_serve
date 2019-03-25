@@ -38,7 +38,7 @@ class Role::Admin::GovernTaxonsController < Role::Admin::BaseController
 
   def destroy
     @govern_taxon.destroy
-    redirect_to govern_taxons_path, notice: 'Govern taxon was successfully destroyed!'
+    redirect_to admin_govern_taxons_path, notice: 'Govern taxon was successfully destroyed!'
   end
 
   private
