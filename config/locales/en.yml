@@ -6,6 +6,7 @@ en:
       role:
         name: Name
         description: Description
+    enum:
       rule/code:
         admin: Admin
         read: Read
