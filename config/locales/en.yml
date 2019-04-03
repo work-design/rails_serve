@@ -7,13 +7,14 @@ en:
         name: Name
         description: Description
     enum:
-      rule/code:
-        admin: Admin
-        read: Read
-        index: List
-        new: New
-        edit: Edit
-        update: Update
+      rule:
+        code:
+          admin: Admin
+          read: Read
+          index: List
+          new: New
+          edit: Edit
+          update: Update
 
   rails_role:
     access_denied: 没有权限

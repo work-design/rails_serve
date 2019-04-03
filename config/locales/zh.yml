@@ -8,9 +8,10 @@ zh:
         title: 角色代码
         description: 角色描述
     enum:
-      rule/code:
-        admin: 管理
-        read: 读取
+      rule:
+        code:
+          admin: 管理
+          read: 读取
   rails_role:
     access_denied: 没有权限
   admin:
