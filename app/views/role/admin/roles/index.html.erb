@@ -1,18 +1,12 @@
-<div class="ui top attached borderless menu">
-  <div class="right menu">
-    <div class="item">
-      <%= link_to 'Add New', new_admin_role_path, class: 'ui teal button' %>
-    </div>
-  </div>
-</div>
-
 <table class="ui celled striped bottom attached table">
   <thead>
     <tr>
       <th class="two wide">Authorisation</th>
       <th class="four wide">Description</th>
       <th><%= Role.human_attribute_name(:code) %></th>
-      <th class="three wide"></th>
+      <th class="three wide">
+        <%= link_to 'Add New', new_admin_role_path, class: 'ui teal button' %>
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -21,11 +15,15 @@
     <td><%= role.name %></td>
     <td><%= role.description %></td>
     <td><%= role.code %></td>
-    <td class="ui labels">
+    <td>
       <%= link_to 'overview', overview_admin_role_path(role), class: 'ui mini label' %>
       <%= link_to 'Assign', admin_role_path(role), class: 'ui mini blue label' %>
-      <%= link_to 'Edit', edit_admin_role_path(role), class: 'ui mini teal label' %>
-      <%= link_to 'Delete', admin_role_path(role), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui mini red label' %>
+      <%= link_to edit_admin_role_path(role), data: { tooltip: t('.edit') }, class: 'ui mini circular icon button' do %>
+        <i class="pencil alternate icon"></i>
+      <% end %>
+      <%= link_to admin_role_path(role), method: :delete, data: { tooltip: t('.destroy'), confirm: 'Are you sure?' }, class: 'ui mini circular icon button' do %>
+        <i class="trash alternate icon"></i>
+      <% end %>
     </td>
   </tr>
   <% end %>
