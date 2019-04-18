@@ -1,4 +1,4 @@
-class Role::Admin::BaseController < RailsRole.config.admin_class.constantize
+class Role::Admin::BaseController < RailsRole.config.admin_controller.constantize
 
 
 end

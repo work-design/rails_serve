@@ -5,7 +5,7 @@ module RailsRole
   configure do |config|
     config.access_denied_method = nil
     config.default_admin_emails = []
-    config.admin_class = 'AdminController'
+    config.admin_controller = 'AdminController'
     config.ignore_controllers = []
   end
 
