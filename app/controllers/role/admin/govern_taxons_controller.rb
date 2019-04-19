@@ -47,7 +47,11 @@ class Role::Admin::GovernTaxonsController < Role::Admin::BaseController
   end
 
   def govern_taxon_params
-    params.fetch(:govern_taxon, {}).permit(:name, :position)
+    params.fetch(:govern_taxon, {}).permit(
+      :name,
+      :code,
+      :position
+    )
   end
 
 end

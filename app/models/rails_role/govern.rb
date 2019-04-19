@@ -1,4 +1,3 @@
-require 'acts_as_list'
 class Govern < ApplicationRecord
   acts_as_list
 

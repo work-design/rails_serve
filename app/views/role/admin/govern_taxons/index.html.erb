@@ -1,12 +1,3 @@
-<div class="ui top attached borderless menu">
-  <div class="header item">Lesson Taxons</div>
-  <div class="right menu">
-    <div class="item"><%= link_to 'New Lesson Taxon', new_admin_govern_taxon_path, class: 'ui teal button' %></div>
-    <div class="item">
-      <%= link_to 'Sync', sync_admin_govern_taxons_path, method: :post, class: 'ui red button' %>
-    </div>
-  </div>
-</div>
 
 <table class="ui bottom attached table">
   <thead>
@@ -14,7 +5,14 @@
       <th><%= GovernTaxon.human_attribute_name(:id) %></th>
       <th><%= GovernTaxon.human_attribute_name(:code) %></th>
       <th><%= GovernTaxon.human_attribute_name(:name) %></th>
-      <th></th>
+      <th>
+        <%= link_to new_admin_govern_taxon_path, class: 'ui mini primary button' do %>
+          <i class="plus icon"></i><%= t('.new') %>
+        <% end %>
+        <%= link_to sync_admin_govern_taxons_path, method: :post, class: 'ui mini red button' do %>
+          <i class="sync icon"></i><%= t('.sync') %>
+        <% end %>
+      </th>
     </tr>
   </thead>
 
@@ -24,9 +22,13 @@
       <td><%= govern_taxon.id %></td>
       <td><%= govern_taxon.code %></td>
       <td><%= govern_taxon.name %></td>
-      <td class="ui labels">
-        <%= link_to t('.edit'), edit_admin_govern_taxon_path(govern_taxon), class: 'ui pink label' %>
-        <%= link_to t('.destroy'), admin_govern_taxon_path(govern_taxon), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red label' %>
+      <td>
+        <%= link_to edit_admin_govern_taxon_path(govern_taxon), data: { tooltip: t('.edit') }, class: 'ui mini circular icon button' do %>
+          <i class="pencil alternate icon"></i>
+        <% end %>
+        <%= link_to admin_govern_taxon_path(govern_taxon), method: :delete, data: { tooltip: t('.destroy'), confirm: 'Are you sure?' }, class: 'ui mini circular icon button' do %>
+          <i class="trash alternate icon"></i>
+        <% end %>
       </td>
     </tr>
   <% end %>

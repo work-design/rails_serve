@@ -1,11 +1,13 @@
+<% content_for :breadcrumb do %>
 <div class="ui segment breadcrumb">
-  <%= link_to 'Back', admin_governs_path, class: 'section' %>
-  <div class="divider"> / </div>
+  <%= link_to t('role.admin.governs.index.title'), admin_governs_path, class: 'section' %>
+  <div class="divider">/</div>
   <div class="active section">Add New</div>
 </div>
+<% end %>
 
 <div class="ui segment">
-  <%= form_with model: @govern_taxon, url: admin_govern_taxons_path(return_to: params[:return_to]), local: true do |f| %>
+  <%= form_with model: @govern_taxon, url: admin_govern_taxons_path(return_to: params[:return_to]) do |f| %>
     <%= render partial: 'form', locals: { f: f } %>
   <% end %>
 </div>

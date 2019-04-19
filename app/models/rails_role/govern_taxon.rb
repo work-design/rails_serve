@@ -1,6 +1,7 @@
-require 'acts_as_list'
 class GovernTaxon < ApplicationRecord
   acts_as_list
+
+  attribute :code, :string
 
   has_many :governs, -> { order(position: :asc) }, dependent: :nullify
   has_many :rules, through: :governs
