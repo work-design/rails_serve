@@ -21,7 +21,7 @@
       <%= link_to edit_admin_role_path(role), data: { tooltip: t('.edit') }, class: 'ui mini circular icon button' do %>
         <i class="pencil alternate icon"></i>
       <% end %>
-      <%= link_to admin_role_path(role), method: :delete, data: { tooltip: t('.destroy'), confirm: 'Are you sure?' }, class: 'ui mini circular icon button' do %>
+      <%= link_to admin_role_path(role), method: :delete, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, class: 'ui mini circular icon button' do %>
         <i class="trash alternate icon"></i>
       <% end %>
     </td>

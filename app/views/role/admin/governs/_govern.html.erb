@@ -18,7 +18,7 @@
         <%= link_to edit_admin_govern_rule_path(govern, rule) do %>
           <i class="write icon"></i>
         <% end %>
-        <%= link_to admin_govern_rule_path(govern, rule), method: :delete, data: { confirm: 'Are you sure?' } do %>
+        <%= link_to admin_govern_rule_path(govern, rule), method: :delete, data: { confirm: t('.confirm') } do %>
           <i class="remove icon"></i>
         <% end %>
       </div>
@@ -28,6 +28,6 @@
     <%= link_to 'Add rule', new_admin_govern_rule_path(govern), class: 'ui teal mini label' %>
     <%= link_to 'Sync rules', sync_admin_govern_rules_path(govern), method: :patch, class: 'ui pink mini label' %>
     <%= link_to 'Edit', edit_admin_govern_path(govern), class: 'ui red mini label' %>
-    <%= link_to 'Delete', admin_govern_path(govern), method: :delete, class: 'ui mini red label', data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'Delete', admin_govern_path(govern), method: :delete, class: 'ui mini red label', data: { confirm: t('.confirm') } %>
   </td>
 </tr>
