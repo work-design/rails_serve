@@ -7,7 +7,7 @@
       <th><%= GovernTaxon.human_attribute_name(:name) %></th>
       <th>
         <%= link_to new_admin_govern_taxon_path, class: 'ui mini primary button' do %>
-          <i class="plus icon"></i><%= t('.new') %>
+          <i class="fas fa-plus"></i><%= t('.new') %>
         <% end %>
         <%= link_to sync_admin_govern_taxons_path, method: :post, class: 'ui mini red button' do %>
           <i class="sync icon"></i><%= t('.sync') %>
