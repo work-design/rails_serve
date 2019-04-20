@@ -24,10 +24,10 @@
       <td><%= govern_taxon.name %></td>
       <td>
         <%= link_to edit_admin_govern_taxon_path(govern_taxon), data: { tooltip: t('.edit') }, class: 'ui mini circular icon button' do %>
-          <i class="pencil alternate icon"></i>
+          <i class="fas fa-pencil-alt"></i>
         <% end %>
         <%= link_to admin_govern_taxon_path(govern_taxon), method: :delete, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, class: 'ui mini circular icon button' do %>
-          <i class="trash alternate icon"></i>
+          <i class="fas fa-trash-alt"></i>
         <% end %>
       </td>
     </tr>

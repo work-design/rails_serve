@@ -19,10 +19,10 @@
       <%= link_to 'overview', overview_admin_role_path(role), class: 'ui mini label' %>
       <%= link_to 'Assign', admin_role_path(role), class: 'ui mini blue label' %>
       <%= link_to edit_admin_role_path(role), data: { tooltip: t('.edit') }, class: 'ui mini circular icon button' do %>
-        <i class="pencil alternate icon"></i>
+        <i class="fas fa-pencil-alt"></i>
       <% end %>
       <%= link_to admin_role_path(role), method: :delete, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, class: 'ui mini circular icon button' do %>
-        <i class="trash alternate icon"></i>
+        <i class="fas fa-trash-alt"></i>
       <% end %>
     </td>
   </tr>
