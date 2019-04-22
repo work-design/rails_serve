@@ -23,7 +23,7 @@ class Role::Admin::GovernsController < Role::Admin::BaseController
 
     respond_to do |format|
       if @govern.save
-        format.html { redirect_to admin_governs_url, notice: 'Govern was successfully created.' }
+        format.html { redirect_to admin_governs_url }
         format.json { render :show, status: :created, location: @govern }
       else
         format.html {
@@ -49,7 +49,7 @@ class Role::Admin::GovernsController < Role::Admin::BaseController
     @govern.assign_attributes(govern_params)
     respond_to do |format|
       if @govern.save
-        format.html { redirect_to admin_governs_url, notice: 'Govern was successfully updated.' }
+        format.html { redirect_to admin_governs_url }
         format.json { render :show, status: :ok, location: @govern }
       else
         format.html { render :edit }
@@ -71,7 +71,7 @@ class Role::Admin::GovernsController < Role::Admin::BaseController
   def destroy
     @govern.destroy
     respond_to do |format|
-      format.html { redirect_to admin_governs_url, notice: 'Govern was successfully destroyed.' }
+      format.html { redirect_to admin_governs_url }
       format.json { head :no_content }
     end
   end

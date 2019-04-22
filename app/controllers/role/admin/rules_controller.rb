@@ -7,7 +7,7 @@ class Role::Admin::RulesController < Role::Admin::BaseController
 
     respond_to do |format|
       if @rule.save
-        format.html { redirect_to admin_governs_url(anchor: "tr_#{@govern.id}"), notice: 'Rule was successfully created.' }
+        format.html { redirect_to admin_governs_url(anchor: "tr_#{@govern.id}") }
         format.json { render :show, status: :created, location: @rule }
       else
         format.html { render :new }
@@ -39,7 +39,7 @@ class Role::Admin::RulesController < Role::Admin::BaseController
   def update
     respond_to do |format|
       if @rule.update(rule_params)
-        format.html { redirect_to admin_governs_url(anchor: "tr_#{@govern.id}"), notice: 'Rule was successfully updated.' }
+        format.html { redirect_to admin_governs_url(anchor: "tr_#{@govern.id}") }
         format.json { render :show, status: :ok, location: @rule }
       else
         format.html { render :edit }
@@ -61,7 +61,7 @@ class Role::Admin::RulesController < Role::Admin::BaseController
   def destroy
     @rule.destroy
     respond_to do |format|
-      format.html { redirect_to admin_governs_url(anchor: "tr_#{@govern.id}"), notice: 'Rule was successfully destroyed.' }
+      format.html { redirect_to admin_governs_url(anchor: "tr_#{@govern.id}") }
       format.json { head :no_content }
     end
   end
