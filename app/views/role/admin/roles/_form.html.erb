@@ -1,4 +1,6 @@
-<%= f.text_field :name %>
-<%= f.text_field :code %>
-<%= f.text_area :description %>
-<%= f.submit %>
+<%= form_with model: [:admin, @role] do |f| %>
+  <%= f.text_field :name %>
+  <%= f.text_field :code %>
+  <%= f.text_area :description %>
+  <%= f.submit %>
+<% end %>

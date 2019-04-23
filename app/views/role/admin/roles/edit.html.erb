@@ -5,7 +5,5 @@
 </div>
 
 <div class="ui segment">
-  <%= form_with model: @role, as: :role, url: admin_role_path(@role), local: true do |f| %>
-    <%= render partial: 'form', locals: { f: f } %>
-  <% end %>
+  <%= render 'form' %>
 </div>
