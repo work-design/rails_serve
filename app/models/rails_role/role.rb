@@ -1,11 +1,14 @@
-class Role < ApplicationRecord
-  include RailsRoleBase
+module RailsRole::Role
+  extend ActiveSupport::Concern
+  included do
+    include RailsRoleBase
 
-  attribute :code, :string
-  has_many :who_roles, dependent: :destroy
-  has_many :role_rules, dependent: :destroy, inverse_of: :role
-  has_many :rules, through: :role_rules, dependent: :destroy
-  has_many :governs, ->{ distinct }, through: :role_rules, source: 'govern', dependent: :nullify
+    attribute :code, :string
+    has_many :who_roles, dependent: :destroy
+    has_many :role_rules, dependent: :destroy, inverse_of: :role
+    has_many :rules, through: :role_rules, dependent: :destroy
+    has_many :governs, ->{ distinct }, through: :role_rules, source: 'govern', dependent: :nullify
+  end
 
   def rails_role
     Rails.cache.fetch("rails_role/#{self.id}") do

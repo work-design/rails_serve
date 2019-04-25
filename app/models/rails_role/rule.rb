@@ -1,15 +1,18 @@
 require 'acts_as_list'
-class Rule < ApplicationRecord
-  acts_as_list scope: :govern
-  default_scope -> { order(position: :asc, id: :asc) }
+module RailsRole::Rule
+  extend ActiveSupport::Concern
+  included do
+    acts_as_list scope: :govern
+    default_scope -> { order(position: :asc, id: :asc) }
 
-  belongs_to :govern, touch: true
-  has_many :role_rules, dependent: :delete_all
-  has_many :roles, through: :role_rules
+    belongs_to :govern, touch: true
+    has_many :role_rules, dependent: :delete_all
+    has_many :roles, through: :role_rules
 
-  scope :without_taxon, -> { where(govern_id: Govern.without_taxon.pluck(:id)) }
+    scope :without_taxon, -> { where(govern_id: Govern.without_taxon.pluck(:id)) }
 
-  after_commit :delete_cache
+    after_commit :delete_cache
+  end
 
   def serialize_params
     #todo regexp improve!
