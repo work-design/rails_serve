@@ -1,3 +1,3 @@
 class CustomGovern < Govern
-  include RailsRole::CustomGovern
+  include RailsRole::Govern::CustomGovern
 end unless defined? CustomGovern

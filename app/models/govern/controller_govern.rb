@@ -1,3 +1,3 @@
 class ControllerGovern < Govern
-  include RailsRole::ControllerGovern
+  include RailsRole::Govern::ControllerGovern
 end unless defined? ControllerGovern
