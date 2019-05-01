@@ -1,4 +1,4 @@
-module RailsRoleController
+module RailsRole::Controller
 
   def self.prepended(controller)
     controller.helper_method :rails_role_user
