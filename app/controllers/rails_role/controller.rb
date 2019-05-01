@@ -38,4 +38,4 @@ module RailsRole::Controller
 
 end
 
-ActionController::Base.prepend RailsRoleController
+ActionController::Base.prepend RailsRole::Controller
