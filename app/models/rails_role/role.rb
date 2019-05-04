@@ -1,8 +1,8 @@
 module RailsRole::Role
   extend ActiveSupport::Concern
-  included do
-    include RailsRoleBase
+  include RailsRole::Base
 
+  included do
     attribute :code, :string
     has_many :who_roles, dependent: :destroy
     has_many :role_rules, dependent: :destroy, inverse_of: :role

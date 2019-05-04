@@ -1,4 +1,4 @@
-module RailsRoleBase
+module RailsRole::Base
 
   def has_role?(govern_name, rule_name, params = nil)
     govern_name = govern_name.to_s

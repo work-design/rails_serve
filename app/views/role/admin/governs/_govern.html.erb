@@ -24,10 +24,18 @@
       </div>
     <% end %>
   </td>
-  <td class="three wide ui labels">
-    <%= link_to 'Add rule', new_admin_govern_rule_path(govern), class: 'ui teal mini label' %>
-    <%= link_to 'Sync rules', sync_admin_govern_rules_path(govern), method: :patch, class: 'ui pink mini label' %>
-    <%= link_to 'Edit', edit_admin_govern_path(govern), class: 'ui red mini label' %>
-    <%= link_to 'Delete', admin_govern_path(govern), method: :delete, class: 'ui mini red label', data: { confirm: t('.confirm') } %>
+  <td class="three wide">
+    <%= link_to new_admin_govern_rule_path(govern), data: { tooltip: t('.new') }, class: 'ui mini circular icon button' do %>
+      <i class="fas fa-plus"></i>
+    <% end %>
+    <%= link_to sync_admin_govern_rules_path(govern), method: :patch, data: { tooltip: t('.sync') }, class: 'ui mini circular icon button' do %>
+      <i class="fas fa-sync"></i>
+    <% end %>
+    <%= link_to edit_admin_govern_path(govern), data: { tooltip: t('.edit') }, class: 'ui mini circular icon button' do %>
+      <i class="fas fa-pencil-alt"></i>
+    <% end %>
+    <%= link_to admin_govern_path(govern), method: :delete, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, class: 'ui mini circular icon button' do %>
+      <i class="fas fa-trash-alt"></i>
+    <% end %>
   </td>
 </tr>

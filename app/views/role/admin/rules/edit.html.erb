@@ -6,7 +6,7 @@
 	</div>
 
 	<div class="ui segment">
-		<%= form_with model: @rule, as: :rule, url: admin_govern_rule_path(@govern, @rule), local: true do |f| %>
+		<%= form_with model: @rule, url: admin_govern_rule_path(@govern, @rule) do |f| %>
       <%= render partial: 'form', locals: { f: f } %>
 		<% end %>
 	</div>
