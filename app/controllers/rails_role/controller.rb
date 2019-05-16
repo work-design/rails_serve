@@ -1,7 +1,7 @@
 module RailsRole::Controller
-
-  def self.prepended(controller)
-    controller.helper_method :rails_role_user
+  extend ActiveSupport::Concern
+  included do
+    helper_method :rails_role_user
   end
 
   def require_role(the_params = params['id'])
@@ -37,5 +37,3 @@ module RailsRole::Controller
   end
 
 end
-
-ActionController::Base.prepend RailsRole::Controller
