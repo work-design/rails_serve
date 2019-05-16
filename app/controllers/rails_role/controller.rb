@@ -28,7 +28,7 @@ module RailsRole::Controller
     elsif request.format.json?
       raise ActionController::ForbiddenError
     else
-      redirect_back fallback_location: root_url, flash: { error: access_denied_msg }
+      redirect_back fallback_location: root_url, error: access_denied_msg
     end
   end
 
