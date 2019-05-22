@@ -32,6 +32,7 @@ class RailsRoleInit < ActiveRecord::Migration[5.0]
       t.string :name, null: false
       t.string :description, limit: 1024
       t.string :code
+      t.boolean :visible
       t.timestamps
     end
 

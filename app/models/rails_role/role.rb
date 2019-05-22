@@ -4,6 +4,7 @@ module RailsRole::Role
 
   included do
     attribute :code, :string
+    attribute :visible, :boolean, default: false
     has_many :who_roles, dependent: :destroy
     has_many :role_rules, dependent: :destroy, inverse_of: :role
     has_many :rules, through: :role_rules, dependent: :destroy
