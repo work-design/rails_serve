@@ -40,6 +40,7 @@ class RailsRoleInit < ActiveRecord::Migration[5.0]
       t.references :role
       t.references :rule
       t.references :govern
+      t.references :govern_taxon
       t.timestamps
     end
 

@@ -24,6 +24,10 @@ module RailsRole::User
 
     result
   end
+  
+  def taxon_codes
+    roles.map(&:taxon_codes).flatten
+  end
 
   def admin?
     if respond_to?(:email) && RailsRole.default_admin_emails.include?(email)

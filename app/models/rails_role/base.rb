@@ -35,6 +35,7 @@ module RailsRole::Base
 
     if any_roles.is_a?(Array)
       return true if (any_roles.map(&:to_s) & rails_role.keys).present?
+      return true if (any_roles.map(&:to_s) & taxon_codes).present?
     end
 
     roles_hash.stringify_keys!

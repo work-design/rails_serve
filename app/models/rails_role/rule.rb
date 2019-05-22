@@ -1,11 +1,10 @@
-require 'acts_as_list'
 module RailsRole::Rule
   extend ActiveSupport::Concern
   included do
     acts_as_list scope: :govern
     default_scope -> { order(position: :asc, id: :asc) }
 
-    belongs_to :govern, touch: true
+    belongs_to :govern
     has_many :role_rules, dependent: :delete_all
     has_many :roles, through: :role_rules
 
@@ -26,7 +25,7 @@ module RailsRole::Rule
 
   def desc_name
     if name.blank?
-      Rule.enum_i18n :code, self.code
+      self.class.enum_i18n :code, self.code
     else
       name
     end

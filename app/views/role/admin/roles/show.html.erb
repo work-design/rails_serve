@@ -1,10 +1,12 @@
-<div class="ui top attached segment breadcrumb">
+<% content_for :breadcrumb do %>
+<div class="ui basic segment breadcrumb">
   <%= link_to 'Back', admin_roles_path, class: 'section' %>
   <div class="divider"> /</div>
   <div class="active section"><%= @role.name %></div>
 </div>
+<% end %>
 
-<div class="ui attached segment">
+<div class="ui top attached segment">
   <dl>
     <dt>Taxon:</dt>
     <dd>
@@ -17,17 +19,16 @@
 </div>
 
 <table class="ui bottom attached selectable structured celled table">
-  <caption>
-    <%= form_for @role, as: :role, url: admin_role_path(@role, govern_taxon_id: params[:govern_taxon_id]), html: { class: '', id: "edit_role_#{@role.id}" } do |f| %>
-      <%= hidden_field_tag :'role[rule_ids][]', nil, form: "edit_role_#{@role.id}" %>
-    <% end %>
-    <%= submit_tag 'Save', class: 'ui mini blue right floated button', form: "edit_role_#{@role.id}" %>
-    <%= link_to 'Overview', overview_admin_role_path(@role), class: 'ui mini right floated button' %>
-  </caption>
   <thead>
     <tr>
       <th class="four wide">Govern (Code)</th>
-      <th class="twelve wide">Actions</th>
+      <th class="twelve wide">
+        <%= form_for @role, as: :role, url: admin_role_path(@role, govern_taxon_id: params[:govern_taxon_id]), html: { class: '', id: "edit_role_#{@role.id}" } do |f| %>
+          <%= hidden_field_tag :'role[rule_ids][]', nil, form: "edit_role_#{@role.id}" %>
+        <% end %>
+        <%= submit_tag t('.save'), class: 'ui mini blue right floated button', form: "edit_role_#{@role.id}" %>
+        <%= link_to 'Overview', overview_admin_role_path(@role), class: 'ui mini right floated button' %>
+      </th>
     </tr>
   </thead>
 

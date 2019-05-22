@@ -8,7 +8,8 @@ module RailsRole::Role
     has_many :who_roles, dependent: :destroy
     has_many :role_rules, dependent: :destroy, inverse_of: :role
     has_many :rules, through: :role_rules, dependent: :destroy
-    has_many :governs, ->{ distinct }, through: :role_rules, source: 'govern', dependent: :nullify
+    has_many :governs, ->{ distinct }, through: :role_rules
+    has_many :govern_taxons, -> { distinct }, through: :role_rules
   end
 
   def rails_role
@@ -44,6 +45,12 @@ module RailsRole::Role
       end
 
       result
+    end
+  end
+
+  def taxon_codes
+    Rails.cache.fetch("taxon_codes/#{self.id}") do
+      govern_taxons.map(&:code)
     end
   end
 
