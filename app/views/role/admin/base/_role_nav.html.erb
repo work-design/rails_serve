@@ -1,3 +1,4 @@
+<% if rails_role_user.any_role?('role/admin') %>
 <div class="item">
   <a class="<%= active_helper(modules: 'role/admin', active_class: 'title active', item_class: 'title') %>">
     <i class="fas fa-user-secret"></i>
@@ -10,3 +11,4 @@
     <%= link_to t('role.admin.govern_taxons.index.title'), admin_govern_taxons_path, class: active_helper(controllers: 'govern_taxons') %>
   </div>
 </div>
+<% end %>
