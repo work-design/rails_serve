@@ -4,6 +4,8 @@
       <th class="two wide"><%= Role.human_attribute_name(:name) %></th>
       <th class="four wide"><%= Role.human_attribute_name(:description) %></th>
       <th><%= Role.human_attribute_name(:code) %></th>
+      <th><%= Role.human_attribute_name(:who_type) %></th>
+      <th><%= Role.human_attribute_name(:visible) %></th>
       <th class="three wide">
         <%= link_to new_admin_role_path, remote: true, class: 'ui mini primary button' do %>
           <i class="fas fa-plus"></i><%= t('.new') %>
@@ -17,6 +19,12 @@
     <td><%= role.name %></td>
     <td><%= role.description %></td>
     <td><%= role.code %></td>
+    <td><%= role.who_type_i18n %></td>
+    <td>
+      <div class="ui toggle checkbox">
+        <%= check_box_tag '[role]visible', nil, role.visible, data: { method: :patch, remote: true, url: admin_role_path(role), submit: true }, id: nil %>
+      </div>
+    </td>
     <td>
       <%= link_to 'overview', overview_admin_role_path(role), class: 'ui mini circular icon button' %>
       <%= link_to 'Assign', admin_role_path(role), class: 'ui mini circular icon button' %>

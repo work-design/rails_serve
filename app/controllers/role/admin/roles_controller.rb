@@ -55,11 +55,15 @@ class Role::Admin::RolesController < Role::Admin::BaseController
     @role.rule_ids += add_ids if add_ids
     @role.rule_ids -= remove_ids if remove_ids
     @role.assign_attributes role_params
-    if @role.save
-      flash[:notice] = t('.role_updated')
-      redirect_to admin_role_url(@role, govern_taxon_id: params[:govern_taxon_id])
-    else
-      render action: :edit
+    respond_to do |format|
+      if @role.save
+        flash[:notice] = t('.role_updated')
+        format.html { redirect_to admin_role_url(@role, govern_taxon_id: params[:govern_taxon_id]) }
+        format.js
+      else
+        format.html { render :edit }
+        format.js
+      end
     end
   end
 
@@ -74,7 +78,9 @@ class Role::Admin::RolesController < Role::Admin::BaseController
     params.fetch(:role, {}).permit(
       :name,
       :code,
-      :description
+      :description,
+      :visible,
+      :who_type
     )
   end
 

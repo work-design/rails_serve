@@ -5,11 +5,14 @@ module RailsRole::Role
   included do
     attribute :code, :string
     attribute :visible, :boolean, default: false
+    
     has_many :who_roles, dependent: :destroy
     has_many :role_rules, dependent: :destroy, inverse_of: :role
     has_many :rules, through: :role_rules, dependent: :destroy
     has_many :governs, ->{ distinct }, through: :role_rules
     has_many :govern_taxons, -> { distinct }, through: :role_rules
+    
+    scope :visible, -> { where(visible: true) }
   end
 
   def rails_role

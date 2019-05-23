@@ -12,6 +12,10 @@ zh:
         code:
           admin: 管理
           read: 读取
+      role:
+        who_type:
+          User: User
+          Member: Member
   rails_role:
     access_denied: 没有权限
   role:

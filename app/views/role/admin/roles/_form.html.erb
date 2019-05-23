@@ -2,5 +2,7 @@
   <%= f.text_field :name %>
   <%= f.text_field :code %>
   <%= f.text_area :description %>
+  <%= f.select :who_type, options_for_select(Role.options_i18n(:who_type), @role.who_type) %>
+  <%= f.check_box :visible %>
   <%= f.submit %>
 <% end %>

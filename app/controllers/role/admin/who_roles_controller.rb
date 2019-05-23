@@ -6,7 +6,7 @@ class Role::Admin::WhoRolesController < Role::Admin::BaseController
   end
 
   def edit
-
+    @roles = Role.visible.where(who_type: [params[:who_type], nil])
   end
 
   def update
