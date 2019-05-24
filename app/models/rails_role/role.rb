@@ -12,6 +12,8 @@ module RailsRole::Role
     has_many :governs, ->{ distinct }, through: :role_rules
     has_many :govern_taxons, -> { distinct }, through: :role_rules
     
+    validates :code, uniqueness: { scope: :who_type }
+    
     scope :visible, -> { where(visible: true) }
   end
 
