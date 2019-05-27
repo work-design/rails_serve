@@ -1,7 +1,7 @@
 <% if rails_role_user.any_role?('role/admin') %>
 <div class="item">
   <a class="<%= active_helper(modules: 'role/admin', active_class: 'title active', item_class: 'title') %>">
-    <i class="fas fa-user-secret"></i>
+    <i class="fas fa-user-secret fa-fw"></i>
     <span>权限管理</span>
     <i class="dropdown icon"></i>
   </a>
