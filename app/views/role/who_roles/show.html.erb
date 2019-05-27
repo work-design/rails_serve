@@ -4,7 +4,7 @@
       <span class="ui green label"><%= role.name %></span>
     <% end %>
   </div>
-  <%= link_to 'edit', edit_admin_who_roles_path(params[:who_type], params[:who_id]), remote: true, class: 'ui label' %>
+  <%= link_to 'edit', edit_who_roles_path(params[:who_type], params[:who_id]), remote: true, class: 'ui label' %>
 </div>
 
 <table class="ui striped bottom attached table">

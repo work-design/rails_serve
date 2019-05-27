@@ -3,9 +3,10 @@ module RailsRole
   config_accessor :default_admin_emails
 
   configure do |config|
-    config.default_admin_emails = []
+    config.app_controller = 'ApplicationController'
     config.admin_controller = 'AdminController'
     config.ignore_controllers = []
+    config.default_admin_emails = []
   end
 
 end

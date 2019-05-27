@@ -5,7 +5,7 @@
   </div>
 
   <div class="content">
-    <%= form_with model: @who, scope: :who, url: admin_who_roles_path(params[:who_type], params[:who_id]), method: :patch do |f| %>
+    <%= form_with model: @who, scope: :who, url: who_roles_path(params[:who_type], params[:who_id]), method: :patch do |f| %>
       <%= render 'shared/error_messages', target: @who %>
       <%= f.collection_check_boxes :role_ids, @roles, :id, :name %>
       <%= f.submit %>
