@@ -1,4 +1,4 @@
-module RailsRoleHelper
+module RailsRole::Helper
 
   def link_to(name = nil, options = nil, html_options = nil, &block)
     if block_given?
