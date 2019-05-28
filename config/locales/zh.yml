@@ -15,7 +15,7 @@ zh:
       role:
         who_type:
           User: User
-          Member: Member
+          OrganGrant: OrganGrant
   rails_role:
     access_denied: 没有权限
   role:
