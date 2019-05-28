@@ -25,7 +25,7 @@ module RailsRole::Controller
     elsif request.format.json?
       raise ActionController::ForbiddenError
     else
-      redirect_back fallback_location: root_url, error: message
+      redirect_back fallback_location: root_url, alert: message
     end
   end
   
