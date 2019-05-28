@@ -7,6 +7,7 @@ module RailsRole
     config.admin_controller = 'AdminController'
     config.ignore_controllers = []
     config.default_admin_emails = []
+    config.default_return_path = '/my'
   end
 
 end
