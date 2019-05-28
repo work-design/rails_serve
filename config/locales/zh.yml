@@ -15,6 +15,7 @@ zh:
       role:
         who_type:
           User: User
+          JobTitle: JobTitle
           OrganGrant: OrganGrant
   rails_role:
     access_denied: 没有权限
