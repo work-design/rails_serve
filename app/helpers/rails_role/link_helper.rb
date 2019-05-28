@@ -1,8 +1,10 @@
-module RailsRole::Helper
+# frozen_string_literal: true
+
+module RailsRole::LinkHelper
   
   def link_to_if(name = nil, options = nil, html_options = nil, &block)
     condition = role_permit?(options, html_options)
-    binding.pry
+
     super(condition, name, options, html_options, &block)
   end
 
