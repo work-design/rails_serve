@@ -3,8 +3,12 @@ module RailsRole::User
   include RailsRole::Base
 
   included do
+    attribute :cached_role_ids, :integer, array: true
+    
     has_many :who_roles, as: :who, dependent: :destroy
     has_many :roles, through: :who_roles
+    
+    after_save :sync_to_role_ids, if: ->{ saved_change_to_cached_role_ids? }
   end
 
   def rails_role
@@ -33,6 +37,10 @@ module RailsRole::User
     if respond_to?(:email) && RailsRole.default_admin_emails.include?(email)
       true
     end
+  end
+  
+  def sync_to_role_ids
+    self.role_ids = cached_role_ids
   end
 
 end
