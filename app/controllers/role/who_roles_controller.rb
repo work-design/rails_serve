@@ -10,7 +10,11 @@ class Role::WhoRolesController < Role::BaseController
   end
 
   def update
-    @who.update who_params
+    if @who.class.column_names.include? 'cached_role_ids'
+      @who.update cached_role_ids: who_params[:role_ids]
+    else
+      @who.update who_params
+    end
   end
 
   private
@@ -19,7 +23,9 @@ class Role::WhoRolesController < Role::BaseController
   end
 
   def who_params
-    params.fetch(:who, {}).permit(role_ids: [])
+    params.fetch(:who, {}).permit(
+      role_ids: []
+    )
   end
 
 end
