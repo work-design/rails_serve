@@ -85,8 +85,8 @@ zh:
           roles_list: 角色列表
           new_role: 创建新角色
           delete_role_confirm: 你确定? 可能存在风险!
-      who_roles:
-        index:
-          title: 用户权限
-        edit:
-          title: 权限设置
+    who_roles:
+      index:
+        title: 用户权限
+      edit:
+        title: 权限设置
