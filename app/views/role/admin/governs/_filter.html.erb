@@ -7,7 +7,7 @@
 <% end %>
 
 <dl>
-  <dt>Taxon:</dt>
+  <dt><%= Govern.human_attribute_name(:govern_taxon_id) %></dt>
   <dd>
     <%= link_to 'unclassified', filter_params(except: [:govern_taxon_id]), class: active_params(govern_taxon_id: '', active_class: 'ui basic blue button', item_class: 'ui basic white button') %>
     <% GovernTaxon.where('governs_count > 0').each do |taxon| %>
