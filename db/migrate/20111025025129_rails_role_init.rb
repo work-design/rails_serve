@@ -33,6 +33,12 @@ class RailsRoleInit < ActiveRecord::Migration[5.0]
       t.string :description, limit: 1024
       t.string :code
       t.boolean :visible
+      t.string :who_types, array: true
+      t.timestamps
+    end
+    
+    create_table :role_types do |t|
+      t.references :role
       t.string :who_type
       t.timestamps
     end

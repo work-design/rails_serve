@@ -6,7 +6,7 @@ class Role::WhoRolesController < Role::BaseController
   end
 
   def edit
-    @roles = Role.visible.where(who_type: [params[:who_type], nil])
+    @roles = Role.visible.default_where('who_types-any': params[:who_type])
   end
 
   def update

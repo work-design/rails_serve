@@ -1,1 +1,1 @@
-$('#role_who_type').dropdown();
+$('#role_who_types').dropdown();

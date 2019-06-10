@@ -13,7 +13,7 @@ zh:
           admin: 管理
           read: 读取
       role:
-        who_type:
+        who_types:
           User: User
           JobTitle: JobTitle
           Member: Member

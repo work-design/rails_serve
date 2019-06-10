@@ -80,7 +80,7 @@ class Role::Admin::RolesController < Role::Admin::BaseController
       :code,
       :description,
       :visible,
-      :who_type
+      who_types: []
     )
   end
 
