@@ -34,7 +34,7 @@ module RailsRole::User
   end
 
   def admin?
-    if respond_to?(:email) && RailsRole.default_admin_emails.include?(email)
+    if respond_to?(:emails) && (RailsRole.default_admin_emails & emails).length > 0
       true
     end
   end
