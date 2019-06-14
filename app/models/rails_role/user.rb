@@ -34,7 +34,7 @@ module RailsRole::User
   end
 
   def admin?
-    if respond_to?(:account_identities) && (RailsRole.default_admin_accounts & account_identities).length > 0
+    if respond_to?(:account_identities) && (RailsRole.config.default_admin_accounts & account_identities).length > 0
       true
     end
   end
