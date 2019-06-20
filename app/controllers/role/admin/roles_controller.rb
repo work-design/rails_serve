@@ -75,13 +75,15 @@ class Role::Admin::RolesController < Role::Admin::BaseController
 
   private
   def role_params
-    params.fetch(:role, {}).permit(
+    p = params.fetch(:role, {}).permit(
       :name,
       :code,
       :description,
       :visible,
       who_types: []
     )
+    p.fetch(:who_types, []).reject!(&:blank?)
+    p
   end
 
   def rule_ids_params
