@@ -2,7 +2,6 @@
 <table class="ui bottom attached selectable table">
   <thead>
     <tr>
-      <th><%= GovernTaxon.human_attribute_name(:id) %></th>
       <th><%= GovernTaxon.human_attribute_name(:code) %></th>
       <th><%= GovernTaxon.human_attribute_name(:name) %></th>
       <th>
@@ -19,7 +18,6 @@
   <tbody>
   <% @govern_taxons.each do |govern_taxon| %>
     <tr>
-      <td><%= govern_taxon.id %></td>
       <td><%= govern_taxon.code %></td>
       <td><%= govern_taxon.name %></td>
       <td>
