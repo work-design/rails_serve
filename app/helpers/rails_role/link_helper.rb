@@ -6,16 +6,14 @@ module RailsRole::LinkHelper
     if block_given?
       _options = name
       _html_options = options
-      text = options[:text]
     else
       _options = options
       _html_options = html_options
-      text = html_options[:text]
     end
 
     if role_permit?(_options, _html_options)
       super
-    elsif text
+    elsif _html_options[:text]
       ERB::Util.html_escape(name)
     end
   end
