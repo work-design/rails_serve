@@ -2,7 +2,7 @@
 
 module RailsRole::LinkHelper
 
-  def link_to(name = nil, options = nil, html_options = nil, &block)
+  def link_to(name = nil, options = {}, html_options = {}, &block)
     if block_given?
       _options = name
       _html_options = options
@@ -21,7 +21,7 @@ module RailsRole::LinkHelper
   def role_permit?(_options, _html_options)
     if _options.is_a? String
       begin
-        path_params = Rails.application.routes.recognize_path _options, { method: _html_options&.fetch(:method, nil) }
+        path_params = Rails.application.routes.recognize_path _options, { method: _html_options.fetch(:method, nil) }
       rescue ActionController::RoutingError
         return true
       end
