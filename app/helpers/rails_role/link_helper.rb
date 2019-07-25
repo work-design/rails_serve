@@ -1,27 +1,22 @@
 # frozen_string_literal: true
 
 module RailsRole::LinkHelper
-  
-  def link_to_if_permitted(name, options = {}, html_options = {}, &block)
-    condition = role_permit?(options, html_options)
-    if condition
-      link_to(name, options, html_options, &block)
-    else
-      ERB::Util.html_escape(name)
-    end
-  end
 
   def link_to(name = nil, options = nil, html_options = nil, &block)
     if block_given?
       _options = name
       _html_options = options
+      text = options[:text]
     else
       _options = options
       _html_options = html_options
+      text = html_options[:text]
     end
-    
+
     if role_permit?(_options, _html_options)
       super
+    elsif text
+      ERB::Util.html_escape(name)
     end
   end
   
