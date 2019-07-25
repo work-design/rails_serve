@@ -2,10 +2,13 @@
 
 module RailsRole::LinkHelper
   
-  def link_to_if(name = nil, options = nil, html_options = nil, &block)
+  def link_to_if_permitted(name, options = {}, html_options = {}, &block)
     condition = role_permit?(options, html_options)
-
-    super(condition, name, options, html_options, &block)
+    if condition
+      link_to(name, options, html_options, &block)
+    else
+      ERB::Util.html_escape(name)
+    end
   end
 
   def link_to(name = nil, options = nil, html_options = nil, &block)
