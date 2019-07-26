@@ -17,6 +17,10 @@ zh:
           User: User
           JobTitle: JobTitle
           Member: Member
+      role_rule:
+        status:
+          available: 可用
+          unavailable: 不可用
   rails_role:
     access_denied: 没有权限
   role:
