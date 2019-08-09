@@ -1,4 +1,4 @@
-module RailsRole::Controller
+module RailsRole::Application
   extend ActiveSupport::Concern
   included do
     helper_method :rails_role_user
