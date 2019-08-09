@@ -1,9 +1,9 @@
-
 <table class="ui bottom attached selectable table">
   <thead>
     <tr>
       <th><%= GovernTaxon.human_attribute_name(:code) %></th>
       <th><%= GovernTaxon.human_attribute_name(:name) %></th>
+      <th><%= GovernTaxon.human_attribute_name(:governs_count) %></th>
       <th>
         <%= link_to new_admin_govern_taxon_path, class: 'ui mini primary button' do %>
           <i class="fas fa-plus"></i><%= t('.new') %>
@@ -20,6 +20,7 @@
     <tr>
       <td><%= govern_taxon.code %></td>
       <td><%= govern_taxon.name %></td>
+      <td><%= govern_taxon.governs_count %></td>
       <td>
         <%= link_to edit_admin_govern_taxon_path(govern_taxon), data: { tooltip: t('.edit') }, class: 'ui mini circular icon button' do %>
           <i class="fas fa-pencil-alt"></i>
