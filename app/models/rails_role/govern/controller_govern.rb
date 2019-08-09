@@ -21,21 +21,22 @@ module RailsRole::Govern::ControllerGovern
         govern = ControllerGovern.find_or_initialize_by(code: controller)
         present_rules = govern.rules.pluck(:code)
         
-        all_rules = routes.select! do |route|
-          controller = RailsCom::Controllers.controller(controller, route[:action])
-          controller.detect_filter(:require_role)
+        all_rules = routes.select do |route|
+          _controller = RailsCom::Controllers.controller(controller, route[:action])
+          _controller.detect_filter(:require_role) if _controller
         end.map(&->(i){ i[:action] })
-        all_rules += ['admin', 'read']
+        all_rules += ['admin', 'read'] if all_rules.present?
         
         (all_rules - present_rules).each do |action|
-          self.rules.build(code: action)
+          govern.rules.build(code: action)
         end
 
         (present_rules - all_rules).each do |action|
-          r = self.rules.find_by(code: action)
+          r = govern.rules.find_by(code: action)
           r.mark_for_destruction
         end
-        govern.save
+        
+        govern.save if govern.rules.length > 0
       end
       ControllerGovern.where(code: invalid_controllers).each do |controller|
         controller.destroy
