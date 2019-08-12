@@ -25,7 +25,7 @@ module RailsRole::Govern::ControllerGovern
           _controller = RailsCom::Controllers.controller(controller, route[:action])
           _controller.detect_filter(:require_role) if _controller
         end.map(&->(i){ i[:action] })
-        all_rules += ['admin', 'read'] if all_rules.present?
+        all_rules = ['admin', 'read'] + all_rules if all_rules.present?
         
         (all_rules - present_rules).each do |action|
           govern.rules.build(code: action)
