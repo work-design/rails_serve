@@ -23,8 +23,8 @@
     <tr>
       <th class="four wide">Govern (Code)</th>
       <th class="twelve wide">
-        <%= form_for @role, as: :role, url: admin_role_path(@role, govern_taxon_id: params[:govern_taxon_id]), html: { class: '', id: "edit_role_#{@role.id}" } do |f| %>
-          <%= hidden_field_tag :'role[rule_ids][]', nil, form: "edit_role_#{@role.id}" %>
+        <%= form_with url: admin_role_path(@role, govern_taxon_id: params[:govern_taxon_id]), html: { class: nil, id: "edit_role_#{@role.id}" } do |f| %>
+          <%= f.hidden_field :'role[rule_ids][]', id: nil %>
         <% end %>
         <%= submit_tag t('.save'), class: 'ui mini blue right floated button', form: "edit_role_#{@role.id}" %>
         <%= link_to 'Overview', overview_admin_role_path(@role), class: 'ui mini right floated button' %>
