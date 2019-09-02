@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class RailsRoleAdmin::GovernTaxonsControllerTest < ActionDispatch::IntegrationTest
+class Role::Admin::GovernTaxonsControllerTest < ActionDispatch::IntegrationTest
 
   setup do
     @govern_taxon = create :govern_taxon
