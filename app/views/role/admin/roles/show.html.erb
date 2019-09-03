@@ -1,7 +1,7 @@
 <% content_for :breadcrumb do %>
 <div class="ui basic segment breadcrumb">
-  <%= link_to 'Back', admin_roles_path, class: 'section' %>
-  <div class="divider"> /</div>
+  <%= link_to t('role.admin.governs.index.title'), admin_roles_path, class: 'section' %>
+  <i class="fas fa-angle-right divider"></i>
   <div class="active section"><%= @role.name %></div>
 </div>
 <% end %>
@@ -23,7 +23,7 @@
     <tr>
       <th class="four wide">Govern (Code)</th>
       <th class="twelve wide">
-        <%= form_with url: admin_role_path(@role, govern_taxon_id: params[:govern_taxon_id]), html: { class: nil, id: "edit_role_#{@role.id}" } do |f| %>
+        <%= form_with url: admin_role_path(@role, govern_taxon_id: params[:govern_taxon_id]), method: :patch, html: { class: nil, id: "edit_role_#{@role.id}" } do |f| %>
           <%= f.hidden_field :'role[rule_ids][]', id: nil %>
         <% end %>
         <%= submit_tag t('.save'), class: 'ui mini blue right floated button', form: "edit_role_#{@role.id}" %>
