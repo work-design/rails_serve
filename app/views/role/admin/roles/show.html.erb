@@ -18,11 +18,17 @@
   </dl>
 </div>
 
-<table class="ui bottom attached selectable structured celled table">
+<table class="ui bottom attached selectable celled table" data-controller="check">
   <thead>
     <tr>
       <th class="four wide">Govern (Code)</th>
-      <th class="twelve wide">
+      <th class="ten wide">
+        <div class="ui label checkbox">
+          <%= check_box_tag :'role[rule_ids][]', 'admin', false, id: nil, data: { action: 'check#toggleAllName' } %>
+          <label><%= '管理' %></label>
+        </div>
+      </th>
+      <th class="two wide">
         <%= form_with url: admin_role_path(@role, govern_taxon_id: params[:govern_taxon_id]), method: :patch, html: { class: nil, id: "edit_role_#{@role.id}" } do |f| %>
           <%= f.hidden_field :'role[rule_ids][]', id: nil %>
         <% end %>
@@ -31,7 +37,6 @@
       </th>
     </tr>
   </thead>
-
   <tbody>
     <%= render partial: 'govern', collection: @governs %>
   </tbody>

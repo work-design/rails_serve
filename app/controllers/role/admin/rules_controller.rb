@@ -60,8 +60,9 @@ class Role::Admin::RulesController < Role::Admin::BaseController
 
   def destroy
     @rule.destroy
+    
     respond_to do |format|
-      format.html { redirect_to admin_governs_url(anchor: "tr_#{@govern.id}") }
+      format.html { redirect_to admin_governs_url(govern_taxon_id: @rule.govern.govern_taxon_id, anchor: "tr_#{@govern.id}") }
       format.json { head :no_content }
     end
   end

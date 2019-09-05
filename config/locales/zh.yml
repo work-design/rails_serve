@@ -1,26 +1,4 @@
 zh:
-  activerecord:
-    models:
-      role: 角色
-    attributes:
-      role:
-        name: 角色名
-        title: 角色代码
-        description: 角色描述
-    enum:
-      rule:
-        code:
-          admin: 管理
-          read: 读取
-      role:
-        who_types:
-          User: User
-          JobTitle: JobTitle
-          Member: Member
-      role_rule:
-        status:
-          available: 可用
-          unavailable: 不可用
   rails_role:
     access_denied: 没有权限
   role:

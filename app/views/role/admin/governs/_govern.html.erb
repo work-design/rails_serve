@@ -15,7 +15,7 @@
         <%= link_to roles_admin_govern_rule_path(govern, rule), remote: true, id: "roles_#{rule.id}" do %>
           <i class="users icon"></i>
         <% end %>
-        <%= link_to edit_admin_govern_rule_path(govern, rule) do %>
+        <%= link_to edit_admin_govern_rule_path(govern, rule), remote: true do %>
           <i class="write icon"></i>
         <% end %>
         <%= link_to admin_govern_rule_path(govern, rule), method: :delete, data: { confirm: t('.confirm') } do %>
