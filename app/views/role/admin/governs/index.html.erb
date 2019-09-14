@@ -8,7 +8,7 @@
       <th class="three wide">Govern (Code)</th>
       <th class="three wide">Actions</th>
       <th class="two wide">
-        <%= link_to new_admin_govern_path, class: 'ui mini primary button' do %>
+        <%= link_to new_admin_govern_path, remote: true, class: 'ui mini primary button' do %>
           <i class="fas fa-plus"></i><%= t('.new') %>
         <% end %>
         <%= link_to sync_admin_governs_path, method: :post, class: 'ui mini red button' do %>

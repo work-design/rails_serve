@@ -12,11 +12,8 @@ class Role::Admin::RolesController < Role::Admin::BaseController
   def create
     @role = Role.new role_params
 
-    if @role.save
-      flash[:notice] = t('.role_created')
-      redirect_to admin_roles_url
-    else
-      render action: :new
+    unless @role.save
+      render :new, locals: { model: @role }, status: :unprocessable_entity
     end
   end
 
@@ -55,22 +52,14 @@ class Role::Admin::RolesController < Role::Admin::BaseController
     @role.rule_ids += add_ids if add_ids
     @role.rule_ids -= remove_ids if remove_ids
     @role.assign_attributes role_params
-    respond_to do |format|
-      if @role.save
-        flash[:notice] = t('.role_updated')
-        format.html { redirect_to admin_role_url(@role, govern_taxon_id: params[:govern_taxon_id]) }
-        format.js
-      else
-        format.html { render :edit }
-        format.js
-      end
+
+    unless @role.save
+      render :edit, locals: { model: @role }, status: :unprocessable_entity
     end
   end
 
   def destroy
     @role.destroy
-    flash[:notice] = t('.role_deleted')
-    redirect_to admin_roles_url
   end
 
   private

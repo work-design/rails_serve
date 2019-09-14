@@ -12,10 +12,8 @@ class Role::Admin::GovernTaxonsController < Role::Admin::BaseController
   def create
     @govern_taxon = GovernTaxon.new(govern_taxon_params)
 
-    if @govern_taxon.save
-      redirect_to params[:return_to] || admin_governs_url
-    else
-      render action: 'new'
+    unless @govern_taxon.save
+      render :new, locals: { model: @govern_taxon }, status: :unprocessable_entity
     end
   end
 
@@ -29,16 +27,15 @@ class Role::Admin::GovernTaxonsController < Role::Admin::BaseController
   end
 
   def update
-    if @govern_taxon.update(govern_taxon_params)
-      redirect_to admin_governs_url
-    else
-      render action: 'edit'
+    @govern_taxon.assign_attributes(govern_taxon_params)
+
+    unless @govern_taxon.save
+      render :edit, locals: { model: @govern_taxon }, status: :unprocessable_entity
     end
   end
 
   def destroy
     @govern_taxon.destroy
-    redirect_to admin_govern_taxons_path
   end
 
   private

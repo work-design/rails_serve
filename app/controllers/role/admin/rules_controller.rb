@@ -5,14 +5,8 @@ class Role::Admin::RulesController < Role::Admin::BaseController
   def create
     @rule = @govern.rules.build(rule_params)
 
-    respond_to do |format|
-      if @rule.save
-        format.html { redirect_to admin_governs_url(anchor: "tr_#{@govern.id}") }
-        format.json { render :show, status: :created, location: @rule }
-      else
-        format.html { render :new }
-        format.json { render json: @rule.errors, status: :unprocessable_entity }
-      end
+    unless @rule.save
+      render :new, locals: { model: @rule }, status: :unprocessable_entity
     end
   end
 
@@ -37,14 +31,11 @@ class Role::Admin::RulesController < Role::Admin::BaseController
   end
 
   def update
-    respond_to do |format|
-      if @rule.update(rule_params)
-        format.html { redirect_to admin_governs_url(anchor: "tr_#{@govern.id}") }
-        format.json { render :show, status: :ok, location: @rule }
-      else
-        format.html { render :edit }
-        format.json { render json: @rule.errors, status: :unprocessable_entity }
-      end
+    @rule.assign_attributes(rule_params)
+    
+
+    unless @rule.save
+      render :edit, locals: { model: @rule }, status: :unprocessable_entity
     end
   end
 
@@ -60,11 +51,6 @@ class Role::Admin::RulesController < Role::Admin::BaseController
 
   def destroy
     @rule.destroy
-    
-    respond_to do |format|
-      format.html { redirect_to admin_governs_url(govern_taxon_id: @rule.govern.govern_taxon_id, anchor: "tr_#{@govern.id}") }
-      format.json { head :no_content }
-    end
   end
 
   private
@@ -77,7 +63,12 @@ class Role::Admin::RulesController < Role::Admin::BaseController
   end
 
   def rule_params
-    params.fetch(:rule, {}).permit(:code, :name, :params, :position)
+    params.fetch(:rule, {}).permit(
+      :code,
+      :name,
+      :params,
+      :position
+    )
   end
 
 end

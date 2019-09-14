@@ -21,17 +21,9 @@ class Role::Admin::GovernsController < Role::Admin::BaseController
   def create
     @govern = Govern.new(govern_params)
 
-    respond_to do |format|
-      if @govern.save
-        format.html { redirect_to admin_governs_url }
-        format.json { render :show, status: :created, location: @govern }
-      else
-        format.html {
-          @options = GovernTaxon.select(:id, :name).all
-          render :new
-        }
-        format.json { render json: @govern.errors, status: :unprocessable_entity }
-      end
+    unless @govern.save
+      @options = GovernTaxon.select(:id, :name).all
+      render :new, locals: { model: @govern }, status: :unprocessable_entity
     end
   end
 
@@ -47,14 +39,9 @@ class Role::Admin::GovernsController < Role::Admin::BaseController
 
   def update
     @govern.assign_attributes(govern_params)
-    respond_to do |format|
-      if @govern.save
-        format.html { redirect_to admin_governs_url }
-        format.json { render :show, status: :ok, location: @govern }
-      else
-        format.html { render :edit }
-        format.json { render json: @govern.errors, status: :unprocessable_entity }
-      end
+    
+    unless @govern.save
+      render :edit, locals: { model: @govern }, status: :unprocessable_entity
     end
   end
 
@@ -70,10 +57,6 @@ class Role::Admin::GovernsController < Role::Admin::BaseController
 
   def destroy
     @govern.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_governs_url }
-      format.json { head :no_content }
-    end
   end
 
   private
