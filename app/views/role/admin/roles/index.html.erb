@@ -30,12 +30,12 @@
       </div>
     </td>
     <td>
-      <%= link_to 'overview', overview_admin_role_path(role), class: 'ui mini circular icon button' %>
-      <%= link_to 'Assign', admin_role_path(role), class: 'ui mini circular icon button' %>
+      <%= link_to t('.overview'), overview_admin_role_path(role), class: 'ui mini circular icon button' %>
+      <%= link_to t('.assign'), admin_role_path(role), class: 'ui mini circular icon button' %>
       <%= link_to edit_admin_role_path(role), data: { tooltip: t('.edit') }, remote: true, class: 'ui mini circular icon button' do %>
         <i class="fas fa-pencil-alt"></i>
       <% end %>
-      <%= link_to admin_role_path(role), method: :delete, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, class: 'ui mini circular icon button' do %>
+      <%= link_to admin_role_path(role), method: :delete, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, remote: true, class: 'ui mini circular icon button' do %>
         <i class="fas fa-trash-alt"></i>
       <% end %>
     </td>

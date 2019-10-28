@@ -31,10 +31,10 @@
     <%= link_to sync_admin_govern_rules_path(govern), method: :patch, data: { tooltip: t('.sync') }, class: 'ui mini circular icon button' do %>
       <i class="fas fa-sync"></i>
     <% end %>
-    <%= link_to edit_admin_govern_path(govern), data: { tooltip: t('.edit') }, class: 'ui mini circular icon button' do %>
+    <%= link_to edit_admin_govern_path(govern), data: { tooltip: t('.edit') }, remote: true, class: 'ui mini circular icon button' do %>
       <i class="fas fa-pencil-alt"></i>
     <% end %>
-    <%= link_to admin_govern_path(govern), method: :delete, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, class: 'ui mini circular icon button' do %>
+    <%= link_to admin_govern_path(govern), method: :delete, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, remote: true, class: 'ui mini circular icon button' do %>
       <i class="fas fa-trash-alt"></i>
     <% end %>
   </td>

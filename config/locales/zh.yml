@@ -6,6 +6,7 @@ zh:
       governs:
         index:
           title: 权限配置
+          unclassified: 未分类
         create:
           govern_created: 章节已创建
           govern_not_created: 章节没有被创建
@@ -30,6 +31,8 @@ zh:
       roles:
         index:
           title: 角色列表
+          assign: 配置
+          overview: 概览
         create:
           role_created: 角色已创建
         update:

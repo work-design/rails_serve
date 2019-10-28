@@ -7,8 +7,12 @@ zh:
         name: 角色名
         title: 角色代码
         description: 角色描述
+        visible: 可见性
+        who_types: 适用模型
       govern:
         govern_taxon_id: 分类
+      govern_taxon:
+        governs_count: 总计
     enum:
       rule:
         code:

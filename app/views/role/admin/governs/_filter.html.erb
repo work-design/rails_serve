@@ -7,9 +7,9 @@
 <% end %>
 
 <dl>
-  <dt><%= Govern.human_attribute_name(:govern_taxon_id) %></dt>
+  <dt><%= link_to Govern.human_attribute_name(:govern_taxon_id), admin_govern_taxons_path %></dt>
   <dd>
-    <%= link_to 'unclassified', filter_params(except: [:govern_taxon_id]), class: active_params(govern_taxon_id: '', active_class: 'ui basic blue button', item_class: 'ui basic white button') %>
+    <%= link_to t('.unclassified'), filter_params(except: [:govern_taxon_id]), class: active_params(govern_taxon_id: '', active_class: 'ui basic blue button', item_class: 'ui basic white button') %>
     <% GovernTaxon.where('governs_count > 0').each do |taxon| %>
       <%= link_to taxon.desc, filter_params(govern_taxon_id: taxon.id), class: active_params(govern_taxon_id: taxon.id, active_class: 'ui basic blue button', item_class: 'ui basic white button') %>
     <% end %>

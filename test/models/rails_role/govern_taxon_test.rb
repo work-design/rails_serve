@@ -1,7 +1,6 @@
 require 'test_helper'
 class GovernTaxonTest < ActiveSupport::TestCase
-
-
+  
 
   test 'clear_reset_token!' do
     user = create :user

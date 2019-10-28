@@ -9,8 +9,10 @@
 <table class="ui bottom attached selectable structured celled table">
   <thead>
     <tr>
-      <th class="two wide">Category</th>
-      <th class="two wide">Govern (Code)</th>
+      <th class="two wide"><%= Govern.human_attribute_name(:govern_taxon_id) %></th>
+      <th class="two wide">
+        Govern (Code)
+      </th>
       <th class="ten wide">
         <%= link_to 'Assign', admin_role_path(@role), class: 'ui mini right floated blue button' %>
       </th>

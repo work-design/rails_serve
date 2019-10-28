@@ -8,7 +8,7 @@
 
 <div class="ui top attached segment">
   <dl>
-    <dt><%= Govern.human_attribute_name(:govern_taxon_id) %></dt>
+    <dt><%= link_to Govern.human_attribute_name(:govern_taxon_id), admin_govern_taxons_path %></dt>
     <dd>
       <%= link_to '未分类', filter_params(except: [:govern_taxon_id]), class: active_params(govern_taxon_id: '', active_class: 'ui basic blue button', item_class: 'ui basic white button') %>
       <% GovernTaxon.where('governs_count > 0').each do |taxon| %>
@@ -21,7 +21,9 @@
 <table class="ui bottom attached selectable celled table" data-controller="check">
   <thead>
     <tr>
-      <th class="four wide">Govern (Code)</th>
+      <th class="four wide">
+        <%= link_to 'Govern (Code)', admin_governs_path %>
+      </th>
       <th class="ten wide">
         <div class="ui label checkbox">
           <%= check_box_tag :'role[rule_ids][]', 'admin', false, id: nil, data: { action: 'check#toggleAllName' } %>
