@@ -3,7 +3,11 @@ module RailsRole::User
   include RailsRole::Base
 
   included do
-    attribute :cached_role_ids, :integer, array: true
+    if connection.adapter_name == 'PostgreSQL'
+      attribute :cached_role_ids, :integer, array: true
+    else
+      serialize :cached_role_ids, Array
+    end
     
     has_many :who_roles, as: :who, dependent: :destroy
     has_many :roles, through: :who_roles
