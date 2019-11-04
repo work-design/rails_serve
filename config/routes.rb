@@ -3,17 +3,24 @@ Rails.application.routes.draw do
   scope :admin, module: 'role/admin', as: 'admin' do
     
     resources :roles do
-      get :overview, on: :member
+      member do
+        get :overview
+        get :users
+      end
     end
     resources :governs do
       post :sync, on: :collection
-      patch :move_lower, on: :member
-      patch :move_higher, on: :member
+      member do
+        patch :move_lower
+        patch :move_higher
+      end
       resources :rules do
         patch :sync, on: :collection
-        patch :move_lower, on: :member
-        patch :move_higher, on: :member
-        get :roles, on: :member
+        member do
+          patch :move_lower
+          patch :move_higher
+          get :roles
+        end
       end
     end
     resources :govern_taxons do

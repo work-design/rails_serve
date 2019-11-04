@@ -1,7 +1,7 @@
 <% content_for :breadcrumb do %>
 <div class="ui basic segment breadcrumb">
-  <%= link_to 'Back', admin_roles_path, class: 'section' %>
-  <div class="divider"> /</div>
+  <%= link_to t('role.admin.roles.index.title'), admin_roles_path, class: 'section' %>
+  <div class="fas fa-angle-right divider"></div>
   <div class="active section"><%= @role.name %></div>
 </div>
 <% end %>

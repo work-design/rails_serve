@@ -2,7 +2,6 @@ class Role::WhoRolesController < Role::BaseController
   before_action :set_who, only: [:show, :edit, :update]
 
   def show
-
   end
 
   def edit
