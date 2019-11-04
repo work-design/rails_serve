@@ -5,8 +5,8 @@ Rails.application.routes.draw do
     resources :roles do
       member do
         get :overview
-        get :users
       end
+      resources :who_roles, only: [:index, :new, :create, :destroy]
     end
     resources :governs do
       post :sync, on: :collection

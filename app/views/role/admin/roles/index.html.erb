@@ -21,7 +21,7 @@
     <td><%= role.code %></td>
     <td>
       <% Array(role.who_types).each do |who_type| %>
-        <%= link_to who_type, users_admin_role_path(role), class: 'ui label' %>
+        <%= link_to who_type, admin_role_who_roles_path(role, who_type: who_type), class: 'ui label' %>
       <% end %>
     </td>
     <td>

@@ -1,0 +1,14 @@
+<div class="ui modal" id="modal">
+  <i class="close icon"></i>
+  <div class="ui header">
+    <%= t('.new') %>
+  </div>
+  
+  <div class="content">
+    <%= form_with model: @who_role, url: admin_role_path(@role) do |f| %>
+      <%= render 'shared/error_messages', target: @who_role %>
+      <%= f.text_field :who_id %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+</div>

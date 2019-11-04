@@ -5,7 +5,7 @@
   </div>
   
   <div class="content">
-    <%= form_with model: @govern, as: :govern, url: admin_govern_path(@govern), local: true do |f| %>
+    <%= form_with model: @govern, as: :govern, url: admin_govern_path(@govern) do |f| %>
       <%= render partial: 'form', locals: { f: f } %>
     <% end %>
   </div>
