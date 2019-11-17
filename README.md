@@ -37,4 +37,4 @@ end
 ```
  
  ## License
- The gem is available as open source under the terms of the [LGPL-3.0](https://opensource.org/licenses/LGPL-3.0).
+ License 采用 [LGPL-3.0](https://opensource.org/licenses/LGPL-3.0).
