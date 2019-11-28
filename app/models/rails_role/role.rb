@@ -7,7 +7,7 @@ module RailsRole::Role
     attribute :code, :string
     attribute :description, :string, limit: 1024
     attribute :visible, :boolean, default: false
-    attribute :who_types, :string, array: true, default: []
+    attribute :who_types, :string, array: true
     
     has_many :who_roles, dependent: :destroy
     has_many :role_rules, dependent: :destroy, inverse_of: :role
