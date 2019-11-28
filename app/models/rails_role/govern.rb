@@ -2,7 +2,11 @@ module RailsRole::Govern
   extend ActiveSupport::Concern
   included do
     acts_as_list
-
+    attribute :type, :string
+    attribute :name, :string
+    attribute :code, :string
+    attribute :position, :integer, default: 1
+    
     belongs_to :govern_taxon, counter_cache: true, optional: true
     has_many :rules, -> { order(position: :asc) }, dependent: :destroy
     has_many :role_rules, dependent: :destroy

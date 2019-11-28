@@ -1,16 +1,21 @@
 module RailsRole::Rule
   extend ActiveSupport::Concern
   included do
-    acts_as_list scope: :govern
-    default_scope -> { order(position: :asc, id: :asc) }
-
+    attribute :name, :string
+    attribute :code, :string
+    attribute :params, :string
+    attribute :position, :integer, default: 1
+    
     belongs_to :govern, optional: true
     has_many :role_rules, dependent: :delete_all
     has_many :roles, through: :role_rules
 
+    default_scope -> { order(position: :asc, id: :asc) }
     scope :without_taxon, -> { where(govern_id: Govern.without_taxon.pluck(:id)) }
 
     after_commit :delete_cache
+
+    acts_as_list scope: :govern
   end
 
   def serialize_params

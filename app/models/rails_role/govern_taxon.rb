@@ -2,7 +2,10 @@ module RailsRole::GovernTaxon
   extend ActiveSupport::Concern
   included do
     attribute :code, :string
-
+    attribute :name, :string
+    attribute :position, :integer
+    attribute :governs_count, :integer, default: 0
+    
     has_many :governs, -> { order(position: :asc) }, dependent: :nullify
     has_many :rules, through: :governs
     default_scope -> { order(position: :asc, id: :asc) }

@@ -3,7 +3,9 @@ module RailsRole::Role
   include RailsRole::Base
 
   included do
+    attribute :name, :string, null: false
     attribute :code, :string
+    attribute :description, :string, limit: 1024
     attribute :visible, :boolean, default: false
     attribute :who_types, :string, array: true, default: []
     
