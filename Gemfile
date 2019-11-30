@@ -13,3 +13,4 @@ gem 'rails_com', github: 'work-design/rails_com'
 gem 'default_form', github: 'qinmingyuan/default_form'
 
 gem 'kaminari'
+gem 'acts_as_list'

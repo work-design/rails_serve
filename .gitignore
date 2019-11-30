@@ -1,7 +1,5 @@
 .bundle
 doc/
-test/tmp
-test/version_tmp
-tmp
+db/
 
 *.gem
