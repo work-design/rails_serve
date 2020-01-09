@@ -11,7 +11,7 @@
         <%= link_to new_admin_govern_path, remote: true, class: 'ui mini primary button' do %>
           <i class="fas fa-plus"></i><%= t('.new') %>
         <% end %>
-        <%= link_to sync_admin_governs_path, method: :post, class: 'ui mini red button' do %>
+        <%= link_to sync_admin_governs_path, method: :post, remote: true, class: 'ui mini red button' do %>
           <i class="fas fa-sync-alt"></i><%= t('.sync') %>
         <% end %>
       </th>

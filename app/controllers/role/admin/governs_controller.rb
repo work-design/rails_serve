@@ -29,8 +29,6 @@ class Role::Admin::GovernsController < Role::Admin::BaseController
 
   def sync
     ControllerGovern.sync_controllers
-
-    redirect_to admin_governs_url
   end
 
   def edit
@@ -39,7 +37,7 @@ class Role::Admin::GovernsController < Role::Admin::BaseController
 
   def update
     @govern.assign_attributes(govern_params)
-    
+
     unless @govern.save
       render :edit, locals: { model: @govern }, status: :unprocessable_entity
     end
