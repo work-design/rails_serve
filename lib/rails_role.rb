@@ -1,4 +1,6 @@
-require_relative 'rails_role/config'
-require_relative 'rails_role/version'
-require_relative 'rails_role/engine'
-require_relative 'rails_role/owner'
+# frozen_string_literal: true
+
+require 'rails_role/config'
+require 'rails_role/version'
+require 'rails_role/engine'
+require 'rails_role/owner'

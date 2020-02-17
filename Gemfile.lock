@@ -1,16 +1,17 @@
 GIT
   remote: https://github.com/qinmingyuan/default_form.git
-  revision: 976ae4c7fbdfca9c34a8c8abe12db63e3baa7866
+  revision: 7958a123127221461cc960960f541b9b4dda0c60
   specs:
     default_form (1.5.0)
       rails_com (~> 1.2)
 
 GIT
   remote: https://github.com/work-design/rails_com.git
-  revision: 4bd78d0366ada1a719514baad7c7f16fac65a71b
+  revision: 8bdf3ed3ed11c722268a72e8447030adb6322e4a
   specs:
     rails_com (1.2.9)
       default_where (~> 2.2)
+      http-form_data (~> 2.2)
       httpx (~> 0.5)
       rails (~> 6.0)
 
@@ -97,7 +98,8 @@ GEM
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     http-2-next (0.2.1)
-    httpx (0.6.3)
+    http-form_data (2.2.0)
+    httpx (0.6.5)
       http-2-next (>= 0.1.2)
       timers
     i18n (1.7.0)
@@ -135,6 +137,8 @@ GEM
     pry-rails (0.3.9)
       pry (>= 0.10.4)
     rack (2.0.8)
+    rack-proxy (0.6.5)
+      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (6.0.2.1)
@@ -177,6 +181,10 @@ GEM
     timers (4.3.0)
     tzinfo (1.2.6)
       thread_safe (~> 0.1)
+    webpacker (4.2.2)
+      activesupport (>= 4.2)
+      rack-proxy (>= 0.6.1)
+      railties (>= 4.2)
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
@@ -196,6 +204,7 @@ DEPENDENCIES
   rails_com!
   rails_role!
   sqlite3
+  webpacker
 
 BUNDLED WITH
    1.17.2

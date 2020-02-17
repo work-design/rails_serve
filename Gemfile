@@ -4,6 +4,7 @@ gemspec
 
 gem 'rails'
 gem 'sqlite3'
+gem 'webpacker'
 
 gem 'factory_bot_rails', require: false
 
