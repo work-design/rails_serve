@@ -25,7 +25,7 @@
     <% end %>
   </td>
   <td class="three wide">
-    <%= link_to new_admin_govern_rule_path(govern), data: { tooltip: t('.new') }, class: 'ui mini circular icon button' do %>
+    <%= link_to new_admin_govern_rule_path(govern), data: { tooltip: t('.new') }, remote: true, class: 'ui mini circular icon button' do %>
       <i class="fas fa-plus"></i>
     <% end %>
     <%= link_to sync_admin_govern_rules_path(govern), method: :patch, data: { tooltip: t('.sync') }, class: 'ui mini circular icon button' do %>

@@ -45,7 +45,7 @@ class Role::Admin::GovernsController < Role::Admin::BaseController
 
   def move_higher
     @govern.move_higher
-    redirect_to admin_governs_url(request.query_parameters)
+    redirect_to admin_governs_url(govern_taxon_id: @govern.govern_taxon_id)
   end
 
   def move_lower

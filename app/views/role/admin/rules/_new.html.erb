@@ -3,9 +3,9 @@
   <div class="ui header">
     <%= t('.edit') %>
   </div>
-
+  
   <div class="content">
-    <%= form_with model: @rule, url: admin_govern_rule_path(@govern, @rule) do |f| %>
+    <%= form_with model: @rule, as: :rule, url: admin_govern_rules_path(@govern) do |f| %>
       <%= render partial: 'form', locals: { f: f } %>
     <% end %>
   </div>

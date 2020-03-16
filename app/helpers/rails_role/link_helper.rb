@@ -17,7 +17,7 @@ module RailsRole::LinkHelper
       ERB::Util.html_escape(name)
     end
   end
-  
+
   def role_permit?(_options, _html_options)
     if _options.is_a? String
       begin
@@ -32,13 +32,14 @@ module RailsRole::LinkHelper
     end
     path_params[:controller] ||= controller_path
     path_params[:action] ||= action_name
-    
+    extra_params = path_params.except(:controller, :action)
+
     controller = RailsCom::Controllers.controller(path_params[:controller], path_params[:action])
     unless controller.detect_filter(:require_role)
       return true
     end
 
-    if defined?(rails_role_user) && rails_role_user&.has_role?(path_params[:controller], path_params[:action])
+    if rails_role_user&.has_role?(path_params[:controller], path_params[:action], extra_params)# && current_organ.has_role?(path_params[:controller], path_params[:action])
       true
     end
   end

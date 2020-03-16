@@ -21,7 +21,8 @@ zh:
       role:
         who_types:
           User: User
-          JobTitle: JobTitle
+          Organ: 组织
+          JobTitle: 职称
           Member: Member
       role_rule:
         status:
