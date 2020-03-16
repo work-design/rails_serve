@@ -2,10 +2,10 @@
   <td class="three wide">
     <%= govern.desc %>
     <%= link_to move_higher_admin_govern_path(govern), method: :patch do %>
-      <i class="arrow up icon"></i>
+      <i class="fas fa-arrow-up"></i>
     <% end %>
     <%= link_to move_lower_admin_govern_path(govern), method: :patch do %>
-      <i class="arrow down icon"></i>
+      <i class="fas fa-arrow-down"></i>
     <% end %>
   </td>
   <td class="ui labels ten wide">
@@ -13,13 +13,13 @@
       <div class="ui label">
         <%= rule.desc %>
         <%= link_to roles_admin_govern_rule_path(govern, rule), remote: true, id: "roles_#{rule.id}" do %>
-          <i class="users icon"></i>
+          <i class="fas fa-users"></i>
         <% end %>
         <%= link_to edit_admin_govern_rule_path(govern, rule), remote: true do %>
-          <i class="write icon"></i>
+          <i class="fas fa-pencil-alt"></i>
         <% end %>
         <%= link_to admin_govern_rule_path(govern, rule), method: :delete, data: { confirm: t('.confirm') } do %>
-          <i class="remove icon"></i>
+          <i class="fas fa-trash"></i>
         <% end %>
       </div>
     <% end %>
