@@ -2,7 +2,7 @@ class Role::Admin::GovernTaxonsController < Role::Admin::BaseController
   before_action :set_govern_taxon, only: [:edit, :update, :destroy]
 
   def index
-    @govern_taxons = GovernTaxon.page(params[:page])
+    @govern_taxons = GovernTaxon.roots.page(params[:page])
   end
 
   def new

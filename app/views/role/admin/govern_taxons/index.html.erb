@@ -17,19 +17,8 @@
 
   <tbody>
   <% @govern_taxons.each do |govern_taxon| %>
-    <tr>
-      <td><%= govern_taxon.code %></td>
-      <td><%= govern_taxon.name %></td>
-      <td><%= govern_taxon.governs_count %></td>
-      <td>
-        <%= link_to edit_admin_govern_taxon_path(govern_taxon), data: { tooltip: t('.edit') }, remote: true, class: 'ui mini circular icon button' do %>
-          <i class="fas fa-pencil-alt"></i>
-        <% end %>
-        <%= link_to admin_govern_taxon_path(govern_taxon), method: :delete, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, remote: true, class: 'ui mini circular icon button' do %>
-          <i class="fas fa-trash-alt"></i>
-        <% end %>
-      </td>
-    </tr>
+    <%= render partial: 'govern_taxon', object: govern_taxon %>
+    <%= draw_tree(partial: 'role/admin/govern_taxons/govern_taxon', object: govern_taxon) %>
   <% end %>
   </tbody>
 </table>
