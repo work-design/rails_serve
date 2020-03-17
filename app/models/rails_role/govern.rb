@@ -5,13 +5,13 @@ module RailsRole::Govern
     attribute :type, :string
     attribute :name, :string
     attribute :code, :string
-    attribute :position, :integer, default: 1
-    
+    attribute :position, :integer
+
     belongs_to :govern_taxon, counter_cache: true, optional: true
     has_many :rules, -> { order(position: :asc) }, dependent: :destroy
     has_many :role_rules, dependent: :destroy
     accepts_nested_attributes_for :rules, allow_destroy: true
-    
+
     default_scope -> { order(position: :asc, id: :asc) }
     scope :without_taxon, -> { where(govern_taxon_id: nil) }
 

@@ -4,8 +4,8 @@ module RailsRole::Rule
     attribute :name, :string
     attribute :code, :string
     attribute :params, :string
-    attribute :position, :integer, default: 1
-    
+    attribute :position, :integer
+
     belongs_to :govern, optional: true
     has_many :role_rules, dependent: :delete_all
     has_many :roles, through: :role_rules
