@@ -11,35 +11,15 @@
     <dt><%= link_to Govern.human_attribute_name(:govern_taxon_id), admin_govern_taxons_path %></dt>
     <dd>
       <%= link_to '未分类', filter_params(except: [:govern_taxon_id]), class: active_params(govern_taxon_id: '', active_class: 'ui basic blue button', item_class: 'ui basic white button') %>
-      <% GovernTaxon.where('governs_count > 0').each do |taxon| %>
-        <%= link_to taxon.desc, filter_params(govern_taxon_id: taxon.id), class: active_params(govern_taxon_id: taxon.id, active_class: 'ui basic blue button', item_class: 'ui basic white button') %>
-      <% end %>
     </dd>
   </dl>
 </div>
 
-<table class="ui bottom attached selectable celled table" data-controller="check">
-  <thead>
-    <tr>
-      <th class="four wide">
-        <%= link_to 'Govern (Code)', admin_governs_path %>
-      </th>
-      <th class="ten wide">
-        <div class="ui label checkbox">
-          <%= check_box_tag :'role[rule_ids][]', 'admin', false, id: nil, data: { action: 'check#toggleAllName' } %>
-          <label><%= '管理' %></label>
-        </div>
-      </th>
-      <th class="two wide">
-        <%= form_with url: admin_role_path(@role, govern_taxon_id: params[:govern_taxon_id]), method: :patch, html: { class: nil, id: "edit_role_#{@role.id}" } do |f| %>
-          <%= f.hidden_field :'role[rule_ids][]', id: nil %>
-        <% end %>
-        <%= submit_tag t('.save'), class: 'ui mini blue right floated button', form: "edit_role_#{@role.id}" %>
-        <%= link_to 'Overview', overview_admin_role_path(@role), class: 'ui mini right floated button' %>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= render partial: 'govern', collection: @governs %>
-  </tbody>
-</table>
+<div class="ui bottom attached celled grid">
+  <div class="twelve wide column">
+    <%= render 'table' %>
+  </div>
+  <div class="four wide column">
+    <%= render 'nav_show' %>
+  </div>
+</div>

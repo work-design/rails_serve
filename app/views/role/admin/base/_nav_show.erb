@@ -1,0 +1,17 @@
+<div class="ui fluid vertical menu">
+  <% @govern_taxons.each do |sibling| %>
+  <div class="item">
+    <%= link_to filter_params(govern_taxon_id: sibling.id), class: active_helper(id: sibling.id, active_class: 'header', item_class: '') do %>
+      <span><%= sibling.desc %></span>
+    <% end %>
+    <div class="<%= active_assert((sibling.child_ids + [sibling.id]).include?(params[:govern_taxon_id]), expected: 'menu', unexpected: 'menu') %>">
+      <% sibling.children.each do |child| %>
+        <%= link_to filter_params(govern_taxon_id: child.id), class: active_helper(id: child.id) do %>
+          <span><%= child.desc %></span>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+</div>
+

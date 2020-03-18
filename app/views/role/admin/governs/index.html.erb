@@ -2,23 +2,12 @@
   <%= render 'filter' %>
 </div>
 
-<table class="ui bottom attached selectable structured celled table">
-  <thead>
-    <tr>
-      <th class="three wide">Govern (Code)</th>
-      <th class="three wide">Actions</th>
-      <th class="two wide">
-        <%= link_to new_admin_govern_path, remote: true, class: 'ui mini primary button' do %>
-          <i class="fas fa-plus"></i><%= t('.new') %>
-        <% end %>
-        <%= link_to sync_admin_governs_path, method: :post, remote: true, class: 'ui mini red button' do %>
-          <i class="fas fa-sync-alt"></i><%= t('.sync') %>
-        <% end %>
-      </th>
-    </tr>
-  </thead>
+<div class="ui bottom attached celled grid">
+  <div class="twelve wide column">
+    <%= render 'table' %>
+  </div>
+  <div class="four wide column">
+    <%= render 'nav_show' %>
+  </div>
+</div>
 
-  <tbody>
-    <%= render partial: 'govern', collection: @governs %>
-  </tbody>
-</table>
