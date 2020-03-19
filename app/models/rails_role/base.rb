@@ -33,9 +33,8 @@ module RailsRole::Base
       return true
     end
 
-    if any_roles.is_a?(Array)
-      return true if (any_roles.map(&:to_s) & rails_role.keys).present?
-      return true if (any_roles.map(&:to_s) & taxon_codes).present?
+    if (any_roles.map(&:to_s) & rails_role.keys).present?
+      return true
     end
 
     roles_hash.stringify_keys!
@@ -46,6 +45,10 @@ module RailsRole::Base
     end
 
     false
+  end
+
+  def any_taxon?(*any_taxons)
+    (any_taxons.map(&:to_s) & taxon_codes).present?
   end
 
 end
