@@ -5,11 +5,22 @@ module RailsRole::Application
   end
 
   def require_role(role_params = params['id'])
-    if rails_role_user.has_role? controller_path, action_name, role_params
-      return true
+    if rails_role_user.is_a?(Array)
+      r = rails_role_user.compact
+      r.map! do |user|
+        user.has_role?(controller_path, action_name, role_params)
+      end
+      r.uniq!
+      permitted = (r == [true])
+    else
+      permitted = rails_role_user.has_role?(controller_path, action_name, role_params)
     end
 
-    role_access_denied
+    if permitted
+      true
+    else
+      role_access_denied
+    end
   end
 
   def rails_role_user
@@ -28,5 +39,5 @@ module RailsRole::Application
       redirect_to RailsRole.config.default_return_path, alert: message
     end
   end
-  
+
 end

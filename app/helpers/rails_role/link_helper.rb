@@ -39,8 +39,15 @@ module RailsRole::LinkHelper
       return true
     end
 
-    if rails_role_user&.has_role?(path_params[:controller], path_params[:action], extra_params)# && current_organ.has_role?(path_params[:controller], path_params[:action])
-      true
+    if rails_role_user.is_a?(Array)
+      r = rails_role_user.compact
+      r.map! do |user|
+        user.has_role?(path_params[:controller], path_params[:action], extra_params)
+      end
+      r.uniq!
+      r == [true]
+    else
+      rails_role_user.has_role?(path_params[:controller], path_params[:action], extra_params)
     end
   end
 
