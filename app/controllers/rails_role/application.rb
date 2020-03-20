@@ -1,7 +1,15 @@
 module RailsRole::Application
   extend ActiveSupport::Concern
   included do
-    helper_method :rails_role_user
+    helper_method :rails_role_user, :rails_role_organ
+  end
+
+  def require_organ
+    if rails_role_orgran.has_role? controller_path, action_name, role_params
+      return true
+    end
+
+    role_access_denied
   end
 
   def require_role(role_params = params['id'])

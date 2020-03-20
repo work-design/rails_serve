@@ -1,7 +1,7 @@
 class Role::Admin::BaseController < RailsRole.config.admin_controller.constantize
 
-  def rails_role_user
-    defined?(current_user) && current_user
+  if whether_filter(:require_organ)
+    skip_before_action :require_organ
   end
 
 end
