@@ -35,19 +35,12 @@ module RailsRole::LinkHelper
     extra_params = path_params.except(:controller, :action)
 
     controller = RailsCom::Controllers.controller(path_params[:controller], path_params[:action])
-    unless controller.detect_filter(:require_role)
-      return true
-    end
-
-    if rails_role_user.is_a?(Array)
-      r = rails_role_user.compact
-      r.map! do |user|
-        user.has_role?(path_params[:controller], path_params[:action], extra_params)
-      end
-      r.uniq!
-      r == [true]
+    if controller.detect_filter(:require_role)
+      organ_permitted = rails_role_organ.has_role?(path_params[:controller], path_params[:action], extra_params)
+      user_permitted = rails_role_user.has_role?(path_params[:controller], path_params[:action], extra_params)
+      organ_permitted && user_permitted
     else
-      rails_role_user.has_role?(path_params[:controller], path_params[:action], extra_params)
+      rails_role_organ.has_role?(path_params[:controller], path_params[:action], extra_params)
     end
   end
 
