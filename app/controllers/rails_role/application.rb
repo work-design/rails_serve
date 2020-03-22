@@ -4,9 +4,11 @@ module RailsRole::Application
     helper_method :rails_role_user, :rails_role_organ
   end
 
-  def require_organ
-    if rails_role_orgran.has_role? controller_path, action_name, role_params
-      return true
+  def support_organ(role_params = params['id'])
+    if rails_role_organ && rails_role_organ.has_role?(controller_path, action_name, role_params)
+      return
+    elsif rails_role_organ.nil?
+      return
     end
 
     role_access_denied
@@ -14,7 +16,7 @@ module RailsRole::Application
 
   def require_role(role_params = params['id'])
     if rails_role_user.has_role? controller_path, action_name, role_params
-      return true
+      return
     end
 
     role_access_denied
