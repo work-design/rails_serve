@@ -1,10 +1,10 @@
-<div class="item" data-controller="menu">
-  <a class="<%= active_helper(modules: 'role/admin', active_class: 'title active', item_class: 'title') %>">
+<div class="<%= active_helper(modules: 'role/admin', active_class: 'menu ex-accordion is-active', item_class: 'menu ex-accordion') %>" data-controller="menu">
+  <a class="menu-label" data-action="menu#toggle">
     <i class="fas fa-user-secret fa-fw"></i>
-    <span>权限管理</span>
-    <i class="dropdown icon"></i>
+    <span><%= t('role.admin.title') %></span>
+    <i class="fas dropdown"></i>
   </a>
-  <div class="<%= active_helper(modules: 'role/admin', active_class: 'menu content active', item_class: 'menu content') %>">
+  <div class="menu-list">
     <%= link_to t('role.admin.roles.index.title'), admin_roles_path, class: active_helper(controllers: 'roles') %>
     <%= link_to t('role.admin.governs.index.title'), admin_governs_path, class: active_helper(controllers: 'governs') %>
     <%= link_to t('role.admin.govern_taxons.index.title'), admin_govern_taxons_path, class: active_helper(controllers: 'govern_taxons') %>
