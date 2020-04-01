@@ -1,8 +1,0 @@
-<%= default_form_for [:admin, @user] do |f| %>
-  <%= f.collection_select :user_ids, User.limit, :id, :name, { label: 'User：' }, { multiple: true, class: 'ui fluid dropdown nine wide field' } %>
-  <%= f.submit %>
-<% end %>
-
-<script>
-  $('.ui.fluid.dropdown').dropdown();
-</script>
