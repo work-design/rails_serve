@@ -7,13 +7,22 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_com.git
-  revision: fe75239d0eeaf381ef6ba8173bfaa8636ba5ccbc
+  revision: f5362d0f18d8266d0cc5a9dd2ab101b9a9a5472c
   specs:
     rails_com (1.2.9)
       default_where (~> 2.2)
       http-form_data (~> 2.2)
       httpx (~> 0.5)
       rails (~> 6.0)
+
+GIT
+  remote: https://github.com/work-design/rails_taxon.git
+  revision: a0e0bacb0fe7f76eb62b7bdcc1e99fcffdd75118
+  specs:
+    rails_taxon (1.0.0)
+      acts_as_list (>= 0.9, <= 1.0)
+      closure_tree (>= 6.6, <= 7.1)
+      rails_com (~> 1.2)
 
 PATH
   remote: .
@@ -84,6 +93,9 @@ GEM
       activerecord (>= 3.0)
     awesome_print (1.8.0)
     builder (3.2.4)
+    closure_tree (7.1.0)
+      activerecord (>= 4.2.10)
+      with_advisory_lock (>= 4.0.0)
     coderay (1.1.2)
     concurrent-ruby (1.1.6)
     crass (1.0.6)
@@ -180,7 +192,7 @@ GEM
     thor (1.0.1)
     thread_safe (0.3.6)
     timers (4.3.0)
-    tzinfo (1.2.6)
+    tzinfo (1.2.7)
       thread_safe (~> 0.1)
     webpacker (5.0.1)
       activesupport (>= 5.2)
@@ -190,6 +202,8 @@ GEM
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
+    with_advisory_lock (4.6.0)
+      activerecord (>= 4.2)
     zeitwerk (2.3.0)
 
 PLATFORMS
@@ -205,6 +219,7 @@ DEPENDENCIES
   rails
   rails_com!
   rails_role!
+  rails_taxon!
   sqlite3
   webpacker
 
