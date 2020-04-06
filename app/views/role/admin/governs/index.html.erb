@@ -1,13 +1,11 @@
-<div class="ui top attached segment">
-  <%= render 'filter' %>
-</div>
+<%= render 'filter_form' %>
+<%= render 'filter_table' %>
 
-<div class="ui bottom attached celled grid">
-  <div class="twelve wide column">
+<div class="columns">
+  <div class="column">
     <%= render 'table' %>
   </div>
-  <div class="four wide column">
+  <div class="column is-narrow">
     <%= render 'nav_show' %>
   </div>
 </div>
-
