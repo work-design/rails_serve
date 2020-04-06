@@ -1,25 +1,24 @@
 <% content_for :breadcrumb do %>
-<div class="ui basic segment breadcrumb">
-  <%= link_to t('role.admin.governs.index.title'), admin_roles_path, class: 'section' %>
-  <i class="fas fa-angle-right divider"></i>
-  <div class="active section"><%= @role.name %></div>
-</div>
+  <ul>
+    <li><%= link_to t('role.admin.governs.index.title'), admin_roles_path %></li>
+    <li class="is-active"><%= @role.name %></li>
+  </ul>
 <% end %>
 
-<div class="ui top attached segment">
-  <dl>
-    <dt><%= link_to Govern.human_attribute_name(:govern_taxon_id), admin_govern_taxons_path %></dt>
-    <dd>
+<table class="as-search">
+  <tr>
+    <th><%= link_to Govern.human_attribute_name(:govern_taxon_id), admin_govern_taxons_path %></th>
+    <td>
       <%= link_to '未分类', filter_params(except: [:govern_taxon_id]), class: active_params(govern_taxon_id: '', active_class: 'button is-info', item_class: 'button is-light') %>
-    </dd>
-  </dl>
-</div>
+    </td>
+  </tr>
+</table>
 
-<div class="ui bottom attached celled grid">
-  <div class="twelve wide column">
+<div class="columns">
+  <div class="column">
     <%= render 'table' %>
   </div>
-  <div class="four wide column">
+  <div class="column is-narrow">
     <%= render 'nav_show' %>
   </div>
 </div>
