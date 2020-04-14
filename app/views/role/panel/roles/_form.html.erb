@@ -1,0 +1,8 @@
+<%= form_with model: [:panel, @role] do |f| %>
+  <%= f.text_field :name %>
+  <%= f.text_field :code %>
+  <%= f.text_area :description %>
+  <%= f.select :who_types, options_for_select(Role.options_i18n(:who_types), @role.who_types), {}, { multiple: true } %>
+  <%= f.check_box :visible %>
+  <%= f.submit %>
+<% end %>

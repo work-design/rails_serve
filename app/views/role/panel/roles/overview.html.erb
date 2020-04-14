@@ -1,0 +1,39 @@
+<% content_for :breadcrumb do %>
+<div class="ui basic segment breadcrumb">
+  <%= link_to t('role.panel.roles.index.title'), panel_roles_path, class: 'section' %>
+  <div class="fas fa-angle-right divider"></div>
+  <div class="active section"><%= @role.name %></div>
+</div>
+<% end %>
+
+<table class="ui bottom attached selectable structured celled table">
+  <thead>
+    <tr>
+      <th class="two wide"><%= Govern.human_attribute_name(:govern_taxon_id) %></th>
+      <th class="two wide">
+        Govern (Code)
+      </th>
+      <th class="ten wide">
+        <%= link_to 'Assign', panel_role_path(@role), class: 'ui mini right floated blue button' %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @govern_taxons.each do |taxon| %>
+      <tr>
+        <td rowspan="<%= @role.governs.where(govern_taxon_id: taxon.id).count + 1 %>"><%= taxon.desc %></td>
+      </tr>
+      <% @role.governs.includes(:rules).where(govern_taxon_id: taxon.id).each do |govern| %>
+        <%= render partial: 'overview_govern', locals: { govern: govern } %>
+      <% end %>
+    <% end %>
+    <% if @taxon_ids.include?(nil) %>
+    <tr>
+      <td rowspan="<%= @role.governs.without_taxon.count + 1 %>">未分类</td>
+    </tr>
+    <% @role.governs.without_taxon.each do |govern| %>
+      <%= render partial: 'overview_govern', locals: { govern: govern } %>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>

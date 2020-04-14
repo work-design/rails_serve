@@ -1,0 +1,21 @@
+<tr data-depth="<%= govern_taxon.depth_str %>">
+  <td>
+    <span style="width: <%= govern_taxon.depth * 1.43 %>em; display: inline-block;"></span>
+    <% if !govern_taxon.leaf? %>
+      <i class="fas fa-caret-down fa-fw"></i>
+    <% else %>
+      <i class="fas fa-minus fa-fw"></i>
+    <% end %>
+    <%= govern_taxon.code %>
+  </td>
+  <td><%= govern_taxon.name %></td>
+  <td><%= govern_taxon.governs_count %></td>
+  <td>
+    <%= link_to edit_panel_govern_taxon_path(govern_taxon), aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light' do %>
+      <i class="fas fa-pencil-alt"></i>
+    <% end %>
+    <%= link_to panel_govern_taxon_path(govern_taxon), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'button is-small is-rounded is-light' do %>
+      <i class="fas fa-trash-alt"></i>
+    <% end %>
+  </td>
+</tr>

@@ -2,7 +2,7 @@ zh:
   rails_role:
     access_denied: 没有权限
   role:
-    admin:
+    panel:
       title: 权限管理
       governs:
         index:

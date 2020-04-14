@@ -1,8 +1,0 @@
-<table class="as-search">
-  <tr>
-    <th><%= link_to Govern.human_attribute_name(:govern_taxon_id), admin_govern_taxons_path %></th>
-    <td>
-      <%= link_to t('.unclassified'), filter_params(except: [:govern_taxon_id]), class: active_params(govern_taxon_id: '', active_class: 'button is-info', item_class: 'button is-light') %>
-    </td>
-  </tr>
-</table>

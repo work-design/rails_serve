@@ -1,0 +1,26 @@
+<%= render 'filter_form' %>
+
+<table class="table is-hoverable is-fullwidth">
+  <thead>
+    <tr>
+      <th><%= WhoRole.human_attribute_name(:who_id) %></th>
+      <th><%= WhoRole.human_attribute_name(:created_at) %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @who_roles.each do |who_role| %>
+    <tr>
+      <td><%= who_role.who_id %></td>
+      <td><time><%= who_role.created_at.to_s(:rfc822) %></time></td>
+      <td>
+        <%= link_to panel_role_who_role_path(@role, who_role), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'button is-small is-rounded is-light' do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @who_roles %>

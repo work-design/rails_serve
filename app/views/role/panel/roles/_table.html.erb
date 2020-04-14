@@ -1,0 +1,25 @@
+<table class="ui selectable celled table" data-controller="check">
+  <thead>
+  <tr>
+    <th class="four wide">
+      <%= link_to 'Govern (Code)', panel_governs_path %>
+    </th>
+    <th class="ten wide">
+      <div class="ui label checkbox">
+        <%= check_box_tag :'role[rule_ids][]', 'panel', false, id: nil, data: { action: 'check#toggleAllName' } %>
+        <label><%= '管理' %></label>
+      </div>
+    </th>
+    <th class="two wide">
+      <%= form_with url: panel_role_path(@role, govern_taxon_id: params[:govern_taxon_id]), method: :patch, html: { class: nil, id: "edit_role_#{@role.id}" } do |f| %>
+        <%= f.hidden_field :'role[rule_ids][]', id: nil %>
+      <% end %>
+      <%= submit_tag t('.save'), class: 'ui mini blue right floated button', form: "edit_role_#{@role.id}" %>
+      <%= link_to 'Overview', overview_panel_role_path(@role), class: 'ui mini right floated button' %>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <%= render partial: 'govern', collection: @governs %>
+  </tbody>
+</table>

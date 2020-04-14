@@ -1,0 +1,5 @@
+<div class="ui menu vertical fluid">
+  <% Role.all.each do |role| %>
+    <%= link_to role.name, panel_role_path(role), class: active_params(id: role.id) %>
+  <% end %>
+</div>

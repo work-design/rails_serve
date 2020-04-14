@@ -1,0 +1,45 @@
+<table class="table is-fullwidth is-striped">
+  <thead>
+    <tr>
+      <th class="two wide"><%= Role.human_attribute_name(:name) %></th>
+      <th class="four wide"><%= Role.human_attribute_name(:description) %></th>
+      <th><%= Role.human_attribute_name(:code) %></th>
+      <th><%= Role.human_attribute_name(:who_types) %></th>
+      <th><%= Role.human_attribute_name(:visible) %></th>
+      <th class="three wide">
+        <%= link_to new_panel_role_path, remote: true, class: 'button is-link is-small' do %>
+          <i class="fas fa-plus"></i><%= t('.new') %>
+        <% end %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @roles.each do |role| %>
+  <tr>
+    <td><%= role.name %></td>
+    <td><%= role.description %></td>
+    <td><%= role.code %></td>
+    <td>
+      <% Array(role.who_types).each do |who_type| %>
+        <%= link_to who_type, panel_role_who_roles_path(role, who_type: who_type), class: 'ui label' %>
+      <% end %>
+    </td>
+    <td>
+      <div class="ui toggle checkbox">
+        <%= check_box_tag '[role]visible', nil, role.visible, data: { method: :patch, remote: true, url: panel_role_path(role), submit: true }, id: nil %>
+      </div>
+    </td>
+    <td>
+      <%= link_to t('.overview'), overview_panel_role_path(role), class: 'button is-small is-rounded is-light' %>
+      <%= link_to t('.assign'), panel_role_path(role), class: 'button is-small is-rounded is-light' %>
+      <%= link_to edit_panel_role_path(role), aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light' do %>
+        <i class="fas fa-pencil-alt"></i>
+      <% end %>
+      <%= link_to panel_role_path(role), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'button is-small is-rounded is-light' do %>
+        <i class="fas fa-trash-alt"></i>
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
