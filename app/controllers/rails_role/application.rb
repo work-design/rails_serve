@@ -23,7 +23,7 @@ module RailsRole::Application
   end
 
   def rails_role_organ
-    defined?(current_organ) && current_organ
+    defined?(current_session_organ) && current_session_organ
   end
 
   def rails_role_user
