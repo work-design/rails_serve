@@ -26,8 +26,8 @@
     </td>
     <td>
       <div data-controller="input">
-        <%= check_box_tag '[role]visible', nil, role.visible, data: { method: :patch, remote: true, url: panel_role_path(role), action: 'input#submit' }, id: "role_visible_#{role.id}", class: 'switch' %>
-        <label for="role_visible_<%= role.id %>"></label>
+        <%= check_box_tag '[role]visible', nil, role.visible, data: { method: :patch, remote: true, url: panel_role_path(role), action: 'input#submit' }, id: nil, class: 'switch is-rounded' %>
+        <label></label>
       </div>
     </td>
     <td>
