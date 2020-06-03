@@ -25,8 +25,9 @@
       <% end %>
     </td>
     <td>
-      <div class="ui toggle checkbox">
-        <%= check_box_tag '[role]visible', nil, role.visible, data: { method: :patch, remote: true, url: panel_role_path(role), submit: true }, id: nil %>
+      <div data-controller="input">
+        <%= check_box_tag '[role]visible', nil, role.visible, data: { method: :patch, remote: true, url: panel_role_path(role), action: 'input#submit' }, id: "role_visible_#{role.id}", class: 'switch' %>
+        <label for="role_visible_<%= role.id %>"></label>
       </div>
     </td>
     <td>
