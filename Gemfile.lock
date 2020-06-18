@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/qinmingyuan/default_form.git
-  revision: 2f56f33a823bf5689e84478aee7595d0d8a5b64b
+  revision: 9cfe8dbc837a9463f62ba119bba6fadeede68618
   specs:
     default_form (1.5.1)
       rails_com (~> 1.2)
@@ -17,7 +17,7 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_taxon.git
-  revision: 52ea4b98099d0dffac1b5447a89c12e2537ce0b1
+  revision: e60fe7af7c2e8f8ef9726728877ed37cd1b73e37
   specs:
     rails_taxon (1.0.0)
       acts_as_list (>= 1.0)

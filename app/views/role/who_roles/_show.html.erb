@@ -20,7 +20,7 @@
   <% @who.verbose_role.each do |govern, rule| %>
     <tr>
       <td><%= govern[1] || govern[0] %></td>
-      <td class="ui labels">
+      <td>
         <% rule.each do |key, name| %>
         <span class="ui teal label"><%= name[0] %></span>
         <% end %>
