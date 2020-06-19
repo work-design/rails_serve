@@ -1,7 +1,7 @@
 <%= f.text_field :name %>
 <%= f.text_field :code %>
 <div class="field-body">
-  <%= f.select :govern_taxon_id, options_from_collection_for_select(@options, :id, :name, @govern.govern_taxon_id), { include_blank: true, can: { wrap_all: false } }, { class: 'ui fluid dropdown' } %>
+  <%= f.select :govern_taxon_id, options_from_collection_for_select(@options, :id, :name, @govern.govern_taxon_id), { include_blank: true, wrap: { all: nil } }, { class: 'ui fluid dropdown' } %>
   <%= link_to 'Add Category', new_panel_govern_taxon_path(return_to: request.path), class: 'ui button' %>
 </div>
 <%= f.number_field :position %>

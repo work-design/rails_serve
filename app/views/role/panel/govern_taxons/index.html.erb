@@ -15,7 +15,7 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody data-controller="tree">
   <% @govern_taxons.each do |govern_taxon| %>
     <%= render partial: 'govern_taxon', object: govern_taxon %>
     <%= draw_tree(partial: 'role/panel/govern_taxons/govern_taxon', object: govern_taxon) %>

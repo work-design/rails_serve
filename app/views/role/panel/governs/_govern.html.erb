@@ -10,7 +10,7 @@
   </td>
   <td class="ui labels ten wide">
     <% govern.rules.each do |rule| %>
-      <div class="ui label">
+      <div>
         <%= rule.desc %>
         <%= link_to roles_panel_govern_rule_path(govern, rule), remote: true, id: "roles_#{rule.id}" do %>
           <i class="fas fa-users"></i>

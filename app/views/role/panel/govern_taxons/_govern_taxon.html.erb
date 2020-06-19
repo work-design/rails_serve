@@ -2,9 +2,9 @@
   <td>
     <span style="width: <%= govern_taxon.depth * 1.43 %>em; display: inline-block;"></span>
     <% if !govern_taxon.leaf? %>
-      <i class="fas fa-caret-down fa-fw"></i>
+      <i class="fas fa-fw fa-caret-down" data-action="click->tree#collapse" style="cursor: pointer;"></i>
     <% else %>
-      <i class="fas fa-minus fa-fw"></i>
+      <i class="fas fa-fw fa-minus"></i>
     <% end %>
     <%= govern_taxon.code %>
   </td>
