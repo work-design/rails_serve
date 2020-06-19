@@ -6,12 +6,12 @@
     <% govern.rules.each do |rule| %>
       <% if @role.rule_ids.include?(rule.id) %>
         <label class="checkbox">
-          <%= check_box_tag :'role[rule_ids][]', rule.id, true, form: "edit_role_#{@role.id}", id: nil, data: { name: rule.code } %>
+          <%= check_box_tag 'role[rule_ids][]', rule.id, true, form: "edit_role_#{@role.id}", id: nil, data: { name: rule.code } %>
           <span><%= rule.desc_name %></span>
         </label>
       <% else %>
         <label class="checkbox">
-          <%= check_box_tag :'role[rule_ids][]', rule.id, false, form: "edit_role_#{@role.id}", id: nil, data: { name: rule.code } %>
+          <%= check_box_tag 'role[rule_ids][]', rule.id, false, form: "edit_role_#{@role.id}", id: nil, data: { name: rule.code } %>
           <span><%= rule.desc_name %></span>
         </label>
       <% end %>
