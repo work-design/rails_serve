@@ -1,16 +1,12 @@
 <aside class="menu">
   <% @govern_taxons.each do |sibling| %>
-    <%= link_to filter_params(govern_taxon_id: sibling.id), class: active_helper(id: sibling.id, active: 'menu-label', item: nil) do %>
+    <%= link_to filter_params(govern_taxon_id: sibling.id), class: active_helper(id: sibling.id, active: 'menu-label', item: 'menu-label') do %>
       <span><%= sibling.desc %></span>
     <% end %>
-    <ul class="menu-list">
-      <li class="<%= (sibling.child_ids + [sibling.id]).include?(params[:govern_taxon_id]) ? 'menu' : 'menu' %>">
-        <% sibling.children.each do |child| %>
-          <%= link_to filter_params(govern_taxon_id: child.id), class: active_helper(id: child.id) do %>
-            <span><%= child.desc %></span>
-          <% end %>
-        <% end %>
-      </li>
+    <ul class="menu-list" class="<%= (sibling.child_ids + [sibling.id]).include?(params[:govern_taxon_id]) ? 'is-active' : '' %>">
+    <% sibling.children.each do |child| %>
+      <li><%= link_to child.desc, filter_params(govern_taxon_id: child.id), class: active_helper(active: 'is-active', id: child.id) %></li>
+    <% end %>
     </ul>
   <% end %>
 </aside>
