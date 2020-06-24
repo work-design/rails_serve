@@ -27,7 +27,7 @@ module RailsRole::GovernTaxon
     def sync_modules
       missing_modules.each do |m|
         gt = GovernTaxon.find_or_initialize_by(code: m.join('/'))
-        gt.parent = GovernTaxon.find_by(code: m[0..-2].join('/')) if m.size > 1
+        gt.parent = GovernTaxon.find_or_create_by(code: m[0..-2].join('/')) if m.size > 1
         gt.save
       end
     end

@@ -1,5 +1,6 @@
 module RailsRole::Govern
   extend ActiveSupport::Concern
+
   included do
     acts_as_list
     attribute :type, :string
