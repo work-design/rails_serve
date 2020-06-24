@@ -1,4 +1,4 @@
-<table class="ui very basic large table">
+<table class="table is-hoverable is-fullwidth">
   <thead>
     <tr>
       <th class="six wide">
@@ -9,11 +9,11 @@
   </thead>
   <tbody>
     <tr>
-      <td class="right aligned"><%= WhoRole.human_attribute_name(:who_id) %></td>
+      <td class="has-text-right"><%= WhoRole.human_attribute_name(:who_id) %></td>
       <td><%= @who_role.who_id %></td>
     </tr>
     <tr>
-      <td class="right aligned"><%= WhoRole.human_attribute_name(:created_at) %></td>
+      <td class="has-text-right"><%= WhoRole.human_attribute_name(:created_at) %></td>
       <td><%= @who_role.created_at %></td>
     </tr>
   </tbody>

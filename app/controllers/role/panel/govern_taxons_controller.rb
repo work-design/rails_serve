@@ -19,8 +19,6 @@ class Role::Panel::GovernTaxonsController < Role::Panel::BaseController
 
   def sync
     GovernTaxon.sync_modules
-
-    redirect_to admin_govern_taxons_url
   end
 
   def edit

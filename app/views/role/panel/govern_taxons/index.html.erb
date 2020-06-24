@@ -8,7 +8,7 @@
         <%= link_to new_panel_govern_taxon_path, remote: true, class: 'button is-link is-small' do %>
           <i class="fas fa-plus"></i><%= t('.new') %>
         <% end %>
-        <%= link_to sync_panel_govern_taxons_path, method: :post, class: 'ui mini red button' do %>
+        <%= link_to sync_panel_govern_taxons_path, method: :post, remote: true, data: { disable_with: 'Syncing' }, class: 'button is-small is-success' do %>
           <i class="fas fa-sync-alt"></i><%= t('.sync') %>
         <% end %>
       </th>
