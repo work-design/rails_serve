@@ -1,5 +1,6 @@
 module RailsRole::Application
   extend ActiveSupport::Concern
+
   included do
     helper_method :rails_role_user, :rails_role_organ
   end
@@ -8,6 +9,8 @@ module RailsRole::Application
     if rails_role_organ && rails_role_organ.has_role?(controller_path, action_name, role_params)
       return
     elsif rails_role_organ.nil?
+      return
+    elsif request.path == RailsRole.config.default_return_path
       return
     end
 

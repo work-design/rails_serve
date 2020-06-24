@@ -1,4 +1,5 @@
 class Role::Panel::RolesController < Role::Panel::BaseController
+  before_action :set_govern_taxons, only: [:show]
   before_action :set_role, only: [:show, :overview, :edit, :update, :destroy]
 
   def index
@@ -22,14 +23,6 @@ class Role::Panel::RolesController < Role::Panel::BaseController
       govern_taxon_id: nil, allow: { govern_taxon_id: nil }
     }
     q_params.merge! params.permit(:govern_taxon_id)
-
-    if params[:govern_taxon_id]
-      govern_taxon = GovernTaxon.find params[:govern_taxon_id]
-      @govern_taxons = govern_taxon.self_and_siblings
-    else
-      @govern_taxons = GovernTaxon.roots
-    end
-
     @governs = Govern.includes(:rules).default_where(q_params)
   end
 
