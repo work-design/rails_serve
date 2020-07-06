@@ -1,23 +1,24 @@
 GIT
   remote: https://github.com/qinmingyuan/default_form.git
-  revision: 10744237a6fc7f1a94ab07b2bfd2c38dc3a74f1c
+  revision: ca5596d8f8fb40a31964190759887624219e5e88
   specs:
     default_form (1.5.1)
       rails_com (~> 1.2)
 
 GIT
   remote: https://github.com/work-design/rails_com.git
-  revision: f50244062a667a3d1189bf905b94334c232ba97d
+  revision: 1d361e0051fa661a511dd2a428ccd1ed46864d9c
   specs:
     rails_com (1.2.9)
       default_where (~> 2.2)
       http-form_data (~> 2.2)
       httpx (~> 0.8)
+      kaminari
       rails (~> 6.0)
 
 GIT
   remote: https://github.com/work-design/rails_taxon.git
-  revision: 6688bb185f3d91be83d0a01e31d9f23cfda0c434
+  revision: b96312b49d75a3989216c61a057523a3c3d14fe8
   specs:
     rails_taxon (1.0.0)
       acts_as_list (>= 1.0)
