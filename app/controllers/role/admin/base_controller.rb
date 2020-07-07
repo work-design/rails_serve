@@ -1,5 +1,5 @@
-class Role::Admin::BaseController < RailsRole.config.admin_controller.constantize
+class Role::Admin::BaseController < AdminController
   include RailsRole::Application
   before_action :require_role
 
-end
+end unless defined? Role::Admin::BaseController

@@ -1,4 +1,4 @@
-class Role::Panel::BaseController < RailsRole.config.panel_controller.constantize
+class Role::Panel::BaseController < PanelController
 
   def set_govern_taxons
     if params[:govern_taxon_id]
@@ -13,4 +13,4 @@ class Role::Panel::BaseController < RailsRole.config.panel_controller.constantiz
     end
   end
 
-end
+end unless defined? Role::Panel::BaseController
