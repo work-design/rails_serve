@@ -1,5 +1,6 @@
 module RailsRole::GovernTaxon
   extend ActiveSupport::Concern
+
   included do
     attribute :code, :string
     attribute :name, :string
