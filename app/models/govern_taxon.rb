@@ -1,4 +1,4 @@
 class GovernTaxon < ApplicationRecord
   include RailsRole::GovernTaxon
-  prepend RailsTaxon::Node
+  include RailsTaxon::Node
 end unless defined? GovernTaxon
