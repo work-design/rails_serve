@@ -1,8 +1,10 @@
 <% content_for :breadcrumb do %>
+<div class="breadcrumb has-succeeds-separator">
   <ul>
     <li><%= link_to t('role.panel.roles.index.title'), panel_roles_path %></li>
     <li class="is-active"><%= @role.name %></li>
   </ul>
+</div>
 <% end %>
 
 <table class="table is-hoverable is-fullwidth">
