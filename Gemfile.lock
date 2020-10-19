@@ -7,10 +7,12 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_com.git
-  revision: d7b8e24dd752c834fcf35fef02718c155b5a5c35
+  revision: d4b0db7b0ffdc142cc54922bfbb0ed67819f7211
   specs:
     rails_com (1.2.9)
       acme-client
+      acts_as_list (>= 1.0)
+      closure_tree (>= 7.2)
       default_where (~> 2.2)
       http-form_data (~> 2.2)
       httpx (~> 0.8)
