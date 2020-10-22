@@ -33,8 +33,12 @@ module RailsRole::LinkHelper
     path_params[:controller] ||= controller_path
     path_params[:action] ||= action_name
     extra_params = path_params.except(:controller, :action)
+    old_parts = params[:controller].split('/')
+    size = path_params[:controller].count('/') + 1
+    parts = old_parts[0...-size] << controller
+    controller = RailsCom::Controllers.controller(parts.join('/'), path_params[:action])
+    return true unless controller
 
-    controller = RailsCom::Controllers.controller(path_params[:controller], path_params[:action])
     if controller.whether_filter(:support_organ) && rails_role_organ
       organ_permitted = rails_role_organ.has_role?(path_params[:controller], path_params[:action], extra_params)
     else
