@@ -1,0 +1,14 @@
+<table class="table is-hoverable is-fullwidth">
+  <thead>
+    <tr>
+    
+    </tr>
+  </thead>
+
+  <tbody data-controller="tree">
+  <% @govern_taxons.each do |govern_taxon| %>
+    <%= render partial: 'govern_taxon', object: govern_taxon %>
+    <%= draw_tree(partial: 'govern_taxon', object: govern_taxon) %>
+  <% end %>
+  </tbody>
+</table>

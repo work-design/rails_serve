@@ -1,0 +1,8 @@
+<div class="buttons are-small">
+  <%= link_to({ action: 'new' }, { remote: true, class: 'button is-link' }) do %>
+    <i class="fas fa-plus"></i><span><%= t('.new') %></span>
+  <% end %>
+  <%= link_to({ action: 'sync' }, { method: :post, remote: true, data: { disable_with: 'Syncing' }, class: 'button is-success' }) do %>
+    <i class="fas fa-sync-alt"></i><span><%= t('.sync') %></span>
+  <% end %>
+</div>

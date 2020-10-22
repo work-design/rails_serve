@@ -1,26 +1,5 @@
-<table class="table is-hoverable is-fullwidth">
-  <thead>
-    <tr>
-      <th><%= GovernTaxon.human_attribute_name(:code) %></th>
-      <th><%= GovernTaxon.human_attribute_name(:name) %></th>
-      <th><%= GovernTaxon.human_attribute_name(:governs_count) %></th>
-      <th>
-        <%= link_to({ action: 'new' }, { remote: true, class: 'button is-small is-link' }) do %>
-          <i class="fas fa-plus"></i><span><%= t('.new') %></span>
-        <% end %>
-        <%= link_to({ action: 'sync' }, { method: :post, remote: true, data: { disable_with: 'Syncing' }, class: 'button is-small is-success' }) do %>
-          <i class="fas fa-sync-alt"></i><span><%= t('.sync') %></span>
-        <% end %>
-      </th>
-    </tr>
-  </thead>
-
-  <tbody data-controller="tree">
-  <% @govern_taxons.each do |govern_taxon| %>
-    <%= render partial: 'govern_taxon', object: govern_taxon %>
-    <%= draw_tree(partial: 'govern_taxon', object: govern_taxon) %>
-  <% end %>
-  </tbody>
-</table>
+<%= render layout: 'index_table', locals: { cache_key: GovernTaxon.column_names.hash } do %>
+  <%= render partial: 'index_tbody', collection: @govern_taxons, as: :govern_taxon %>
+<% end %>
 
 <%= paginate @govern_taxons %>
