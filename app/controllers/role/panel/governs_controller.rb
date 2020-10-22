@@ -33,6 +33,7 @@ class Role::Panel::GovernsController < Role::Panel::BaseController
 
   def edit
     @options = GovernTaxon.select(:id, :name).all
+    @govern.govern_taxon ||= GovernTaxon.new
   end
 
   def update
@@ -45,12 +46,10 @@ class Role::Panel::GovernsController < Role::Panel::BaseController
 
   def move_higher
     @govern.move_higher
-    redirect_to admin_governs_url(govern_taxon_id: @govern.govern_taxon_id)
   end
 
   def move_lower
     @govern.move_lower
-    redirect_to admin_governs_url(request.query_parameters)
   end
 
   def destroy

@@ -1,14 +1,14 @@
 <table class="table is-fullwidth is-striped">
   <thead>
     <tr>
-      <th class="two wide"><%= Role.human_attribute_name(:name) %></th>
-      <th class="four wide"><%= Role.human_attribute_name(:description) %></th>
+      <th><%= Role.human_attribute_name(:name) %></th>
+      <th><%= Role.human_attribute_name(:description) %></th>
       <th><%= Role.human_attribute_name(:code) %></th>
       <th><%= Role.human_attribute_name(:who_types) %></th>
       <th><%= Role.human_attribute_name(:visible) %></th>
-      <th class="three wide">
-        <%= link_to new_panel_role_path, remote: true, class: 'button is-link is-small' do %>
-          <i class="fas fa-plus"></i><%= t('.new') %>
+      <th>
+        <%= link_to({ action: 'new' }, { remote: true, class: 'button is-small is-link' }) do %>
+          <i class="fas fa-plus"></i><span><%= t('.new') %></span>
         <% end %>
       </th>
     </tr>

@@ -5,11 +5,11 @@
       <th><%= GovernTaxon.human_attribute_name(:name) %></th>
       <th><%= GovernTaxon.human_attribute_name(:governs_count) %></th>
       <th>
-        <%= link_to new_panel_govern_taxon_path, remote: true, class: 'button is-link is-small' do %>
-          <i class="fas fa-plus"></i><%= t('.new') %>
+        <%= link_to({ action: 'new' }, { remote: true, class: 'button is-small is-link' }) do %>
+          <i class="fas fa-plus"></i><span><%= t('.new') %></span>
         <% end %>
-        <%= link_to sync_panel_govern_taxons_path, method: :post, remote: true, data: { disable_with: 'Syncing' }, class: 'button is-small is-success' do %>
-          <i class="fas fa-sync-alt"></i><%= t('.sync') %>
+        <%= link_to({ action: 'sync' }, { method: :post, remote: true, data: { disable_with: 'Syncing' }, class: 'button is-small is-success' }) do %>
+          <i class="fas fa-sync-alt"></i><span><%= t('.sync') %></span>
         <% end %>
       </th>
     </tr>
@@ -18,7 +18,7 @@
   <tbody data-controller="tree">
   <% @govern_taxons.each do |govern_taxon| %>
     <%= render partial: 'govern_taxon', object: govern_taxon %>
-    <%= draw_tree(partial: 'role/panel/govern_taxons/govern_taxon', object: govern_taxon) %>
+    <%= draw_tree(partial: 'govern_taxon', object: govern_taxon) %>
   <% end %>
   </tbody>
 </table>

@@ -1,14 +1,14 @@
 <tr id="tr_<%= govern.id %>">
-  <td class="three wide">
+  <td>
     <%= govern.desc %>
-    <%= link_to move_higher_panel_govern_path(govern), method: :patch do %>
+    <%= link_to({ action: 'move_higher', id: govern.id }, { method: :patch, remote: true }) do %>
       <i class="fas fa-arrow-up"></i>
     <% end %>
-    <%= link_to move_lower_panel_govern_path(govern), method: :patch do %>
+    <%= link_to({ action: 'move_lower', id: govern.id }, { method: :patch, remote: true }) do %>
       <i class="fas fa-arrow-down"></i>
     <% end %>
   </td>
-  <td class="ui labels ten wide">
+  <td>
     <% govern.rules.each do |rule| %>
       <div>
         <%= rule.desc %>
@@ -24,7 +24,7 @@
       </div>
     <% end %>
   </td>
-  <td class="three wide">
+  <td>
     <%= link_to new_panel_govern_rule_path(govern), aria: { label: t('.new') }, remote: true, class: 'button is-small is-rounded is-light' do %>
       <i class="fas fa-plus"></i>
     <% end %>

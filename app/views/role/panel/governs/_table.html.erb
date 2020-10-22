@@ -4,11 +4,11 @@
       <th>Govern (Code)</th>
       <th>Actions</th>
       <th>
-        <%= link_to new_panel_govern_path, remote: true, class: 'button is-link is-small' do %>
-          <i class="fas fa-plus"></i><%= t('.new') %>
+        <%= link_to({ action: 'new' }, { remote: true, class: 'button is-small is-link' }) do %>
+          <i class="fas fa-plus"></i><span><%= t('.new') %></span>
         <% end %>
-        <%= link_to sync_panel_governs_path, method: :post, remote: true, data: { disable_with: 'Syncing' }, class: 'button is-success is-small' do %>
-          <i class="fas fa-sync-alt"></i><%= t('.sync') %>
+        <%= link_to({ action: 'sync' }, { method: :post, remote: true, data: { disable_with: 'Syncing' }, class: 'button is-small is-success' }) do %>
+          <i class="fas fa-sync-alt"></i><span><%= t('.sync') %></span>
         <% end %>
       </th>
     </tr>

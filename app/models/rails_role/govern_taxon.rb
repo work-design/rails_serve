@@ -23,6 +23,14 @@ module RailsRole::GovernTaxon
     "#{name} [#{code}]"
   end
 
+  def name
+    if super
+      super
+    else
+      code
+    end
+  end
+
   class_methods do
 
     def sync_modules
