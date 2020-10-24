@@ -41,12 +41,10 @@ class Role::Panel::RulesController < Role::Panel::BaseController
 
   def move_higher
     @rule.move_higher
-    redirect_to admin_governs_url(params.to_h)
   end
 
   def move_lower
     @rule.move_lower
-    redirect_to admin_governs_url(params.to_h)
   end
 
   def destroy
