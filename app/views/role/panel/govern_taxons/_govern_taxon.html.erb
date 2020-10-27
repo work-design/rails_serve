@@ -1,5 +1,11 @@
 <tr data-depth="<%= govern_taxon.depth_str %>" style="display: <%= display %>">
   <td>
+    <%= link_to({ action: 'move_higher', id: govern_taxon.id }, method: :patch, remote: true, class: 'has-text-grey-lighter') do %>
+      <i class="fas fa-arrow-up"></i>
+    <% end %>
+    <%= link_to({ action: 'move_lower', id: govern_taxon.id }, method: :patch, remote: true, class: 'has-text-grey-lighter') do %>
+      <i class="fas fa-arrow-down"></i>
+    <% end %>
     <span style="width: <%= govern_taxon.depth * 1.43 %>em; display: inline-block"></span>
     <% if govern_taxon.leaf? %>
       <i class="fas fa-fw fa-minus"></i>
@@ -10,12 +16,6 @@
   </td>
   <td>
     <span><%= govern_taxon.name %></span>
-    <%= link_to({ action: 'move_higher', id: govern_taxon.id }, method: :patch, remote: true) do %>
-      <i class="fas fa-arrow-up"></i>
-    <% end %>
-    <%= link_to({ action: 'move_lower', id: govern_taxon.id }, method: :patch, remote: true) do %>
-      <i class="fas fa-arrow-down"></i>
-    <% end %>
   </td>
   <td><%= govern_taxon.governs_count %></td>
   <td>
