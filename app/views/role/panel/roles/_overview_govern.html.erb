@@ -3,11 +3,13 @@
     <%= govern.name %> (<%= govern.code %>)
   </td>
   <td>
+    <div class="tags">
     <% govern.rules.each do |rule| %>
       <% if @role.rule_ids.include?(rule.id) %>
-        <div class="button is-small"><%= rule.desc_name %></div>
+        <div class="tag"><%= rule.desc_name %></div>
       <% end %>
     <% end %>
+    </div>
   </td>
 </tr>
 
