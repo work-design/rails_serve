@@ -1,5 +1,5 @@
 class Role::Panel::GovernTaxonsController < Role::Panel::BaseController
-  before_action :set_govern_taxon, only: [:edit, :update, :destroy]
+  before_action :set_govern_taxon, only: [:edit, :update, :move_higher, :move_lower, :destroy]
 
   def index
     @govern_taxons = GovernTaxon.roots.page(params[:page])
@@ -33,11 +33,11 @@ class Role::Panel::GovernTaxonsController < Role::Panel::BaseController
   end
 
   def move_higher
-    @govern.move_higher
+    @govern_taxon.move_higher
   end
 
   def move_lower
-    @govern.move_lower
+    @govern_taxon.move_lower
   end
 
   def destroy
@@ -46,14 +46,13 @@ class Role::Panel::GovernTaxonsController < Role::Panel::BaseController
 
   private
   def set_govern_taxon
-    @govern_taxon = GovernTaxon.find(params[:id])
+    @govern_taxon = GovernTaxon.find params[:id]
   end
 
   def govern_taxon_params
     params.fetch(:govern_taxon, {}).permit(
       :name,
-      :code,
-      :position
+      :code
     )
   end
 

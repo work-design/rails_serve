@@ -1,10 +1,10 @@
 <tr id="tr_<%= govern.id %>">
   <td>
     <%= govern.desc %>
-    <%= link_to({ action: 'move_higher', id: govern.id }, { method: :patch, remote: true }) do %>
+    <%= link_to({ action: 'move_higher', id: govern.id }, method: :patch, remote: true) do %>
       <i class="fas fa-arrow-up"></i>
     <% end %>
-    <%= link_to({ action: 'move_lower', id: govern.id }, { method: :patch, remote: true }) do %>
+    <%= link_to({ action: 'move_lower', id: govern.id }, method: :patch, remote: true) do %>
       <i class="fas fa-arrow-down"></i>
     <% end %>
   </td>

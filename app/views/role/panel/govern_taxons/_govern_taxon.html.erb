@@ -8,13 +8,21 @@
     <% end %>
     <span><%= govern_taxon.code %></span>
   </td>
-  <td><%= govern_taxon.name %></td>
+  <td>
+    <span><%= govern_taxon.name %></span>
+    <%= link_to({ action: 'move_higher', id: govern_taxon.id }, method: :patch, remote: true) do %>
+      <i class="fas fa-arrow-up"></i>
+    <% end %>
+    <%= link_to({ action: 'move_lower', id: govern_taxon.id }, method: :patch, remote: true) do %>
+      <i class="fas fa-arrow-down"></i>
+    <% end %>
+  </td>
   <td><%= govern_taxon.governs_count %></td>
   <td>
-    <%= link_to edit_panel_govern_taxon_path(govern_taxon), aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light' do %>
+    <%= link_to({ action: 'edit', id: govern_taxon.id }, aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light') do %>
       <i class="fas fa-pencil-alt"></i>
     <% end %>
-    <%= link_to panel_govern_taxon_path(govern_taxon), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'button is-small is-rounded is-light' do %>
+    <%= link_to({ action: 'destroy', id: govern_taxon.id }, method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'button is-small is-rounded is-light') do %>
       <i class="fas fa-trash-alt"></i>
     <% end %>
   </td>
