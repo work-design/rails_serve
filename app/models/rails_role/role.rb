@@ -4,22 +4,19 @@ module RailsRole::Role
 
   included do
     attribute :name, :string, null: false
-    attribute :code, :string
     attribute :description, :string, limit: 1024
     attribute :visible, :boolean, default: false
     attribute :who_types, :string, array: true
-    
+
     has_many :who_roles, dependent: :destroy
     has_many :role_rules, dependent: :destroy, inverse_of: :role
     has_many :rules, through: :role_rules, dependent: :destroy
     has_many :governs, ->{ distinct }, through: :role_rules
     has_many :govern_taxons, -> { distinct }, through: :role_rules
     has_many :role_types, dependent: :delete_all
-    
-    validates :code, uniqueness: true
-    
+
     scope :visible, -> { where(visible: true) }
-    
+
     #before_save :sync_who_types
   end
 
