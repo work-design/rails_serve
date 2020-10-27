@@ -11,12 +11,6 @@ module RailsRole::GovernTaxon
     has_many :rules, through: :governs
     default_scope -> { order(position: :asc, id: :asc) }
     validates :code, uniqueness: true
-
-    before_save :name_from_code, if: -> { name.blank? }
-  end
-
-  def name_from_code
-    self.name ||= I18n.t "#{code.split('/').join('.')}.title", default: nil
   end
 
   def desc
@@ -25,10 +19,13 @@ module RailsRole::GovernTaxon
 
   def name
     if super
-      super
+      return super
     else
-      code
+      t = I18n.t "#{code.split('/').join('.')}.title", default: nil
+      return t if t
     end
+
+    code
   end
 
   class_methods do
