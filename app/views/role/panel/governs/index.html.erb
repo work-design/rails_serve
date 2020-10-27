@@ -1,9 +1,8 @@
-<%= render 'filter_form' %>
-<%= render 'filter_table' %>
-
 <div class="columns">
   <div class="column">
-    <%= render 'table' %>
+    <%= render layout: 'index_table', locals: { cache_key: Govern.column_names.hash } do %>
+      <%= render partial: 'index_tbody', collection: @governs, as: :govern %>
+    <% end %>
   </div>
   <div class="column is-narrow">
     <%= render 'nav_show' %>
