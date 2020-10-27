@@ -1,17 +1,8 @@
-<table class="as-search">
-  <tr>
-    <th><%= link_to Govern.human_attribute_name(:govern_taxon_id), panel_govern_taxons_path %></th>
-    <td>
-      <%= link_to '未分类', filter_params(except: [:govern_taxon_id]), class: active_params(govern_taxon_id: '', active: 'button is-info', item: 'button is-light') %>
-    </td>
-  </tr>
-</table>
-
 <div class="columns">
-  <div class="column">
-    <%= render 'table' %>
-  </div>
   <div class="column is-narrow">
     <%= render 'nav_show' %>
+  </div>
+  <div class="column">
+    <%= render 'table' %>
   </div>
 </div>

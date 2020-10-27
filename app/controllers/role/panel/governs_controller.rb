@@ -7,10 +7,8 @@ class Role::Panel::GovernsController < Role::Panel::BaseController
       govern_taxon_id: nil, allow: { govern_taxon_id: nil }
     }
     q_params.merge! params.permit(:govern_taxon_id)
-    @governs = Govern.includes(:rules).default_where(q_params)
-  end
 
-  def show
+    @governs = Govern.includes(:rules).default_where(q_params)
   end
 
   def new
@@ -29,6 +27,9 @@ class Role::Panel::GovernsController < Role::Panel::BaseController
 
   def sync
     ControllerGovern.sync_controllers
+  end
+
+  def show
   end
 
   def edit
