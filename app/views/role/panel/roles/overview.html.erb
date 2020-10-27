@@ -1,40 +1,33 @@
-<% content_for :breadcrumb do %>
-<div class="breadcrumb has-succeeds-separator">
-  <ul>
-    <li><%= link_to t('role.panel.roles.index.title'), panel_roles_path %></li>
-    <li class="is-active"><%= @role.name %></li>
-  </ul>
+<%= render 'filter_form' %>
+<%= render 'filter_table' %>
+<div class="buttons are-small mb-0 pt-2">
+  <%= render 'button' %>
 </div>
-<% end %>
 
 <table class="table is-hoverable is-fullwidth">
   <thead>
     <tr>
-      <th><%= Govern.human_attribute_name(:govern_taxon_id) %></th>
-      <th>
-        Govern (Code)
-      </th>
-      <th>
-        <%= link_to 'Assign', panel_role_path(@role), class: 'ui mini right floated blue button' %>
-      </th>
+    <% cache do %>
+      <%= render 'overview_thead' %>
+    <% end %>
     </tr>
   </thead>
   <tbody>
-    <% @govern_taxons.each do |taxon| %>
-      <tr>
-        <td rowspan="<%= @role.governs.where(govern_taxon_id: taxon.id).count + 1 %>"><%= taxon.desc %></td>
-      </tr>
-      <% @role.governs.includes(:rules).where(govern_taxon_id: taxon.id).each do |govern| %>
-        <%= render partial: 'overview_govern', locals: { govern: govern } %>
-      <% end %>
+  <% @govern_taxons.each do |taxon| %>
+    <tr>
+      <td rowspan="<%= @role.governs.where(govern_taxon_id: taxon.id).count + 1 %>"><%= taxon.desc %></td>
+    </tr>
+    <% @role.governs.includes(:rules).where(govern_taxon_id: taxon.id).each do |govern| %>
+      <%= render partial: 'overview_govern', locals: { govern: govern } %>
     <% end %>
-    <% if @taxon_ids.include?(nil) %>
+  <% end %>
+  <% if @taxon_ids.include?(nil) %>
     <tr>
       <td rowspan="<%= @role.governs.without_taxon.count + 1 %>">未分类</td>
     </tr>
     <% @role.governs.without_taxon.each do |govern| %>
       <%= render partial: 'overview_govern', locals: { govern: govern } %>
     <% end %>
-    <% end %>
+  <% end %>
   </tbody>
 </table>

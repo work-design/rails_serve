@@ -14,7 +14,7 @@
     </div>
   </td>
   <td>
-    <%= link_to t('.overview'), overview_panel_role_path(role), class: 'button is-small is-rounded is-light' %>
+    <%= link_to t('role.panel.roles.overview.title'), overview_panel_role_path(role), class: 'button is-small is-rounded is-light' %>
     <%= link_to t('.assign'), panel_role_path(role), class: 'button is-small is-rounded is-light' %>
     <%= link_to edit_panel_role_path(role), aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light' do %>
       <i class="fas fa-pencil-alt"></i>

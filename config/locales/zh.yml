@@ -39,7 +39,8 @@ zh:
         index:
           title: 角色列表
           assign: 配置
-          overview: 概览
+        overview:
+          title: 概览
         create:
           role_created: 角色已创建
         update:
