@@ -24,7 +24,13 @@ Rails.application.routes.draw do
       end
     end
     resources :govern_taxons do
-      post :sync, on: :collection
+      collection do
+        post :sync
+      end
+      member do
+        patch :move_lower
+        patch :move_higher
+      end
     end
   end
 

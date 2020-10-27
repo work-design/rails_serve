@@ -32,6 +32,14 @@ class Role::Panel::GovernTaxonsController < Role::Panel::BaseController
     end
   end
 
+  def move_higher
+    @govern.move_higher
+  end
+
+  def move_lower
+    @govern.move_lower
+  end
+
   def destroy
     @govern_taxon.destroy
   end

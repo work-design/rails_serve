@@ -9,8 +9,12 @@ module RailsRole::GovernTaxon
 
     has_many :governs, -> { order(position: :asc) }, dependent: :nullify
     has_many :rules, through: :governs
+
     default_scope -> { order(position: :asc, id: :asc) }
+
     validates :code, uniqueness: true
+
+    acts_as_list scope: [:parent_id]
   end
 
   def desc

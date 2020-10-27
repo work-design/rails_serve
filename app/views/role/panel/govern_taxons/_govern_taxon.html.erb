@@ -1,12 +1,12 @@
-<tr data-depth="<%= govern_taxon.depth_str %>">
+<tr data-depth="<%= govern_taxon.depth_str %>" style="display: <%= display %>">
   <td>
-    <span style="width: <%= govern_taxon.depth * 1.43 %>em; display: inline-block;"></span>
-    <% if !govern_taxon.leaf? %>
-      <i class="fas fa-fw fa-caret-down" data-action="click->tree#collapse" style="cursor: pointer;"></i>
-    <% else %>
+    <span style="width: <%= govern_taxon.depth * 1.43 %>em; display: inline-block"></span>
+    <% if govern_taxon.leaf? %>
       <i class="fas fa-fw fa-minus"></i>
+    <% else %>
+      <i class="fas fa-fw fa-caret-right" data-action="click->tree#expand" style="cursor: pointer"></i>
     <% end %>
-    <%= govern_taxon.code %>
+    <span><%= govern_taxon.code %></span>
   </td>
   <td><%= govern_taxon.name %></td>
   <td><%= govern_taxon.governs_count %></td>
