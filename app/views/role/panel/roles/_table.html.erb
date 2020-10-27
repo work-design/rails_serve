@@ -5,10 +5,10 @@
       <%= link_to 'Govern (Code)', panel_governs_path %>
     </th>
     <th>
-      <div class="ui label checkbox">
+      <label class="checkbox">
         <%= check_box_tag 'role[rule_ids][]', 'admin', false, id: nil, data: { action: 'check#toggleAllName' } %>
-        <span class="tag"><%= '管理' %></span>
-      </div>
+        <span><%= '管理' %></span>
+      </label>
     </th>
     <th>
       <%= form_with url: panel_role_path(@role, govern_taxon_id: params[:govern_taxon_id]), method: :patch, html: { class: nil, id: "edit_role_#{@role.id}" } do |f| %>
