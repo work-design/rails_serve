@@ -1,5 +1,6 @@
 module RailsRole::Rule
   extend ActiveSupport::Concern
+
   included do
     attribute :name, :string
     attribute :code, :string
@@ -26,6 +27,17 @@ module RailsRole::Rule
     else
       nil
     end
+  end
+
+  def name
+    if super
+      return super
+    elsif code
+      t = I18n.t "#{code.split('/').join('.')}.title", default: nil
+      return t if t
+    end
+
+    code
   end
 
   def desc_name

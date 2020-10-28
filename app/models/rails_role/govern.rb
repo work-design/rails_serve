@@ -23,4 +23,15 @@ module RailsRole::Govern
     "#{name} [#{code}]"
   end
 
+  def name
+    if super
+      return super
+    elsif code
+      t = I18n.t "#{code.split('/').join('.')}.index.title", default: nil
+      return t if t
+    end
+
+    code
+  end
+
 end
