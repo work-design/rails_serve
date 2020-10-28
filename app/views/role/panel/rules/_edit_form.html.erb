@@ -1,3 +1,4 @@
-<%= form_with model: @rule, url: panel_govern_rule_path(@govern, @rule) do |f| %>
+<%= form_with model: @rule, url: { action: 'update' } do |f| %>
   <%= render partial: 'form', locals: { f: f } %>
+  <%= f.submit %>
 <% end %>

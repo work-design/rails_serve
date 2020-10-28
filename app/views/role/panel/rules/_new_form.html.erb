@@ -1,3 +1,4 @@
-<%= form_with model: @rule, url: { action: 'create', govern_id: @govern.id } do |f| %>
+<%= form_with model: @rule, url: { action: 'create' } do |f| %>
   <%= render partial: 'form', locals: { f: f } %>
+  <%= f.submit %>
 <% end %>
