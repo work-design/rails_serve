@@ -1,8 +1,0 @@
-<%= render layout: 'index_tree_table', locals: { cache_key: GovernTaxon.column_names.hash } do %>
-  <% @govern_taxons.each do |govern_taxon| %>
-    <%= render partial: 'govern_taxon', object: govern_taxon, locals: { display: 'table_row' } %>
-    <%= draw_tree(partial: 'govern_taxon', object: govern_taxon, locals: { display: 'none' }) %>
-  <% end %>
-<% end %>
-
-<%= paginate @govern_taxons %>

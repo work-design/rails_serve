@@ -19,6 +19,4 @@ module RailsRole::Namespace
     end
   end
 
-
-
 end
