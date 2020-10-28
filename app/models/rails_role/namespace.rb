@@ -8,15 +8,9 @@ module RailsRole::Namespace
     attribute :verify_member, :boolean, default: false
     attribute :verify_user, :boolean, default: false
 
-    has_many :governs, dependent: :destroy
+    has_many :governs, foreign_key: :namespace_identifier, primary_key: :identifier
 
     validates :identifier, uniqueness: true
-  end
-
-  def sync_modules
-    missing_modules.each do |m|
-
-    end
   end
 
   def missing_modules
@@ -24,5 +18,7 @@ module RailsRole::Namespace
       k[-1] == identifier
     end
   end
+
+
 
 end

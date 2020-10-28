@@ -6,7 +6,7 @@ module RailsRole::Business
     attribute :identifier, :string
     attribute :position, :integer
 
-    has_many :governs, dependent: :destroy
+    has_many :governs, foreign_key: :business_identifier, primary_key: :identifier
 
     validates :identifier, uniqueness: true
 

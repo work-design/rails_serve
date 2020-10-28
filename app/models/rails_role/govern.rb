@@ -3,11 +3,12 @@ module RailsRole::Govern
 
   included do
     attribute :name, :string
-    attribute :code, :string
+    attribute :namespace_ident, :string
+    attribute :business_ident, :string
     attribute :position, :integer
 
-    belongs_to :namespace
-    belongs_to :bussiness
+    belongs_to :namespace, foreign_key: :namespace_identifier, primary_key: :identifier
+    belongs_to :business, foreign_key: :business_identifier, primary_key: :identifier
     has_many :rules, -> { order(position: :asc) }, dependent: :destroy
     has_many :role_rules, dependent: :destroy
     accepts_nested_attributes_for :rules, allow_destroy: true
@@ -51,7 +52,7 @@ module RailsRole::Govern
     def sync_controllers
       missing_controllers, invalid_controllers = analyze_controllers
       RailsCom::Routes.controllers.extract!(*missing_controllers).each do |controller, routes|
-        govern = ControllerGovern.find_or_initialize_by(code: controller)
+        govern = Govern.find_or_initialize_by(code: controller)
         present_rules = govern.rules.pluck(:code)
 
         all_rules = routes.map(&->(i){ i[:action] })
@@ -68,13 +69,13 @@ module RailsRole::Govern
 
         govern.save if govern.rules.length > 0
       end
-      ControllerGovern.where(code: invalid_controllers).each do |controller|
+      Govern.where(code: invalid_controllers).each do |controller|
         controller.destroy
       end
     end
 
     def analyze_controllers
-      present_controllers = ControllerGovern.unscoped.select(:code).distinct.pluck(:code)
+      present_controllers = Govern.unscoped.select(:code).distinct.pluck(:code)
       all_controllers = RailsCom::Routes.controllers.except!(*RailsRole.config.ignore_controllers).keys
 
       missing_controllers = all_controllers - present_controllers
