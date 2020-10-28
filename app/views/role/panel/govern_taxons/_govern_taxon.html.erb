@@ -15,7 +15,7 @@
     <span><%= govern_taxon.code %></span>
   </td>
   <td>
-    <span><%= govern_taxon.name %></span>
+    <%= link_to govern_taxon.name, { controller: 'governs', govern_taxon_id: govern_taxon.id }, text: true %>
   </td>
   <td><%= govern_taxon.governs_count %></td>
   <td>

@@ -21,13 +21,5 @@
       <%= render partial: 'overview_govern', locals: { govern: govern } %>
     <% end %>
   <% end %>
-  <% if @taxon_ids.include?(nil) %>
-    <tr>
-      <td rowspan="<%= @role.governs.without_taxon.count + 1 %>">未分类</td>
-    </tr>
-    <% @role.governs.without_taxon.each do |govern| %>
-      <%= render partial: 'overview_govern', locals: { govern: govern } %>
-    <% end %>
-  <% end %>
   </tbody>
 </table>
