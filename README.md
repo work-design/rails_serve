@@ -29,11 +29,6 @@ before_action :require_role
 before_action do |t|
   require_role params.permit!
 end
-
-# default role user method, you can over
-def rails_role_user
-  current_user 
-end
 ```
  
  ## License
