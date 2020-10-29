@@ -4,7 +4,7 @@ module RailsRole::Govern
   included do
     attribute :name, :string
     attribute :code, :string
-    attribute :namespace_identifier, :string
+    attribute :namespace_identifier, :string, default: 'application'
     attribute :business_identifier, :string
     attribute :position, :integer
 
