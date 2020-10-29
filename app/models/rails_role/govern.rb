@@ -2,7 +2,7 @@ module RailsRole::Govern
   extend ActiveSupport::Concern
 
   included do
-    attribute :code, :string
+    attribute :identifier, :string
     attribute :namespace_identifier, :string, default: 'application'
     attribute :business_identifier, :string
     attribute :position, :integer
@@ -15,15 +15,11 @@ module RailsRole::Govern
 
     default_scope -> { order(position: :asc, id: :asc) }
 
-    validates :code, uniqueness: true
+    validates :identifier, uniqueness: true
 
     after_create_commit :sync_controller
 
     acts_as_list scope: [:namespace_identifier, :business_identifier]
-  end
-
-  def desc
-    "#{name} [#{code}]"
   end
 
   def business_name
@@ -41,10 +37,10 @@ module RailsRole::Govern
   end
 
   def name
-    t = I18n.t "#{code.to_s.split('/').join('.')}.index.title", default: nil
+    t = I18n.t "#{identifier.to_s.split('/').join('.')}.index.title", default: nil
     return t if t
 
-    code
+    identifier
   end
 
   class_methods do
@@ -52,35 +48,35 @@ module RailsRole::Govern
     def sync
       missing_controllers, invalid_controllers = analyze_controllers
       RailsCom::Routes.controllers.extract!(*missing_controllers).each do |controller, routes|
-        govern = Govern.find_or_initialize_by(code: controller)
+        govern = Govern.find_or_initialize_by(identifier: controller)
         route = routes[0]
         govern.business_identifier = route[:business]
         govern.namespace_identifier = route[:namespace]
 
-        present_rules = govern.rules.pluck(:code)
+        present_rules = govern.rules.pluck(:identifier)
 
         all_rules = routes.map(&->(i){ i[:action] })
         all_rules = ['admin', 'read'] + all_rules if all_rules.present?
 
         (all_rules - present_rules).each do |action|
-          govern.rules.build(code: action)
+          govern.rules.build(identifier: action)
         end
 
         (present_rules - all_rules).each do |action|
-          r = govern.rules.find_by(code: action)
+          r = govern.rules.find_by(identifier: action)
           r.mark_for_destruction
         end
 
         govern.save if govern.rules.length > 0
       end
 
-      Govern.where(code: invalid_controllers).each do |govern|
+      Govern.where(identifier: invalid_controllers).each do |govern|
         govern.destroy
       end
     end
 
     def analyze_controllers
-      present_controllers = Govern.unscoped.select(:code).distinct.pluck(:code)
+      present_controllers = Govern.unscoped.select(:identifier).distinct.pluck(:identifier)
       all_controllers = RailsCom::Routes.controllers.except!(*RailsRole.config.ignore_controllers).keys
 
       missing_controllers = all_controllers - present_controllers

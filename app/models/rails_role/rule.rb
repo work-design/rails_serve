@@ -2,14 +2,23 @@ module RailsRole::Rule
   extend ActiveSupport::Concern
 
   included do
-    attribute :code, :string
+    attribute :identifier, :string
     attribute :namespace_identifier, :string, default: 'application'
     attribute :business_identifier, :string
     attribute :controller_identifier, :string
     attribute :action_identifier, :string
     attribute :position, :integer
 
-    belongs_to :govern, foreign_key: :namespace_identifier, primary_key: :identifier, optional: true
+    belongs_to :govern, foreign_key: :controller_identifier, primary_key: :identifier, optional: true
+
+    enum operation: {
+      list: 'list',
+      read: 'read',
+      add: 'add',
+      edit: 'edit',
+      remove: 'remove'
+    }, _default: 'read'
+
     has_many :role_rules, dependent: :delete_all
     has_many :roles, through: :role_rules
 
@@ -21,21 +30,11 @@ module RailsRole::Rule
     acts_as_list scope: [:controller_identifier]
   end
 
-  def serialize_params
-    #todo regexp improve!
-    return @serialize_params if @serialize_params
-    if params =~ /^\[.*\]$/ || params =~ /\.{2,3}/
-      @serialize_params = eval(params).to_a.map { |i| i.to_s }
-    else
-      nil
-    end
-  end
-
   def name
-    t = I18n.t "#{code.split('/').join('.')}.title", default: nil
+    t = I18n.t "#{identifier.split('/').join('.')}.title", default: nil
     return t if t
 
-    code
+    identifier
   end
 
   def desc_name
@@ -44,10 +43,6 @@ module RailsRole::Rule
     else
       name
     end
-  end
-
-  def desc
-    "#{desc_name} [ #{code} #{params}]"
   end
 
   def delete_cache
