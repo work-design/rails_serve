@@ -1,3 +1,3 @@
 <%= render layout: 'index_table', locals: { cache_key: Govern.column_names.hash } do %>
-  <%= render partial: 'index_tbody', collection: @governs, as: :govern %>
+  <%= render partial: 'index_busyness', collection: @busynesses, as: :busyness %>
 <% end %>
