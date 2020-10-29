@@ -6,7 +6,7 @@ module RailsRole::Rule
     attribute :namespace_identifier, :string, default: 'application'
     attribute :business_identifier, :string
     attribute :controller_identifier, :string
-    attribute :action_identifier, :string
+    attribute :action_name, :string
     attribute :position, :integer
 
     belongs_to :govern, foreign_key: :controller_identifier, primary_key: :identifier, optional: true
@@ -23,26 +23,25 @@ module RailsRole::Rule
     has_many :roles, through: :role_rules
 
     default_scope -> { order(position: :asc, id: :asc) }
-    scope :without_taxon, -> { where(govern_id: Govern.without_taxon.pluck(:id)) }
 
+    after_initialize if: :new_record? do
+      if govern
+        self.business_identifier = govern.business_identifier
+      end
+    end
     after_commit :delete_cache
 
     acts_as_list scope: [:controller_identifier]
   end
 
   def name
-    t = I18n.t "#{identifier.split('/').join('.')}.title", default: nil
-    return t if t
+    t1 = I18n.t "#{identifier.split('/').join('.')}.title", default: nil
+    return t1 if t1
+
+    t2 = self.class.enum_i18n :identifier, self.identifier
+    return t2 if t2
 
     identifier
-  end
-
-  def desc_name
-    if name.blank?
-      self.class.enum_i18n :code, self.code
-    else
-      name
-    end
   end
 
   def delete_cache

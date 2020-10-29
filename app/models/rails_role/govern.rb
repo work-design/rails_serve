@@ -10,7 +10,7 @@ module RailsRole::Govern
     belongs_to :name_space, foreign_key: :namespace_identifier, primary_key: :identifier, optional: true
     belongs_to :busyness, foreign_key: :business_identifier, primary_key: :identifier, optional: true
 
-    has_many :rules, -> { order(position: :asc) }, foreign_key: :controller_identifier, primary_key: :identifier, dependent: :destroy
+    has_many :rules, -> { order(position: :asc) }, foreign_key: :controller_identifier, primary_key: :identifier, dependent: :destroy, inverse_of: :govern
     has_many :role_rules, dependent: :destroy
 
     accepts_nested_attributes_for :rules, allow_destroy: true
@@ -62,10 +62,10 @@ module RailsRole::Govern
         present_rules = govern.rules.pluck(:identifier)
         all_rules = routes.map(&->(i){ i[:action] })
         (all_rules - present_rules).each do |action|
-          govern.rules.build(identifier: action, controller_identifier: controller)
+          govern.rules.build(action_name: action)
         end
         (present_rules - all_rules).each do |action|
-          r = govern.rules.find_by(identifier: action)
+          r = govern.rules.find_by(action_name: action)
           r.mark_for_destruction
         end
 

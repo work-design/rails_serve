@@ -13,18 +13,3 @@ zh:
         govern_taxon_id: 分类
       govern_taxon:
         governs_count: 总计
-    enum:
-      rule:
-        code:
-          admin: 管理
-          read: 读取
-      role:
-        who_types:
-          User: User
-          Organ: 组织
-          JobTitle: 职称
-          Member: Member
-      role_rule:
-        status:
-          available: 可用
-          unavailable: 不可用
