@@ -1,5 +1,6 @@
 zh:
   role:
+    title: 权限
     admin:
       who_roles:
         index:

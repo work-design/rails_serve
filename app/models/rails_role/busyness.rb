@@ -13,6 +13,17 @@ module RailsRole::Busyness
     acts_as_list
   end
 
+  def name
+    if super
+      return super
+    else
+      t = I18n.t "#{identifier}.title", default: nil
+      return t if t
+    end
+
+    identifier
+  end
+
   class_methods do
 
     def sync
