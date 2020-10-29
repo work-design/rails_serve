@@ -2,7 +2,6 @@ module RailsRole::Busyness
   extend ActiveSupport::Concern
 
   included do
-    attribute :name, :string
     attribute :identifier, :string
     attribute :position, :integer
 
@@ -14,12 +13,8 @@ module RailsRole::Busyness
   end
 
   def name
-    if super
-      return super
-    else
-      t = I18n.t "#{identifier}.title", default: nil
-      return t if t
-    end
+    t = I18n.t "#{identifier}.title", default: nil
+    return t if t
 
     identifier
   end

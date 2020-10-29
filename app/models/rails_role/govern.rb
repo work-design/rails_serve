@@ -27,6 +27,13 @@ module RailsRole::Govern
     "#{name} [#{code}]"
   end
 
+  def business_name
+    t = I18n.t "#{business_identifier}.title", default: nil
+    return t if t
+
+    business_identifier
+  end
+
   def name
     if super
       return super
@@ -36,10 +43,6 @@ module RailsRole::Govern
     end
 
     code
-  end
-
-  def sync_controller
-
   end
 
   class_methods do

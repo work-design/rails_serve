@@ -1,6 +1,6 @@
 <tr id="tr_<%= govern.id %>">
+  <td><%= govern.business_name %></td>
   <td><%= govern.namespace_identifier %></td>
-  <td><%= govern.business_identifier %></td>
   <td>
     <%= link_to({ action: 'move_higher', id: govern.id }, method: :patch, remote: true, class: 'has-text-grey-lighter') do %>
       <i class="fas fa-arrow-up"></i>
