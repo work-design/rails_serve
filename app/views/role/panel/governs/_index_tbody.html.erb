@@ -17,10 +17,10 @@
         <%= link_to roles_panel_govern_rule_path(govern, rule), remote: true, id: "roles_#{rule.id}", class: 'has-text-grey-lighter' do %>
           <i class="fas fa-users"></i>
         <% end %>
-        <%= link_to edit_panel_govern_rule_path(govern, rule), remote: true, class: 'has-text-grey-lighter' do %>
+        <%= link_to edit_panel_govern_rule_path(govern, rule), aria: { label: t('.edit') }, remote: true, class: 'has-text-grey-lighter' do %>
           <i class="fas fa-pencil-alt"></i>
         <% end %>
-        <%= link_to panel_govern_rule_path(govern, rule), method: :delete, data: { confirm: t('.confirm') }, class: 'has-text-grey-lighter' do %>
+        <%= link_to panel_govern_rule_path(govern, rule), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, class: 'has-text-grey-lighter' do %>
           <i class="fas fa-trash"></i>
         <% end %>
       </div>
