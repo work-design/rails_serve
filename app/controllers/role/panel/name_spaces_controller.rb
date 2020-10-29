@@ -17,6 +17,10 @@ class Role::Panel::NameSpacesController < Role::Panel::BaseController
     end
   end
 
+  def sync
+    NameSpace.sync
+  end
+
   def show
   end
 
