@@ -3,7 +3,7 @@ module RailsRole::RoleRule
 
   included do
     attribute :controller_identifier, :string
-    attribute :action_identifier, :string
+    attribute :action_identifier, :string, index: true
     attribute :params_name, :string
     attribute :params_identifier, :string
 

@@ -10,20 +10,13 @@ class Role::Panel::GovernsController < Role::Panel::BaseController
     @governs = Govern.includes(:rules).default_where(q_params).page(params[:page])
   end
 
-  def new
-    @govern = Govern.new
-  end
-
-  def create
-    @govern = Govern.new(govern_params)
-
-    unless @govern.save
-      render :new, locals: { model: @govern }, status: :unprocessable_entity
-    end
-  end
-
   def sync
     Govern.sync
+  end
+
+  def namespace
+    identifiers = Govern.unscope(:order).select(:namespace_identifier).where(business_identifier: 'bench').distinct.pluck(:namespace_identifier)
+    @name_spaces = NameSpace.where(identifier: identifiers)
   end
 
   def show
@@ -46,10 +39,6 @@ class Role::Panel::GovernsController < Role::Panel::BaseController
 
   def move_lower
     @govern.move_lower
-  end
-
-  def destroy
-    @govern.destroy
   end
 
   private

@@ -2,9 +2,9 @@ module RailsRole::Govern
   extend ActiveSupport::Concern
 
   included do
-    attribute :identifier, :string
-    attribute :namespace_identifier, :string, default: 'application'
-    attribute :business_identifier, :string
+    attribute :identifier, :string, index: true
+    attribute :namespace_identifier, :string, default: 'application', index: true
+    attribute :business_identifier, :string, index: true
     attribute :position, :integer
 
     belongs_to :name_space, foreign_key: :namespace_identifier, primary_key: :identifier, optional: true

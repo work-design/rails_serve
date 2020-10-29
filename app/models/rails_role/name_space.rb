@@ -13,6 +13,14 @@ module RailsRole::NameSpace
     validates :identifier, uniqueness: true
   end
 
+  def name
+    if super.present?
+      super
+    else
+      identifier
+    end
+  end
+
   class_methods do
 
     def sync

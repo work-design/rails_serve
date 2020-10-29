@@ -7,8 +7,11 @@ Rails.application.routes.draw do
       end
       resources :who_roles, only: [:index, :new, :create, :destroy]
     end
-    resources :governs do
-      post :sync, on: :collection
+    resources :governs, only: [:index] do
+      collection do
+        post :sync
+        get :namespace
+      end
       member do
         patch :move_lower
         patch :move_higher
