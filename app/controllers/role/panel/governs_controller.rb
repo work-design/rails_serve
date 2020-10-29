@@ -2,30 +2,26 @@ class Role::Panel::GovernsController < Role::Panel::BaseController
   before_action :set_govern, only: [:show, :edit, :update, :move_higher, :move_lower, :destroy]
 
   def index
-    q_params = {
-      govern_taxon_id: nil, allow: { govern_taxon_id: nil }
-    }
-    q_params.merge! params.permit(:govern_taxon_id)
+    q_params = {}
+    q_params.merge! params.permit(:business_identifier, :namespace_identifier)
 
-    @governs = Govern.includes(:rules).default_where(q_params)
+    @governs = Govern.includes(:rules).default_where(q_params).page(params[:page])
   end
 
   def new
     @govern = Govern.new(govern_taxon_id: params[:govern_taxon_id])
-    @options = GovernTaxon.select(:id, :name).all
   end
 
   def create
     @govern = Govern.new(govern_params)
 
     unless @govern.save
-      @options = GovernTaxon.select(:id, :name).all
       render :new, locals: { model: @govern }, status: :unprocessable_entity
     end
   end
 
   def sync
-    ControllerGovern.sync_controllers
+    Govern.sync
   end
 
   def show

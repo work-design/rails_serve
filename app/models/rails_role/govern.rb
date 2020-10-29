@@ -44,7 +44,7 @@ module RailsRole::Govern
 
   class_methods do
 
-    def sync_controllers
+    def sync
       missing_controllers, invalid_controllers = analyze_controllers
       RailsCom::Routes.controllers.extract!(*missing_controllers).each do |controller, routes|
         govern = Govern.find_or_initialize_by(code: controller)
