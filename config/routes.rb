@@ -31,7 +31,11 @@ Rails.application.routes.draw do
         patch :move_higher
       end
     end
-    resources :busynesses
+    resources :busynesses do
+      collection do
+        post :sync
+      end
+    end
   end
 
   scope :admin, module: 'role/admin', as: :admin, defaults: { namespace: 'admin', business: 'role' } do

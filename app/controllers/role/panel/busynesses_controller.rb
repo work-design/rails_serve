@@ -17,6 +17,10 @@ class Role::Panel::BusynessesController < Role::Panel::BaseController
     end
   end
 
+  def sync
+    Busyness.sync
+  end
+
   def show
   end
 
