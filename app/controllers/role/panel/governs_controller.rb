@@ -28,8 +28,6 @@ class Role::Panel::GovernsController < Role::Panel::BaseController
   end
 
   def edit
-    @options = GovernTaxon.select(:id, :name).all
-    @govern.govern_taxon ||= GovernTaxon.new
   end
 
   def update
@@ -61,8 +59,7 @@ class Role::Panel::GovernsController < Role::Panel::BaseController
     params.fetch(:govern, {}).permit(
       :code,
       :name,
-      :position,
-      :govern_taxon_id
+      :position
     )
   end
 

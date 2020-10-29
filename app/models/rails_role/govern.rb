@@ -2,7 +2,6 @@ module RailsRole::Govern
   extend ActiveSupport::Concern
 
   included do
-    attribute :name, :string
     attribute :code, :string
     attribute :namespace_identifier, :string, default: 'application'
     attribute :business_identifier, :string
@@ -34,13 +33,16 @@ module RailsRole::Govern
     business_identifier
   end
 
+  def namespace_name
+    t = I18n.t "#{business_identifier}.#{namespace_identifier}.title", default: nil
+    return t if t
+
+    namespace_identifier
+  end
+
   def name
-    if super
-      return super
-    elsif code
-      t = I18n.t "#{code.split('/').join('.')}.index.title", default: nil
-      return t if t
-    end
+    t = I18n.t "#{code.split('/').join('.')}.index.title", default: nil
+    return t if t
 
     code
   end
