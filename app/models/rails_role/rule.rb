@@ -6,7 +6,6 @@ module RailsRole::Rule
     attribute :namespace_identifier, :string, default: 'application'
     attribute :business_identifier, :string
     attribute :controller_identifier, :string
-    attribute :params, :string
     attribute :position, :integer
 
     belongs_to :govern, foreign_key: :namespace_identifier, primary_key: :identifier, optional: true

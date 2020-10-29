@@ -1,6 +1,6 @@
 module RailsRole::User
   extend ActiveSupport::Concern
-  include RailsRole::Base
+  include RailsRoleExt::Base
 
   included do
     if connection.adapter_name == 'PostgreSQL'

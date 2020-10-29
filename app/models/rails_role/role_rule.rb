@@ -1,18 +1,17 @@
 module RailsRole::RoleRule
   extend ActiveSupport::Concern
+
   included do
-    attribute :status, :string, default: 'available'
-    
     belongs_to :role
     belongs_to :rule
     belongs_to :govern, optional: true
     belongs_to :govern_taxon, optional: true
-    
+
     enum status: {
       available: 'available',
       unavailable: 'unavailable'
-    }
-    
+    }, _default: 'available'
+
     after_commit :delete_cache, on: [:create, :destroy]
     before_save :sync_govern_id
   end

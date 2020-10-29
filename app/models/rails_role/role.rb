@@ -1,6 +1,6 @@
 module RailsRole::Role
   extend ActiveSupport::Concern
-  include RailsRole::Base
+  include RailsRoleExt::Base
 
   included do
     attribute :name, :string, null: false
