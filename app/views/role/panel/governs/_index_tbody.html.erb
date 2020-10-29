@@ -8,9 +8,8 @@
     <%= link_to({ action: 'move_lower', id: govern.id }, method: :patch, remote: true, class: 'has-text-grey-lighter') do %>
       <i class="fas fa-arrow-down"></i>
     <% end %>
-    <span><%= govern.name %></span>
+    <span aria-label="<%= govern.code %>"><%= govern.name %></span>
   </td>
-  <td><%= govern.code %></td>
   <td>
     <% govern.rules.each do |rule| %>
       <div>
