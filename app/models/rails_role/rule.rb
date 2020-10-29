@@ -18,7 +18,7 @@ module RailsRole::Rule
 
     after_commit :delete_cache
 
-    acts_as_list scope: :govern
+    acts_as_list scope: [:controller_identifier]
   end
 
   def serialize_params

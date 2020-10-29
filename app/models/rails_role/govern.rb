@@ -19,7 +19,7 @@ module RailsRole::Govern
 
     after_create_commit :sync_controller
 
-    acts_as_list
+    acts_as_list scope: [:namespace_identifier, :business_identifier]
   end
 
   def desc
