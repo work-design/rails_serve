@@ -1,6 +1,6 @@
 <tr>
   <td><%= busyness.name %></td>
-  <td><%= busyness.identifier %></td>
+  <td><%= link_to busyness.identifier, { controller: 'governs', business_identifier: busyness.identifier }, text: true %></td>
   <td>
     <%= link_to({ action: 'show', id: busyness.id }, { aria: { label: t('.show') }, remote: true, class: 'button is-small is-rounded is-light' }) do %>
       <i class="fas fa-eye"></i>
