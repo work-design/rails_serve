@@ -2,12 +2,14 @@ module RailsRole::Rule
   extend ActiveSupport::Concern
 
   included do
-    attribute :name, :string
     attribute :code, :string
+    attribute :namespace_identifier, :string, default: 'application'
+    attribute :business_identifier, :string
+    attribute :controller_identifier, :string
     attribute :params, :string
     attribute :position, :integer
 
-    belongs_to :govern, optional: true
+    belongs_to :govern, foreign_key: :namespace_identifier, primary_key: :identifier, optional: true
     has_many :role_rules, dependent: :delete_all
     has_many :roles, through: :role_rules
 
@@ -30,12 +32,8 @@ module RailsRole::Rule
   end
 
   def name
-    if super
-      return super
-    elsif code
-      t = I18n.t "#{code.split('/').join('.')}.title", default: nil
-      return t if t
-    end
+    t = I18n.t "#{code.split('/').join('.')}.title", default: nil
+    return t if t
 
     code
   end
