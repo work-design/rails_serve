@@ -25,8 +25,10 @@ module RailsRole::Rule
     default_scope -> { order(position: :asc, id: :asc) }
 
     after_initialize if: :new_record? do
+      self.identifier = "#{controller_identifier}/#{action_name}"
       if govern
         self.business_identifier = govern.business_identifier
+        self.namespace_identifier = govern.namespace_identifier
       end
     end
     after_commit :delete_cache
