@@ -11,7 +11,6 @@ gem 'factory_bot_rails', require: false
 gem 'pry-rails'
 gem 'awesome_print'
 gem 'rails_com', github: 'work-design/rails_com'
-gem 'rails_taxon', github: 'work-design/rails_taxon'
 gem 'default_form', github: 'qinmingyuan/default_form'
 
 gem 'kaminari'

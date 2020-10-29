@@ -1,5 +1,5 @@
 <aside class="menu">
-  <% @govern_taxons.each do |sibling| %>
+  <% @xs.each do |sibling| %>
     <%= link_to filter_params(govern_taxon_id: sibling.id), class: active_helper(govern_taxon_id: sibling.id, active: 'menu-label is-active', item: 'menu-label') do %>
       <span><%= sibling.name %></span>
     <% end %>

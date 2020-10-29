@@ -1,5 +1,4 @@
 class Role::Panel::GovernsController < Role::Panel::BaseController
-  before_action :set_govern_taxons, only: [:index]
   before_action :set_govern, only: [:show, :edit, :update, :move_higher, :move_lower, :destroy]
 
   def index

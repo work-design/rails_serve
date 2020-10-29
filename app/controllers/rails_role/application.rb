@@ -29,6 +29,10 @@ module RailsRole::Application
     defined?(current_organ) && current_organ
   end
 
+  def rails_role_user
+    defined?(current_user) && current_user
+  end
+
   private
   def role_access_denied
     message = I18n.t(:access_denied, scope: :rails_role)
