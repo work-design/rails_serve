@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
-  scope :panel, module: 'role/panel', as: :panel do
-
+  scope :panel, module: 'role/panel', as: :panel, defaults: { namespace: 'panel', business: 'role' } do
     resources :roles do
       member do
         get :overview
@@ -23,7 +22,7 @@ Rails.application.routes.draw do
         end
       end
     end
-    resources :govern_taxons do
+    resources :name_spaces do
       collection do
         post :sync
       end
@@ -32,9 +31,10 @@ Rails.application.routes.draw do
         patch :move_higher
       end
     end
+    resources :busynesses
   end
 
-  scope :admin, module: 'role/admin', as: :admin do
+  scope :admin, module: 'role/admin', as: :admin, defaults: { namespace: 'admin', business: 'role' } do
     scope path: ':who_type/:who_id' do
       resource :who_roles, only: [:show, :edit, :update]
     end

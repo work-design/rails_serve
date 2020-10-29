@@ -3,8 +3,9 @@ module RailsRole::Govern
 
   included do
     attribute :name, :string
-    attribute :namespace_ident, :string
-    attribute :business_ident, :string
+    attribute :code, :string
+    attribute :namespace_identifier, :string
+    attribute :business_identifier, :string
     attribute :position, :integer
 
     belongs_to :namespace, foreign_key: :namespace_identifier, primary_key: :identifier
@@ -17,7 +18,7 @@ module RailsRole::Govern
 
     validates :code, uniqueness: true
 
-    after_create_commit :sync_govern_taxon
+    after_create_commit :sync_controller
 
     acts_as_list
   end
@@ -37,14 +38,8 @@ module RailsRole::Govern
     code
   end
 
-  def sync_govern_taxon
-    path = code.split('/')
-    path.pop
-    if path.size > 0
-      taxon = GovernTaxon.find_by code: path.join('/')
-      self.govern_taxon_id = taxon&.id
-      self.save
-    end
+  def sync_controller
+
   end
 
   class_methods do
@@ -69,8 +64,8 @@ module RailsRole::Govern
 
         govern.save if govern.rules.length > 0
       end
-      Govern.where(code: invalid_controllers).each do |controller|
-        controller.destroy
+      Govern.where(code: invalid_controllers).each do |govern|
+        govern.destroy
       end
     end
 
