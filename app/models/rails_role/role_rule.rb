@@ -2,10 +2,14 @@ module RailsRole::RoleRule
   extend ActiveSupport::Concern
 
   included do
+    attribute :controller_identifier, :string
+    attribute :action_identifier, :string
+    attribute :params_name, :string
+    attribute :params_identifier, :string
+
     belongs_to :role
-    belongs_to :rule
+    belongs_to :rule, foreign_key: :ac
     belongs_to :govern, optional: true
-    belongs_to :govern_taxon, optional: true
 
     enum status: {
       available: 'available',
