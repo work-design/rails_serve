@@ -13,10 +13,16 @@ module RailsRole::NameSpace
     validates :identifier, uniqueness: true
   end
 
-  def missing_modules
-    RailsCom::Routes.modules.select do |k, v|
-      k[-1] == identifier
+  class_methods do
+
+    def sync
+      existing = NameSpace.select(:identifier).distinct.pluck(:identifier)
+      (RailsCom::Routes.namespaces.keys - existing).each do |namespace|
+        namespace = NameSpace.find_or_initialize_by(identifier: namespace)
+        namespace.save
+      end
     end
+
   end
 
 end
