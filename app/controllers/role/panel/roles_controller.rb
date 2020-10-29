@@ -19,16 +19,14 @@ class Role::Panel::RolesController < Role::Panel::BaseController
   end
 
   def show
-    q_params = {
-      govern_taxon_id: nil, allow: { govern_taxon_id: nil }
-    }
+    q_params = {}
     q_params.merge! params.permit(:govern_taxon_id)
+
     @governs = Govern.includes(:rules).default_where(q_params)
   end
 
   def overview
-    @taxon_ids = @role.governs.unscope(:order).pluck(:govern_taxon_id).uniq
-    @govern_taxons = GovernTaxon.where(id: @taxon_ids)
+    @taxon_ids = @role.governs.unscope(:order).uniq
   end
 
   def edit
