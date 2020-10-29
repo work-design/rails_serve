@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       collection do
         post :sync
         get :namespace
+        get :remove
       end
       member do
         patch :move_lower

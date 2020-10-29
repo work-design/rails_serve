@@ -1,1 +1,3 @@
-document.getElementById('tr_<%= params[:business_identifier] %>').insertAdjacentHTML('afterend', '<%= j(render 'index_namespace') %>')
+var doc = document.getElementById('tr_<%= params[:business_identifier] %>')
+doc.innerHTML = '<%= j(render 'td_busyness') %>'
+doc.insertAdjacentHTML('afterend', '<%= j(render 'index_namespace') %>')
