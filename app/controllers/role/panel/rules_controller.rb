@@ -10,12 +10,6 @@ class Role::Panel::RulesController < Role::Panel::BaseController
     end
   end
 
-  def sync
-    @govern.sync_rules
-
-    redirect_to admin_governs_url(anchor: "tr_#{@govern.id}")
-  end
-
   def new
     @rule = @govern.rules.build
   end

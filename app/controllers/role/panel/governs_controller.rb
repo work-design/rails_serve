@@ -9,7 +9,7 @@ class Role::Panel::GovernsController < Role::Panel::BaseController
   end
 
   def new
-    @govern = Govern.new(govern_taxon_id: params[:govern_taxon_id])
+    @govern = Govern.new
   end
 
   def create

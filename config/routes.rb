@@ -14,7 +14,6 @@ Rails.application.routes.draw do
         patch :move_higher
       end
       resources :rules do
-        patch :sync, on: :collection
         member do
           patch :move_lower
           patch :move_higher

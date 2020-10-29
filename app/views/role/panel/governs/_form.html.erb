@@ -1,5 +1,3 @@
 <%= f.text_field :name %>
 <%= f.text_field :code %>
-<%= render partial: 'com/nodes/outer_select', locals: { f: f, outer: 'govern_taxon', node: @govern.govern_taxon } %>
-<%= f.number_field :position %>
 <%= f.submit %>

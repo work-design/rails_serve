@@ -30,9 +30,6 @@
     <%= link_to new_panel_govern_rule_path(govern), aria: { label: t('.new') }, remote: true, class: 'button is-small is-rounded is-light' do %>
       <i class="fas fa-plus"></i>
     <% end %>
-    <%= link_to sync_panel_govern_rules_path(govern), method: :patch, aria: { label: t('.sync') }, class: 'button is-small is-rounded is-light' do %>
-      <i class="fas fa-sync"></i>
-    <% end %>
     <%= link_to edit_panel_govern_path(govern), aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light' do %>
       <i class="fas fa-pencil-alt"></i>
     <% end %>
