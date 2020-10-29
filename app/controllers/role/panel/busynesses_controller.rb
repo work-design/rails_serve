@@ -1,4 +1,4 @@
-class Role::Admin::BusynessesController < Role::Admin::BaseController
+class Role::Panel::BusynessesController < Role::Panel::BaseController
   before_action :set_busyness, only: [:show, :edit, :update, :destroy]
 
   def index

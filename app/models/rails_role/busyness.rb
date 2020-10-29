@@ -13,4 +13,10 @@ module RailsRole::Busyness
     acts_as_list
   end
 
+  class_methods do
+
+    
+
+  end
+
 end

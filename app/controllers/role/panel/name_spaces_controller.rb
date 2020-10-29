@@ -1,4 +1,4 @@
-class Role::Admin::NameSpacesController < Role::Admin::BaseController
+class Role::Panel::NameSpacesController < Role::Panel::BaseController
   before_action :set_name_space, only: [:show, :edit, :update, :destroy]
 
   def index
