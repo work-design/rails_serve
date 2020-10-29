@@ -40,7 +40,7 @@ module RailsRole::Rule
     t1 = I18n.t "#{identifier.split('/').join('.')}.title", default: nil
     return t1 if t1
 
-    t2 = self.class.enum_i18n :identifier, self.identifier
+    t2 = self.class.enum_i18n :action_name, self.action_name
     return t2 if t2
 
     identifier

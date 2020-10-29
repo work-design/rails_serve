@@ -2,7 +2,7 @@ zh:
   activerecord:
     enum:
       rule:
-        code:
+        action_name:
           admin: 管理
           read: 读取
       role:
