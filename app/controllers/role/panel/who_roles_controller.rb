@@ -5,6 +5,7 @@ class Role::Panel::WhoRolesController < Role::Panel::BaseController
   def index
     q_params = {}
     q_params.merge! params.permit(:who_type)
+
     @who_roles = @role.who_roles.default_where(q_params).page(params[:page])
   end
 

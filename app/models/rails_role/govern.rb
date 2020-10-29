@@ -8,8 +8,8 @@ module RailsRole::Govern
     attribute :business_identifier, :string
     attribute :position, :integer
 
-    belongs_to :namespace, foreign_key: :namespace_identifier, primary_key: :identifier
-    belongs_to :business, foreign_key: :business_identifier, primary_key: :identifier
+    belongs_to :name_space, foreign_key: :namespace_identifier, primary_key: :identifier
+    belongs_to :busyness, foreign_key: :business_identifier, primary_key: :identifier
     has_many :rules, -> { order(position: :asc) }, dependent: :destroy
     has_many :role_rules, dependent: :destroy
     accepts_nested_attributes_for :rules, allow_destroy: true

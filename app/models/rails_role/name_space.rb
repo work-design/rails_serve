@@ -1,4 +1,4 @@
-module RailsRole::Namespace
+module RailsRole::NameSpace
   extend ActiveSupport::Concern
 
   included do

@@ -1,4 +1,4 @@
-module RailsRole::Business
+module RailsRole::Busyness
   extend ActiveSupport::Concern
 
   included do
