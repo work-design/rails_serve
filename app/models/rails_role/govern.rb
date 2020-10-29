@@ -19,8 +19,6 @@ module RailsRole::Govern
 
     validates :identifier, uniqueness: true
 
-    after_create_commit :sync_controller
-
     acts_as_list scope: [:namespace_identifier, :business_identifier]
   end
 

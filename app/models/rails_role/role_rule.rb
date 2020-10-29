@@ -8,7 +8,7 @@ module RailsRole::RoleRule
     attribute :params_identifier, :string
 
     belongs_to :role
-    belongs_to :rule, foreign_key: :ac
+    belongs_to :rule, foreign_key: :action_identifier, primary_key: :identifier
     belongs_to :govern, optional: true
 
     enum status: {
