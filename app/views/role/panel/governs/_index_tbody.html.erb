@@ -12,9 +12,6 @@
     <%= link_to edit_panel_govern_path(govern), aria: { label: t('.edit') }, remote: true, class: 'has-text-grey-lighter' do %>
       <i class="fas fa-pencil-alt"></i>
     <% end %>
-    <%= link_to panel_govern_path(govern), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'has-text-grey-lighter' do %>
-      <i class="fas fa-trash-alt"></i>
-    <% end %>
   </td>
   <td>
     <% govern.rules.each do |rule| %>
@@ -25,9 +22,6 @@
         <% end %>
         <%= link_to edit_panel_govern_rule_path(govern, rule), aria: { label: t('.edit') }, remote: true, class: 'has-text-grey-lighter' do %>
           <i class="fas fa-pencil-alt"></i>
-        <% end %>
-        <%= link_to panel_govern_rule_path(govern, rule), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, class: 'has-text-grey-lighter' do %>
-          <i class="fas fa-trash"></i>
         <% end %>
       </div>
     <% end %>
