@@ -1,0 +1,8 @@
+var doc = document.getElementById('tr_<%= params[:business_identifier] %>')
+doc.innerHTML = '<%= j(render partial: 'td_busyness_close', locals: { busyness: @busyness }) %>'
+
+var el = doc.nextElementSibling
+while (el && el.id.startsWith('tr_<%= params[:business_identifier] %>')) {
+  el = el.nextElementSibling
+  el.previousElementSibling.remove()
+}

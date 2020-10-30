@@ -20,6 +20,10 @@ class Role::Panel::GovernsController < Role::Panel::BaseController
     @name_spaces = NameSpace.where(identifier: identifiers)
   end
 
+  def remove
+    @busyness = Busyness.find_by identifier: params[:business_identifier]
+  end
+
   def show
   end
 
