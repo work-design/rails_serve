@@ -27,6 +27,13 @@ class Role::Panel::GovernsController < Role::Panel::BaseController
     @governs = Govern.default_where(q_params)
   end
 
+  def rules
+    q_params = {}
+    q_params.merge! params.permit(:controller_identifier)
+
+    @rules = Rule.default_where(q_params)
+  end
+
   def show
   end
 

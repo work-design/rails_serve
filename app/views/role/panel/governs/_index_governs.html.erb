@@ -1,8 +1,8 @@
 <% @governs.each do |govern| %>
-<tr id="tr_<%= params[:business_identifier] %>_<%= params[:namespace_identifier] %>_<%= govern.identifier %>" data-controller="remote_tree">
+<tr id="tr_<%= govern.identifier.split('/').join('_') %>" data-controller="remote_tree">
   <td>
     <span style="width: 2.86em; display: inline-block"></span>
-    <%= link_to({ action: 'governs', controller_identifier: govern.identifier }, remote: true) do %>
+    <%= link_to({ action: 'rules', controller_identifier: govern.identifier }, remote: true) do %>
       <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->remote_tree#expand"></i>
     <% end %>
     <span><%= govern.name %></span>

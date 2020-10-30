@@ -12,6 +12,7 @@ Rails.application.routes.draw do
         post :sync
         get :namespace
         get :governs
+        get :rules
       end
       member do
         patch :move_lower

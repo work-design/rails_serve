@@ -1,0 +1,2 @@
+var doc = document.getElementById('tr_<%= params[:controller_identifier].split('/').join('_') %>')
+doc.insertAdjacentHTML('afterend', '<%= j(render 'index_rules') %>')
