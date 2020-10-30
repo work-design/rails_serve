@@ -20,8 +20,11 @@ class Role::Panel::GovernsController < Role::Panel::BaseController
     @name_spaces = NameSpace.where(identifier: identifiers)
   end
 
-  def remove
-    @busyness = Busyness.find_by identifier: params[:business_identifier]
+  def governs
+    q_params = {}
+    q_params.merge! params.permit(:business_identifier, :namespace_identifier)
+
+    @governs = Govern.default_where(q_params)
   end
 
   def show
