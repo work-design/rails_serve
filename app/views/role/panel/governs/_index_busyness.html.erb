@@ -1,3 +1,8 @@
-<tr id="tr_<%= busyness.identifier %>">
-  <%= render partial: 'td_busyness_close', locals: { busyness: busyness } %>
+<tr id="tr_<%= busyness.identifier %>" data-controller="remote_tree">
+  <td>
+    <%= link_to({ action: 'namespace', business_identifier: busyness.identifier }, remote: true) do %>
+      <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->remote_tree#expand"></i>
+    <% end %>
+    <span><%= busyness.name %></span>
+  </td>
 </tr>

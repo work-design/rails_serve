@@ -1,5 +1,5 @@
 <% @name_spaces.each do |name_space| %>
-<tr id="tr_<%= params[:business_identifier] %>_<%= name_space.identifier %>">
+<tr id="tr_<%= params[:business_identifier] %>_<%= name_space.identifier %>" data-controler="remote_tree">
   <td>
     <span style="width: 1.43em; display: inline-block"></span>
     <%= link_to({ action: 'namespace', business_identifier: name_space.identifier }, remote: true) do %>
