@@ -4,6 +4,9 @@ Rails.application.routes.draw do
     resources :roles do
       member do
         get :overview
+        get :namespace
+        get :governs
+        get :rules
       end
       resources :who_roles, only: [:index, :new, :create, :destroy]
       resources :role_rules, except: [:destroy] do
@@ -15,7 +18,7 @@ Rails.application.routes.draw do
     resources :governs, only: [:index] do
       collection do
         post :sync
-        get :namespace
+        get :namespaces
         get :governs
         get :rules
       end

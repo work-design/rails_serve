@@ -1,5 +1,8 @@
 class Role::Panel::RolesController < Role::Panel::BaseController
-  before_action :set_role, only: [:show, :overview, :edit, :update, :destroy]
+  before_action :set_role, only: [
+    :show, :overview, :edit, :update, :destroy,
+    :namespaces, :governs, :rules
+  ]
 
   def index
     @roles = Role.order(created_at: :asc)
@@ -23,6 +26,26 @@ class Role::Panel::RolesController < Role::Panel::BaseController
 
     @governs = Govern.includes(:rules).default_where(q_params)
     @busynesses = Busyness.all
+  end
+
+  def namespaces
+    @busyness = Busyness.find_by identifier: params[:business_identifier]
+    identifiers = Govern.unscope(:order).select(:namespace_identifier).where(business_identifier: params[:business_identifier]).distinct.pluck(:namespace_identifier)
+    @name_spaces = NameSpace.where(identifier: identifiers)
+  end
+
+  def governs
+    q_params = {}
+    q_params.merge! params.permit(:business_identifier, :namespace_identifier)
+
+    @governs = Govern.default_where(q_params)
+  end
+
+  def rules
+    q_params = {}
+    q_params.merge! params.permit(:controller_identifier)
+
+    @rules = Rule.default_where(q_params)
   end
 
   def overview
