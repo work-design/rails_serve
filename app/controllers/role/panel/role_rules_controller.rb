@@ -1,6 +1,6 @@
 class Role::Panel::RoleRulesController < Role::Panel::BaseController
   before_action :set_role
-  before_action :set_role_rule, only: [:show, :edit, :update, :destroy]
+  before_action :set_role_rule, only: [:show, :edit, :update]
 
   def index
     @role_rules = @role.role_rules.page(params[:page])
@@ -33,7 +33,13 @@ class Role::Panel::RoleRulesController < Role::Panel::BaseController
   end
 
   def destroy
-    @role_rule.destroy
+    q_params = {
+      namespace_identifier: nil
+    }
+    q_params.merge! params.permit(:business_identifier)
+
+    @role_rules = RoleRule.where(q_params)
+    @role_rules.each(&:destroy)
   end
 
   private
