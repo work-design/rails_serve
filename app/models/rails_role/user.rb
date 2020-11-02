@@ -3,34 +3,12 @@ module RailsRole::User
   include RailsRoleExt::Base
 
   included do
-    if connection.adapter_name == 'PostgreSQL'
-      attribute :cached_role_ids, :integer, array: true
-    else
-      serialize :cached_role_ids, Array
-    end
+    attribute :cached_role_ids, :integer, array: true
 
     has_many :who_roles, as: :who, dependent: :destroy
     has_many :roles, through: :who_roles
 
     after_save :sync_to_role_ids, if: ->{ saved_change_to_cached_role_ids? }
-  end
-
-  def rails_role
-    result = {}
-    roles.map do |role|
-      result.deep_merge!(role.rails_role.to_h) { |_, t, o| t || o }
-    end
-
-    result
-  end
-
-  def verbose_role
-    result = {}
-    roles.map do |role|
-      result.deep_merge!(role.verbose_role.to_h) { |_, t, o| t || o }
-    end
-
-    result
   end
 
   def taxon_codes

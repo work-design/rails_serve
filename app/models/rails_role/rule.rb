@@ -31,7 +31,6 @@ module RailsRole::Rule
         self.namespace_identifier = govern.namespace_identifier
       end
     end
-    after_commit :delete_cache
 
     acts_as_list scope: [:controller_identifier]
   end
@@ -44,17 +43,6 @@ module RailsRole::Rule
     return t2 if t2
 
     identifier
-  end
-
-  def delete_cache
-    self.roles.each do |role|
-      if Rails.cache.delete("rails_role/#{role.id}")
-        puts "-----> Cache key rails_role/#{role.id} deleted"
-      end
-      if Rails.cache.delete("verbose_role/#{role.id}")
-        puts "-----> Cache key verbose_role/#{role.id} deleted"
-      end
-    end
   end
 
 end

@@ -5,8 +5,8 @@ module RailsRole::Application
     helper_method :rails_role_user, :rails_role_organ
   end
 
-  def support_organ(role_params = params['id'])
-    if rails_role_organ && rails_role_organ.has_role?(controller_path, action_name, role_params)
+  def support_organ
+    if rails_role_organ && rails_role_organ.has_role?(params[:business], params[:namespace], controller_path, action_name, params)
       return
     elsif rails_role_organ.nil?
       return
@@ -18,7 +18,7 @@ module RailsRole::Application
   end
 
   def require_role
-    if rails_role_user.has_role? controller_path, action_name, role_params
+    if rails_role_user.has_role? params[:business], params[:namespace], controller_path, action_name, params
       return
     end
 

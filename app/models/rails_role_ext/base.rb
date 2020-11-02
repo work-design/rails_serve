@@ -1,18 +1,18 @@
 module RailsRoleExt::Base
 
-  def has_role?(govern_name, rule_name, params = nil)
-    govern_name = govern_name.to_s
-    rule_name = rule_name.to_s
-
+  def has_role?(business_identifier, namespace_identifier, controller_identifier, action_name, params)
     if respond_to?(:admin?) && admin?
       return true
     end
 
-    unless rails_role[govern_name]
-      return false
-    end
-
-    rule = rails_role[govern_name][rule_name] || rails_role[govern_name]['admin']
+    rule = RoleRule.where(
+      role_id: role_ids,
+      business_identifier: [business_identifier, nil],
+      namespace_identifier: [namespace_identifier, nil],
+      controller_identifier: [controller_identifier, nil],
+      action_name: [action_name, nil],
+      enabled: true
+    )
 
     if rule.blank?
       verbs = RailsCom::Routes.verbs govern_name, rule_name
