@@ -14,7 +14,7 @@ class Role::Panel::GovernsController < Role::Panel::BaseController
     Govern.sync
   end
 
-  def namespace
+  def namespaces
     @busyness = Busyness.find_by identifier: params[:business_identifier]
     identifiers = Govern.unscope(:order).select(:namespace_identifier).where(business_identifier: params[:business_identifier]).distinct.pluck(:namespace_identifier)
     @name_spaces = NameSpace.where(identifier: identifiers)

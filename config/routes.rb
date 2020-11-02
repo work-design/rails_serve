@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :roles do
       member do
         get :overview
-        get :namespace
+        get :namespaces
         get :governs
         get :rules
       end

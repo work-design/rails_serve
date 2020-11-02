@@ -12,15 +12,16 @@ module RailsRole::RoleRule
     attribute :enabled, :boolean, default: true
 
     belongs_to :role
-    belongs_to :rule, foreign_key: :action_identifier, primary_key: :identifier, optional: true
+    belongs_to :busyness, foreign_key: :business_identifier, primary_key: :identifier, optional: true
+    belongs_to :name_space, foreign_key: :namespace_identifier, primary_key: :identifier, optional: true
     belongs_to :govern, foreign_key: :controller_identifier, primary_key: :identifier, optional: true
+    belongs_to :rule, foreign_key: :action_identifier, primary_key: :identifier, optional: true
 
     enum status: {
       available: 'available',
       unavailable: 'unavailable'
     }, _default: 'available'
   end
-
 
 
 end

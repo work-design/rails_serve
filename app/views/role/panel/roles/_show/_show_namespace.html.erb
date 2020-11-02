@@ -2,15 +2,15 @@
 <tr id="tr_<%= params[:business_identifier] %>_<%= name_space.identifier %>" data-controller="remote_tree">
   <td>
     <span style="width: 1.43em; display: inline-block"></span>
-    <%= link_to({ action: 'governs', business_identifier: @busyness.identifier, namespace_identifier: name_space.identifier }, remote: true) do %>
+    <%= link_to({ action: 'governs', business_identifier: params[:business_identifier], namespace_identifier: name_space.identifier }, remote: true) do %>
       <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->remote_tree#expand"></i>
     <% end %>
-    <% if @role.role_rules.exists?(business_identifier: busyness.identifier, namespace_identifier: nil, enabled: true) %>
-      <%= button_to({ controller: 'role_rules', action: 'destroy', role_id: @role.id }, params: { business_identifier: busyness.identifier }, method: :delete, remote: true) do %>
+    <% if @role.role_rules.exists?(business_identifier: params[:business_identifier], namespace_identifier: name_space.identifier, enabled: true) %>
+      <%= button_to({ controller: 'role_rules', action: 'destroy', role_id: @role.id }, params: { business_identifier: params[:business_identifier], namespace_identifier: name_space.identifier }, method: :delete, remote: true) do %>
         <i class="far fa-check-square fa-lg"></i>
       <% end %>
     <% else %>
-      <%= button_to({ controller: 'role_rules', action: 'create', role_id: @role.id }, params: { business_identifier: busyness.identifier }, remote: true) do %>
+      <%= button_to({ controller: 'role_rules', action: 'create', role_id: @role.id }, params: { business_identifier: params[:business_identifier], namespace_identifier: name_space.identifier }, remote: true) do %>
         <i class="far fa-square fa-lg"></i>
       <% end %>
     <% end %>
