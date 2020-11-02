@@ -1,8 +1,19 @@
-<div class="columns">
-  <div class="column is-narrow">
-    <%= render 'nav_show' %>
-  </div>
-  <div class="column">
-    <%= render 'table' %>
-  </div>
-</div>
+<table class="table is-hoverable is-fullwidth" data-controller="check">
+  <thead>
+    <tr>
+      <th>
+        <%= link_to 'Govern (Code)', { controller: 'governs' } %>
+      </th>
+      <th>
+        <%= form_with url: panel_role_path(@role, govern_taxon_id: params[:govern_taxon_id]), method: :patch, html: { class: nil, id: "edit_role_#{@role.id}" } do |f| %>
+          <%= f.hidden_field :'role[rule_ids][]', id: nil %>
+        <% end %>
+        <%= submit_tag t('.save'), class: 'button is-small is-link', form: "edit_role_#{@role.id}" %>
+        <%= link_to t('role.panel.roles.overview.title'), overview_panel_role_path(@role), class: 'button is-small is-primary' %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'show_busyness', collection: @busynesses, as: :busyness %>
+  </tbody>
+</table>

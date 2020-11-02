@@ -1,5 +1,4 @@
 class Role::Panel::RolesController < Role::Panel::BaseController
-  before_action :set_govern_taxons, only: [:show]
   before_action :set_role, only: [:show, :overview, :edit, :update, :destroy]
 
   def index
@@ -23,6 +22,7 @@ class Role::Panel::RolesController < Role::Panel::BaseController
     q_params.merge! params.permit(:govern_taxon_id)
 
     @governs = Govern.includes(:rules).default_where(q_params)
+    @busynesses = Busyness.all
   end
 
   def overview
@@ -74,7 +74,9 @@ class Role::Panel::RolesController < Role::Panel::BaseController
   end
 
   def rule_ids_params
-    params.fetch(:role, {}).permit(rule_ids: [])
+    params.fetch(:role, {}).permit(
+      rule_ids: []
+    )
   end
 
   def set_role
