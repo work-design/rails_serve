@@ -1,6 +1,8 @@
-<tr id="tr_<%= busyness.identifier %>" data-controller="remote_tree">
+<% @name_spaces.each do |name_space| %>
+<tr id="tr_<%= params[:business_identifier] %>_<%= name_space.identifier %>" data-controller="remote_tree">
   <td>
-    <%= link_to({ controller: 'governs', action: 'namespace', business_identifier: busyness.identifier }, remote: true) do %>
+    <span style="width: 1.43em; display: inline-block"></span>
+    <%= link_to({ action: 'governs', business_identifier: @busyness.identifier, namespace_identifier: name_space.identifier }, remote: true) do %>
       <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->remote_tree#expand"></i>
     <% end %>
     <% if @role.role_rules.exists?(business_identifier: busyness.identifier, namespace_identifier: nil, enabled: true) %>
@@ -12,6 +14,7 @@
         <i class="far fa-square fa-lg"></i>
       <% end %>
     <% end %>
-    <span><%= busyness.name %></span>
+    <span><%= name_space.name %></span>
   </td>
 </tr>
+<% end %>

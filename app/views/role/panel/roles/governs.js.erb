@@ -1,0 +1,2 @@
+var doc = document.getElementById('tr_<%= params[:business_identifier] %>_<%= params[:namespace_identifier] %>')
+doc.insertAdjacentHTML('afterend', '<%= j(render 'show_governs') %>')
