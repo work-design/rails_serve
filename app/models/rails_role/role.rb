@@ -2,8 +2,8 @@ module RailsRole::Role
   extend ActiveSupport::Concern
 
   included do
-    attribute :name, :string, null: false
-    attribute :description, :string, limit: 1024
+    attribute :name, :string
+    attribute :description, :string
     attribute :visible, :boolean, default: false
     attribute :who_types, :string, array: true
 
@@ -16,10 +16,12 @@ module RailsRole::Role
 
     scope :visible, -> { where(visible: true) }
 
+    validates :name, presence: true
+
     #before_save :sync_who_types
   end
 
-  def has_role?(business:, namespace:, controller:, action:, params:)
+  def has_role?(business: nil, namespace: nil, controller: nil, action: nil, params: {})
     role_rules.where(
       business_identifier: [business, nil],
       namespace_identifier: [namespace, nil],
