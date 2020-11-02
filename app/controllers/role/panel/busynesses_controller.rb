@@ -1,20 +1,8 @@
 class Role::Panel::BusynessesController < Role::Panel::BaseController
-  before_action :set_busyness, only: [:show, :edit, :update, :destroy]
+  before_action :set_busyness, only: [:show, :move_higher, :move_lower]
 
   def index
     @busynesses = Busyness.page(params[:page])
-  end
-
-  def new
-    @busyness = Busyness.new
-  end
-
-  def create
-    @busyness = Busyness.new(busyness_params)
-
-    unless @busyness.save
-      render :new, locals: { model: @busyness }, status: :unprocessable_entity
-    end
   end
 
   def sync
@@ -24,31 +12,17 @@ class Role::Panel::BusynessesController < Role::Panel::BaseController
   def show
   end
 
-  def edit
+  def move_higher
+    @busyness.move_higher
   end
 
-  def update
-    @busyness.assign_attributes(busyness_params)
-
-    unless @busyness.save
-      render :edit, locals: { model: @busyness }, status: :unprocessable_entity
-    end
-  end
-
-  def destroy
-    @busyness.destroy
+  def move_lower
+    @busyness.move_lower
   end
 
   private
   def set_busyness
     @busyness = Busyness.find(params[:id])
-  end
-
-  def busyness_params
-    params.fetch(:busyness, {}).permit(
-      :name,
-      :identifier
-    )
   end
 
 end

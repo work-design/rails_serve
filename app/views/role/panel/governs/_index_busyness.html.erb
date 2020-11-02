@@ -1,8 +1,14 @@
-<tr id="tr_<%= busyness.identifier %>" data-controller="remote_tree">
+<tr id="tr_<%= busyness.identifier %>" data-controller="remote_tree show" data-action="mouseenter->show#show mouseleave->show#hide">
   <td>
     <%= link_to({ action: 'namespace', business_identifier: busyness.identifier }, remote: true) do %>
       <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->remote_tree#expand"></i>
     <% end %>
     <span><%= busyness.name %></span>
+    <%= link_to({ controller: 'busynesses', action: 'move_higher', id: busyness.id }, method: :patch, remote: true, data: { 'show-target': 'item' }, style: 'visibility: hidden') do %>
+      <i class="fas fa-arrow-up"></i>
+    <% end %>
+    <%= link_to({ controller: 'busynesses', action: 'move_lower', id: busyness.id }, method: :patch, remote: true, data: { 'show-target': 'item' }, style: 'visibility: hidden') do %>
+      <i class="fas fa-arrow-down"></i>
+    <% end %>
   </td>
 </tr>

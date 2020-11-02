@@ -39,6 +39,10 @@ Rails.application.routes.draw do
       collection do
         post :sync
       end
+      member do
+        patch :move_lower
+        patch :move_higher
+      end
     end
   end
 
