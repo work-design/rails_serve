@@ -17,7 +17,7 @@ module RailsRole::Application
     role_access_denied
   end
 
-  def require_role(role_params = params['id'])
+  def require_role
     if rails_role_user.has_role? controller_path, action_name, role_params
       return
     end

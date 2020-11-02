@@ -2,6 +2,8 @@ module RailsRole::RoleRule
   extend ActiveSupport::Concern
 
   included do
+    attribute :business_identifier, :string
+    attribute :namespace_identifier, :string
     attribute :controller_identifier, :string
     attribute :action_identifier, :string, index: true
     attribute :params_name, :string
