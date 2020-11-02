@@ -1,6 +1,6 @@
 <tr id="tr_<%= busyness.identifier %>" data-controller="remote_tree show" data-action="mouseenter->show#show mouseleave->show#hide">
   <td>
-    <%= link_to({ action: 'namespace', business_identifier: busyness.identifier }, remote: true) do %>
+    <%= link_to({ action: 'namespaces', business_identifier: busyness.identifier }, remote: true) do %>
       <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->remote_tree#expand"></i>
     <% end %>
     <span><%= busyness.name %></span>

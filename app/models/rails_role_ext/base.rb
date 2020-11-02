@@ -1,16 +1,16 @@
 module RailsRoleExt::Base
 
-  def has_role?(business_identifier, namespace_identifier, controller_identifier, action_name, params)
+  def has_role?(business:, namespace:, controller:, action:, params: {})
     if respond_to?(:admin?) && admin?
       return true
     end
 
     rule = RoleRule.where(
       role_id: role_ids,
-      business_identifier: [business_identifier, nil],
-      namespace_identifier: [namespace_identifier, nil],
-      controller_identifier: [controller_identifier, nil],
-      action_name: [action_name, nil],
+      business_identifier: [business, nil],
+      namespace_identifier: [namespace, nil],
+      controller_identifier: [controller, nil],
+      action_name: [action, nil],
       enabled: true
     ).exists?
 

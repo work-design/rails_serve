@@ -5,6 +5,15 @@
     <%= link_to({ action: 'rules', controller_identifier: govern.identifier }, remote: true) do %>
       <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->remote_tree#expand"></i>
     <% end %>
+    <% if @role.has_role?(business: params[:business_identifier], namespace: params[:namespace_identifier], controller: govern.identifier) %>
+      <%= button_to({ controller: 'role_rules', action: 'destroy', role_id: @role.id }, params: { business_identifier: params[:business_identifier], namespace_identifier: params[:namespace_identifier], controller_identifier: govern.identifier }, method: :delete, remote: true) do %>
+        <i class="far fa-check-square fa-lg"></i>
+      <% end %>
+    <% else %>
+      <%= button_to({ controller: 'role_rules', action: 'create', role_id: @role.id }, params: { business_identifier: params[:business_identifier], namespace_identifier: params[:namespace_identifier], controller_identifier: govern.identifier }, remote: true) do %>
+        <i class="far fa-square fa-lg"></i>
+      <% end %>
+    <% end %>
     <span><%= govern.name %></span>
   </td>
 </tr>
