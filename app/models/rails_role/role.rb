@@ -20,12 +20,6 @@ module RailsRole::Role
     #before_save :sync_who_types
   end
 
-  def taxon_codes
-    Rails.cache.fetch("taxon_codes/#{self.id}") do
-      govern_taxons.map(&:code)
-    end
-  end
-
   def sync_who_types
     who_types.exists?(who)
   end

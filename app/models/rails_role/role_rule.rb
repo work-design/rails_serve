@@ -21,5 +21,6 @@ module RailsRole::RoleRule
     }, _default: 'available'
   end
 
-end
 
+
+end

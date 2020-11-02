@@ -3,9 +3,12 @@
     <%= link_to({ controller: 'governs', action: 'namespace', business_identifier: busyness.identifier }, remote: true) do %>
       <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->remote_tree#expand"></i>
     <% end %>
-    <label class="checkbox">
+    <% if @role.role_rules.exists?(business_identifier: busyness.identifier, namespace_identifier: nil, enabled: true) %>
       <%= check_box_tag 'role[rule_ids][]', 'admin', false, id: nil, data: { action: 'check#toggleAllName' } %>
-    </label>
+      
+    <% else %>
+      <%= check_box_tag 'role[rule_ids][]', 'admin', false, id: nil, data: { action: 'check#toggleAllName' } %>
+    <% end %>
     <span><%= busyness.name %></span>
   </td>
 </tr>

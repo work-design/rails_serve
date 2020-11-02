@@ -6,6 +6,11 @@ Rails.application.routes.draw do
         get :overview
       end
       resources :who_roles, only: [:index, :new, :create, :destroy]
+      resources :role_rules do
+        collection do
+          delete '' => :destroy
+        end
+      end
     end
     resources :governs, only: [:index] do
       collection do
