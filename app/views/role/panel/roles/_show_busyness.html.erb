@@ -4,10 +4,13 @@
       <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->remote_tree#expand"></i>
     <% end %>
     <% if @role.role_rules.exists?(business_identifier: busyness.identifier, namespace_identifier: nil, enabled: true) %>
-      <%= check_box_tag 'role[rule_ids][]', 'admin', false, id: nil, data: { action: 'check#toggleAllName' } %>
-      
+      <%= link_to({ controller: 'role_rules', action: 'destroy', role_id: @role.id }, method: :delete, remote: true) do %>
+        <i class="far fa-check-square"></i>
+      <% end %>
     <% else %>
-      <%= check_box_tag 'role[rule_ids][]', 'admin', false, id: nil, data: { action: 'check#toggleAllName' } %>
+      <%= form_with url: { controller: 'role_rules', action: 'create', role_id: @role.id, business_identifier: busyness.identifier }, method: :post, remote: true do |f| %>
+        <i class="far fa-square"></i>
+      <% end %>
     <% end %>
     <span><%= busyness.name %></span>
   </td>

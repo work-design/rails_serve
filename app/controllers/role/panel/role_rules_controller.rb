@@ -46,7 +46,7 @@ class Role::Panel::RoleRulesController < Role::Panel::BaseController
   end
 
   def role_rule_params
-    params.fetch(:role_rule, {}).permit(
+    params.permit(
       :business_identifier,
       :namespace_identifier,
       :controller_identifier,

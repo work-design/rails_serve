@@ -6,7 +6,7 @@ Rails.application.routes.draw do
         get :overview
       end
       resources :who_roles, only: [:index, :new, :create, :destroy]
-      resources :role_rules do
+      resources :role_rules, except: [:destroy] do
         collection do
           delete '' => :destroy
         end
