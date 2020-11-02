@@ -1,6 +1,5 @@
 module RailsRole::Role
   extend ActiveSupport::Concern
-  include RailsRoleExt::Base
 
   included do
     attribute :name, :string, null: false
@@ -18,6 +17,16 @@ module RailsRole::Role
     scope :visible, -> { where(visible: true) }
 
     #before_save :sync_who_types
+  end
+
+  def has_role?(business:, namespace:, controller:, action:, params:)
+    role_rules.where(
+      business_identifier: [business, nil],
+      namespace_identifier: [namespace, nil],
+      controller_identifier: [controller, nil],
+      action_name: [action, nil],
+      enabled: true
+    ).exists?
   end
 
   def sync_who_types

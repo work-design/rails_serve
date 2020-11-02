@@ -12,7 +12,7 @@ module RailsRoleExt::Base
       controller_identifier: [controller_identifier, nil],
       action_name: [action_name, nil],
       enabled: true
-    )
+    ).exists?
 
     if rule.blank?
       verbs = RailsCom::Routes.verbs govern_name, rule_name
