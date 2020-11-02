@@ -2,7 +2,7 @@ module RailsRole::Busyness
   extend ActiveSupport::Concern
 
   included do
-    attribute :identifier, :string
+    attribute :identifier, :string, default: 'application'
     attribute :position, :integer
 
     has_many :governs, foreign_key: :business_identifier, primary_key: :identifier

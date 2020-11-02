@@ -4,7 +4,7 @@ module RailsRole::Govern
   included do
     attribute :identifier, :string, index: true
     attribute :namespace_identifier, :string, default: 'application', index: true
-    attribute :business_identifier, :string, index: true
+    attribute :business_identifier, :string, default: 'application', index: true
     attribute :position, :integer
 
     belongs_to :name_space, foreign_key: :namespace_identifier, primary_key: :identifier, optional: true

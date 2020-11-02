@@ -4,7 +4,7 @@ module RailsRole::Rule
   included do
     attribute :identifier, :string, index: true
     attribute :namespace_identifier, :string, default: 'application'
-    attribute :business_identifier, :string
+    attribute :business_identifier, :string, default: 'application'
     attribute :controller_identifier, :string, index: true
     attribute :action_name, :string
     attribute :position, :integer

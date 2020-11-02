@@ -1,13 +1,13 @@
 <% @rules.each do |rule| %>
-<tr id="tr_<%= params[:controller_identifier].split('/').join('_') %>_<%= rule.identifier %>" data-controller="remote_tree">
+<tr id="tr_<%= params[:controller_identifier].split('/').join('_') %>_<%= rule.action_name %>" data-controller="remote_tree">
   <td>
     <span style="width: 4.29em; display: inline-block"></span>
-    <% if @role.has_role?(business: params[:business_identifier], namespace: params[:namespace_identifier], controller: params[:controller_identifier], action: rule.action_name) %>
-      <%= button_to({ controller: 'role_rules', action: 'destroy', role_id: @role.id }, params: { business_identifier: params[:business_identifier], namespace_identifier: params[:namespace_identifier], controller_identifier: params[:controller_identifier], action_name: rule.action_name }, method: :delete, remote: true) do %>
+    <% if @role.has_role?(business: rule.business_identifier, namespace: rule.namespace_identifier, controller: params[:controller_identifier], action: rule.action_name) %>
+      <%= button_to({ controller: 'role_rules', action: 'destroy', role_id: @role.id }, params: { controller_identifier: params[:controller_identifier], action_name: rule.action_name }, method: :delete, remote: true) do %>
         <i class="far fa-check-square fa-lg"></i>
       <% end %>
     <% else %>
-      <%= button_to({ controller: 'role_rules', action: 'create', role_id: @role.id }, params: { business_identifier: params[:business_identifier], namespace_identifier: params[:namespace_identifier], controller_identifier: params[:controller_identifier], action_name: rule.action_name }, remote: true) do %>
+      <%= button_to({ controller: 'role_rules', action: 'create', role_id: @role.id }, params: { controller_identifier: params[:controller_identifier], action_name: rule.action_name }, remote: true) do %>
         <i class="far fa-square fa-lg"></i>
       <% end %>
     <% end %>
