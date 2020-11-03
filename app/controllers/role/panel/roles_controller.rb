@@ -81,6 +81,30 @@ class Role::Panel::RolesController < Role::Panel::BaseController
     @role.save
   end
 
+  def govern_on
+    @govern = Govern.find_by identifier: params[:controller_identifier]
+    @role.role_hash.deep_merge!(params[:business_identifier] => {
+      params[:namespace_identifier] => {
+        params[:controller_identifier] => @govern.role_hash
+      }
+    })
+    @role.save
+  end
+
+  def govern_off
+    @govern = Govern.find_by identifier: params[:controller_identifier]
+    @role.role_hash.fetch(params[:business_identifier], {}).fetch(params[:namespace_identifier], {}).delete(params[:controller_identifier])
+    @role.save
+  end
+
+  def rule_on
+
+  end
+
+  def rule_off
+
+  end
+
   def update
     new_ids = rule_ids_params.fetch('rule_ids', []).reject(&:blank?).map(&:to_i)
     if params[:govern_taxon_id]
