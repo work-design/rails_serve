@@ -68,14 +68,15 @@ class Role::Panel::RolesController < Role::Panel::BaseController
   end
 
   def namespace_on
-    name_space = NameSpace.find_by identifier: params[:namespace_identifier]
+    @name_space = NameSpace.find_by identifier: params[:namespace_identifier]
     @role.role_hash.deep_merge!(params[:business_identifier] => {
-      params[:namespace_identifier] => name_space.role_hash(params[:business_identifier])
+      params[:namespace_identifier] => @name_space.role_hash(params[:business_identifier])
     })
     @role.save
   end
 
   def namespace_off
+    @name_space = NameSpace.find_by identifier: params[:namespace_identifier]
     @role.role_hash.fetch(params[:business_identifier], {}).delete(params[:namespace_identifier])
     @role.save
   end

@@ -1,1 +1,2 @@
-<%= render 'visit' %>
+var doc = document.getElementById('tr_<%= params[:business_identifier] %>_<%= params[:namespace_identifier] %>')
+doc.outerHTML = '<%= j(render partial: 'show_namespace', locals: { name_space: @name_space }) %>'
