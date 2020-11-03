@@ -6,6 +6,7 @@ module RailsRole::Busyness
     attribute :position, :integer
 
     has_many :governs, foreign_key: :business_identifier, primary_key: :identifier
+    has_many :rules, foreign_key: :business_identifier, primary_key: :identifier
 
     validates :identifier, uniqueness: true
 
@@ -17,6 +18,27 @@ module RailsRole::Busyness
     return t if t
 
     identifier
+  end
+
+  def name_spaces
+    identifiers = Govern.unscope(:order).select(:namespace_identifier).where(business_identifier: identifier).distinct.pluck(:namespace_identifier)
+    NameSpace.where(identifier: identifiers).order(id: :asc)
+  end
+
+  def role_hash
+    {
+      identifier => namespace_hash
+    }
+  end
+
+  def namespace_hash
+    r = {}
+    name_spaces.each do |name_space|
+      r.merge!(
+        name_space.identifier => name_space.role_hash(identifier)
+      )
+    end
+    r
   end
 
   class_methods do

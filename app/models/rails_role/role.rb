@@ -6,6 +6,7 @@ module RailsRole::Role
     attribute :description, :string
     attribute :visible, :boolean, default: false
     attribute :who_types, :string, array: true
+    attribute :role_hash, :json, default: {}
 
     has_many :who_roles, dependent: :destroy
     has_many :role_rules, dependent: :destroy, inverse_of: :role
@@ -22,7 +23,7 @@ module RailsRole::Role
   end
 
   def has_role?(business:, namespace: nil, controller: nil, action: nil, params: {})
-    if role_rules.disabled.where(
+    if role_rules.where(
       business_identifier: business,
       namespace_identifier: namespace,
       controller_identifier: controller,
@@ -31,7 +32,7 @@ module RailsRole::Role
       return false
     end
 
-    role_rules.enabled.where(
+    role_rules.where(
       business_identifier: business,
       namespace_identifier: [namespace, nil],
       controller_identifier: [controller, nil],
