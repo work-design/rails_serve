@@ -1,5 +1,5 @@
 <% @rules.each do |rule| %>
-<tr id="tr_<%= params[:controller_identifier].split('/').join('_') %>_<%= rule.action_name %>" data-controller="remote_tree">
+<tr id="tr_<%= params[:controller_identifier].split('/').join('_') %>_<%= rule.action_name %>" data-controller="tree_remote">
   <td>
     <span style="width: 4.29em; display: inline-block"></span>
     <% if @role.has_role?(business: rule.business_identifier, namespace: rule.namespace_identifier, controller: params[:controller_identifier], action: rule.action_name) %>

@@ -1,9 +1,9 @@
 <% @name_spaces.each do |name_space| %>
-<tr id="tr_<%= params[:business_identifier] %>_<%= name_space.identifier %>" data-controller="remote_tree">
+<tr id="tr_<%= params[:business_identifier] %>_<%= name_space.identifier %>" data-controller="tree_remote">
   <td>
     <span style="width: 1.43em; display: inline-block"></span>
     <%= link_to({ action: 'governs', business_identifier: params[:business_identifier], namespace_identifier: name_space.identifier }, remote: true) do %>
-      <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->remote_tree#expand"></i>
+      <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree_remote#expand"></i>
     <% end %>
     <% if @role.has_role?(business: params[:business_identifier], namespace: name_space.identifier) %>
       <%= button_to({ controller: 'role_rules', action: 'destroy', role_id: @role.id }, params: { business_identifier: params[:business_identifier], namespace_identifier: name_space.identifier }, method: :delete, remote: true) do %>

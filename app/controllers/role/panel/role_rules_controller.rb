@@ -36,7 +36,7 @@ class Role::Panel::RoleRulesController < Role::Panel::BaseController
     q_params = {
       namespace_identifier: nil
     }
-    q_params.merge! params.permit(:business_identifier)
+    q_params.merge! params.permit(:business_identifier, :controller_identifier)
 
     @role_rules = RoleRule.where(q_params)
     @role_rules.each(&:destroy)
