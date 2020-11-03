@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       resources :who_roles, only: [:index, :new, :create, :destroy]
       resources :role_rules, except: [:destroy] do
         collection do
+          post :disable
           delete '' => :destroy
         end
       end

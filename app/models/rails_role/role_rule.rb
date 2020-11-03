@@ -21,7 +21,9 @@ module RailsRole::RoleRule
       available: 'available',
       unavailable: 'unavailable'
     }, _default: 'available'
-  end
 
+    scope :enabled, -> { where(enabled: true) }
+    scope :disabled, -> { where(enabled: false) }
+  end
 
 end

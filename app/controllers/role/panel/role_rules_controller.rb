@@ -32,11 +32,17 @@ class Role::Panel::RoleRulesController < Role::Panel::BaseController
     end
   end
 
+  def disable
+
+  end
+
   def destroy
     q_params = {
-      namespace_identifier: nil
+      namespace_identifier: nil,
+      controller_identifier: nil,
+      action_name: nil
     }
-    q_params.merge! params.permit(:business_identifier, :controller_identifier)
+    q_params.merge! params.permit(:business_identifier, :namespace_identifier, :controller_identifier, :action_name)
 
     @role_rules = RoleRule.where(q_params)
     @role_rules.each(&:destroy)
