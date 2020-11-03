@@ -24,6 +24,7 @@ module RailsRole::Role
 
   def has_role?(business:, namespace: nil, controller: nil, action: nil, params: {})
     options = [business.to_s, namespace.to_s, controller.to_s, action.to_s].take_while(&:present?)
+    return false if options.blank?
     role_hash.dig(*options).present?
   end
 
