@@ -6,7 +6,7 @@
       <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree_remote#expand"></i>
     <% end %>
     <% if @role.has_role?(business: params[:business_identifier], namespace: name_space.identifier) %>
-      <%= button_to({ controller: 'role_rules', action: 'destroy', role_id: @role.id }, params: { business_identifier: params[:business_identifier], namespace_identifier: name_space.identifier }, method: :delete, remote: true) do %>
+      <%= button_to({ action: 'namespace_off' }, params: { business_identifier: params[:business_identifier], namespace_identifier: name_space.identifier }, method: :patch, remote: true) do %>
         <i class="far fa-check-square fa-lg"></i>
       <% end %>
     <% else %>
