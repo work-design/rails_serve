@@ -2,7 +2,7 @@ class Role::Panel::RolesController < Role::Panel::BaseController
   before_action :set_role, only: [
     :show, :overview, :edit, :update, :destroy,
     :namespaces, :governs, :rules,
-    :business_on, :namespace_off
+    :business_on, :business_off, :namespace_on, :namespace_off, :govern_on, :govern_off, :rule_on, :rule_off
   ]
 
   def index
@@ -59,6 +59,11 @@ class Role::Panel::RolesController < Role::Panel::BaseController
   def business_on
     busyness = Busyness.find_by identifier: params[:business_identifier]
     @role.role_hash.merge! busyness.role_hash
+    @role.save
+  end
+
+  def business_off
+    @role.role_hash.delete params[:business_identifier]
     @role.save
   end
 

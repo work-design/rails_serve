@@ -4,7 +4,7 @@
       <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree_remote#expand"></i>
     <% end %>
     <% if @role.has_role?(business: busyness.identifier) %>
-      <%= button_to({ action: 'business_on', role_id: @role.id }, params: { business_identifier: busyness.identifier }, method: :delete, remote: true) do %>
+      <%= button_to({ action: 'business_off' }, params: { business_identifier: busyness.identifier }, method: :patch, remote: true) do %>
         <i class="far fa-check-square fa-lg"></i>
       <% end %>
     <% else %>
