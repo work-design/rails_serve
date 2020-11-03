@@ -10,7 +10,7 @@
         <i class="far fa-check-square fa-lg"></i>
       <% end %>
     <% else %>
-      <%= button_to({ controller: 'role_rules', action: 'create', role_id: @role.id }, params: { business_identifier: params[:business_identifier], namespace_identifier: name_space.identifier }, remote: true) do %>
+      <%= button_to({ action: 'namespace_on' }, params: { business_identifier: params[:business_identifier], namespace_identifier: name_space.identifier }, method: :patch, remote: true) do %>
         <i class="far fa-square fa-lg"></i>
       <% end %>
     <% end %>
