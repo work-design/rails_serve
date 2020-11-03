@@ -23,21 +23,8 @@ module RailsRole::Role
   end
 
   def has_role?(business:, namespace: nil, controller: nil, action: nil, params: {})
-    if role_rules.where(
-      business_identifier: business,
-      namespace_identifier: namespace,
-      controller_identifier: controller,
-      action_name: action
-    ).exists?
-      return false
-    end
-
-    role_rules.where(
-      business_identifier: business,
-      namespace_identifier: [namespace, nil],
-      controller_identifier: [controller, nil],
-      action_name: [action, nil],
-    ).exists?
+    options = [business.to_s, namespace.to_s, controller.to_s, action.to_s].take_while(&:present?)
+    role_hash.dig(*options).present?
   end
 
   def sync_who_types
