@@ -1,2 +1,2 @@
 var doc = document.getElementById('tr_<%= params[:controller_identifier].split('/').join('_') %>')
-doc.insertAdjacentHTML('afterend', '<%= j(render 'show_rules') %>')
+doc.insertAdjacentHTML('afterend', '<%= j(render partial: 'show_rule', collection: @rules, as: :rule) %>')

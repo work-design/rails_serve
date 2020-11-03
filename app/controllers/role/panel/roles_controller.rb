@@ -98,11 +98,21 @@ class Role::Panel::RolesController < Role::Panel::BaseController
   end
 
   def rule_on
-
+    @rule = Rule.find_by controller_identifier: params[:controller_identifier], action_name: params[:action_name]
+    @role.role_hash.deep_merge!(@rule.business_identifier => {
+      @rule.namespace_identifier => {
+        params[:controller_identifier] => {
+          params[:action_name] => true
+        }
+      }
+    })
+    @role.save
   end
 
   def rule_off
-
+    @rule = Rule.find_by controller_identifier: params[:controller_identifier], action_name: params[:action_name]
+    @role.role_hash.fetch(@rule.business_identifier, {}).fetch(@rule.namespace_identifier, {}).fetch(params[:controller_identifier], {}).delete(params[:action_name])
+    @role.save
   end
 
   def update
