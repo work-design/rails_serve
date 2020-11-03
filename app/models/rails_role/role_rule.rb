@@ -5,7 +5,6 @@ module RailsRole::RoleRule
     attribute :business_identifier, :string
     attribute :namespace_identifier, :string
     attribute :controller_identifier, :string
-    attribute :action_identifier, :string, index: true
     attribute :action_name, :string
     attribute :params_name, :string
     attribute :params_identifier, :string
@@ -15,7 +14,7 @@ module RailsRole::RoleRule
     belongs_to :busyness, foreign_key: :business_identifier, primary_key: :identifier, optional: true
     belongs_to :name_space, foreign_key: :namespace_identifier, primary_key: :identifier, optional: true
     belongs_to :govern, foreign_key: :controller_identifier, primary_key: :identifier, optional: true
-    belongs_to :rule, foreign_key: :action_identifier, primary_key: :identifier, optional: true
+    belongs_to :rule, ->(o){ where(controller_identifier: o.controller_identifier) }, foreign_key: :action_name, primary_key: :action_name, optional: true
 
     enum status: {
       available: 'available',
