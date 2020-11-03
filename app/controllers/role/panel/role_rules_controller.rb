@@ -11,7 +11,8 @@ class Role::Panel::RoleRulesController < Role::Panel::BaseController
   end
 
   def create
-    @role_rule = @role.role_rules.build(role_rule_params)
+
+    @role = @role.role_rules.build(role_rule_params)
 
     unless @role_rule.save
       render :new, locals: { model: @role_rule }, status: :unprocessable_entity

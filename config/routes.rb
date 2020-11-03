@@ -7,6 +7,7 @@ Rails.application.routes.draw do
         get :namespaces
         get :governs
         get :rules
+        patch :business_on
       end
       resources :who_roles, only: [:index, :new, :create, :destroy]
       resources :role_rules, except: [:destroy] do
