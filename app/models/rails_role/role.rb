@@ -21,7 +21,7 @@ module RailsRole::Role
     validates :name, presence: true
 
     #before_save :sync_who_types
-    after_update :set_default, if: -> { self.default? && saved_change_to_default? }
+    after_update :set_default, if: -> { default? && saved_change_to_default? }
   end
 
   def has_role?(business:, namespace: nil, controller: nil, action: nil, params: {})
