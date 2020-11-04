@@ -5,27 +5,9 @@ module RailsRoleExt::Base
       return true
     end
 
-    rule = RoleRule.where(
-      role_id: role_ids,
-      business_identifier: [business, nil],
-      namespace_identifier: [namespace, nil],
-      controller_identifier: [controller, nil],
-      action_name: [action, nil],
-      enabled: true
-    ).exists?
-
-    if rule.blank?
-      verbs = RailsCom::Routes.verbs govern_name, rule_name
-      if verbs.include?('GET') && !rule_name.start_with?('new', 'edit')
-        rule = rails_role[govern_name]['read']
-      end
-    end
-
-    if rule.is_a?(Array) && params.present?
-      rule.include? params.to_s
-    else
-      rule
-    end
+    options = [business.to_s, namespace.to_s, controller.to_s, action.to_s].take_while(&:present?)
+    return false if options.blank?
+    role_hash.dig(*options).present?
   end
 
   def any_role?(*any_roles, **roles_hash)
