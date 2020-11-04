@@ -21,7 +21,7 @@ module RailsRole::User
   end
 
   def role_hash
-    result = {}
+    result = Role.find_by(default: true)&.role_hash || {}
     roles.each do |role|
       result.deep_merge! role.role_hash
     end
