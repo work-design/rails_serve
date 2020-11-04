@@ -5,10 +5,10 @@ module RailsRole::LinkHelper
   def link_to(name = nil, options = nil, html_options = nil, &block)
     if block_given?
       _options = name
-      _html_options = options
+      _html_options = options || {}
     else
       _options = options
-      _html_options = html_options
+      _html_options = html_options || {}
     end
 
     if role_permit?(_options, _html_options)
