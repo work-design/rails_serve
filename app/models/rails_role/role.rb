@@ -22,6 +22,7 @@ module RailsRole::Role
 
     #before_save :sync_who_types
     after_update :set_default, if: -> { default? && saved_change_to_default? }
+    after_commit :delete_cache, if: -> { default? && saved_change_to_role_hash? }
   end
 
   def has_role?(business:, namespace: nil, controller: nil, action: nil, params: {})
@@ -32,6 +33,13 @@ module RailsRole::Role
 
   def set_default
     self.class.where.not(id: self.id).update_all(default: false)
+    delete_cache
+  end
+
+  def delete_cache
+    if Rails.cache.delete('default_role_hash')
+      logger.debug "----------> delete cache default role hash"
+    end
   end
 
   def sync_who_types

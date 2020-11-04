@@ -21,12 +21,18 @@ module RailsRole::User
   end
 
   def role_hash
-    result = Role.find_by(default: true)&.role_hash || {}
+    result = default_role_hash
     roles.each do |role|
       result.deep_merge! role.role_hash
     end
 
     result
+  end
+
+  def default_role_hash
+    Rails.cache.fetch('default_role_hash') do
+      Role.find_by(default: true)&.role_hash || {}
+    end
   end
 
   def has_role?(business: 'application', namespace: 'application', controller:, action:, params: {})
