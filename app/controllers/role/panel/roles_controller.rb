@@ -134,6 +134,7 @@ class Role::Panel::RolesController < Role::Panel::BaseController
       :code,
       :description,
       :visible,
+      :default,
       who_types: []
     )
     p.fetch(:who_types, []).reject!(&:blank?)

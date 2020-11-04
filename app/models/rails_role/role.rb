@@ -7,6 +7,7 @@ module RailsRole::Role
     attribute :visible, :boolean, default: false
     attribute :who_types, :string, array: true
     attribute :role_hash, :json, default: {}
+    attribute :default, :boolean
 
     has_many :who_roles, dependent: :destroy
     has_many :role_rules, dependent: :destroy, inverse_of: :role
@@ -20,12 +21,17 @@ module RailsRole::Role
     validates :name, presence: true
 
     #before_save :sync_who_types
+    after_update :set_default, if: -> { self.default? && saved_change_to_default? }
   end
 
   def has_role?(business:, namespace: nil, controller: nil, action: nil, params: {})
     options = [business.to_s, namespace.to_s, controller.to_s, action.to_s].take_while(&:present?)
     return false if options.blank?
     role_hash.dig(*options).present?
+  end
+
+  def set_default
+    self.class.where.not(id: self.id).update_all(default: false)
   end
 
   def sync_who_types

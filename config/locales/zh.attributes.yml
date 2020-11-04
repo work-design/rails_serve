@@ -8,6 +8,7 @@ zh:
         title: 角色代码
         description: 角色描述
         visible: 可见性
+        default: 默认权限
         who_types: 适用模型
       govern:
         govern_taxon_id: 分类

@@ -13,6 +13,12 @@
     </div>
   </td>
   <td>
+    <div data-controller="input">
+      <%= check_box_tag '[role]default', nil, role.default, data: { method: :patch, remote: true, url: panel_role_path(role), action: 'input#submit' }, id: nil, class: 'switch is-rounded' %>
+      <label></label>
+    </div>
+  </td>
+  <td>
     <%= link_to t('role.panel.roles.overview.title'), { action: 'overview', id: role.id }, class: 'button is-small is-rounded is-light' %>
     <%= link_to t('role.panel.roles.show.title'), { action: 'show', id: role.id }, class: 'button is-small is-rounded is-light' %>
     <%= link_to({ action: 'edit', id: role.id }, aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light') do %>
