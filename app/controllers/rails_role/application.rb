@@ -3,7 +3,6 @@ module RailsRole::Application
 
   included do
     helper_method :rails_role_user
-    before_action :require_role
   end
 
   def support_organ
@@ -25,7 +24,7 @@ module RailsRole::Application
   end
 
   def require_role
-    if rails_role_user.has_role?(
+    if rails_role_user && rails_role_user.has_role?(
       business: params[:business].presence || 'application',
       namespace: params[:namespace].presence || 'application',
       controller: controller_path,
