@@ -2,7 +2,8 @@ module RailsRole::Application
   extend ActiveSupport::Concern
 
   included do
-    helper_method :rails_role_user, :rails_role_organ
+    helper_method :rails_role_user
+    before_action :require_role
   end
 
   def support_organ
