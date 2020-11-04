@@ -32,7 +32,7 @@ module RailsRole::LinkHelper
     end
     path_params[:controller] ||= controller_path
     path_params[:action] ||= 'index'
-    extra_params = path_params.slice(:controller, :action)
+    extra_params = path_params.except(:controller, :action)
     r = RailsCom::Routes.controllers.dig(path_params[:controller], path_params[:action])
     if r.present?
       path_params[:business] = r[:business]
@@ -40,12 +40,12 @@ module RailsRole::LinkHelper
     end
 
     if defined?(current_organ) && current_organ
-      organ_permitted = current_organ.has_role?(params: extra_params, **path_params.symbolize_keys)
+      organ_permitted = current_organ.has_role?(params: extra_params, **path_params.slice(:business, :namespace, :controller, :action).symbolize_keys)
     else
       organ_permitted = true
     end
     if rails_role_user
-      user_permitted = rails_role_user.has_role?(params: extra_params, **path_params.symbolize_keys)
+      user_permitted = rails_role_user.has_role?(params: extra_params, **path_params.slice(:business, :namespace, :controller, :action).symbolize_keys)
     else
       user_permitted = true
     end
