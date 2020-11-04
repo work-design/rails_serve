@@ -49,7 +49,7 @@ module RailsRole::LinkHelper
     else
       user_permitted = true
     end
-    logger.debug "  ----------> Options: #{_options} | Organ: #{organ_permitted} | User: #{user_permitted}"
+    #logger.debug "  ----------> Options: #{_options} | Organ: #{organ_permitted} | User: #{user_permitted}"
 
     organ_permitted && user_permitted
   end
