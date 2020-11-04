@@ -25,8 +25,8 @@ module RailsRole::Application
 
   def require_role
     if rails_role_user.has_role?(
-      business: params[:business],
-      namespace: params[:namespace],
+      business: params[:business].presence || 'application',
+      namespace: params[:namespace].presence || 'application',
       controller: controller_path,
       action: action_name,
       params: params

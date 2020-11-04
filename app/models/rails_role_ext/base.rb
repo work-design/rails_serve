@@ -1,6 +1,6 @@
 module RailsRoleExt::Base
 
-  def has_role?(business:, namespace:, controller:, action:, params: {})
+  def has_role?(business: 'application', namespace: 'application', controller:, action:, params: {})
     if respond_to?(:admin?) && admin?
       return true
     end
