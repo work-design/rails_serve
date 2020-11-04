@@ -6,7 +6,7 @@ module RailsRole::Application
   end
 
   def support_organ
-    if rails_role_organ && rails_role_organ.has_role?(
+    if current_organ.has_role?(
       business: params[:business],
       namespace: params[:namespace],
       controller: controller_path,
@@ -14,7 +14,7 @@ module RailsRole::Application
       params: params
     )
       return
-    elsif rails_role_organ.nil?
+    elsif current_organ.nil?
       return
     elsif request.path == RailsRole.config.default_return_path
       return
@@ -35,10 +35,6 @@ module RailsRole::Application
     end
 
     role_access_denied
-  end
-
-  def rails_role_organ
-    defined?(current_organ) && current_organ
   end
 
   def rails_role_user

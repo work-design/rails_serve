@@ -116,22 +116,6 @@ class Role::Panel::RolesController < Role::Panel::BaseController
   end
 
   def update
-    new_ids = rule_ids_params.fetch('rule_ids', []).reject(&:blank?).map(&:to_i)
-    if params[:govern_taxon_id]
-      govern_taxon = GovernTaxon.find(params[:govern_taxon_id])
-      present_ids = govern_taxon.rule_ids & @role.rule_ids
-
-      add_ids = new_ids - present_ids
-      remove_ids = present_ids - new_ids
-    else
-      present_ids = Rule.without_taxon.pluck(:id) & @role.rule_ids
-
-      add_ids = new_ids - present_ids
-      remove_ids = present_ids - new_ids
-    end
-
-    @role.rule_ids += add_ids if add_ids
-    @role.rule_ids -= remove_ids if remove_ids
     @role.assign_attributes role_params
 
     unless @role.save
@@ -154,12 +138,6 @@ class Role::Panel::RolesController < Role::Panel::BaseController
     )
     p.fetch(:who_types, []).reject!(&:blank?)
     p
-  end
-
-  def rule_ids_params
-    params.fetch(:role, {}).permit(
-      rule_ids: []
-    )
   end
 
   def set_role

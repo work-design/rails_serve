@@ -15,7 +15,7 @@
   <td>
     <%= link_to t('role.panel.roles.overview.title'), { action: 'overview', id: role.id }, class: 'button is-small is-rounded is-light' %>
     <%= link_to t('role.panel.roles.show.title'), { action: 'show', id: role.id }, class: 'button is-small is-rounded is-light' %>
-    <%= link_to({ action: 'destroy', id: role.id }, aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light') do %>
+    <%= link_to({ action: 'edit', id: role.id }, aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light') do %>
       <i class="fas fa-pencil-alt"></i>
     <% end %>
     <%= link_to({ action: 'destroy', id: role.id }, method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'button is-small is-rounded is-light') do %>

@@ -11,10 +11,6 @@ module RailsRole::User
     after_save :sync_to_role_ids, if: ->{ saved_change_to_cached_role_ids? }
   end
 
-  def taxon_codes
-    roles.map(&:taxon_codes).flatten
-  end
-
   def admin?
     if respond_to?(:account_identities) && (RailsRole.config.default_admin_accounts & account_identities).length > 0
       true
@@ -23,6 +19,15 @@ module RailsRole::User
     elsif defined? super
       super
     end
+  end
+
+  def role_hash
+    result = {}
+    roles.each do |role|
+      result.deep_merge! role.role_hash
+    end
+
+    result
   end
 
   def sync_to_role_ids

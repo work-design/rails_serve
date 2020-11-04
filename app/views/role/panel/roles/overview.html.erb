@@ -7,7 +7,7 @@
     </tr>
   </thead>
   <tbody>
-  <% @govern_taxons.each do |taxon| %>
+  <% @role.role_hash.each do |business_identifier, namespaces| %>
     <tr>
       <td rowspan="<%= @role.governs.where(govern_taxon_id: taxon.id).count + 1 %>"><%= taxon.desc %></td>
     </tr>

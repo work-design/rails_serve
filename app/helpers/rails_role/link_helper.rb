@@ -39,8 +39,8 @@ module RailsRole::LinkHelper
     controller = RailsCom::Controllers.controller(parts.join('/'), path_params[:action])
     return true unless controller
 
-    if controller.whether_filter(:support_organ) && rails_role_organ
-      organ_permitted = rails_role_organ.has_role?(path_params[:controller], path_params[:action], extra_params)
+    if controller.whether_filter(:support_organ) && defined?(current_organ) && current_organ
+      organ_permitted = current_organ.has_role?(path_params[:controller], path_params[:action], extra_params)
     else
       organ_permitted = true
     end
