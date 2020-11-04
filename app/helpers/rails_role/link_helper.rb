@@ -2,7 +2,7 @@
 
 module RailsRole::LinkHelper
 
-  def link_to(name = nil, options = {}, html_options = {}, &block)
+  def link_to(name = nil, options = nil, html_options = nil, &block)
     if block_given?
       _options = name
       _html_options = options
@@ -32,7 +32,7 @@ module RailsRole::LinkHelper
     end
     path_params[:controller] ||= controller_path
     path_params[:action] ||= 'index'
-    extra_params = path_params.slice!(:controller, :action)
+    extra_params = path_params.slice(:controller, :action)
     r = RailsCom::Routes.controllers.dig(path_params[:controller], path_params[:action])
     if r.present?
       path_params[:business] = r[:business]
