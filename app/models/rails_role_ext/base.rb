@@ -29,8 +29,4 @@ module RailsRoleExt::Base
     false
   end
 
-  def any_taxon?(*any_taxons)
-    (any_taxons.map(&:to_s) & taxon_codes).present?
-  end
-
 end
