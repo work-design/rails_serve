@@ -41,6 +41,10 @@ module RailsRole::LinkHelper
     if r.present?
       path_params[:business] = r[:business]
       path_params[:namespace] = r[:namespace]
+    else
+      path_params[:business] = params[:business]
+      path_params[:namespace] = params[:namespace]
+      path_params[:controller] = "#{params[:business]}/#{params[:namespace]}/#{path_params[:controller]}" unless path_params[:controller].include?('/')
     end
 
     if defined?(current_organ) && current_organ
@@ -53,7 +57,7 @@ module RailsRole::LinkHelper
     else
       user_permitted = true
     end
-    #logger.debug "  ----------> Options: #{_options} | Organ: #{organ_permitted} | User: #{user_permitted}"
+    #logger.debug "  ----------> Options: #{_options} | Params: #{path_params} | Organ: #{organ_permitted} | User: #{user_permitted}"
 
     organ_permitted && user_permitted
   end
