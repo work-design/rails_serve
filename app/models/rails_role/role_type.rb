@@ -3,6 +3,7 @@ module RailsRole::RoleType
 
   included do
     attribute :who_type, :string
+
     belongs_to :role
   end
 

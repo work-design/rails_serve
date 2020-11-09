@@ -7,8 +7,8 @@ module RailsRole::Application
 
   def support_organ
     if current_organ.has_role?(
-      business: params[:business],
-      namespace: params[:namespace],
+      business: params[:business] || 'application',
+      namespace: params[:namespace] || 'application',
       controller: controller_path,
       action: action_name,
       params: params
