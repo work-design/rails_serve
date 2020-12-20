@@ -31,8 +31,10 @@ module RailsRole::LinkHelper
       end
     elsif _options == :back
       return true
-    else
+    elsif _options.is_a? Hash
       path_params = _options.slice(:controller, :action)
+    else
+      path_params = {}
     end
     path_params[:controller] ||= controller_path
     path_params[:action] ||= 'index'
