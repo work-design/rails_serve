@@ -37,6 +37,7 @@ module RailsRole::LinkHelper
       path_params = {}
     end
     path_params[:controller] ||= controller_path
+    path_params[:controller].delete_prefix!('/')
     path_params[:action] ||= 'index'
     extra_params = path_params.except(:controller, :action)
     r = RailsCom::Routes.controllers.dig(path_params[:controller], path_params[:action])
