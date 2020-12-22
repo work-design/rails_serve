@@ -26,7 +26,7 @@ module RailsRole::Role
   end
 
   def has_role?(business:, namespace: nil, controller: nil, action: nil, params: {})
-    options = [business.to_s, namespace.to_s, controller.to_s.delete_prefix('/'), action.to_s].take_while(&:present?)
+    options = [business.to_s, namespace.to_s, controller.to_s.split('/')[-1], action.to_s].take_while(&:present?)
     return false if options.blank?
     role_hash.dig(*options).present?
   end

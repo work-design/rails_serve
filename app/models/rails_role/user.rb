@@ -40,7 +40,7 @@ module RailsRole::User
       return true
     end
 
-    options = [business.to_s, namespace.to_s, controller.to_s, action.to_s].take_while(&:present?)
+    options = [business.to_s, namespace.to_s, controller.to_s.split('/')[-1], action.to_s].take_while(&:present?)
     return false if options.blank?
     role_hash.dig(*options).present?
   end
