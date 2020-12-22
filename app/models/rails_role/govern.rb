@@ -57,12 +57,12 @@ module RailsRole::Govern
 
       RailsCom::Routes.controllers.extract!(*missing_controllers).each do |controller, routes|
         govern = Govern.find_or_initialize_by(identifier: controller)
-        route = routes[0]
-        govern.business_identifier = route[:business] if route[:business]
-        govern.namespace_identifier = route[:namespace] if route[:namespace]
+        route = routes.first
+        govern.business_identifier = route[1][:business] if route[1][:business]
+        govern.namespace_identifier = route[1][:namespace] if route[1][:namespace]
 
-        present_rules = govern.rules.pluck(:identifier)
-        all_rules = routes.map(&->(i){ i[:action] })
+        present_rules = govern.rules.pluck(:action_name)
+        all_rules = routes.keys
         (all_rules - present_rules).each do |action|
           govern.rules.build(action_name: action)
         end
