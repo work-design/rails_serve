@@ -1,14 +1,16 @@
-<tr id="tr_<%= busyness.identifier %>" data-controller="tree_remote show" data-action="mouseenter->show#show mouseleave->show#hide">
+<tr id="tr_<%= busyness.identifier %>" data-controller="tree_remote show" data-tree_remote-target="item" data-action="mouseenter->show#show mouseleave->show#hide">
   <td>
-    <%= link_to({ action: 'namespaces', business_identifier: busyness.identifier }) do %>
-      <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree_remote#expand"></i>
-    <% end %>
-    <span><%= busyness.name %></span>
-    <%= link_to({ controller: 'busynesses', action: 'move_higher', id: busyness.id }, method: :patch, data: { 'show-target': 'item' }, style: 'visibility: hidden') do %>
-      <i class="fas fa-arrow-up"></i>
-    <% end %>
-    <%= link_to({ controller: 'busynesses', action: 'move_lower', id: busyness.id }, method: :patch, data: { 'show-target': 'item' }, style: 'visibility: hidden') do %>
-      <i class="fas fa-arrow-down"></i>
-    <% end %>
+    <turbo-frame>
+      <%= link_to({ action: 'namespaces', business_identifier: busyness.identifier }) do %>
+        <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree_remote#expand"></i>
+      <% end %>
+      <span><%= busyness.name %></span>
+      <%= link_to({ controller: 'busynesses', action: 'move_higher', id: busyness.id }, method: :patch, data: { 'show-target': 'item' }, style: 'visibility: hidden') do %>
+        <i class="fas fa-arrow-up"></i>
+      <% end %>
+      <%= link_to({ controller: 'busynesses', action: 'move_lower', id: busyness.id }, method: :patch, data: { 'show-target': 'item' }, style: 'visibility: hidden') do %>
+        <i class="fas fa-arrow-down"></i>
+      <% end %>
+    </turbo-frame>
   </td>
 </tr>
