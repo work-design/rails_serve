@@ -1,10 +1,10 @@
 <tr>
   <td><%= link_to busyness.name, { controller: 'governs', business_identifier: busyness.identifier }, text: true %></td>
   <td>
-    <%= link_to({ action: 'show', id: busyness.id }, { aria: { label: t('.show') }, remote: true, class: 'button is-small is-rounded is-light' }) do %>
+    <%= link_to({ action: 'show', id: busyness.id }, { aria: { label: t('.show') }, class: 'button is-small is-rounded is-light' }) do %>
       <i class="fas fa-info"></i>
     <% end %>
-    <%= link_to({ action: 'destroy', id: busyness.id }, { method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'button is-small is-rounded is-light' }) do %>
+    <%= link_to({ action: 'destroy', id: busyness.id }, { method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, class: 'button is-small is-rounded is-light' }) do %>
       <i class="fas fa-trash-alt"></i>
     <% end %>
   </td>

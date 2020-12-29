@@ -1,14 +1,14 @@
 <tr id="tr_<%= govern.id %>">
   <td><%= govern.namespace_identifier %></td>
   <td>
-    <%= link_to({ action: 'move_higher', id: govern.id }, method: :patch, remote: true, class: 'has-text-grey-lighter') do %>
+    <%= link_to({ action: 'move_higher', id: govern.id }, method: :patch, class: 'has-text-grey-lighter') do %>
       <i class="fas fa-arrow-up"></i>
     <% end %>
-    <%= link_to({ action: 'move_lower', id: govern.id }, method: :patch, remote: true, class: 'has-text-grey-lighter') do %>
+    <%= link_to({ action: 'move_lower', id: govern.id }, method: :patch, class: 'has-text-grey-lighter') do %>
       <i class="fas fa-arrow-down"></i>
     <% end %>
     <span aria-label="<%= govern.identifier %>"><%= govern.name %></span>
-    <%= link_to edit_panel_govern_path(govern), aria: { label: t('.edit') }, remote: true, class: 'has-text-grey-lighter' do %>
+    <%= link_to edit_panel_govern_path(govern), aria: { label: t('.edit') }, class: 'has-text-grey-lighter' do %>
       <i class="fas fa-pencil-alt"></i>
     <% end %>
   </td>
@@ -16,10 +16,10 @@
     <% govern.rules.each do |rule| %>
       <div>
         <span aria-label="<%= rule.action_name %>"><%= rule.name %></span>
-        <%= link_to roles_panel_govern_rule_path(govern, rule), remote: true, id: "roles_#{rule.id}", class: 'has-text-grey-lighter' do %>
+        <%= link_to roles_panel_govern_rule_path(govern, rule), id: "roles_#{rule.id}", class: 'has-text-grey-lighter' do %>
           <i class="fas fa-users"></i>
         <% end %>
-        <%= link_to edit_panel_govern_rule_path(govern, rule), aria: { label: t('.edit') }, remote: true, class: 'has-text-grey-lighter' do %>
+        <%= link_to edit_panel_govern_rule_path(govern, rule), aria: { label: t('.edit') }, class: 'has-text-grey-lighter' do %>
           <i class="fas fa-pencil-alt"></i>
         <% end %>
       </div>

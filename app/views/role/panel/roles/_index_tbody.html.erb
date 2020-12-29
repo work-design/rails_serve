@@ -1,30 +1,30 @@
 <tr>
-  <td><%= role.name %></td>
-  <td><%= role.description %></td>
+  <td><%= model.name %></td>
+  <td><%= model.description %></td>
   <td>
-    <% Array(role.who_types).each do |who_type| %>
-      <%= link_to who_type, panel_role_who_roles_path(role, who_type: who_type), class: 'button' %>
+    <% Array(model.who_types).each do |who_type| %>
+      <%= link_to who_type, panel_role_who_roles_path(model, who_type: who_type), class: 'button' %>
     <% end %>
   </td>
   <td>
     <div data-controller="input">
-      <%= check_box_tag '[role]visible', nil, role.visible, data: { method: :patch, remote: true, url: panel_role_path(role), action: 'input#submit' }, id: nil, class: 'switch is-rounded' %>
+      <%= check_box_tag '[model]visible', nil, model.visible, data: { method: :patch, url: panel_role_path(model), action: 'input#submit' }, id: nil, class: 'switch is-rounded' %>
       <label></label>
     </div>
   </td>
   <td>
     <div data-controller="input">
-      <%= check_box_tag '[role]default', nil, role.default, data: { method: :patch, remote: true, url: panel_role_path(role), action: 'input#submit' }, id: nil, class: 'switch is-rounded' %>
+      <%= check_box_tag '[model]default', nil, model.default, data: { method: :patch, url: panel_role_path(model), action: 'input#submit' }, id: nil, class: 'switch is-rounded' %>
       <label></label>
     </div>
   </td>
   <td>
-    <%= link_to t('role.panel.roles.overview.title'), { action: 'overview', id: role.id }, class: 'button is-small is-rounded is-light' %>
-    <%= link_to t('role.panel.roles.show.title'), { action: 'show', id: role.id }, class: 'button is-small is-rounded is-light' %>
-    <%= link_to({ action: 'edit', id: role.id }, aria: { label: t('.edit') }, remote: true, class: 'button is-small is-rounded is-light') do %>
+    <%= link_to t('model.panel.roles.overview.title'), { action: 'overview', id: model.id }, class: 'button is-small is-rounded is-light' %>
+    <%= link_to t('model.panel.roles.show.title'), { action: 'show', id: model.id }, class: 'button is-small is-rounded is-light' %>
+    <%= link_to({ action: 'edit', id: model.id }, aria: { label: t('.edit') }, class: 'button is-small is-rounded is-light') do %>
       <i class="fas fa-pencil-alt"></i>
     <% end %>
-    <%= link_to({ action: 'destroy', id: role.id }, method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, remote: true, class: 'button is-small is-rounded is-light') do %>
+    <%= link_to({ action: 'destroy', id: model.id }, method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, class: 'button is-small is-rounded is-light') do %>
       <i class="fas fa-trash-alt"></i>
     <% end %>
   </td>

@@ -1,3 +1,3 @@
-<%= link_to({ action: 'sync' }, method: :post, remote: true, data: { disable_with: 'Syncing' }, class: 'button is-success') do %>
+<%= link_to({ action: 'sync' }, method: :post, data: { disable_with: 'Syncing' }, class: 'button is-success') do %>
   <i class="fas fa-sync-alt"></i><span><%= t('.sync') %></span>
 <% end %>
