@@ -1,0 +1,15 @@
+<tr id="tr_<%= model.id %>" data-controller="show" data-action="mouseenter->show#show mouseleave->show#hide">
+  <%= yield %>
+  <td>
+    <turbo-frame data-show-target="item" style="visibility: hidden">
+      <%= link_to t('model.panel.roles.overview.title'), { action: 'overview', id: model.id }, data: { turbo_frame: '_top' }, class: 'button is-small is-rounded is-light' %>
+      <%= link_to t('model.panel.roles.show.title'), { action: 'show', id: model.id }, data: { turbo_frame: '_top' }, class: 'button is-small is-rounded is-light' %>
+      <%= link_to({ action: 'edit', id: model.id }, aria: { label: t('.edit') }, class: 'button is-small is-rounded is-light') do %>
+        <i class="fas fa-pencil-alt"></i>
+      <% end %>
+      <%= button_to({ action: 'destroy', id: model.id }, method: :delete, data: { confirm: t('.confirm') }, aria: { label: t('.destroy') }, class: 'button is-small is-rounded is-light') do %>
+        <i class="fas fa-trash-alt"></i>
+      <% end %>
+    </turbo-frame>
+  </td>
+</tr>
