@@ -15,7 +15,7 @@ module RailsRole::User
       true
     elsif respond_to?(:identity) && RailsRole.config.default_admin_accounts.include?(identity)
       true
-    elsif defined? super
+    elsif method(:admin?).super_method
       super
     end
   end
