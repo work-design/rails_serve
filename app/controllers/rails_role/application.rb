@@ -9,7 +9,7 @@ module RailsRole::Application
     if current_organ.has_role?(
       business: params[:business] || 'application',
       namespace: params[:namespace] || 'application',
-      controller: controller_path,
+      controller: controller_name,
       action: action_name,
       params: params
     )
@@ -27,7 +27,7 @@ module RailsRole::Application
     if rails_role_user && rails_role_user.has_role?(
       business: params[:business].presence || 'application',
       namespace: params[:namespace].presence || 'application',
-      controller: controller_path,
+      controller: controller_name,
       action: action_name,
       params: params
     )

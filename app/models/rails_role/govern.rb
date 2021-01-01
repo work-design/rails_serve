@@ -51,7 +51,7 @@ module RailsRole::Govern
 
     def sync
       present_controllers = Govern.unscoped.select(:identifier).distinct.pluck(:identifier)
-      all_controllers = RailsCom::Routes.controllers.except!(*RailsRole.config.ignore_controllers).keys
+      all_controllers = RailsCom::Routes.controllers.keys
       missing_controllers = all_controllers - present_controllers
       invalid_controllers = present_controllers - all_controllers
 
