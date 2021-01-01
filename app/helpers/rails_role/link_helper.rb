@@ -59,7 +59,9 @@ module RailsRole::LinkHelper
     else
       user_permitted = true
     end
-    #logger.debug "  ----------> Options: #{_options} | Params: #{path_params} | Organ: #{organ_permitted} | #{rails_role_user&.class&.name}_#{rails_role_user&.id}: #{user_permitted}"
+    if RailsRole.config.debug
+      logger.debug "  ----------> Options: #{_options} | Params: #{path_params} | Organ: #{organ_permitted} | #{rails_role_user&.class&.name}_#{rails_role_user&.id}: #{user_permitted}"
+    end
 
     organ_permitted && user_permitted
   end
