@@ -1,0 +1,1 @@
+<%= turbo_stream.after "tr_#{params[:business_identifier]}", partial: 'show_namespace', collection: @name_spaces, as: :name_space, locals: { hide: true } %>

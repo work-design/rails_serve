@@ -1,17 +1,19 @@
 <tr id="tr_<%= busyness.identifier %>" data-controller="tree_remote">
   <td>
-    <%= link_to({ action: 'namespaces', business_identifier: busyness.identifier }) do %>
-      <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree_remote#expand"></i>
-    <% end %>
-    <% if @role.has_role?(business: busyness.identifier) %>
-      <%= button_to({ action: 'business_off' }, params: { business_identifier: busyness.identifier }, method: :patch) do %>
-        <i class="far fa-check-square fa-lg"></i>
+    <turbo-frame>
+      <%= link_to({ action: 'namespaces', business_identifier: busyness.identifier }) do %>
+        <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree_remote#expand"></i>
       <% end %>
-    <% else %>
-      <%= button_to({ action: 'business_on' }, params: { business_identifier: busyness.identifier }, method: :patch) do %>
-        <i class="far fa-square fa-lg"></i>
+      <% if @role.has_role?(business: busyness.identifier) %>
+        <%= button_to({ action: 'business_off' }, params: { business_identifier: busyness.identifier }, method: :patch) do %>
+          <i class="far fa-check-square fa-lg"></i>
+        <% end %>
+      <% else %>
+        <%= button_to({ action: 'business_on' }, params: { business_identifier: busyness.identifier }, method: :patch) do %>
+          <i class="far fa-square fa-lg"></i>
+        <% end %>
       <% end %>
-    <% end %>
-    <span><%= busyness.name %></span>
+      <span><%= busyness.name %></span>
+    </turbo-frame>
   </td>
 </tr>

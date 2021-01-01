@@ -1,0 +1,1 @@
+<%= turbo_stream.replace "tr_#{params[:controller_identifier].split('/').join('_')}", partial: 'show_govern', locals: { govern: @govern } %>

@@ -1,2 +1,0 @@
-var doc = document.getElementById('tr_<%= params[:business_identifier] %>')
-doc.insertAdjacentHTML('afterend', '<%= j(render partial: 'show_namespace', collection: @name_spaces, as: :name_space, locals: { hide: true }) %>')

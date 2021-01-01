@@ -1,0 +1,1 @@
+<%= turbo_stream.replace "tr_#{params[:controller_identifier].split('/').join('_')}_#{params[:action_name]}", partial: 'show_rule', locals: { rule: @rule } %>

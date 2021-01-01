@@ -1,0 +1,1 @@
+<%= turbo_stream.after "tr_#{params[:controller_identifier].split('/').join('_')}", partial: 'show_rule', collection: @rules, as: :rule %>
