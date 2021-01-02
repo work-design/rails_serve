@@ -2,7 +2,7 @@
   <td>
     <turbo-frame>
       <span style="width: 4.29em; display: inline-block"></span>
-      <% if @role.has_role?(business: rule.business_identifier, namespace: rule.namespace_identifier, controller: params[:controller_identifier], action: rule.action_name) %>
+      <% if @role.has_role?(business: rule.business_identifier, namespace: rule.namespace_identifier, controller: rule.controller_name, action: rule.action_name) %>
         <%= button_to({ action: 'rule_off' }, params: { controller_identifier: params[:controller_identifier], action_name: rule.action_name }, method: :patch) do %>
           <i class="far fa-check-square fa-lg"></i>
         <% end %>
