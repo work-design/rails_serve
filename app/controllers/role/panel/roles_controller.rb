@@ -57,28 +57,28 @@ class Role::Panel::RolesController < Role::Panel::BaseController
   end
 
   def business_on
-    @busyness = Busyness.find_by identifier: params[:business_identifier]
+    @busyness = Busyness.find_by identifier: params[:business_identifier].presence
     @role.role_hash.merge! @busyness.role_hash
     @role.save
   end
 
   def business_off
-    @busyness = Busyness.find_by identifier: params[:business_identifier]
-    @role.role_hash.delete params[:business_identifier]
+    @busyness = Busyness.find_by identifier: params[:business_identifier].presence
+    @role.role_hash.delete params[:business_identifier].presence
     @role.save
   end
 
   def namespace_on
-    @name_space = NameSpace.find_by identifier: params[:namespace_identifier]
-    @role.role_hash.deep_merge!(params[:business_identifier] => {
-      params[:namespace_identifier] => @name_space.role_hash(params[:business_identifier])
+    @name_space = NameSpace.find_by identifier: params[:namespace_identifier].presence
+    @role.role_hash.deep_merge!(params[:business_identifier].presence => {
+      params[:namespace_identifier].presence => @name_space.role_hash(params[:business_identifier].presence)
     })
     @role.save
   end
 
   def namespace_off
-    @name_space = NameSpace.find_by identifier: params[:namespace_identifier]
-    @role.role_hash.fetch(params[:business_identifier], {}).delete(params[:namespace_identifier])
+    @name_space = NameSpace.find_by identifier: params[:namespace_identifier].presence
+    @role.role_hash.fetch(params[:business_identifier].presence, {}).delete(params[:namespace_identifier].presence)
     @role.save
   end
 
@@ -100,7 +100,7 @@ class Role::Panel::RolesController < Role::Panel::BaseController
     q_params.merge! params.permit(:business_identifier, :namespace_identifier, :controller_name)
 
     @govern = Govern.find_by(q_params)
-    @role.role_hash.fetch(params[:business_identifier], {}).fetch(params[:namespace_identifier], {}).delete(params[:controller_name])
+    @role.role_hash.fetch(params[:business_identifier].presence, {}).fetch(params[:namespace_identifier].presence, {}).delete(params[:controller_name])
     @role.save
   end
 
