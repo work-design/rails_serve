@@ -37,8 +37,8 @@ module RailsRole::LinkHelper
       path_params = {}
     end
     path_params[:controller] ||= controller_path
+    path_params[:controller].delete_prefix!('/')
     path_params[:action] ||= 'index'
-    extra_params = path_params.except(:controller, :action)
     r = RailsCom::Routes.controllers.dig(path_params[:controller], path_params[:action])
     if r.present?
       path_params[:business] = r[:business]
@@ -46,8 +46,9 @@ module RailsRole::LinkHelper
     else
       path_params[:business] = params[:business]
       path_params[:namespace] = params[:namespace]
-      path_params[:controller] = "#{params[:business]}/#{params[:namespace]}/#{path_params[:controller]}" unless path_params[:controller].include?('/')
+      path_params[:controller] = path_params[:controller]
     end
+    extra_params = path_params.except(:controller, :action, :business, :namespace)
 
     if defined?(current_organ) && current_organ
       organ_permitted = current_organ.has_role?(params: extra_params, **path_params.slice(:business, :namespace, :controller, :action).symbolize_keys)
