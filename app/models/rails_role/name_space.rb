@@ -37,6 +37,10 @@ module RailsRole::NameSpace
         namespace = NameSpace.find_or_initialize_by(identifier: namespace)
         namespace.save
       end
+
+      (existing - RailsCom::Routes.namespaces.keys).each do |namespace|
+        NameSpace.find_by(identifier: namespace).destroy
+      end
     end
 
   end

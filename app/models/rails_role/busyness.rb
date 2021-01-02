@@ -49,6 +49,10 @@ module RailsRole::Busyness
         busyness = Busyness.find_or_initialize_by(identifier: business)
         busyness.save
       end
+
+      (existing - RailsCom::Routes.businesses.keys).each do |business|
+        Busyness.find_by(identifier: business)&.destroy
+      end
     end
 
   end
