@@ -25,13 +25,7 @@ module RailsRole::Rule
 
     default_scope -> { order(position: :asc, id: :asc) }
 
-    after_initialize if: :new_record? do
-      self.identifier = "#{controller_identifier}/#{action_name}"
-      if govern
-        self.business_identifier = govern.business_identifier
-        self.namespace_identifier = govern.namespace_identifier
-      end
-    end
+    before_validation :sync_from_govern
 
     acts_as_list scope: [:controller_identifier]
   end
@@ -44,6 +38,13 @@ module RailsRole::Rule
     return t2 if t2
 
     identifier
+  end
+
+  def sync_from_govern
+    self.business_identifier = govern.business_identifier
+    self.namespace_identifier = govern.namespace_identifier
+    self.controller_identifier = govern.identifier
+    self.identifier = "#{controller_identifier}/#{action_name}"
   end
 
 end
