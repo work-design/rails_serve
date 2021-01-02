@@ -3,8 +3,9 @@ module RailsRole::Govern
 
   included do
     attribute :identifier, :string, index: true
-    attribute :namespace_identifier, :string, default: 'application', index: true
-    attribute :business_identifier, :string, default: 'application', index: true
+    attribute :namespace_identifier, :string, index: true
+    attribute :business_identifier, :string, index: true
+    attribute :controller_name, :string
     attribute :position, :integer
 
     belongs_to :name_space, foreign_key: :namespace_identifier, primary_key: :identifier, optional: true
@@ -48,6 +49,16 @@ module RailsRole::Govern
   end
 
   class_methods do
+
+    def actions
+      result = {}
+      Busyness.all.includes(governs: :rules).each do |busyness|
+        result.merge! busyness.identifier => busyness.governs.group_by(&:namespace_identifier).transform_values!(&->(governs){
+          governs.each_with_object({}) { |govern, h| h.merge! govern.controller_name => govern.rules.pluck(:action_name) }
+        })
+      end
+      result
+    end
 
     def sync
       present_controllers = Govern.unscoped.select(:identifier).distinct.pluck(:identifier)
