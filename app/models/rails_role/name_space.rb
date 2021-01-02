@@ -23,8 +23,8 @@ module RailsRole::NameSpace
 
   def role_hash(business_identifier)
     Rule.where(business_identifier: business_identifier, namespace_identifier: identifier)
-    .select(:controller_identifier, :action_name)
-    .group_by(&:controller_identifier).transform_values! do |v|
+    .select(:controller_name, :action_name)
+    .group_by(&:controller_name).transform_values! do |v|
       v.each_with_object({}) { |i, h| h.merge! i.action_name => true }
     end
   end
