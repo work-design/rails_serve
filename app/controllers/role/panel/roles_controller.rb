@@ -82,18 +82,24 @@ class Role::Panel::RolesController < Role::Panel::BaseController
   end
 
   def govern_on
-    @govern = Govern.find_by identifier: params[:controller_identifier]
+    q_params = {}
+    q_params.merge! params.permit(:business_identifier, :namespace_identifier, :controller_name)
+
+    @govern = Govern.find_by(q_params)
     @role.role_hash.deep_merge!(params[:business_identifier] => {
       params[:namespace_identifier] => {
-        params[:controller_identifier] => @govern.role_hash
+        params[:controller_name] => @govern.role_hash
       }
     })
     @role.save
   end
 
   def govern_off
-    @govern = Govern.find_by identifier: params[:controller_identifier]
-    @role.role_hash.fetch(params[:business_identifier], {}).fetch(params[:namespace_identifier], {}).delete(params[:controller_identifier])
+    q_params = {}
+    q_params.merge! params.permit(:business_identifier, :namespace_identifier, :controller_name)
+
+    @govern = Govern.find_by(q_params)
+    @role.role_hash.fetch(params[:business_identifier], {}).fetch(params[:namespace_identifier], {}).delete(params[:controller_name])
     @role.save
   end
 
