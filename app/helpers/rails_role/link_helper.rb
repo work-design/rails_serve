@@ -37,9 +37,8 @@ module RailsRole::LinkHelper
       path_params = {}
     end
     path_params[:controller] ||= controller_path
-    path_params[:controller].delete_prefix!('/')
     path_params[:action] ||= 'index'
-    r = RailsCom::Routes.controllers.dig(path_params[:controller], path_params[:action])
+    r = RailsCom::Routes.controllers.dig(path_params[:controller].delete_prefix('/'), path_params[:action])
     if r.present?
       path_params[:business] = r[:business]
       path_params[:namespace] = r[:namespace]
