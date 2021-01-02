@@ -57,12 +57,13 @@ class Role::Panel::RolesController < Role::Panel::BaseController
   end
 
   def business_on
-    busyness = Busyness.find_by identifier: params[:business_identifier]
-    @role.role_hash.merge! busyness.role_hash
+    @busyness = Busyness.find_by identifier: params[:business_identifier]
+    @role.role_hash.merge! @busyness.role_hash
     @role.save
   end
 
   def business_off
+    @busyness = Busyness.find_by identifier: params[:business_identifier]
     @role.role_hash.delete params[:business_identifier]
     @role.save
   end
@@ -104,10 +105,13 @@ class Role::Panel::RolesController < Role::Panel::BaseController
   end
 
   def rule_on
-    @rule = Rule.find_by controller_identifier: params[:controller_identifier], action_name: params[:action_name]
+    q_params = {}
+    q_params.merge! params.permit(:business_identifier, :namespace_identifier, :controller_name, :action_name)
+
+    @rule = Rule.find_by(q_params)
     @role.role_hash.deep_merge!(@rule.business_identifier => {
       @rule.namespace_identifier => {
-        params[:controller_identifier] => {
+        params[:controller_name] => {
           params[:action_name] => true
         }
       }
@@ -116,8 +120,11 @@ class Role::Panel::RolesController < Role::Panel::BaseController
   end
 
   def rule_off
-    @rule = Rule.find_by controller_identifier: params[:controller_identifier], action_name: params[:action_name]
-    @role.role_hash.fetch(@rule.business_identifier, {}).fetch(@rule.namespace_identifier, {}).fetch(params[:controller_identifier], {}).delete(params[:action_name])
+    q_params = {}
+    q_params.merge! params.permit(:business_identifier, :namespace_identifier, :controller_name, :action_name)
+
+    @rule = Rule.find_by(q_params)
+    @role.role_hash.fetch(@rule.business_identifier, {}).fetch(@rule.namespace_identifier, {}).fetch(params[:controller_name], {}).delete(params[:action_name])
     @role.save
   end
 

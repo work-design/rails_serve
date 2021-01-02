@@ -6,11 +6,11 @@
         <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree_remote#expand"></i>
       <% end %>
       <% if @role.has_role?(business: params[:business_identifier], namespace: params[:namespace_identifier], controller: govern.controller_name) %>
-        <%= button_to({ action: 'govern_off' }, params: { business_identifier: params[:business_identifier], namespace_identifier: params[:namespace_identifier], controller_identifier: govern.identifier }, method: :patch) do %>
+        <%= button_to({ action: 'govern_off' }, params: { business_identifier: params[:business_identifier], namespace_identifier: params[:namespace_identifier], controller_name: govern.controller_name }, method: :patch) do %>
           <i class="far fa-check-square fa-lg"></i>
         <% end %>
       <% else %>
-        <%= button_to({ action: 'govern_on' }, params: { business_identifier: params[:business_identifier], namespace_identifier: params[:namespace_identifier], controller_identifier: govern.identifier }, method: :patch) do %>
+        <%= button_to({ action: 'govern_on' }, params: { business_identifier: params[:business_identifier], namespace_identifier: params[:namespace_identifier], controller_name: govern.controller_name }, method: :patch) do %>
           <i class="far fa-square fa-lg"></i>
         <% end %>
       <% end %>
