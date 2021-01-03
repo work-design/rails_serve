@@ -106,7 +106,9 @@ class Role::Panel::RolesController < Role::Panel::BaseController
 
   def govern_off
     q_params = {}
-    q_params.merge! params.permit(:business_identifier, :namespace_identifier, :controller_name)
+    q_params.merge! business_identifier: params[:business_identifier].presence
+    q_params.merge! namespace_identifier: params[:namespace_identifier].presence
+    q_params.merge! params.permit(:controller_name)
 
     @govern = Govern.find_by(q_params)
     @role.role_hash.fetch(params[:business_identifier].presence, {}).fetch(params[:namespace_identifier].presence, {}).delete(params[:controller_name])
@@ -115,7 +117,9 @@ class Role::Panel::RolesController < Role::Panel::BaseController
 
   def rule_on
     q_params = {}
-    q_params.merge! params.permit(:business_identifier, :namespace_identifier, :controller_name, :action_name)
+    q_params.merge! business_identifier: params[:business_identifier].presence
+    q_params.merge! namespace_identifier: params[:namespace_identifier].presence
+    q_params.merge! params.permit(:controller_name, :action_name)
 
     @rule = Rule.find_by(q_params)
     @role.role_hash.deep_merge!(@rule.business_identifier => {
@@ -130,7 +134,9 @@ class Role::Panel::RolesController < Role::Panel::BaseController
 
   def rule_off
     q_params = {}
-    q_params.merge! params.permit(:business_identifier, :namespace_identifier, :controller_name, :action_name)
+    q_params.merge! business_identifier: params[:business_identifier].presence
+    q_params.merge! namespace_identifier: params[:namespace_identifier].presence
+    q_params.merge! params.permit(:controller_name, :action_name)
 
     @rule = Rule.find_by(q_params)
     @role.role_hash.fetch(@rule.business_identifier, {}).fetch(@rule.namespace_identifier, {}).fetch(params[:controller_name], {}).delete(params[:action_name])
