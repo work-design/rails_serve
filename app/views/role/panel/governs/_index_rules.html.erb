@@ -1,5 +1,5 @@
 <% @rules.each do |rule| %>
-<tr id="tr_<%= params[:controller_identifier].split('/').join('_') %>_<%= rule.identifier %>" data-controller="tree_remote" data-tree_remote-target="item">
+<tr id="tr_<%= rule.identifier.split('/').join('_') %>" data-controller="tree_remote" data-tree_remote-target="item">
   <td>
     <span style="width: 4.29em; display: inline-block"></span>
     <span><%= rule.name %></span>

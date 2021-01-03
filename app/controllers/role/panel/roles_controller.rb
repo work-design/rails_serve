@@ -36,14 +36,21 @@ class Role::Panel::RolesController < Role::Panel::BaseController
   end
 
   def governs
-    q_params = {}
+    q_params = {
+      business_identifier: nil,
+      namespace_identifier: nil,
+      allow: { business_identifier: nil, namespace_identifier: nil }
+    }
     q_params.merge! params.permit(:business_identifier, :namespace_identifier)
 
     @governs = Govern.default_where(q_params)
   end
 
   def rules
-    q_params = {}
+    q_params = {
+      controller_identifier: nil,
+      allow: { controller_identifier: nil }
+    }
     q_params.merge! params.permit(:controller_identifier)
 
     @rules = Rule.default_where(q_params)
