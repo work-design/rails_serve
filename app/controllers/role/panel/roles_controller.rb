@@ -91,7 +91,9 @@ class Role::Panel::RolesController < Role::Panel::BaseController
 
   def govern_on
     q_params = {}
-    q_params.merge! params.permit(:business_identifier, :namespace_identifier, :controller_name)
+    q_params.merge! business_identifier: params[:business_identifier].presence
+    q_params.merge! namespace_identifier: params[:namespace_identifier].presence
+    q_params.merge! params.permit(:controller_name)
 
     @govern = Govern.find_by(q_params)
     @role.role_hash.deep_merge!(params[:business_identifier] => {
