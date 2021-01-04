@@ -5,7 +5,7 @@
       <%= link_to({ action: 'rules', govern_id: govern.id }) do %>
         <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree_remote#expand"></i>
       <% end %>
-      <% if @role.has_role?(business: params[:business_identifier], namespace: params[:namespace_identifier], controller: govern.controller_name) %>
+      <% if @role.has_role?(business: govern.business_identifier, namespace: govern.namespace_identifier, controller: govern.controller_name) %>
         <%= button_to({ action: 'govern_off' }, params: { govern_id: govern.id }, method: :patch) do %>
           <i class="far fa-check-square fa-lg"></i>
         <% end %>

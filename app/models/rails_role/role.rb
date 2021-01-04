@@ -25,10 +25,14 @@ module RailsRole::Role
     after_commit :delete_cache, if: -> { default? && saved_change_to_role_hash? }
   end
 
-  def has_role?(business: nil, namespace: nil, controller: nil, action: nil, params: {})
-    options = [business.to_s, namespace.to_s, controller.to_s.split('/')[-1], action].take_while(&->(i){ !i.nil? })
-    return false if options.blank?
-    role_hash.dig(*options).present?
+  def has_role?(params: {}, **options)
+    options[:business] = options[:business].to_s if options.key?(:business)
+    options[:namespace] = options[:namespace].to_s if options.key?(:namespace)
+
+    opts = [options[:business], options[:namespace], options[:controller].to_s.split('/')[-1], options[:action]].take_while(&->(i){ !i.nil? })
+    logger.debug "----------> #{opts}"
+    return false if opts.blank?
+    role_hash.dig(*opts).present?
   end
 
   def set_default

@@ -42,7 +42,7 @@ module RailsRole::Govern
   end
 
   def name
-    t = I18n.t "#{controller_path.split('/').join('.')}.index.title", default: nil
+    t = I18n.t "#{controller_path.to_s.split('/').join('.')}.index.title", default: nil
     return t if t
 
     controller_path
