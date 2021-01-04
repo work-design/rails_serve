@@ -6,7 +6,6 @@ class Role::Panel::GovernsController < Role::Panel::BaseController
     q_params.merge! params.permit(:business_identifier, :namespace_identifier)
 
     @busynesses = Busyness.all
-
     @governs = Govern.includes(:rules).default_where(q_params).page(params[:page])
   end
 

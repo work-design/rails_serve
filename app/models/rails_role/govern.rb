@@ -24,7 +24,7 @@ module RailsRole::Govern
   end
 
   def identifier
-    [business_identifier, namespace_identifier, controller_name].join('_')
+    [business_identifier, namespace_identifier, (controller_name.blank? ? '_' : controller_name)].join('_')
   end
 
   def business_name
