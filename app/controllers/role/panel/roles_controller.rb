@@ -94,13 +94,17 @@ class Role::Panel::RolesController < Role::Panel::BaseController
     q_params.merge! business_identifier: params[:business_identifier].presence
     q_params.merge! namespace_identifier: params[:namespace_identifier].presence
     q_params.merge! params.permit(:controller_name)
-
     @govern = Govern.find_by(q_params)
-    @role.role_hash.deep_merge!(params[:business_identifier] => {
-      params[:namespace_identifier] => {
-        params[:controller_name] => @govern.role_hash
+
+    toggle = {
+      params[:business_identifier] => {
+        params[:namespace_identifier] => {
+          params[:controller_name] => @govern.role_hash
+        }
       }
-    })
+    }
+
+    @role.role_hash.deep_merge!(toggle)
     @role.save
   end
 
@@ -111,7 +115,7 @@ class Role::Panel::RolesController < Role::Panel::BaseController
     q_params.merge! params.permit(:controller_name)
 
     @govern = Govern.find_by(q_params)
-    @role.role_hash.fetch(params[:business_identifier].presence, {}).fetch(params[:namespace_identifier].presence, {}).delete(params[:controller_name])
+    @role.role_hash.fetch(params[:business_identifier], {}).fetch(params[:namespace_identifier], {}).delete(params[:controller_name])
     @role.save
   end
 
