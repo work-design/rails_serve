@@ -11,7 +11,7 @@ module RailsRole::Govern
     belongs_to :name_space, foreign_key: :namespace_identifier, primary_key: :identifier, optional: true
     belongs_to :busyness, foreign_key: :business_identifier, primary_key: :identifier, optional: true
 
-    has_many :rules, ->(o) { where(business_identifier: o.business_identifier, namespace_identifier: o.namespace_identifier).order(position: :asc) }, foreign_key: :controller_name, primary_key: :controller_name, dependent: :destroy, inverse_of: :govern
+    has_many :rules, ->(o) { where(business_identifier: o.business_identifier, namespace_identifier: o.namespace_identifier).order(position: :asc) }, foreign_key: :controller_path, primary_key: :controller_path, dependent: :destroy, inverse_of: :govern
     has_many :role_rules, dependent: :destroy
 
     accepts_nested_attributes_for :rules, allow_destroy: true
@@ -65,27 +65,28 @@ module RailsRole::Govern
     end
 
     def sync
-      RailsCom::Routes.actions.each do |busyness, namespaces|
+      RailsCom::Routes.actions.each do |business, namespaces|
         namespaces.each do |namespace, governs|
-          governs.each do |controller_name, all_rules|
-            govern = Govern.find_or_initialize_by(business_identifier: busyness, namespace_identifier: namespace, controller_name: controller_name)
+          governs.each do |controller, actions|
+            govern = Govern.find_or_initialize_by(business_identifier: business, namespace_identifier: namespace, controller_path: controller)
+            govern.controller_name = controller.to_s.split('/')[-1]
 
-            all_rules.each do |action_name, action|
+            actions.each do |action_name, action|
               rule = govern.rules.find_or_initialize_by(action_name: action_name)
               rule.path = action[:path]
               rule.verb = action[:verb]
             end
 
             present_rules = govern.rules.pluck(:action_name)
-            govern.rules.where(action_name: (present_rules - all_rules)).each do |rule|
+            govern.rules.where(action_name: (present_rules - actions)).each do |rule|
               rule.mark_for_destruction
             end
 
             govern.save if govern.rules.length > 0
           end
 
-          present_controllers = Govern.where(business_identifier: busyness, namespace_identifier: namespace).pluck(:controller_name)
-          Govern.where(business_identifier: busyness, namespace_identifier: namespace, controller_name: (present_controllers - governs.keys)).each do |govern|
+          present_controllers = Govern.where(business_identifier: business, namespace_identifier: namespace).pluck(:controller_name)
+          Govern.where(business_identifier: business, namespace_identifier: namespace, controller_name: (present_controllers - governs.keys)).each do |govern|
             govern.destroy
           end
         end

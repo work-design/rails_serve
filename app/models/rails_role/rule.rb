@@ -11,7 +11,7 @@ module RailsRole::Rule
     attribute :verb, :string
     attribute :position, :integer
 
-    belongs_to :govern, ->(o){ where(business_identifier: o.business_identifier, namespace_identifier: o.namespace_identifier) }, foreign_key: :controller_name, primary_key: :controller_name, optional: true
+    belongs_to :govern, ->(o){ where(business_identifier: o.business_identifier, namespace_identifier: o.namespace_identifier) }, foreign_key: :controller_path, primary_key: :controller_path, optional: true
 
     enum operation: {
       list: 'list',
@@ -26,7 +26,7 @@ module RailsRole::Rule
 
     default_scope -> { order(position: :asc, id: :asc) }
 
-    acts_as_list scope: [:business_identifier, :namespace_identifier, :controller_name]
+    acts_as_list scope: [:business_identifier, :namespace_identifier, :controller_path]
   end
 
   def identifier
