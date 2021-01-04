@@ -1,13 +1,13 @@
 GIT
   remote: https://github.com/qinmingyuan/default_form.git
-  revision: 0eddbc13834a470f413a22bb87a342bab4e8879b
+  revision: 1e72c95dd3d13dbfa70661d63bdf644169c8d03f
   specs:
     default_form (1.5.1)
       rails_com (~> 1.2)
 
 GIT
   remote: https://github.com/work-design/rails_com.git
-  revision: 3ef6a195f9d38798621233ed59b57112fcf19cb7
+  revision: b63579cb7b3845ff1761ca69cf46586123aa57f9
   specs:
     rails_com (1.2.9)
       acme-client
@@ -107,9 +107,11 @@ GEM
     factory_bot_rails (6.1.0)
       factory_bot (~> 6.1.0)
       railties (>= 5.0.0)
-    faraday (1.2.0)
+    faraday (1.3.0)
+      faraday-net_http (~> 1.0)
       multipart-post (>= 1.2, < 3)
       ruby2_keywords
+    faraday-net_http (1.0.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     http-2-next (0.3.0)
@@ -147,6 +149,7 @@ GEM
     nio4r (2.5.4)
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
+    pg (1.2.3)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -193,7 +196,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.4.2)
     thor (1.0.1)
     timers (4.3.2)
     tzinfo (2.0.3)
@@ -219,12 +221,12 @@ DEPENDENCIES
   default_form!
   factory_bot_rails
   kaminari
+  pg
   pry-rails
   rails
   rails_com!
   rails_role!
-  sqlite3
   webpacker
 
 BUNDLED WITH
-   2.2.0.rc.1
+   2.2.3

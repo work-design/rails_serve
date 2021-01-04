@@ -1,6 +1,6 @@
 FactoryBot.define do
 
-  factory :govern_taxon do
+  factory :busyness do
     name { "MyString" }
     code { "MyString" }
   end
