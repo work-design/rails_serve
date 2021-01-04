@@ -1,9 +1,14 @@
 require 'test_helper'
 
-class BusynessTest < ActiveSupport::TestCase
+class GovernTest < ActiveSupport::TestCase
 
   setup do
     Govern.sync
+  end
+
+  teardown do
+    Govern.delete_all
+    Rule.delete_all
   end
 
   test 'role_hash' do

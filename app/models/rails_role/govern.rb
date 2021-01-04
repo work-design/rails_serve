@@ -73,6 +73,7 @@ module RailsRole::Govern
 
             actions.each do |action_name, action|
               rule = govern.rules.find_or_initialize_by(action_name: action_name)
+              rule.controller_name = govern.controller_name
               rule.path = action[:path]
               rule.verb = action[:verb]
             end
