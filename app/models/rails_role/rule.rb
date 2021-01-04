@@ -27,6 +27,10 @@ module RailsRole::Rule
     acts_as_list scope: [:business_identifier, :namespace_identifier, :controller_name]
   end
 
+  def identifier
+    [business_identifier, namespace_identifier, controller_name, action_name].join('_')
+  end
+
   def name
     t1 = I18n.t "#{[business_identifier, namespace_identifier, controller_name, action_name].join('.')}.title", default: nil
     return t1 if t1

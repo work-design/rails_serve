@@ -23,6 +23,10 @@ module RailsRole::Govern
     acts_as_list scope: [:namespace_identifier, :business_identifier]
   end
 
+  def identifier
+    [business_identifier, namespace_identifier, controller_name].join('_')
+  end
+
   def business_name
     t = I18n.t "#{business_identifier}.title", default: nil
     return t if t

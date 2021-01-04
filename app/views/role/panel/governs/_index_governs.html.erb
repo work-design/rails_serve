@@ -1,9 +1,9 @@
 <% @governs.each do |govern| %>
-<tr id="tr_<%= govern.identifier.split('/').join('_') %>" data-controller="tree_remote" data-tree_remote-target="item">
+<tr id="tr_<%= govern.identifier %>" data-controller="tree_remote" data-tree_remote-target="item">
   <td>
     <turbo-frame>
       <span style="width: 2.86em; display: inline-block"></span>
-      <%= link_to({ action: 'rules', controller_identifier: govern.identifier }) do %>
+      <%= link_to({ action: 'rules', govern_id: govern.id }) do %>
         <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree_remote#expand"></i>
       <% end %>
       <span><%= govern.name %></span>
