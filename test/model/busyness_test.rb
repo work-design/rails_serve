@@ -3,13 +3,17 @@ require 'test_helper'
 class BusynessTest < ActiveSupport::TestCase
 
   setup do
-    @busyness = create :busyness
+    Busyness.sync
+    NameSpace.sync
+    Govern.sync
   end
 
   test 'role_hash' do
-    r = @busyness.role_hash
+    busyness = Busyness.find_by(identifier: 'role')
+    name_space = NameSpace.find_by(identifier: 'panel')
+    r = busyness.role_hash
 
-    assert_equal @busyness.identifier, r.keys.first
+    assert_includes r.dig('role'), name_space.identifier
   end
 
 

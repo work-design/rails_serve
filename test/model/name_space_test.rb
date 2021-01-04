@@ -15,8 +15,8 @@ class NameSpaceTest < ActiveSupport::TestCase
   test 'role_hash' do
     name_space = NameSpace.find_by identifier: 'panel'
     r = name_space.role_hash('role')
-    binding.pry
 
+    assert_includes r.keys, 'roles'
   end
 
 end
