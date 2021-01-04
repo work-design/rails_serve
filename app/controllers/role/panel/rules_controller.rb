@@ -2,16 +2,20 @@ class Role::Panel::RulesController < Role::Panel::BaseController
   before_action :set_govern
   before_action :set_rule, only: [:show, :roles, :edit, :update, :move_higher, :move_lower, :destroy]
 
+  def index
+    @rules = @govern.rules
+  end
+
+  def new
+    @rule = @govern.rules.build
+  end
+
   def create
     @rule = @govern.rules.build(rule_params)
 
     unless @rule.save
       render :new, locals: { model: @rule }, status: :unprocessable_entity
     end
-  end
-
-  def new
-    @rule = @govern.rules.build
   end
 
   def show

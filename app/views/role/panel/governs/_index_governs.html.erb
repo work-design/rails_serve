@@ -9,5 +9,10 @@
       <span><%= govern.name %></span>
     </turbo-frame>
   </td>
+  <td>
+    <%= link_to({ controller: 'rules', govern_id: govern.id }) do %>
+      <i class="fas fa-list"></i><span><%= t('role.panel.rules.index.title') %></span>
+    <% end %>
+  </td>
 </tr>
 <% end %>

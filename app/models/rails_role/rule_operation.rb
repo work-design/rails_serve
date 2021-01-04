@@ -2,7 +2,7 @@ module RailsRole::RuleOperation
   extend ActiveSupport::Concern
 
   included do
-    attribute :action_identifier, :string
+    attribute :action_name, :string
 
     enum operation: {
       list: 'list',
