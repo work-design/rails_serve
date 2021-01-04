@@ -60,7 +60,7 @@ class Role::Panel::RulesController < Role::Panel::BaseController
 
   def rule_params
     params.fetch(:rule, {}).permit(
-      :code,
+      :operation,
       :name,
       :params,
       :position

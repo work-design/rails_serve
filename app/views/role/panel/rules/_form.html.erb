@@ -1,4 +1,1 @@
-<%= f.text_field :name %>
-<%= f.text_field :code %>
-<%= f.text_field :params %>
-<%= f.number_field :position %>
+<%= f.select :operation, options_for_select(Rule.options_i18n(:operation), @rule.operation) %>
