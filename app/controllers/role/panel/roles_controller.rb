@@ -47,13 +47,9 @@ class Role::Panel::RolesController < Role::Panel::BaseController
   end
 
   def rules
-    q_params = {
-      controller_identifier: nil,
-      allow: { controller_identifier: nil }
-    }
-    q_params.merge! params.permit(:controller_identifier)
+    @govern = Govern.find params[:govern_id]
 
-    @rules = Rule.default_where(q_params)
+    @rules = @govern.rules
   end
 
   def overview
