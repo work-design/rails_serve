@@ -1,0 +1,6 @@
+<div class="tabs">
+  <ul>
+    <li class="<%= active_helper(controller: 'busynesses', active: 'is-active') %>"><%= link_to t('role.panel.busynesses.index.title'), { controller: 'busynesses' } %></li>
+    <li class="<%= active_helper(controller: 'name_spaces', active: 'is-active') %>"><%= link_to t('role.panel.name_spaces.index.title'), { controller: 'name_spaces' } %></li>
+  </ul>
+</div>

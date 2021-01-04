@@ -34,6 +34,9 @@ zh:
       busynesses:
         index:
           title: 业务
+      name_spaces:
+        index:
+          title: 命名空间
       roles:
         index:
           title: 角色列表
