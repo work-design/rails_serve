@@ -1,8 +1,5 @@
 FactoryBot.define do
-
   factory :busyness do
-    name { "MyString" }
-    code { "MyString" }
+    identifier { 'role' }
   end
-
 end
