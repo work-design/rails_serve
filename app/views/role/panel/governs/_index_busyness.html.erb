@@ -1,4 +1,4 @@
-<tr id="tr_<%= busyness.identifier %>" data-controller="tree_remote show" data-tree_remote-target="item" data-action="mouseenter->show#show mouseleave->show#hide">
+<tr id="tr_<%= busyness.identifier.blank? ? '_' : busyness.identifier %>" data-controller="tree_remote show" data-tree_remote-target="item" data-action="mouseenter->show#show mouseleave->show#hide">
   <td>
     <turbo-frame>
       <%= link_to({ action: 'namespaces', business_identifier: busyness.identifier }) do %>

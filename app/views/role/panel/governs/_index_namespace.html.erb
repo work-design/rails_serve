@@ -1,5 +1,5 @@
 <% @name_spaces.each do |name_space| %>
-<tr id="tr_<%= params[:business_identifier] %>_<%= name_space.identifier %>" data-controller="tree_remote" data-tree_remote-target="item">
+<tr id="tr_<%= params[:business_identifier] %>_<%= name_space.identifier.blank? ? '_' : name_space.identifier %>" data-controller="tree_remote" data-tree_remote-target="item">
   <td>
     <turbo-frame>
       <span style="width: 1.43em; display: inline-block"></span>

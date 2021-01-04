@@ -1,1 +1,1 @@
-<%= turbo_stream.after "tr_#{params[:business_identifier]}_#{params[:namespace_identifier]}", partial: 'index_governs' %>
+<%= turbo_stream.after "tr_#{params[:business_identifier]}_#{params[:namespace_identifier].blank? ? '_' : params[:namespace_identifier]}", partial: 'index_governs' %>

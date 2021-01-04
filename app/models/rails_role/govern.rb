@@ -2,7 +2,6 @@ module RailsRole::Govern
   extend ActiveSupport::Concern
 
   included do
-    attribute :identifier, :string, index: true
     attribute :namespace_identifier, :string, index: true
     attribute :business_identifier, :string, index: true
     attribute :controller_name, :string
@@ -18,12 +17,13 @@ module RailsRole::Govern
 
     default_scope -> { order(position: :asc, id: :asc) }
 
-    validates :identifier, uniqueness: true
-    before_validation do
-      self.identifier = [business_identifier, namespace_identifier, controller_name].compact.join('/')
-    end
+    validates :controller_name, uniqueness: { scope: [:business_identifier, :namespace_identifier] }
 
     acts_as_list scope: [:namespace_identifier, :business_identifier]
+  end
+
+  def identifier
+    [business_identifier, namespace_identifier, controller_name].join('/')
   end
 
   def business_name
@@ -41,10 +41,10 @@ module RailsRole::Govern
   end
 
   def name
-    t = I18n.t "#{identifier.to_s.split('/').join('.')}.index.title", default: nil
+    t = I18n.t "#{[business_identifier, namespace_identifier, controller_name].join('.')}.index.title", default: nil
     return t if t
 
-    identifier
+    [business_identifier, namespace_identifier, controller_name].join('/')
   end
 
   def role_hash
