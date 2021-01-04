@@ -4,6 +4,7 @@ module RailsRole::Govern
   included do
     attribute :namespace_identifier, :string, index: true
     attribute :business_identifier, :string, index: true
+    attribute :controller_path, :string
     attribute :controller_name, :string
     attribute :position, :integer
 
@@ -20,10 +21,6 @@ module RailsRole::Govern
     validates :controller_name, uniqueness: { scope: [:business_identifier, :namespace_identifier] }
 
     acts_as_list scope: [:namespace_identifier, :business_identifier]
-  end
-
-  def identifier
-    [business_identifier, namespace_identifier, controller_name].join('/')
   end
 
   def business_name

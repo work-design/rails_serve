@@ -2,15 +2,14 @@ module RailsRole::Rule
   extend ActiveSupport::Concern
 
   included do
-    attribute :identifier, :string, index: true
     attribute :namespace_identifier, :string
     attribute :business_identifier, :string
-    attribute :controller_identifier, :string, index: true
+    attribute :controller_path, :string
     attribute :controller_name, :string
     attribute :action_name, :string
     attribute :position, :integer
 
-    belongs_to :govern, foreign_key: :controller_identifier, primary_key: :identifier, optional: true
+    belongs_to :govern, ->(o){ where(business_identifier: o.business_identifier, namespace_identifier: o.namespace_identifier) }, foreign_key: :controller_name, primary_key: :controller_name, optional: true
 
     enum operation: {
       list: 'list',
@@ -25,26 +24,17 @@ module RailsRole::Rule
 
     default_scope -> { order(position: :asc, id: :asc) }
 
-    before_validation :sync_from_govern
-
-    acts_as_list scope: [:controller_identifier]
+    acts_as_list scope: [:business_identifier, :namespace_identifier, :controller_name]
   end
 
   def name
-    t1 = I18n.t "#{identifier.split('/').join('.')}.title", default: nil
+    t1 = I18n.t "#{[business_identifier, namespace_identifier, controller_name, action_name].join('.')}.title", default: nil
     return t1 if t1
 
     t2 = self.class.enum_i18n :action_name, self.action_name
     return t2 if t2
 
     identifier
-  end
-
-  def sync_from_govern
-    self.business_identifier = govern.business_identifier
-    self.namespace_identifier = govern.namespace_identifier
-    self.controller_identifier = govern.identifier
-    self.identifier = "#{controller_identifier}/#{action_name}"
   end
 
 end
