@@ -3,7 +3,7 @@ module RailsRole::NameSpace
 
   included do
     attribute :name, :string
-    attribute :identifier, :string, default: 'application'
+    attribute :identifier, :string
     attribute :verify_organ, :boolean, default: false
     attribute :verify_member, :boolean, default: false
     attribute :verify_user, :boolean, default: false

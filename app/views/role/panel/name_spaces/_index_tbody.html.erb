@@ -1,18 +1,5 @@
-<tr>
-  <td><%= name_space.name %></td>
-  <td><%= name_space.identifier %></td>
-  <td><%= name_space.verify_organ %></td>
-  <td><%= name_space.verify_member %></td>
-  <td><%= name_space.verify_user %></td>
-  <td>
-    <%= link_to({ action: 'show', id: name_space.id }, { aria: { label: t('.show') }, class: 'button is-small is-rounded is-light' }) do %>
-      <i class="fas fa-eye"></i>
-    <% end %>
-    <%= link_to({ action: 'edit', id: name_space.id }, { aria: { label: t('.edit') }, class: 'button is-small is-rounded is-light' }) do %>
-      <i class="fas fa-pencil-alt"></i>
-    <% end %>
-    <%= link_to({ action: 'destroy', id: name_space.id }, { method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, class: 'button is-small is-rounded is-light' }) do %>
-      <i class="fas fa-trash-alt"></i>
-    <% end %>
-  </td>
-</tr>
+<td><%= model.name %></td>
+<td><%= model.identifier %></td>
+<td><%= model.verify_organ %></td>
+<td><%= model.verify_member %></td>
+<td><%= model.verify_user %></td>
