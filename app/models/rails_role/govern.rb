@@ -45,7 +45,7 @@ module RailsRole::Govern
     t = I18n.t "#{[business_identifier, namespace_identifier, controller_name].join('.')}.index.title", default: nil
     return t if t
 
-    [business_identifier, namespace_identifier, controller_name].join('/')
+    controller_name
   end
 
   def role_hash
