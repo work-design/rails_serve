@@ -25,7 +25,7 @@ module RailsRole::Role
     after_commit :delete_cache, if: -> { default? && saved_change_to_role_hash? }
   end
 
-  def has_role?(business:, namespace: nil, controller: nil, action: nil, params: {})
+  def has_role?(business: nil, namespace: nil, controller: nil, action: nil, params: {})
     options = [business.to_s, namespace.to_s, controller.to_s.split('/')[-1], action].take_while(&->(i){ !i.nil? })
     return false if options.blank?
     role_hash.dig(*options).present?

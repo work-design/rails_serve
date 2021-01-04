@@ -35,12 +35,12 @@ module RailsRole::User
     end
   end
 
-  def has_role?(business: 'application', namespace: 'application', controller:, action:, params: {})
+  def has_role?(business: nil, namespace: nil, controller: nil, action: nil, params: {})
     if respond_to?(:admin?) && admin?
       return true
     end
 
-    options = [business.to_s, namespace.to_s, controller.to_s.split('/')[-1], action.to_s].take_while(&:present?)
+    options = [business.to_s, namespace.to_s, controller.to_s.split('/')[-1], action].take_while(&->(i) { !i.nil? })
     return false if options.blank?
     role_hash.dig(*options).present?
   end
