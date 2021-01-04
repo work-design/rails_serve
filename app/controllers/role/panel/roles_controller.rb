@@ -86,16 +86,12 @@ class Role::Panel::RolesController < Role::Panel::BaseController
   end
 
   def govern_on
-    q_params = {}
-    q_params.merge! business_identifier: params[:business_identifier].presence
-    q_params.merge! namespace_identifier: params[:namespace_identifier].presence
-    q_params.merge! params.permit(:controller_name)
-    @govern = Govern.find_by(q_params)
+    @govern = Govern.find params[:govern_id]
 
     toggle = {
-      params[:business_identifier] => {
-        params[:namespace_identifier] => {
-          params[:controller_name] => @govern.role_hash
+      @govern.business_identifier.to_s => {
+        @govern.namespace_identifier.to_s => {
+          @govern.controller_name => @govern.role_hash
         }
       }
     }
@@ -105,27 +101,19 @@ class Role::Panel::RolesController < Role::Panel::BaseController
   end
 
   def govern_off
-    q_params = {}
-    q_params.merge! business_identifier: params[:business_identifier].presence
-    q_params.merge! namespace_identifier: params[:namespace_identifier].presence
-    q_params.merge! params.permit(:controller_name)
+    @govern = Govern.find params[:govern_id]
 
-    @govern = Govern.find_by(q_params)
-    @role.role_hash.fetch(params[:business_identifier], {}).fetch(params[:namespace_identifier], {}).delete(params[:controller_name])
+    @role.role_hash.fetch(@govern.business_identifier.to_s, {}).fetch(@govern.namespace_identifier.to_s, {}).delete(@govern.controller_name)
     @role.save
   end
 
   def rule_on
-    q_params = {}
-    q_params.merge! business_identifier: params[:business_identifier].presence
-    q_params.merge! namespace_identifier: params[:namespace_identifier].presence
-    q_params.merge! params.permit(:controller_name, :action_name)
+    @rule = Rule.find params[:rule_id]
 
-    @rule = Rule.find_by(q_params)
-    @role.role_hash.deep_merge!(@rule.business_identifier => {
-      @rule.namespace_identifier => {
-        params[:controller_name] => {
-          params[:action_name] => true
+    @role.role_hash.deep_merge!(@rule.business_identifier.to_s => {
+      @rule.namespace_identifier.to_s => {
+        @rule.controller_name => {
+          @rule.action_name => true
         }
       }
     })
@@ -133,13 +121,9 @@ class Role::Panel::RolesController < Role::Panel::BaseController
   end
 
   def rule_off
-    q_params = {}
-    q_params.merge! business_identifier: params[:business_identifier].presence
-    q_params.merge! namespace_identifier: params[:namespace_identifier].presence
-    q_params.merge! params.permit(:controller_name, :action_name)
+    @rule = Rule.find params[:rule_id]
 
-    @rule = Rule.find_by(q_params)
-    @role.role_hash.fetch(@rule.business_identifier, {}).fetch(@rule.namespace_identifier, {}).fetch(params[:controller_name], {}).delete(params[:action_name])
+    @role.role_hash.fetch(@rule.business_identifier.to_s, {}).fetch(@rule.namespace_identifier.to_s, {}).fetch(@rule.controller_name, {}).delete(@rule.action_name)
     @role.save
   end
 
