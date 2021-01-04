@@ -70,13 +70,15 @@ module RailsRole::Govern
           governs.each do |controller_name, all_rules|
             govern = Govern.find_or_initialize_by(business_identifier: busyness, namespace_identifier: namespace, controller_name: controller_name)
 
-            present_rules = govern.rules.pluck(:action_name)
-            (all_rules - present_rules).each do |action|
-              govern.rules.build(action_name: action)
+            all_rules.each do |action_name, action|
+              rule = govern.rules.find_or_initialize_by(action_name: action_name)
+              rule.path = action[:path]
+              rule.verb = action[:verb]
             end
-            (present_rules - all_rules).each do |action|
-              r = govern.rules.find_by(action_name: action)
-              r.mark_for_destruction
+
+            present_rules = govern.rules.pluck(:action_name)
+            govern.rules.where(action_name: (present_rules - all_rules)).each do |rule|
+              rule.mark_for_destruction
             end
 
             govern.save if govern.rules.length > 0

@@ -7,6 +7,8 @@ module RailsRole::Rule
     attribute :controller_path, :string
     attribute :controller_name, :string
     attribute :action_name, :string
+    attribute :path, :string
+    attribute :verb, :string
     attribute :position, :integer
 
     belongs_to :govern, ->(o){ where(business_identifier: o.business_identifier, namespace_identifier: o.namespace_identifier) }, foreign_key: :controller_name, primary_key: :controller_name, optional: true
