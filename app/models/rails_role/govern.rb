@@ -42,10 +42,10 @@ module RailsRole::Govern
   end
 
   def name
-    t = I18n.t "#{[business_identifier, namespace_identifier, controller_name].join('.')}.index.title", default: nil
+    t = I18n.t "#{controller_path.split('/').join('.')}.index.title", default: nil
     return t if t
 
-    controller_name
+    controller_path
   end
 
   def role_hash
@@ -66,8 +66,8 @@ module RailsRole::Govern
 
     def sync
       RailsCom::Routes.actions.each do |business, namespaces|
-        namespaces.each do |namespace, governs|
-          governs.each do |controller, actions|
+        namespaces.each do |namespace, controllers|
+          controllers.each do |controller, actions|
             govern = Govern.find_or_initialize_by(business_identifier: business, namespace_identifier: namespace, controller_path: controller)
             govern.controller_name = controller.to_s.split('/')[-1]
 
@@ -78,15 +78,15 @@ module RailsRole::Govern
             end
 
             present_rules = govern.rules.pluck(:action_name)
-            govern.rules.where(action_name: (present_rules - actions)).each do |rule|
+            govern.rules.where(action_name: (present_rules - actions.keys)).each do |rule|
               rule.mark_for_destruction
             end
 
             govern.save if govern.rules.length > 0
           end
 
-          present_controllers = Govern.where(business_identifier: business, namespace_identifier: namespace).pluck(:controller_name)
-          Govern.where(business_identifier: business, namespace_identifier: namespace, controller_name: (present_controllers - governs.keys)).each do |govern|
+          present_controllers = Govern.where(business_identifier: business, namespace_identifier: namespace).pluck(:controller_path)
+          Govern.where(business_identifier: business, namespace_identifier: namespace, controller_path: (present_controllers - controllers.keys)).each do |govern|
             govern.destroy
           end
         end
