@@ -8,6 +8,8 @@ module RailsRole::Busyness
     has_many :governs, foreign_key: :business_identifier, primary_key: :identifier
     has_many :rules, foreign_key: :business_identifier, primary_key: :identifier
 
+    has_one_attached :logo
+
     validates :identifier, uniqueness: true
 
     acts_as_list

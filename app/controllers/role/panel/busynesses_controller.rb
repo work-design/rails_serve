@@ -1,5 +1,5 @@
 class Role::Panel::BusynessesController < Role::Panel::BaseController
-  before_action :set_busyness, only: [:show, :move_higher, :move_lower]
+  before_action :set_busyness, only: [:show, :edit, :update, :move_higher, :move_lower]
 
   def index
     @busynesses = Busyness.page(params[:page])
@@ -12,6 +12,17 @@ class Role::Panel::BusynessesController < Role::Panel::BaseController
   def show
   end
 
+  def edit
+  end
+
+  def update
+    @busyness.assign_attributes(busyness_params)
+
+    unless @busyness.save
+      render :edit, locals: { model: @busyness }, status: :unprocessable_entity
+    end
+  end
+
   def move_higher
     @busyness.move_higher
   end
@@ -21,6 +32,12 @@ class Role::Panel::BusynessesController < Role::Panel::BaseController
   end
 
   private
+  def busyness_params
+    params.fetch(:busyness, {}).permit(
+      :logo
+    )
+  end
+
   def set_busyness
     @busyness = Busyness.find(params[:id])
   end
