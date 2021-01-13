@@ -5,3 +5,4 @@ db/
 *.gem
 tmp/**/*.state
 !tmp/sockets/.keep
+log/*.log
