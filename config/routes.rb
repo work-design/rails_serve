@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  scope :panel, module: 'role/panel', as: :panel, defaults: { namespace: 'panel', business: 'role' } do
+  scope :panel, module: 'roled/panel', as: :panel, defaults: { namespace: 'panel', business: 'role' } do
     resources :roles do
       member do
         get :overview
@@ -63,7 +63,7 @@ Rails.application.routes.draw do
     end
   end
 
-  scope :admin, module: 'role/admin', as: :admin, defaults: { namespace: 'admin', business: 'role' } do
+  scope :admin, module: 'roled/admin', as: :admin, defaults: { namespace: 'admin', business: 'role' } do
     scope path: ':who_type/:who_id' do
       resource :who_roles, only: [:show, :edit, :update]
     end
