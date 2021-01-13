@@ -1,3 +1,3 @@
-<%= render layout: 'index_table', locals: { cache_key: Role.column_names.hash } do %>
+<%= render layout: 'index_table', locals: { cache_key: Roled::Role.column_names.hash } do %>
   <%= render partial: 'index_tbody', layout: 'index_tr', collection: @roles, as: :model %>
 <% end %>
