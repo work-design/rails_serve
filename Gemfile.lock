@@ -1,17 +1,17 @@
 GIT
+  remote: https://github.com/hotwired/turbo-rails.git
+  revision: 32b7af782136d60bb0712614c0d85a76475e6fb7
+  branch: main
+  specs:
+    turbo-rails (0.5.4)
+      rails (>= 6.0.0)
+
+GIT
   remote: https://github.com/qinmingyuan/default_form.git
   revision: 1e72c95dd3d13dbfa70661d63bdf644169c8d03f
   specs:
     default_form (1.5.1)
       rails_com (~> 1.2)
-
-GIT
-  remote: https://github.com/qinmingyuan/turbo-rails.git
-  revision: a008cd0962998eb4da3fffdf1b3ababbe3321bdd
-  branch: main
-  specs:
-    turbo-rails (0.5.3)
-      rails (>= 6.0.0)
 
 GIT
   remote: https://github.com/rails/webpacker.git
@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_com.git
-  revision: d4039fa0422225d4e760f343ad0b63ad95282e85
+  revision: 3fdfffbfdb25b99a445a71c5f5a16a789c4a4287
   specs:
     rails_com (1.2.9)
       acme-client
@@ -36,6 +36,13 @@ GIT
       httpx (~> 0.8)
       kaminari
       rails (~> 6.0)
+
+GIT
+  remote: https://github.com/work-design/rails_log.git
+  revision: c9d1910c19a3c2676baca44b53a43e1ff0f5f158
+  specs:
+    rails_log (2.1.6)
+      rails_com (~> 1.2)
 
 GIT
   remote: https://github.com/work-design/rails_ui.git
@@ -250,6 +257,7 @@ DEPENDENCIES
   puma
   rails
   rails_com!
+  rails_log!
   rails_role!
   rails_ui!
   turbo-rails!
