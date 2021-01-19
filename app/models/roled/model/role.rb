@@ -31,7 +31,7 @@ module Roled
       options[:namespace] = options[:namespace].to_s if options.key?(:namespace)
 
       opts = [options[:business], options[:namespace], options[:controller], options[:action]].take_while(&->(i){ !i.nil? })
-      logger.debug "----------> #{opts}"
+      logger.debug "  \e[35m---------- Role:#{opts} ----------\e[35m"
       return false if opts.blank?
       role_hash.dig(*opts).present?
     end
