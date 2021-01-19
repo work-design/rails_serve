@@ -1,17 +1,15 @@
 <% @governs.each do |govern| %>
 <tr id="tr_<%= govern.identifier %>" data-controller="tree_remote" data-tree_remote-target="item">
   <td>
-    <turbo-frame>
-      <span style="width: 2.86em; display: inline-block"></span>
-      <%= link_to({ action: 'rules', govern_id: govern.id }) do %>
-        <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree_remote#expand"></i>
-      <% end %>
-      <span><%= govern.name %></span>
-    </turbo-frame>
+    <span style="width: 2.86em; display: inline-block"></span>
+    <%= link_to({ action: 'rules', govern_id: govern.id }) do %>
+      <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree_remote#expand"></i>
+    <% end %>
+    <span><%= govern.name %></span>
   </td>
   <td>
     <%= link_to({ controller: 'rules', govern_id: govern.id }) do %>
-      <i class="fas fa-list"></i><span><%= t('role.panel.rules.index.title') %></span>
+      <i class="fas fa-list"></i><span><%= t('roled.panel.rules.index.title') %></span>
     <% end %>
   </td>
 </tr>
