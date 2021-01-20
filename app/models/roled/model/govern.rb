@@ -77,6 +77,7 @@ module Roled
                 rule.controller_name = govern.controller_name
                 rule.path = action[:path]
                 rule.verb = action[:verb]
+                rule.required_parts = action[:required_parts]
               end
 
               present_rules = govern.rules.pluck(:action_name)
