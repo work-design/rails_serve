@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_com.git
-  revision: e8e80f74d38aaef03df488fb79cd861b6b1b5faa
+  revision: 00e3cb0a5e9418477dc91b02c8adba389affc9d2
   specs:
     rails_com (1.2.9)
       acme-client
@@ -39,7 +39,7 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_log.git
-  revision: a25eb3838319a306137ff1f2d434519abed1084d
+  revision: f7410544cf84c18f4ec3f26e41644ed5970a7e8c
   specs:
     rails_log (2.1.6)
       rails_com (~> 1.2)
@@ -148,7 +148,7 @@ GEM
       activesupport (>= 4.2.0)
     http-2-next (0.3.0)
     http-form_data (2.3.0)
-    httpx (0.11.0)
+    httpx (0.11.1)
       http-2-next (>= 0.1.2)
       timers
     i18n (1.8.7)
