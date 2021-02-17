@@ -41,10 +41,10 @@ module Roled
         return true
       end
 
-      options[:business] = options[:business].to_s.delete_prefix('/') if options.key?(:business)
-      options[:namespace] = options[:namespace].to_s.delete_prefix('/') if options.key?(:namespace)
+      options[:business] = options[:business].to_s if options.key?(:business)
+      options[:namespace] = options[:namespace].to_s if options.key?(:namespace)
 
-      opts = [options[:business], options[:namespace], options[:controller], options[:action]].take_while(&->(i){ !i.nil? })
+      opts = [options[:business], options[:namespace], options[:controller].to_s.delete_prefix('/'), options[:action]].take_while(&->(i){ !i.nil? })
       logger.debug "  \e[35m----- User: #{opts} -----\e[0m"
       return false if opts.blank?
       role_hash.dig(*opts).present?
