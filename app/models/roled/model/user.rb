@@ -47,7 +47,7 @@ module Roled
       opts = [options[:business], options[:namespace], options[:controller].to_s.delete_prefix('/'), options[:action]].take_while(&->(i){ !i.nil? })
       logger.debug "  \e[35m----- User: #{opts} -----\e[0m"
       return false if opts.blank?
-      role_hash.dig(*opts).present?
+      role_hash.dig(*opts)
     end
 
     def any_role?(*any_roles, **roles_hash)
