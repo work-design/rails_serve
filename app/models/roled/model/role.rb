@@ -31,7 +31,7 @@ module Roled
       options[:namespace] = options[:namespace] if options.key?(:namespace)
 
       opts = [options[:business], options[:namespace], options[:controller].to_s.delete_prefix('/'), options[:action]].take_while(&->(i){ !i.nil? })
-      logger.debug "  \e[35m----- Role:#{opts} -----\e[0m"
+      logger.debug "  \e[35m-----> Role:#{opts} \e[0m"
       return false if opts.blank?
       role_hash.dig(*opts)
     end
@@ -43,7 +43,7 @@ module Roled
 
     def delete_cache
       if Rails.cache.delete('default_role_hash')
-        logger.debug "----------> delete cache default role hash"
+        logger.debug "-----> delete cache default role hash"
       end
     end
 
