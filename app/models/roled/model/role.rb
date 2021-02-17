@@ -26,9 +26,9 @@ module Roled
       after_commit :delete_cache, if: -> { default? && saved_change_to_role_hash? }
     end
 
-    def has_role?(params: {}, **options)
-      options[:business] = options[:business].to_s if options.key?(:business)
-      options[:namespace] = options[:namespace].to_s if options.key?(:namespace)
+    def has_role?(**options)
+      options[:business] = options[:business].to_s.delete_prefix('/') if options.key?(:business)
+      options[:namespace] = options[:namespace].to_s.delete_prefix('/') if options.key?(:namespace)
 
       opts = [options[:business], options[:namespace], options[:controller], options[:action]].take_while(&->(i){ !i.nil? })
       logger.debug "  \e[35m----- Role:#{opts} -----\e[0m"

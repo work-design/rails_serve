@@ -36,13 +36,13 @@ module Roled
       end
     end
 
-    def has_role?(params: {}, **options)
+    def has_role?(**options)
       if respond_to?(:admin?) && admin?
         return true
       end
 
-      options[:business] = options[:business].to_s if options.key?(:business)
-      options[:namespace] = options[:namespace].to_s if options.key?(:namespace)
+      options[:business] = options[:business].to_s.delete_prefix('/') if options.key?(:business)
+      options[:namespace] = options[:namespace].to_s.delete_prefix('/') if options.key?(:namespace)
 
       opts = [options[:business], options[:namespace], options[:controller], options[:action]].take_while(&->(i){ !i.nil? })
       logger.debug "  \e[35m----- User: #{opts} -----\e[0m"
