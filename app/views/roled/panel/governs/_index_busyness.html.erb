@@ -1,6 +1,6 @@
 <tr id="tr_<%= busyness.identifier.blank? ? '_' : busyness.identifier %>" data-controller="tree_remote show" data-tree_remote-target="item" data-action="mouseenter->show#show mouseleave->show#hide">
   <td>
-    <%= link_to({ action: 'namespaces', business_identifier: busyness.identifier }) do %>
+    <%= link_to({ action: 'namespaces', business_identifier: busyness.identifier }, data: { turbo_frame: 'visit' }) do %>
       <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree_remote#expand"></i>
     <% end %>
     <span><%= busyness.name %></span>

@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/qinmingyuan/default_form.git
-  revision: 8368c576e145bfb5d6175e8fc7b64a6557883d09
+  revision: e4162f595651bcd2e8ad733ad79ea78999137b2f
   specs:
     default_form (1.5.1)
       rails_com (~> 1.2)
@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_com.git
-  revision: 00e3cb0a5e9418477dc91b02c8adba389affc9d2
+  revision: aa29d60b934ff67fb2fb9c79f656ad8b03484f7c
   specs:
     rails_com (1.2.9)
       acme-client
@@ -39,7 +39,7 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_log.git
-  revision: f7410544cf84c18f4ec3f26e41644ed5970a7e8c
+  revision: af67d94cc87e89594862e9d71a15c74becbdfbe7
   specs:
     rails_log (2.1.6)
       rails_com (~> 1.2)
@@ -148,7 +148,7 @@ GEM
       activesupport (>= 4.2.0)
     http-2-next (0.3.0)
     http-form_data (2.3.0)
-    httpx (0.11.1)
+    httpx (0.11.3)
       http-2-next (>= 0.1.2)
       timers
     i18n (1.8.7)
@@ -233,7 +233,7 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     thor (1.0.1)
-    timers (4.3.2)
+    timers (4.3.3)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     websocket-driver (0.7.3)
