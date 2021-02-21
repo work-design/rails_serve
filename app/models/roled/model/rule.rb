@@ -32,7 +32,7 @@ module Roled
     end
 
     def identifier
-      [business_identifier, namespace_identifier, controller_name, (action_name.blank? ? '_' : action_name)].join('_')
+      [business_identifier, namespace_identifier, controller_path, (action_name.blank? ? '_' : action_name)].join('_')
     end
 
     def name
