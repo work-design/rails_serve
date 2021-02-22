@@ -1,24 +1,22 @@
 <tr id="tr_<%= params[:business_identifier] %>_<%= name_space.identifier.blank? ? '_' : name_space.identifier %>" data-controller="tree_remote" data-tree_remote-target="item">
   <td>
-    <turbo-frame>
-      <span style="width: 1.43em; display: inline-block"></span>
-      <%= link_to({ action: 'governs', business_identifier: params[:business_identifier], namespace_identifier: name_space.identifier }) do %>
-        <% if hide %>
-          <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree_remote#expand"></i>
-        <% else %>
-          <i class="fas fa-fw fa-caret-down" style="cursor: pointer" data-action="click->tree_remote#collapse"></i>
-        <% end %>
-      <% end %>
-      <% if @role.has_role?(business: params[:business_identifier], namespace: name_space.identifier) %>
-        <%= button_to({ action: 'namespace_off' }, params: { business_identifier: params[:business_identifier], namespace_identifier: name_space.identifier }, method: :patch) do %>
-          <i class="far fa-check-square fa-lg"></i>
-        <% end %>
+    <span style="width: 1.43em; display: inline-block"></span>
+    <%= link_to({ action: 'governs', business_identifier: params[:business_identifier], namespace_identifier: name_space.identifier }, data: { turbo_frame: 'visit' }) do %>
+      <% if hide %>
+        <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree_remote#expand"></i>
       <% else %>
-        <%= button_to({ action: 'namespace_on' }, params: { business_identifier: params[:business_identifier], namespace_identifier: name_space.identifier }, method: :patch) do %>
-          <i class="far fa-square fa-lg"></i>
-        <% end %>
+        <i class="fas fa-fw fa-caret-down" style="cursor: pointer" data-action="click->tree_remote#collapse"></i>
       <% end %>
-      <span><%= name_space.name %></span>
-    </turbo-frame>
+    <% end %>
+    <% if @role.has_role?(business: params[:business_identifier], namespace: name_space.identifier) %>
+      <%= button_to({ action: 'namespace_off' }, params: { business_identifier: params[:business_identifier], namespace_identifier: name_space.identifier }, method: :patch) do %>
+        <i class="far fa-check-square fa-lg"></i>
+      <% end %>
+    <% else %>
+      <%= button_to({ action: 'namespace_on' }, params: { business_identifier: params[:business_identifier], namespace_identifier: name_space.identifier }, method: :patch) do %>
+        <i class="far fa-square fa-lg"></i>
+      <% end %>
+    <% end %>
+    <span><%= name_space.name %></span>
   </td>
 </tr>
