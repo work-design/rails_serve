@@ -51,5 +51,18 @@ module Roled
       who_types.exists?(who)
     end
 
+    def sync_to_role_rule
+      role_hash.each do |business, namespaces|
+        namespaces.each do |namespace, controllers|
+          controllers.each do |controller, actions|
+            actions.each do |action|
+              rr = role_rules.find_or_initialize_by(business_identifier: business, namespace_identifier: namespace, controller_path: controller, action_name: action)
+              rr.save
+            end
+          end
+        end
+      end
+    end
+
   end
 end
