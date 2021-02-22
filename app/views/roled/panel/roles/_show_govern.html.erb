@@ -2,10 +2,10 @@
   <td>
     <span style="width: 2.86em; display: inline-block"></span>
     <%= link_to({ action: 'rules', govern_id: govern.id }, data: { turbo_frame: 'visit' }) do %>
-      <% if hide %>
-        <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree_remote#expand"></i>
-      <% else %>
+      <% if defined?(expand) && expand %>
         <i class="fas fa-fw fa-caret-down" style="cursor: pointer" data-action="click->tree_remote#collapse"></i>
+      <% else %>
+        <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree_remote#expand"></i>
       <% end %>
     <% end %>
     <% if @role.has_role?(business: govern.business_identifier, namespace: govern.namespace_identifier, controller: govern.controller_path) %>

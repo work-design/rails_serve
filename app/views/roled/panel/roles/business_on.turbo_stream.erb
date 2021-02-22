@@ -1,1 +1,1 @@
-<%= turbo_stream.replace "tr_#{@busyness.identifier.blank? ? '_' : @busyness.identifier}", partial: 'show_busyness', locals: { busyness: @busyness } %>
+<%= turbo_stream.replace "tr_#{@busyness.identifier.blank? ? '_' : @busyness.identifier}", partial: 'on_busyness', locals: { busyness: @busyness } %>

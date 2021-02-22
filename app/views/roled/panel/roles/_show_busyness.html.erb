@@ -1,7 +1,11 @@
 <tr id="tr_<%= busyness.identifier.blank? ? '_' : busyness.identifier %>" data-controller="tree_remote" data-tree_remote-target="item">
   <td>
     <%= link_to({ action: 'namespaces', business_identifier: busyness.identifier }, data: { turbo_frame: 'visit' }) do %>
-      <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree_remote#expand"></i>
+      <% if defined?(expand) && expand %>
+        <i class="fas fa-fw fa-caret-down" style="cursor: pointer" data-action="click->tree_remote#collapse"></i>
+      <% else %>
+        <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree_remote#expand"></i>
+      <% end %>
     <% end %>
     <% if @role.has_role?(business: busyness.identifier) %>
       <%= button_to({ action: 'business_off' }, params: { business_identifier: busyness.identifier }, method: :patch) do %>
