@@ -78,6 +78,15 @@ module Roled
         params[:namespace_identifier] => @name_space.role_hash(params[:business_identifier].presence)
       })
       @role.save
+
+      q_params = {
+        business_identifier: nil,
+        namespace_identifier: nil,
+        allow: { business_identifier: nil, namespace_identifier: nil }
+      }
+      q_params.merge! params.permit(:business_identifier, :namespace_identifier)
+
+      @governs = Govern.default_where(q_params)
     end
 
     def namespace_off

@@ -1,1 +1,1 @@
-<%= turbo_stream.replace "tr_#{params[:business_identifier]}_#{params[:namespace_identifier].blank? ? '_' : params[:namespace_identifier]}", partial: 'show_namespace', locals: { name_space: @name_space, hide: false } %>
+<%= turbo_stream.replace "tr_#{params[:business_identifier]}_#{params[:namespace_identifier].blank? ? '_' : params[:namespace_identifier]}", partial: 'on_namespace', locals: { name_space: @name_space, hide: false } %>
