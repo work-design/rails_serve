@@ -5,8 +5,8 @@ module Roled
     included do
       attribute :cached_role_ids, :integer, array: true
 
-      has_many :who_roles, as: :who, dependent: :destroy
-      has_many :roles, through: :who_roles
+      has_many :who_roles, class_name: 'Roled::WhoRole', as: :who, dependent: :destroy
+      has_many :roles, class_name: 'Roled::Role', through: :who_roles
 
       after_save :sync_to_role_ids, if: ->{ saved_change_to_cached_role_ids? }
     end
