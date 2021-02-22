@@ -1,20 +1,18 @@
 <tr id="tr_<%= govern.identifier %>" data-controller="tree_remote" data-tree_remote-target="item">
   <td>
-    <turbo-frame>
-      <span style="width: 2.86em; display: inline-block"></span>
-      <%= link_to({ action: 'rules', govern_id: govern.id }) do %>
-        <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree_remote#expand"></i>
+    <span style="width: 2.86em; display: inline-block"></span>
+    <%= link_to({ action: 'rules', govern_id: govern.id }, data: { turbo_frame: 'visit' }) do %>
+      <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree_remote#expand"></i>
+    <% end %>
+    <% if @role.has_role?(business: govern.business_identifier, namespace: govern.namespace_identifier, controller: govern.controller_path) %>
+      <%= button_to({ action: 'govern_off' }, params: { govern_id: govern.id }, method: :patch) do %>
+        <i class="far fa-check-square fa-lg"></i>
       <% end %>
-      <% if @role.has_role?(business: govern.business_identifier, namespace: govern.namespace_identifier, controller: govern.controller_path) %>
-        <%= button_to({ action: 'govern_off' }, params: { govern_id: govern.id }, method: :patch) do %>
-          <i class="far fa-check-square fa-lg"></i>
-        <% end %>
-      <% else %>
-        <%= button_to({ action: 'govern_on' }, params: { govern_id: govern.id }, method: :patch) do %>
-          <i class="far fa-square fa-lg"></i>
-        <% end %>
+    <% else %>
+      <%= button_to({ action: 'govern_on' }, params: { govern_id: govern.id }, method: :patch) do %>
+        <i class="far fa-square fa-lg"></i>
       <% end %>
-      <span><%= govern.name %></span>
-    </turbo-frame>
+    <% end %>
+    <span><%= govern.name %></span>
   </td>
 </tr>
