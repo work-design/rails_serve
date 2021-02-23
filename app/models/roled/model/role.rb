@@ -129,9 +129,8 @@ module Roled
       moved.each do |business, namespaces|
         namespaces.each do |namespace, controllers|
           controllers.each do |controller, actions|
-            actions.each do |action|
-              rr = role_rules.find_by(business_identifier: business, namespace_identifier: namespace, controller_path: controller, action_name: action[0])
-              rr.mark_for_destruction
+            role_rules.where(business_identifier: business, namespace_identifier: namespace, controller_path: controller, action_name: actions.keys).each do |r|
+              r.mark_for_destruction
             end
           end
         end
