@@ -93,7 +93,7 @@ module Roled
       end
     end
 
-    def xx
+    def role_rule_hash
       role_rules.group_by(&:business_identifier).transform_values! do |businesses|
         businesses.group_by(&:namespace_identifier).transform_values! do |namespaces|
           namespaces.group_by(&:controller_path).transform_values! do |controllers|
@@ -103,20 +103,30 @@ module Roled
       end
     end
 
-    def sync_to_role_rule
-      role_hash.each do |business, namespaces|
+    def add_role_rule(add)
+      add.each do |business, namespaces|
         namespaces.each do |namespace, controllers|
           controllers.each do |controller, actions|
             actions.each do |action|
               rr = role_rules.find_or_initialize_by(business_identifier: business, namespace_identifier: namespace, controller_path: controller, action_name: action[0])
               rr.required_parts = action[1]
-              binding.pry if business == 'finance'
             end
           end
         end
       end
+    end
 
-      self.save
+    def remove_role_rule(moved)
+      moved.each do |business, namespaces|
+        namespaces.each do |namespace, controllers|
+          controllers.each do |controller, actions|
+            actions.each do |action|
+              rr = role_rules.find_by(business_identifier: business, namespace_identifier: namespace, controller_path: controller, action_name: action[0])
+              rr.mark_for_destruction
+            end
+          end
+        end
+      end
     end
 
   end
