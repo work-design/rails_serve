@@ -51,17 +51,36 @@ module Roled
       who_types.exists?(who)
     end
 
+    def business_on(busyness)
+      role_hash.merge! busyness.role_hash
+      role_hash
+      save
+    end
+
+    def xx
+      role_rules.group_by(&:business_identifier).transform_values! do |businesses|
+        businesses.group_by(&:namespace_identifier).transform_values! do |namespaces|
+          namespaces.group_by(&:controller_path).transform_values! do |controllers|
+            controllers.each_with_object({}) { |i, h| h.merge! i.action_name => i.required_parts }
+          end
+        end
+      end
+    end
+
     def sync_to_role_rule
       role_hash.each do |business, namespaces|
         namespaces.each do |namespace, controllers|
           controllers.each do |controller, actions|
             actions.each do |action|
-              rr = role_rules.find_or_initialize_by(business_identifier: business, namespace_identifier: namespace, controller_path: controller, action_name: action)
-              rr.save
+              rr = role_rules.find_or_initialize_by(business_identifier: business, namespace_identifier: namespace, controller_path: controller, action_name: action[0])
+              rr.required_parts = action[1]
+              binding.pry if business == 'finance'
             end
           end
         end
       end
+
+      self.save
     end
 
   end

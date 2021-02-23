@@ -8,6 +8,7 @@ module Roled
       attribute :controller_path, :string
       attribute :controller_name, :string
       attribute :action_name, :string
+      attribute :required_parts, :string, array: true
       attribute :params_name, :string
       attribute :params_identifier, :string
 

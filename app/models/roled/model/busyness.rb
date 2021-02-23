@@ -24,22 +24,20 @@ module Roled
     end
 
     def name_spaces
-      identifiers = Govern.unscope(:order).select(:namespace_identifier).where(business_identifier: identifier).distinct.pluck(:namespace_identifier)
-      NameSpace.where(identifier: identifiers).order(id: :asc)
+      NameSpace.where(identifier: Govern.unscope(:order).select(:namespace_identifier).where(business_identifier: identifier).distinct.pluck(:namespace_identifier)).order(id: :asc)
     end
 
     def role_hash
-      {
-        identifier => namespace_hash
-      }
+      r = {}
+      r.merge! identifier => namespace_hash if namespace_hash.present?
+      r
     end
 
     def namespace_hash
       r = {}
       name_spaces.each do |name_space|
-        r.merge!(
-          name_space.identifier => name_space.role_hash(identifier)
-        )
+        nr = name_space.role_hash(identifier)
+        r.merge! name_space.identifier => nr if nr.present?
       end
       r
     end

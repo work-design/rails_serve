@@ -62,11 +62,8 @@ module Roled
 
     def business_on
       @busyness = Busyness.find_by identifier: params[:business_identifier].presence
-      @role.role_hash.merge! @busyness.role_hash
-      @role.save
-
-      identifiers = Govern.unscope(:order).select(:namespace_identifier).where(business_identifier: params[:business_identifier]).distinct.pluck(:namespace_identifier)
-      @name_spaces = NameSpace.where(identifier: identifiers)
+      @role.business_on @busyness
+      @name_spaces = @busyness.name_spaces
     end
 
     def business_off
