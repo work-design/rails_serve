@@ -22,6 +22,7 @@ module Roled
       validates :name, presence: true
 
       #before_save :sync_who_types
+      before_save :diff_changes, if: -> { role_hash_changed? }
       after_update :set_default, if: -> { default? && saved_change_to_default? }
       after_commit :delete_cache, if: -> { default? && saved_change_to_role_hash? }
     end
@@ -101,6 +102,14 @@ module Roled
           end
         end
       end
+    end
+
+    def diff_changes
+      prev = changes['role_hash'][0]
+      tobe = changes['role_hash'][1]
+
+      remove_role_rule(prev.diff_remove tobe)
+      add_role_rule(prev.diff_add tobe)
     end
 
     def add_role_rule(add)
