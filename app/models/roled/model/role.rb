@@ -53,8 +53,44 @@ module Roled
 
     def business_on(busyness)
       role_hash.merge! busyness.role_hash
-      role_hash
-      save
+    end
+
+    def namespace_on(name_space, business_identifier)
+      role_hash.deep_merge!(business_identifier.to_s => {
+        name_space.identifier => name_space.role_hash(business_identifier.presence)
+      })
+    end
+
+    def namespace_off(name_space, business_identifier)
+      role_hash.fetch(business_identifier.to_s, {}).delete(name_space.identifier.to_s)
+
+      if role_hash.dig(business_identifier.to_s).blank?
+        role_hash.delete(name_space.identifier.to_s)
+      end
+    end
+
+    def govern_on(govern)
+      toggle = {
+        govern.business_identifier.to_s => {
+          govern.namespace_identifier.to_s => {
+            govern.controller_path => govern.role_hash
+          }
+        }
+      }
+
+      role_hash.deep_merge!(toggle)
+    end
+
+    def govern_off(govern)
+      role_hash.fetch(govern.business_identifier.to_s, {}).fetch(govern.namespace_identifier.to_s, {}).delete(govern.controller_path)
+
+      if role_hash.dig(govern.business_identifier.to_s, govern.namespace_identifier.to_s).blank?
+        role_hash.fetch(govern.business_identifier.to_s, {}).delete(govern.namespace_identifier.to_s)
+      end
+
+      if role_hash.dig(govern.business_identifier.to_s).blank?
+        role_hash.delete(govern.business_identifier.to_s)
+      end
     end
 
     def xx

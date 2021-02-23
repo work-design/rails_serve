@@ -74,9 +74,7 @@ module Roled
 
     def namespace_on
       @name_space = NameSpace.find_by identifier: params[:namespace_identifier].presence
-      @role.role_hash.deep_merge!(params[:business_identifier] => {
-        params[:namespace_identifier] => @name_space.role_hash(params[:business_identifier].presence)
-      })
+      @role.namespace_on(@name_space, params[:business_identifier])
       @role.save
 
       q_params = {
@@ -91,29 +89,19 @@ module Roled
 
     def namespace_off
       @name_space = NameSpace.find_by identifier: params[:namespace_identifier].presence
-      @role.role_hash.fetch(params[:business_identifier], {}).delete(params[:namespace_identifier])
+      @role.namespace_off(@name_space, params[:business_identifier])
       @role.save
     end
 
     def govern_on
       @govern = Govern.find params[:govern_id]
-
-      toggle = {
-        @govern.business_identifier.to_s => {
-          @govern.namespace_identifier.to_s => {
-            @govern.controller_path => @govern.role_hash
-          }
-        }
-      }
-
-      @role.role_hash.deep_merge!(toggle)
+      @role.govern_on(@govern)
       @role.save
     end
 
     def govern_off
       @govern = Govern.find params[:govern_id]
-
-      @role.role_hash.fetch(@govern.business_identifier.to_s, {}).fetch(@govern.namespace_identifier.to_s, {}).delete(@govern.controller_path)
+      @role.govern_off(@govern)
       @role.save
     end
 
