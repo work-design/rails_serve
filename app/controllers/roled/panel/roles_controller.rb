@@ -64,6 +64,8 @@ module Roled
       @busyness = Busyness.find_by identifier: params[:business_identifier].presence
       @role.business_on @busyness
       @name_spaces = @busyness.name_spaces
+
+      @role.save
     end
 
     def business_off
