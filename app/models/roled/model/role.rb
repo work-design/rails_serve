@@ -65,7 +65,7 @@ module Roled
       role_hash.fetch(business_identifier.to_s, {}).delete(name_space.identifier.to_s)
 
       if role_hash.dig(business_identifier.to_s).blank?
-        role_hash.delete(name_space.identifier.to_s)
+        role_hash.delete(business_identifier.to_s)
       end
     end
 
