@@ -11,7 +11,7 @@ module Roled
       attribute :default, :boolean
 
       has_many :who_roles, dependent: :destroy
-      has_many :role_rules, dependent: :destroy, inverse_of: :role
+      has_many :role_rules, dependent: :destroy, autosave: true, inverse_of: :role
       has_many :rules, through: :role_rules, dependent: :destroy
       has_many :governs, ->{ distinct }, through: :role_rules
       has_many :busynesses, -> { distinct }, through: :role_rules
