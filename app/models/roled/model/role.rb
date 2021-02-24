@@ -110,6 +110,7 @@ module Roled
 
       remove_role_rule(prev.diff_remove tobe)
       add_role_rule(prev.diff_add tobe)
+      binding.pry
     end
 
     def add_role_rule(add)
@@ -126,6 +127,7 @@ module Roled
     end
 
     def remove_role_rule(moved)
+      binding.pry
       moved.each do |business, namespaces|
         namespaces.each do |namespace, controllers|
           controllers.each do |controller, actions|
