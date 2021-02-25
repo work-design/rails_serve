@@ -7,6 +7,8 @@ module Roled
 
       has_many :who_roles, class_name: 'Roled::WhoRole', as: :who, dependent: :destroy
       has_many :roles, class_name: 'Roled::Role', through: :who_roles
+      has_many :role_rules, class_name: 'Roled::RoleRule', through: :who_roles
+      has_many :rules, class_name: 'Roled::Rule', through: :role_rules
 
       after_save :sync_to_role_ids, if: ->{ saved_change_to_cached_role_ids? }
     end

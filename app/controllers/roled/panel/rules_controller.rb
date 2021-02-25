@@ -32,7 +32,6 @@ module Roled
     def update
       @rule.assign_attributes(rule_params)
 
-
       unless @rule.save
         render :edit, locals: { model: @rule }, status: :unprocessable_entity
       end
@@ -64,7 +63,8 @@ module Roled
         :operation,
         :name,
         :params,
-        :position
+        :position,
+        :landmark
       )
     end
 

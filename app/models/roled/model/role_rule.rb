@@ -16,7 +16,8 @@ module Roled
       belongs_to :busyness, foreign_key: :business_identifier, primary_key: :identifier, optional: true
       belongs_to :name_space, foreign_key: :namespace_identifier, primary_key: :identifier, optional: true
       belongs_to :govern, foreign_key: :controller_name, primary_key: :controller_name, optional: true
-      belongs_to :rule, ->(o){ where(business_identifier: o.business_identifier, namespace_identifier: o.namespace_identifier, controller_name: o.controller_name) }, foreign_key: :action_name, primary_key: :action_name, optional: true
+      belongs_to :rule
+      belongs_to :proxy_rule, ->(o){ where(business_identifier: o.business_identifier, namespace_identifier: o.namespace_identifier, controller_path: o.controller_path) }, class_name: 'Rule', foreign_key: :action_name, primary_key: :action_name, optional: true
     end
 
   end

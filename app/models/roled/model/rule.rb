@@ -12,6 +12,7 @@ module Roled
       attribute :verb, :string
       attribute :required_parts, :string, array: true
       attribute :position, :integer
+      attribute :landmark, :boolean
 
       belongs_to :govern, ->(o){ where(business_identifier: o.business_identifier, namespace_identifier: o.namespace_identifier) }, foreign_key: :controller_path, primary_key: :controller_path, optional: true
 
