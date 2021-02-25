@@ -22,9 +22,9 @@ module Roled
       validates :name, presence: true
 
       #before_save :sync_who_types
-      before_save :diff_changes, if: -> { role_hash_changed? }
       after_update :set_default, if: -> { default? && saved_change_to_default? }
       after_commit :delete_cache, if: -> { default? && saved_change_to_role_hash? }
+      after_save_commit :sync, if: -> { saved_change_to_role_hash? }
     end
 
     def has_role?(**options)
@@ -104,44 +104,47 @@ module Roled
       end
     end
 
-    def diff_changes
-      prev = changes['role_hash'][0]
-      tobe = changes['role_hash'][1]
-
-      remove_role_rule(prev.diff_remove tobe)
-      add_role_rule(prev.diff_add tobe)
-    end
-
     def sync
       moved, add = role_rule_hash.diff_changes role_hash
       remove_role_rule(moved)
       add_role_rule(add)
-      save
     end
 
     def add_role_rule(add)
+      add_attrs = []
+
       add.each do |business, namespaces|
         namespaces.each do |namespace, controllers|
           controllers.each do |controller, actions|
             actions.each do |action|
-              rr = role_rules.find_or_initialize_by(business_identifier: business, namespace_identifier: namespace, controller_path: controller, action_name: action[0])
-              rr.required_parts = action[1]
+              add_attrs << {
+                role_id: id,
+                business_identifier: business,
+                namespace_identifier: namespace,
+                controller_path: controller,
+                action_name: action[0],
+                required_parts: action[1]
+              }
             end
           end
         end
       end
+
+      RoleRule.insert_all(add_attrs) if add_attrs.present?
     end
 
     def remove_role_rule(moved)
+      moved_ids = []
+
       moved.each do |business, namespaces|
         namespaces.each do |namespace, controllers|
           controllers.each do |controller, actions|
-            role_rules.select(&->(i) { i.business_identifier == business && i.namespace_identifier == namespace && i.controller_path == controller && actions.keys.include?(i.action_name)  }).each do |r|
-              r.mark_for_destruction
-            end
+            moved_ids += role_rules.select(&->(i) { i.business_identifier == business && i.namespace_identifier == namespace && i.controller_path == controller && actions.keys.include?(i.action_name)  }).map(&:id)
           end
         end
       end
+
+      RoleRule.where(id: moved_ids).delete_all if moved_ids.present?
     end
 
   end
