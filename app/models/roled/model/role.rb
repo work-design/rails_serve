@@ -110,7 +110,6 @@ module Roled
 
       remove_role_rule(prev.diff_remove tobe)
       add_role_rule(prev.diff_add tobe)
-      binding.pry
     end
 
     def add_role_rule(add)
@@ -127,11 +126,10 @@ module Roled
     end
 
     def remove_role_rule(moved)
-      binding.pry
       moved.each do |business, namespaces|
         namespaces.each do |namespace, controllers|
           controllers.each do |controller, actions|
-            role_rules.where(business_identifier: business, namespace_identifier: namespace, controller_path: controller, action_name: actions.keys).each do |r|
+            role_rules.select(&->(i) { i.business_identifier == business && i.namespace_identifier == namespace && i.controller_path == controller && actions.keys.include?(i.action_name)  }).each do |r|
               r.mark_for_destruction
             end
           end
