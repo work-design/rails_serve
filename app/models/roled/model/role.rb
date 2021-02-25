@@ -112,6 +112,13 @@ module Roled
       add_role_rule(prev.diff_add tobe)
     end
 
+    def sync
+      moved, add = role_rule_hash.diff_changes role_hash
+      remove_role_rule(moved)
+      add_role_rule(add)
+      save
+    end
+
     def add_role_rule(add)
       add.each do |business, namespaces|
         namespaces.each do |namespace, controllers|
