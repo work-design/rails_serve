@@ -81,7 +81,7 @@ module Roled
               end
 
               present_rules = govern.rules.pluck(:action_name)
-              govern.rules.where(action_name: (present_rules - actions.keys)).each do |rule|
+              govern.rules.select(&->(i){ (present_rules - actions.keys).include?(i.action_name) }).each do |rule|
                 rule.mark_for_destruction
               end
 
