@@ -3,7 +3,7 @@ module Roled
     extend ActiveSupport::Concern
 
     included do
-      attribute :cached_role_ids, :integer, array: true
+      attribute :cached_role_ids, :integer, array: true, default: []
 
       has_many :who_roles, class_name: 'Roled::WhoRole', as: :who, dependent: :destroy
       has_many :roles, class_name: 'Roled::Role', through: :who_roles
@@ -72,7 +72,7 @@ module Roled
     end
 
     def sync_to_role_ids
-      self.role_ids = cached_role_ids
+      #self.role_ids = cached_role_ids
     end
 
   end

@@ -50,7 +50,7 @@ module Roled
     end
 
     def role_hash
-      rules.each_with_object({}) { |i, h| h.merge! i.action_name => i.required_parts }
+      rules.each_with_object({}) { |i, h| h.merge! i.action_name => i.id }
     end
 
     class_methods do

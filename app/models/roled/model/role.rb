@@ -98,7 +98,7 @@ module Roled
       role_rules.group_by(&:business_identifier).transform_values! do |businesses|
         businesses.group_by(&:namespace_identifier).transform_values! do |namespaces|
           namespaces.group_by(&:controller_path).transform_values! do |controllers|
-            controllers.each_with_object({}) { |i, h| h.merge! i.action_name => i.required_parts }
+            controllers.each_with_object({}) { |i, h| h.merge! i.action_name => i.id }
           end
         end
       end
@@ -123,7 +123,7 @@ module Roled
                 namespace_identifier: namespace,
                 controller_path: controller,
                 action_name: action[0],
-                required_parts: action[1]
+                rule_id: action[1]
               }
             end
           end
@@ -131,8 +131,7 @@ module Roled
       end
 
       if add_attrs.present?
-        r = RoleRule.insert_all(add_attrs)
-        RoleRuleSyncJob.perform_later r.to_a.map(&->(i){ i['id'] })
+        RoleRule.insert_all(add_attrs)
       end
     end
 
