@@ -130,7 +130,10 @@ module Roled
         end
       end
 
-      RoleRule.insert_all(add_attrs) if add_attrs.present?
+      if add_attrs.present?
+        r = RoleRule.insert_all(add_attrs)
+        RoleRuleSyncJob.perform_later r.to_a.map(&->(i){ i['id'] })
+      end
     end
 
     def remove_role_rule(moved)

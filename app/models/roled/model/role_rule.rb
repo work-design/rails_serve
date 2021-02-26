@@ -18,6 +18,12 @@ module Roled
       belongs_to :govern, foreign_key: :controller_name, primary_key: :controller_name, optional: true
       belongs_to :rule
       belongs_to :proxy_rule, ->(o){ where(business_identifier: o.business_identifier, namespace_identifier: o.namespace_identifier, controller_path: o.controller_path) }, class_name: 'Rule', foreign_key: :action_name, primary_key: :action_name, optional: true
+
+      before_validation :sync_rule, if: -> { new_record? || (changes.keys & ['business_identifier', 'namespace_identifier', 'controller_path', 'action_name']).present? }
+    end
+
+    def sync_rule
+      self.rule = proxy_rule
     end
 
   end
