@@ -71,6 +71,11 @@ module Roled
       false
     end
 
+    def landmark_rules
+      _rule_ids = role_hash.deepest_values
+      Rule.where(id: _rule_ids, landmark: true)
+    end
+
     def sync_to_role_ids
       #self.role_ids = cached_role_ids
     end
