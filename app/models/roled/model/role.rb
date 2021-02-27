@@ -28,10 +28,23 @@ module Roled
     end
 
     def has_role?(**options)
-      options[:business] = options[:business] if options.key?(:business)
-      options[:namespace] = options[:namespace] if options.key?(:namespace)
+      if options.key?(:business)
+        business = options[:business].to_s
+      else
+        business = nil
+      end
+      if options.key?(:namespace)
+        namespace = options[:namespace].to_s
+      else
+        namespace = nil
+      end
+      if options.key?(:controller)
+        controller = options[:controller].to_s.delete_prefix('/').presence
+      else
+        controller = nil
+      end
 
-      opts = [options[:business], options[:namespace], options[:controller].to_s.delete_prefix('/').presence, options[:action]].take_while(&->(i){ !i.nil? })
+      opts = [business, namespace, controller, options[:action]].take_while(&->(i){ !i.nil? })
       logger.debug "  \e[35m-----> Role: #{opts} \e[0m"
       return false if opts.blank?
       role_hash.dig(*opts)

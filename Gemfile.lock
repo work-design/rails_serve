@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_com.git
-  revision: efce7203522ee05bc8955cddd331307036e724dd
+  revision: dad3b5a7dc5dce1d816cca52b972d43fa151ff8e
   specs:
     rails_com (1.2.9)
       acme-client
