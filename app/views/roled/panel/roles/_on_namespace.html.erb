@@ -1,2 +1,8 @@
 <%= render partial: 'show_namespace', locals: { name_space: @name_space, expand: true } %>
-<%= render partial: 'show_govern', collection: @governs, as: :govern %>
+<% if params[:expand].present? %>
+  <% @governs.each do |govern| %>
+    <%= turbo_stream.replace "tr_#{govern.identifier}", partial: 'show_govern', locals: { govern: govern } %>
+  <% end %>
+<% else %>
+  <%= render partial: 'show_govern', collection: @governs, as: :govern %>
+<% end %>

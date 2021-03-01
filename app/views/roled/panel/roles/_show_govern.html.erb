@@ -1,7 +1,7 @@
 <tr id="tr_<%= govern.identifier %>" data-controller="tree-remote" data-tree-remote-target="item" data-tree-remote-hide-value="<%= defined?(hide) && hide ? true : false %>">
   <td>
     <span style="width: 2.86em; display: inline-block"></span>
-    <%= button_to({ action: 'rules', govern_id: govern.id }, data: { turbo_frame: 'visit' }) do %>
+    <%= button_to({ action: 'rules' }, params: { govern_id: govern.id }) do %>
       <% if defined?(expand) && expand %>
         <i class="fas fa-fw fa-caret-down" style="cursor: pointer" data-action="click->tree-remote#collapse"></i>
       <% else %>
@@ -9,11 +9,11 @@
       <% end %>
     <% end %>
     <% if @role.has_role?(business: govern.business_identifier, namespace: govern.namespace_identifier, controller: govern.controller_path) %>
-      <%= button_to({ action: 'govern_off' }, params: { govern_id: govern.id }, method: :patch) do %>
+      <%= button_to({ action: 'govern_off' }, params: { govern_id: govern.id, expand: defined?(expand) && expand }, method: :patch, form: { data: { tree_remote_target: 'checkbox' } }) do %>
         <i class="far fa-check-square fa-lg"></i>
       <% end %>
     <% else %>
-      <%= button_to({ action: 'govern_on' }, params: { govern_id: govern.id }, method: :patch) do %>
+      <%= button_to({ action: 'govern_on' }, params: { govern_id: govern.id, expand: defined?(expand) && expand }, method: :patch, form: { data: { tree_remote_target: 'checkbox' } }) do %>
         <i class="far fa-square fa-lg"></i>
       <% end %>
     <% end %>

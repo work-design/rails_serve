@@ -35,6 +35,7 @@ module Roled
     end
 
     def governs
+      @name_space = NameSpace.find_by identifier: params[:namespace_identifier].presence
       q_params = {
         business_identifier: nil,
         namespace_identifier: nil,
@@ -90,6 +91,15 @@ module Roled
       @name_space = NameSpace.find_by identifier: params[:namespace_identifier].presence
       @role.namespace_off(@name_space, params[:business_identifier])
       @role.save
+
+      q_params = {
+        business_identifier: nil,
+        namespace_identifier: nil,
+        allow: { business_identifier: nil, namespace_identifier: nil }
+      }
+      q_params.merge! params.permit(:business_identifier, :namespace_identifier)
+
+      @governs = Govern.default_where(q_params)
     end
 
     def govern_on
