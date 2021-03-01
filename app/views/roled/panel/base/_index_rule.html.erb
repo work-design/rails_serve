@@ -2,6 +2,7 @@
   <td>
     <span style="width: 4.29em; display: inline-block"></span>
     <span><%= rule.name %></span>
+    <span class="has-text-grey"><%= rule.action_name %></span>
   </td>
   <td>
     <%= form_with theme: nil, model: rule, url: { controller: 'rules', action: 'update', govern_id: params[:govern_id], id: rule.id }, data: { controller: 'input' } do |f| %>
