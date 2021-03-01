@@ -8,11 +8,11 @@
       <% end %>
     <% end %>
     <% if @role.has_role?(business: busyness.identifier) %>
-      <%= button_to({ action: 'business_off' }, params: { business_identifier: busyness.identifier, expand: defined?(expand) && expand }, method: :patch) do %>
+      <%= button_to({ action: 'business_off' }, params: { business_identifier: busyness.identifier, expand: defined?(expand) && expand }, method: :patch, form: { data: { tree_remote_target: 'checkbox' } }) do %>
         <i class="far fa-check-square fa-lg"></i>
       <% end %>
     <% else %>
-      <%= button_to({ action: 'business_on' }, params: { business_identifier: busyness.identifier, expand: defined?(expand) && expand }, method: :patch) do %>
+      <%= button_to({ action: 'business_on' }, params: { business_identifier: busyness.identifier, expand: defined?(expand) && expand }, method: :patch, form: { data: { tree_remote_target: 'checkbox' } }) do %>
         <i class="far fa-square fa-lg"></i>
       <% end %>
     <% end %>
