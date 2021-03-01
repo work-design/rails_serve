@@ -1,6 +1,6 @@
 <tr id="tr_<%= busyness.identifier.blank? ? '_' : busyness.identifier %>" data-controller="tree-remote" data-tree-remote-target="item" data-tree-remote-hide-value="<%= defined?(hide) && hide ? true : false %>">
   <td>
-    <%= button_to({ action: 'namespaces', business_identifier: busyness.identifier }, data: { turbo_frame: 'visit' }) do %>
+    <%= button_to({ action: 'namespaces' }, params: { business_identifier: busyness.identifier }) do %>
       <% if defined?(expand) && expand %>
         <i class="fas fa-fw fa-caret-down" style="cursor: pointer" data-action="click->tree-remote#collapse"></i>
       <% else %>
@@ -8,11 +8,11 @@
       <% end %>
     <% end %>
     <% if @role.has_role?(business: busyness.identifier) %>
-      <%= button_to({ action: 'business_off' }, params: { business_identifier: busyness.identifier }, method: :patch) do %>
+      <%= button_to({ action: 'business_off' }, params: { business_identifier: busyness.identifier, expand: defined?(expand) && expand }, method: :patch) do %>
         <i class="far fa-check-square fa-lg"></i>
       <% end %>
     <% else %>
-      <%= button_to({ action: 'business_on' }, params: { business_identifier: busyness.identifier }, method: :patch) do %>
+      <%= button_to({ action: 'business_on' }, params: { business_identifier: busyness.identifier, expand: defined?(expand) && expand }, method: :patch) do %>
         <i class="far fa-square fa-lg"></i>
       <% end %>
     <% end %>
