@@ -2,7 +2,7 @@
 <tr id="tr_<%= govern.identifier %>" data-controller="tree-remote" data-tree-remote-target="item">
   <td>
     <span style="width: 2.86em; display: inline-block"></span>
-    <%= link_to({ action: 'rules', govern_id: govern.id }, data: { turbo_frame: 'visit' }) do %>
+    <%= button_to({ action: 'rules', govern_id: govern.id }, data: { turbo_frame: 'visit' }) do %>
       <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree-remote#expand"></i>
     <% end %>
     <span><%= govern.name %></span>

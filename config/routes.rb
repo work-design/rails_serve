@@ -27,9 +27,9 @@ Rails.application.routes.draw do
     resources :governs, only: [:index] do
       collection do
         post :sync
-        get :namespaces
-        get :governs
-        get :rules
+        post :namespaces
+        post :governs
+        post :rules
       end
       member do
         patch :move_lower
