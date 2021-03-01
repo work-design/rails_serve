@@ -32,8 +32,6 @@ module Roled
 
     def namespaces
       @busyness = Busyness.find_by identifier: params[:business_identifier]
-      identifiers = Govern.unscope(:order).select(:namespace_identifier).where(business_identifier: params[:business_identifier]).distinct.pluck(:namespace_identifier)
-      @name_spaces = NameSpace.where(identifier: identifiers)
     end
 
     def governs
@@ -63,7 +61,6 @@ module Roled
     def business_on
       @busyness = Busyness.find_by identifier: params[:business_identifier].presence
       @role.business_on @busyness
-      @name_spaces = @busyness.name_spaces
 
       @role.save
     end

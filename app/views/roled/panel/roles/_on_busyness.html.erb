@@ -1,8 +1,8 @@
 <%= render partial: 'show_busyness', locals: { busyness: @busyness, expand: true } %>
 <% if params[:expand].present? %>
-  <% @name_spaces.each do |name_space| %>
+  <% @busyness.name_spaces.each do |name_space| %>
     <%= turbo_stream.replace "tr_#{params[:business_identifier]}_#{name_space.identifier.blank? ? '_' : name_space.identifier}", partial: 'show_namespace', locals: { name_space: name_space } %>
   <% end %>
 <% else %>
-  <%= render partial: 'show_namespace', collection: @name_spaces, as: :name_space %>
+  <%= render partial: 'show_namespace', collection: @busyness.name_spaces, as: :name_space %>
 <% end %>
