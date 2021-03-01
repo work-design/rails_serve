@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   scope :panel, module: 'roled/panel', as: :panel, defaults: { namespace: 'panel', business: 'role' } do
     resources :roles do
       member do
-        get :overview
-        get :namespaces
-        get :governs
-        get :rules
+        post :overview
+        post :namespaces
+        post :governs
+        post :rules
         patch :business_on
         patch :business_off
         patch :namespace_on

@@ -1,7 +1,7 @@
 <tr id="tr_<%= govern.identifier %>" data-controller="tree-remote" data-tree-remote-target="item" data-tree-remote-hide-value="<%= defined?(hide) && hide ? true : false %>">
   <td>
     <span style="width: 2.86em; display: inline-block"></span>
-    <%= link_to({ action: 'rules', govern_id: govern.id }, data: { turbo_frame: 'visit' }) do %>
+    <%= button_to({ action: 'rules', govern_id: govern.id }, data: { turbo_frame: 'visit' }) do %>
       <% if defined?(expand) && expand %>
         <i class="fas fa-fw fa-caret-down" style="cursor: pointer" data-action="click->tree-remote#collapse"></i>
       <% else %>
