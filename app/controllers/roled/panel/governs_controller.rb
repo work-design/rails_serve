@@ -6,7 +6,7 @@ module Roled
       q_params = {}
       q_params.merge! params.permit(:business_identifier, :namespace_identifier)
 
-      @busynesses = Busyness.all
+      @busynesses = Busyness.order(position: :asc)
       @governs = Govern.includes(:rules).default_where(q_params).page(params[:page])
     end
 

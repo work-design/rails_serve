@@ -3,6 +3,7 @@ module Roled
     extend ActiveSupport::Concern
 
     included do
+      attribute :name, :string
       attribute :identifier, :string
       attribute :position, :integer
 
@@ -17,6 +18,8 @@ module Roled
     end
 
     def name
+      return super if super.present?
+
       t = I18n.t "#{identifier}.title", default: nil
       return t if t
 

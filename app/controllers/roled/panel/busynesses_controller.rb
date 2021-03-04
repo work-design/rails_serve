@@ -3,7 +3,7 @@ module Roled
     before_action :set_busyness, only: [:show, :edit, :update, :move_higher, :move_lower]
 
     def index
-      @busynesses = Busyness.with_attached_logo.order(id: :asc).page(params[:page])
+      @busynesses = Busyness.with_attached_logo.order(position: :asc).page(params[:page])
     end
 
     def sync
@@ -35,6 +35,7 @@ module Roled
     private
     def busyness_params
       params.fetch(:busyness, {}).permit(
+        :name,
         :logo
       )
     end
