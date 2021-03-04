@@ -31,7 +31,7 @@ module Roled
     end
 
     def namespaces
-      @busyness = Busyness.find_by identifier: params[:business_identifier]
+      @busyness = Busyness.find_by identifier: params[:business_identifier].presence
     end
 
     def governs
