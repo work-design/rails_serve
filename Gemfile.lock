@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/qinmingyuan/default_form.git
-  revision: e17f243a3ae84256135a8bfa126900eba2b1e133
+  revision: 75de8d5d009a86c942e7186e0e76b4fa874b408a
   specs:
     default_form (1.5.1)
       rails_com (~> 1.2)
@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_com.git
-  revision: d52ecfa24af4587335c85fb5226c9704353d0b5e
+  revision: 49b4dabc188f716877e6b0a9bb7b2b35dc74e83b
   specs:
     rails_com (1.2.9)
       acme-client
@@ -46,7 +46,7 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_ui.git
-  revision: 2c2f78b5a8cc763b0058fb8e806686e07564cae0
+  revision: 1aa1e5b8902adac57aa3ceaae99b601452a4e2a6
   specs:
     rails_ui (0.1.0)
       rails
