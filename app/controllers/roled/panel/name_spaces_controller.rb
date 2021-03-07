@@ -3,7 +3,7 @@ module Roled
     before_action :set_name_space, only: [:show, :edit, :update, :destroy]
 
     def index
-      @name_spaces = NameSpace.page(params[:page])
+      @name_spaces = NameSpace.order(id: :asc).page(params[:page])
     end
 
     def new
