@@ -1,5 +1,5 @@
 <%= render 'shared/error_messages', target: f.object %>
 <%= f.text_field :name %>
-<%= f.text_field :verify_organ %>
-<%= f.text_field :verify_member %>
-<%= f.text_field :verify_user %>
+<%= f.check_box :verify_organ %>
+<%= f.check_box :verify_member %>
+<%= f.check_box :verify_user %>
