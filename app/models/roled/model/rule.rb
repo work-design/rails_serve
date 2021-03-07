@@ -26,7 +26,7 @@ module Roled
         remove: 'remove'
       }, _default: 'read'
 
-      has_many :role_rules, ->(o) { where(controller_identifier: o.controller_identifier) }, foreign_key: :action_name, primary_key: :identifier, dependent: :delete_all
+      has_many :role_rules, ->(o) { where(controller_path: o.controller_path) }, foreign_key: :action_name, primary_key: :identifier, dependent: :delete_all
       has_many :roles, through: :role_rules
 
       default_scope -> { order(position: :asc, id: :asc) }
