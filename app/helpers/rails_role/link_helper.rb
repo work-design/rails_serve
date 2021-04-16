@@ -55,7 +55,7 @@ module RailsRole::LinkHelper
     else
       organ_permitted = true
     end
-    if rails_role_user
+    if defined?(rails_role_user) && rails_role_user
       user_permitted = rails_role_user.has_role?(params: extra_params, **path_params.slice(:business, :namespace, :controller, :action).symbolize_keys)
     else
       user_permitted = true
