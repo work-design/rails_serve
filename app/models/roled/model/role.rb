@@ -136,7 +136,9 @@ module Roled
                 namespace_identifier: namespace,
                 controller_path: controller,
                 action_name: action[0],
-                rule_id: action[1]
+                rule_id: action[1],
+                created_at: Time.current,
+                updated_at: Time.current
               }
             end
           end
