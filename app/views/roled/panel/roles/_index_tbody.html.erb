@@ -2,7 +2,7 @@
 <td><%= model.description %></td>
 <td>
   <% Array(model.who_types).each do |who_type| %>
-    <%= link_to who_type, panel_role_who_roles_path(model, who_type: who_type), class: 'button' %>
+    <%= link_to who_type, { controller: 'roled/panel/who_roles', role_id: model.id, who_type: who_type }, class: 'button' %>
   <% end %>
 </td>
 <td>
