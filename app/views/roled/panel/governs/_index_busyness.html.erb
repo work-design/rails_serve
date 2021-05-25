@@ -4,6 +4,7 @@
       <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree-remote#expand"></i>
     <% end %>
     <span><%= busyness.name %></span>
+    <span class="has-text-grey">(<%= busyness.identifier %>)</span>
     <%= button_to({ controller: 'busynesses', action: 'move_higher', id: busyness.id }, method: :patch, data: { show_target: 'item' }, style: 'visibility: hidden') do %>
       <i class="fas fa-arrow-up"></i>
     <% end %>

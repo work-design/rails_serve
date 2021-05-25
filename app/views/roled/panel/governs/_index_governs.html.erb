@@ -6,6 +6,7 @@
       <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree-remote#expand"></i>
     <% end %>
     <span><%= govern.name %></span>
+    <span class="has-text-grey">(<%= govern.controller_path %>)</span>
   </td>
   <td>
     <%= link_to({ controller: 'rules', govern_id: govern.id }) do %>
