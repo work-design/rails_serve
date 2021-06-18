@@ -1,6 +1,6 @@
 <div class="breadcrumb has-succeeds-separator">
   <ul>
-    <li><%= link_to t('roled.panel.governs.index.title'), panel_roles_path %></li>
+    <li><%= link_to t('roled.panel.governs.index.title'), { controller: 'index' } %></li>
     <li class="is-active"><%= @role.name %></li>
   </ul>
 </div>
