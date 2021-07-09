@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_com.git
-  revision: 20c5959d35ae0af0b939f600c9ee0340a7586efd
+  revision: da60c3e4c9bce9a1380b3ef1c664887d6ee706f7
   specs:
     rails_com (1.2.9)
       acme-client
@@ -39,7 +39,7 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_ui.git
-  revision: e0afac07690cad18801939ca5766d525d4c6cf70
+  revision: b7e16e58d7d47cd6ba319a93cd49a2b8d5bc8ded
   specs:
     rails_ui (0.1.0)
       rails
@@ -118,7 +118,7 @@ GEM
       activerecord (>= 4.2)
     awesome_print (1.9.2)
     builder (3.2.4)
-    closure_tree (7.2.0)
+    closure_tree (7.3.0)
       activerecord (>= 4.2.10)
       with_advisory_lock (>= 4.0.0)
     coderay (1.1.3)
@@ -149,7 +149,7 @@ GEM
       activesupport (>= 4.2.0)
     http-2-next (0.4.3)
     http-form_data (2.3.0)
-    httpx (0.15.0)
+    httpx (0.15.3)
       http-2-next (>= 0.4.1)
       timers
     i18n (1.8.10)
