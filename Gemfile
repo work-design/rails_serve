@@ -6,7 +6,6 @@ gem 'rails'
 gem 'puma'
 gem 'pg'
 
-gem 'webpacker', github: 'rails/webpacker'
 gem 'turbo-rails', github: 'hotwired/turbo-rails', branch: 'main'
 
 gem 'factory_bot_rails', require: false
