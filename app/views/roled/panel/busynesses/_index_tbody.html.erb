@@ -1,10 +1,12 @@
 <td>
-  <%= image_tag model.logo, class: 'image is-24x24' if model.logo.attached? %>
-  <%= link_to model.name, { controller: 'governs', business_identifier: model.identifier }, text: true %>
-  <%= button_to({ controller: 'busynesses', action: 'move_higher', id: model.id }, method: :patch, data: { 'show-target': 'item' }, style: 'visibility: hidden') do %>
-    <i class="fas fa-arrow-up"></i>
-  <% end %>
-  <%= button_to({ controller: 'busynesses', action: 'move_lower', id: model.id }, method: :patch, data: { 'show-target': 'item' }, style: 'visibility: hidden') do %>
-    <i class="fas fa-arrow-down"></i>
-  <% end %>
+  <div class="is-several">
+    <%= image_tag model.logo, class: 'image is-24x24' if model.logo.attached? %>
+    <%= link_to model.name, { controller: 'governs', business_identifier: model.identifier }, text: true %>
+    <%= button_to({ controller: 'busynesses', action: 'move_higher', id: model.id }, method: :patch, data: { 'show-target': 'item' }, style: 'visibility: hidden') do %>
+      <i class="fas fa-arrow-up"></i>
+    <% end %>
+    <%= button_to({ controller: 'busynesses', action: 'move_lower', id: model.id }, method: :patch, data: { 'show-target': 'item' }, style: 'visibility: hidden') do %>
+      <i class="fas fa-arrow-down"></i>
+    <% end %>
+  </div>
 </td>
