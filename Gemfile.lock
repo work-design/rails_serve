@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/qinmingyuan/viter.git
+  revision: 7e67bf86c44f0c95c918d631df253e0f824caf15
+  specs:
+    viter (0.1.0)
+      rails
+
+GIT
   remote: https://github.com/work-design/rails_com.git
   revision: 2e6418a0fa63d27a37083cdd7995de313d84e839
   specs:
@@ -151,6 +158,8 @@ GEM
     mini_mime (1.0.3)
     mini_portile2 (2.5.1)
     minitest (5.14.4)
+    minitest-hooks (1.5.0)
+      minitest (> 5.3)
     multipart-post (2.1.1)
     nio4r (2.5.7)
     nokogiri (1.11.4)
@@ -223,12 +232,14 @@ DEPENDENCIES
   acts_as_list
   awesome_print
   kaminari
+  minitest-hooks
   pg
   pry-rails
   puma
   rails_com!
   rails_role!
   rails_ui!
+  viter!
 
 BUNDLED WITH
    2.2.22
