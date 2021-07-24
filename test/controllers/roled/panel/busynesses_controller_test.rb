@@ -1,8 +1,8 @@
 require 'test_helper'
-class Role::Admin::BusynessesControllerTest < ActionDispatch::IntegrationTest
+class Roled::Panel::BusynessesControllerTest < ActionDispatch::IntegrationTest
 
   setup do
-    @busyness = create :busyness
+
   end
 
   test 'index ok' do

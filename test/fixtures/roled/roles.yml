@@ -1,0 +1,14 @@
+one:
+  name: MyString
+  description: MyString
+  visible: false
+  who_types: []
+  role_hash: {}
+  default: false
+two:
+  name: MyString
+  description: MyString
+  visible: false
+  who_types: []
+  role_hash: {}
+  default: false

@@ -1,21 +1,6 @@
 GIT
-  remote: https://github.com/hotwired/turbo-rails.git
-  revision: 2945dcb7c5fc634ad7d459e0872cf04cf8a3576d
-  branch: main
-  specs:
-    turbo-rails (0.5.9)
-      rails (>= 6.0.0)
-
-GIT
-  remote: https://github.com/qinmingyuan/default_form.git
-  revision: d0fbf0383bf8f9ec7941f79ad2dabd95a478e53b
-  specs:
-    default_form (1.5.1)
-      rails_com (~> 1.2)
-
-GIT
   remote: https://github.com/work-design/rails_com.git
-  revision: ff2fa793ea78f7c6b1d824a86c4910dab26223cd
+  revision: 2e6418a0fa63d27a37083cdd7995de313d84e839
   specs:
     rails_com (1.2.9)
       acme-client
@@ -30,7 +15,7 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_ui.git
-  revision: b7e16e58d7d47cd6ba319a93cd49a2b8d5bc8ded
+  revision: 62e689df00a8cc12f119c2a945990592d173b315
   specs:
     rails_ui (0.1.0)
       rails
@@ -118,11 +103,6 @@ GEM
     default_where (2.2.0)
       activerecord (>= 4.0.0)
     erubi (1.10.0)
-    factory_bot (6.2.0)
-      activesupport (>= 5.0.0)
-    factory_bot_rails (6.2.0)
-      factory_bot (~> 6.2.0)
-      railties (>= 5.0.0)
     faraday (1.5.1)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
@@ -214,8 +194,8 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (~> 1.0)
-    rake (13.0.3)
-    ruby2_keywords (0.0.4)
+    rake (13.0.6)
+    ruby2_keywords (0.0.5)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -225,9 +205,11 @@ GEM
       sprockets (>= 3.0.0)
     thor (1.1.0)
     timers (4.3.3)
+    turbo-rails (0.6.0)
+      rails (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
-    websocket-driver (0.7.3)
+    websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     with_advisory_lock (4.6.0)
@@ -240,17 +222,13 @@ PLATFORMS
 DEPENDENCIES
   acts_as_list
   awesome_print
-  default_form!
-  factory_bot_rails
   kaminari
   pg
   pry-rails
   puma
-  rails
   rails_com!
   rails_role!
   rails_ui!
-  turbo-rails!
 
 BUNDLED WITH
    2.2.22
