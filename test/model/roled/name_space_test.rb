@@ -14,7 +14,7 @@ module Roled
       name_space = NameSpace.find_by identifier: 'panel'
       r = name_space.role_hash('roled')
 
-      assert_includes r.keys, 'roles'
+      assert_includes r.keys, 'roled/panel/roles'
     end
 
   end
