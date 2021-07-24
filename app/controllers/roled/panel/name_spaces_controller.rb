@@ -6,18 +6,6 @@ module Roled
       @name_spaces = NameSpace.order(id: :asc).page(params[:page])
     end
 
-    def new
-      @name_space = NameSpace.new
-    end
-
-    def create
-      @name_space = NameSpace.new(name_space_params)
-
-      unless @name_space.save
-        render :new, locals: { model: @name_space }, status: :unprocessable_entity
-      end
-    end
-
     def sync
       NameSpace.sync
     end
@@ -34,10 +22,6 @@ module Roled
       unless @name_space.save
         render :edit, locals: { model: @name_space }, status: :unprocessable_entity
       end
-    end
-
-    def destroy
-      @name_space.destroy
     end
 
     private

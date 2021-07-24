@@ -1,48 +1,34 @@
 require 'test_helper'
-class Role::Admin::NameSpacesControllerTest < ActionDispatch::IntegrationTest
+class Roled::Panel::NameSpacesControllerTest < ActionDispatch::IntegrationTest
 
   setup do
-    @name_space = create :name_space
+    @name_space = Roled::NameSpace.first
   end
 
   test 'index ok' do
-    get admin_name_spaces_url
-    assert_response :success
-  end
-
-  test 'new ok' do
-    get new_admin_name_space_url
-    assert_response :success
-  end
-
-  test 'create ok' do
-    assert_difference('NameSpace.count') do
-      post admin_name_spaces_url, params: { }
-    end
-
+    get url_for(controller: 'roled/panel/name_spaces')
     assert_response :success
   end
 
   test 'show ok' do
-    get admin_name_space_url(@name_space)
+    get url_for(controller: 'roled/panel/name_spaces', action: 'show', id: @name_space.id)
     assert_response :success
   end
 
   test 'edit ok' do
-    get edit_admin_name_space_url(@name_space)
+    get url_for(controller: 'roled/panel/name_spaces', action: 'edit', id: @name_space.id)
     assert_response :success
   end
 
   test 'update ok' do
-    patch admin_name_space_url(@name_space), params: {  }
-    assert_response :success
-  end
+    patch(
+      url_for(controller: 'roled/panel/name_spaces', action: 'show', id: @name_space.id),
+      params: { name_space: { name: 'xx' } },
+      as: :turbo_stream
+    )
 
-  test 'destroy ok' do
-    assert_difference('NameSpace.count', -1) do
-      delete admin_name_space_url(@name_space)
-    end
-
+    @name_space.reload
+    assert_equal 'xx', @name_space.name
     assert_response :success
   end
 
