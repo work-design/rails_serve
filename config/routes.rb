@@ -25,25 +25,6 @@ Rails.application.routes.draw do
           end
         end
       end
-      resources :governs, only: [:index] do
-        collection do
-          post :sync
-          post :namespaces
-          post :governs
-          post :rules
-        end
-        member do
-          patch :move_lower
-          patch :move_higher
-        end
-        resources :rules do
-          member do
-            patch :move_lower
-            patch :move_higher
-            get :roles
-          end
-        end
-      end
     end
 
     namespace :admin, defaults: { namespace: 'admin' } do

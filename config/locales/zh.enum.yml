@@ -1,14 +1,5 @@
 zh:
   activerecord:
-    enum:
-      rule:
-        operation:
-          admin: 管理
-          list: 列表页
-          read: 详情页
-          add: 新增
-          edit: 编辑
-          remove: 移除
       role:
         who_types:
           User: User

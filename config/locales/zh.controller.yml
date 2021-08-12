@@ -9,28 +9,6 @@ zh:
           title: 权限设置
     panel:
       title: 权限管理
-      governs:
-        index:
-          title: 权限配置
-          unclassified: 未分类
-        create:
-          govern_created: 章节已创建
-          govern_not_created: 章节没有被创建
-        create_rule:
-          govern_rule_created: 章节的规则已创建
-          govern_rule_not_created: 章节的规则没有被创建
-        rule_on:
-          govern_rule_on: 章节的规则可有
-          state_not_changed: 章节的规则没有改变
-        rule_off:
-          govern_rule_off: 章节的规则不可有
-          state_not_changed: 章节的规则没有改变
-        destroy:
-          govern_deleted: 章节已删除
-          govern_not_deleted: 章节没有被删除
-        destroy_rule:
-          govern_rule_deleted: 章节的规则已被删除
-          govern_rule_not_deleted: 章节的规则没有被删除
       roles:
         index:
           title: 角色列表
@@ -75,6 +53,3 @@ zh:
           roles_list: 角色列表
           new_role: 创建新角色
           delete_role_confirm: 你确定? 可能存在风险!
-      rules:
-        index:
-          title: 规则列表
