@@ -44,24 +44,6 @@ Rails.application.routes.draw do
           end
         end
       end
-      resources :name_spaces do
-        collection do
-          post :sync
-        end
-        member do
-          patch :move_lower
-          patch :move_higher
-        end
-      end
-      resources :busynesses do
-        collection do
-          post :sync
-        end
-        member do
-          patch :move_lower
-          patch :move_higher
-        end
-      end
     end
 
     namespace :admin, defaults: { namespace: 'admin' } do

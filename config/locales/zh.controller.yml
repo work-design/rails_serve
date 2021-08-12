@@ -31,12 +31,6 @@ zh:
         destroy_rule:
           govern_rule_deleted: 章节的规则已被删除
           govern_rule_not_deleted: 章节的规则没有被删除
-      busynesses:
-        index:
-          title: 业务
-      name_spaces:
-        index:
-          title: 命名空间
       roles:
         index:
           title: 角色列表

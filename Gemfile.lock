@@ -1,13 +1,13 @@
 GIT
   remote: https://github.com/qinmingyuan/viter.git
-  revision: 68a7abd984aeac0928bbe736d8feded4697a8f86
+  revision: 69e5b6e5585471aa973aa1fd807e38544295b886
   specs:
     viter (0.1.0)
       rails
 
 GIT
   remote: https://github.com/work-design/rails_com.git
-  revision: 0d665c63b5015543291c90db94ab53dbdb2893d7
+  revision: c36a61af1ae68a6f517ab95576f849488bfc4c8c
   specs:
     rails_com (1.2.9)
       acme-client
@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_ui.git
-  revision: 28312c28dd5e5af50e4d16d38ffc7a15b7e0eee0
+  revision: c1ebc080c6cd753eba3730044afb6c324354d40a
   specs:
     rails_ui (0.1.0)
       rails
@@ -110,7 +110,7 @@ GEM
     default_where (2.2.0)
       activerecord (>= 4.0.0)
     erubi (1.10.0)
-    faraday (1.5.1)
+    faraday (1.7.0)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
       faraday-excon (~> 1.1)
@@ -118,6 +118,7 @@ GEM
       faraday-net_http (~> 1.0)
       faraday-net_http_persistent (~> 1.1)
       faraday-patron (~> 1.0)
+      faraday-rack (~> 1.0)
       multipart-post (>= 1.2, < 3)
       ruby2_keywords (>= 0.0.4)
     faraday-em_http (1.0.0)
@@ -127,11 +128,12 @@ GEM
     faraday-net_http (1.0.1)
     faraday-net_http_persistent (1.2.0)
     faraday-patron (1.0.0)
+    faraday-rack (1.0.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    http-2-next (0.4.3)
+    http-2-next (0.5.0)
     http-form_data (2.3.0)
-    httpx (0.15.4)
+    httpx (0.16.1)
       http-2-next (>= 0.4.1)
       timers
     i18n (1.8.10)
@@ -214,7 +216,7 @@ GEM
       sprockets (>= 3.0.0)
     thor (1.1.0)
     timers (4.3.3)
-    turbo-rails (0.6.0)
+    turbo-rails (0.7.0)
       rails (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
