@@ -2,8 +2,8 @@ module Roled
   class Panel::RolesController < Panel::BaseController
     before_action :set_role, only: [
       :show, :overview, :edit, :update, :destroy,
-      :namespaces, :governs, :rules,
-      :business_on, :business_off, :namespace_on, :namespace_off, :govern_on, :govern_off, :rule_on, :rule_off
+      :namespaces, :controllers, :actions,
+      :business_on, :business_off, :namespace_on, :namespace_off, :controller_on, :controller_off, :action_on, :action_off
     ]
 
     def index
@@ -25,7 +25,7 @@ module Roled
     def show
       q_params = {}
 
-      @meta_controllers = MetaController.includes(:rules).default_where(q_params)
+      @meta_controllers = MetaController.includes(:meta_actions).default_where(q_params)
       @meta_businesses = MetaBusiness.all
     end
 
@@ -46,13 +46,13 @@ module Roled
     end
 
     def actions
-      @govern = Govern.find params[:govern_id]
+      @meta_controller = MetaController.find params[:meta_controller_id]
 
-      @rules = @govern.rules
+      @meta_actions = @meta_controller.meta_actions
     end
 
     def overview
-      @taxon_ids = @role.governs.unscope(:order).uniq
+      @taxon_ids = @role.meta_controllers.unscope(:order).uniq
     end
 
     def business_on
@@ -69,8 +69,8 @@ module Roled
     end
 
     def namespace_on
-      @name_space = NameSpace.find_by identifier: params[:namespace_identifier].presence
-      @role.namespace_on(@name_space, params[:business_identifier])
+      @meta_namespace = MetaNamespace.find_by identifier: params[:namespace_identifier].presence
+      @role.namespace_on(@meta_namespace, params[:business_identifier])
       @role.save
 
       q_params = {
@@ -80,12 +80,12 @@ module Roled
       }
       q_params.merge! params.permit(:business_identifier, :namespace_identifier)
 
-      @governs = Govern.default_where(q_params)
+      @meta_controllers = MetaController.default_where(q_params)
     end
 
     def namespace_off
-      @name_space = NameSpace.find_by identifier: params[:namespace_identifier].presence
-      @role.namespace_off(@name_space, params[:business_identifier])
+      @meta_namespace = MetaNamespace.find_by identifier: params[:namespace_identifier].presence
+      @role.namespace_off(@meta_namespace, params[:business_identifier])
       @role.save
 
       q_params = {
@@ -95,38 +95,38 @@ module Roled
       }
       q_params.merge! params.permit(:business_identifier, :namespace_identifier)
 
-      @governs = Govern.default_where(q_params)
+      @meta_controllers = MetaController.default_where(q_params)
     end
 
     def controller_on
-      @govern = Govern.find params[:govern_id]
-      @role.controller_on(@govern)
+      @meta_controller = MetaController.find params[:meta_controller_id]
+      @role.controller_on(@meta_controller)
       @role.save
     end
 
     def controller_off
-      @govern = Govern.find params[:govern_id]
-      @role.controller_off(@govern)
+      @meta_controller = MetaController.find params[:meta_controller_id]
+      @role.controller_off(@meta_controller)
       @role.save
     end
 
-    def rule_on
-      @rule = Rule.find params[:rule_id]
+    def action_on
+      @meta_action = MetaAction.find params[:meta_action_id]
 
-      @role.role_hash.deep_merge!(@rule.business_identifier.to_s => {
-        @rule.namespace_identifier.to_s => {
-          @rule.controller_path => {
-            @rule.action_name => true
+      @role.role_hash.deep_merge!(@meta_action.business_identifier.to_s => {
+        @meta_action.namespace_identifier.to_s => {
+          @meta_action.controller_path => {
+            @meta_action.action_name => true
           }
         }
       })
       @role.save
     end
 
-    def rule_off
-      @rule = Rule.find params[:rule_id]
+    def action_off
+      @meta_action = MetaAction.find params[:meta_action_id]
 
-      @role.role_hash.fetch(@rule.business_identifier.to_s, {}).fetch(@rule.namespace_identifier.to_s, {}).fetch(@rule.controller_path, {}).delete(@rule.action_name)
+      @role.role_hash.fetch(@meta_action.business_identifier.to_s, {}).fetch(@meta_action.namespace_identifier.to_s, {}).fetch(@meta_action.controller_path, {}).delete(@meta_action.action_name)
       @role.save
     end
 

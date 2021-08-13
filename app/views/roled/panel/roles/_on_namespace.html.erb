@@ -1,8 +1,8 @@
-<%= render partial: 'show_namespace', locals: { name_space: @name_space, expand: true } %>
+<%= render partial: 'show_namespace', locals: { meta_namespace: @meta_namespace, expand: true } %>
 <% if params[:expand].present? %>
-  <% @governs.each do |govern| %>
-    <%= turbo_stream.replace "tr_#{govern.identifier}", partial: 'show_govern', locals: { govern: govern } %>
+  <% @meta_controllers.each do |meta_controller| %>
+    <%= turbo_stream.replace "tr_#{meta_controller.identifier}", partial: 'show_meta_controller', locals: { meta_controller: meta_controller } %>
   <% end %>
 <% else %>
-  <%= render partial: 'show_govern', collection: @governs, as: :govern %>
+  <%= render partial: 'show_controller', collection: @meta_controllers, as: :meta_controller %>
 <% end %>
