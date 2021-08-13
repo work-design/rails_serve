@@ -8,7 +8,7 @@ module Roled
       has_many :who_roles, class_name: 'Roled::WhoRole', as: :who, dependent: :destroy
       has_many :roles, class_name: 'Roled::Role', through: :who_roles
       has_many :role_rules, class_name: 'Roled::RoleRule', through: :who_roles
-      has_many :rules, class_name: 'Roled::Rule', through: :role_rules
+      has_many :meta_actions, class_name: 'Roled::MetaAction', through: :role_rules
 
       after_save :sync_to_role_ids, if: ->{ saved_change_to_cached_role_ids? }
     end
@@ -47,9 +47,10 @@ module Roled
       options[:namespace] = options[:namespace].to_s if options.key?(:namespace)
 
       opts = [options[:business], options[:namespace], options[:controller].to_s.delete_prefix('/').presence, options[:action]].take_while(&->(i){ !i.nil? })
-      logger.debug "  \e[35m-----> User: #{opts}\e[0m"
       return false if opts.blank?
-      role_hash.dig(*opts)
+      r = role_hash.dig(*opts)
+      logger.debug "  \e[35mUser: #{opts}\e[0m"
+      r
     end
 
     def any_role?(*any_roles, **roles_hash)

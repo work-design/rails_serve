@@ -11,16 +11,16 @@ module Roled
       attribute :params_identifier, :string
 
       belongs_to :role, inverse_of: :role_rules
-      belongs_to :busyness, foreign_key: :business_identifier, primary_key: :identifier, optional: true
-      belongs_to :name_space, foreign_key: :namespace_identifier, primary_key: :identifier, optional: true
-      belongs_to :govern, foreign_key: :controller_path, primary_key: :controller_path, optional: true
-      belongs_to :rule
+      belongs_to :meta_business, foreign_key: :business_identifier, primary_key: :identifier, optional: true
+      belongs_to :meta_namespace, foreign_key: :namespace_identifier, primary_key: :identifier, optional: true
+      belongs_to :meta_controller, foreign_key: :controller_path, primary_key: :controller_path, optional: true
+      belongs_to :meta_action
 
-      belongs_to :proxy_rule, ->(o){ where(controller_path: o.controller_path) }, class_name: 'Rule', foreign_key: :action_name, primary_key: :action_name, optional: true
+      belongs_to :proxy_meta_action, ->(o){ where(controller_path: o.controller_path) }, class_name: 'MetaAction', foreign_key: :action_name, primary_key: :action_name, optional: true
     end
 
     def fix_rule_relation
-      self.rule = proxy_rule
+      self.meta_action = proxy_meta_action
       self.save
     end
 
