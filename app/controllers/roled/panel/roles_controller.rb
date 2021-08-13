@@ -36,7 +36,6 @@ module Roled
 
     def actions
       @meta_controller = MetaController.find params[:meta_controller_id]
-
       @meta_actions = @meta_controller.meta_actions
     end
 
@@ -47,7 +46,6 @@ module Roled
     def business_on
       @busyness = Busyness.find_by identifier: params[:business_identifier].presence
       @role.business_on @busyness
-
       @role.save
     end
 
@@ -55,6 +53,8 @@ module Roled
       @busyness = Busyness.find_by identifier: params[:business_identifier].presence
       @role.role_hash.delete params[:business_identifier]
       @role.save
+
+      render :business_on
     end
 
     def namespace_on
@@ -85,6 +85,8 @@ module Roled
       q_params.merge! params.permit(:business_identifier, :namespace_identifier)
 
       @meta_controllers = MetaController.default_where(q_params)
+
+      render :namespace_on
     end
 
     def controller_on
