@@ -1,9 +1,7 @@
 <div class="<%= active_helper(modules: 'roled/panel', active: 'menu ex-accordion is-active', item: 'menu ex-accordion') %>" data-controller="menu">
   <%= content_tag :div, class: 'menu-list' do %>
-    <%= link_to t('roled.panel.roles.index.title'), { controller: 'roled/panel/roles' }, class: active_helper(controllers: 'roles', active: 'is-active') %>
-    <%= link_to t('roled.panel.governs.index.title'), { controller: 'roled/panel/governs' }, class: active_helper(controllers: 'governs', active: 'is-active') %>
-    <%= link_to t('roled.panel.busynesses.index.title'), { controller: 'roled/panel/busynesses' }, class: active_helper(controllers: ['busynesses', 'name_spaces'], active: 'is-active') -%>
-<% end %>
+    <%= link_to t('roled.panel.roles.index.title'), { controller: 'roled/panel/roles' }, class: active_helper(controllers: 'roles', active: 'is-active') -%>
+  <% end %>
   <a class="menu-label" data-action="menu#toggle">
     <i class="fas fa-user-secret fa-fw"></i>
     <span><%= t('roled.panel.title') %></span>

@@ -24,18 +24,17 @@ module Roled
 
     def show
       q_params = {}
-      q_params.merge! params.permit(:govern_taxon_id)
 
-      @governs = Govern.includes(:rules).default_where(q_params)
-      @busynesses = Busyness.all
+      @meta_controllers = MetaController.includes(:rules).default_where(q_params)
+      @meta_businesses = MetaBusiness.all
     end
 
     def namespaces
-      @busyness = Busyness.find_by identifier: params[:business_identifier].presence
+      @meta_business = MetaBusiness.find_by identifier: params[:business_identifier].presence
     end
 
-    def governs
-      @name_space = NameSpace.find_by identifier: params[:namespace_identifier].presence
+    def controllers
+      @namespace = MetaNamespace.find_by identifier: params[:namespace_identifier].presence
       q_params = {
         business_identifier: nil,
         namespace_identifier: nil,
@@ -43,10 +42,10 @@ module Roled
       }
       q_params.merge! params.permit(:business_identifier, :namespace_identifier)
 
-      @governs = Govern.default_where(q_params)
+      @meta_controllers = MetaController.default_where(q_params)
     end
 
-    def rules
+    def actions
       @govern = Govern.find params[:govern_id]
 
       @rules = @govern.rules
@@ -54,9 +53,6 @@ module Roled
 
     def overview
       @taxon_ids = @role.governs.unscope(:order).uniq
-    end
-
-    def edit
     end
 
     def business_on
@@ -102,15 +98,15 @@ module Roled
       @governs = Govern.default_where(q_params)
     end
 
-    def govern_on
+    def controller_on
       @govern = Govern.find params[:govern_id]
-      @role.govern_on(@govern)
+      @role.controller_on(@govern)
       @role.save
     end
 
-    def govern_off
+    def controller_off
       @govern = Govern.find params[:govern_id]
-      @role.govern_off(@govern)
+      @role.controller_off(@govern)
       @role.save
     end
 
@@ -132,18 +128,6 @@ module Roled
 
       @role.role_hash.fetch(@rule.business_identifier.to_s, {}).fetch(@rule.namespace_identifier.to_s, {}).fetch(@rule.controller_path, {}).delete(@rule.action_name)
       @role.save
-    end
-
-    def update
-      @role.assign_attributes role_params
-
-      unless @role.save
-        render :edit, locals: { model: @role }, status: :unprocessable_entity
-      end
-    end
-
-    def destroy
-      @role.destroy
     end
 
     private

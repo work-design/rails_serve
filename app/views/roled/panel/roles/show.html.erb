@@ -2,11 +2,11 @@
   <thead>
     <tr>
       <th>
-        <%= link_to 'Govern (Code)', { controller: 'governs' } %>
+        <%# link_to 'Govern (Code)', { controller: 'governs' } %>
       </th>
     </tr>
   </thead>
   <tbody>
-    <%= render partial: 'show_busyness', collection: @busynesses, as: :busyness %>
+    <%= render partial: 'show_business', collection: @meta_businesses, as: :meta_business %>
   </tbody>
 </table>

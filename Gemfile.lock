@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/qinmingyuan/default_form.git
+  revision: 476ba7231079b1071415ad4e953b55ce16ae1d0d
+  specs:
+    default_form (1.5.1)
+      rails_com (~> 1.2)
+
+GIT
   remote: https://github.com/qinmingyuan/viter.git
   revision: 69e5b6e5585471aa973aa1fd807e38544295b886
   specs:
@@ -7,22 +14,22 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_com.git
-  revision: c36a61af1ae68a6f517ab95576f849488bfc4c8c
+  revision: 7574d723a32542406709e1aef9e9880e4286ab07
   specs:
     rails_com (1.2.9)
       acme-client
       acts_as_list (>= 1.0)
-      closure_tree (>= 7.2)
+      closure_tree (>= 7.3)
       default_where (~> 2.2)
-      http-form_data (~> 2.2)
-      httpx (~> 0.8)
+      http-form_data (~> 2.3)
+      httpx (~> 0.16)
       kaminari
-      rails (~> 6.0)
+      rails (~> 6.1)
       turbo-rails
 
 GIT
   remote: https://github.com/work-design/rails_ui.git
-  revision: c1ebc080c6cd753eba3730044afb6c324354d40a
+  revision: f9071134e3bb0183033594b9c21dbffe45010e2b
   specs:
     rails_ui (0.1.0)
       rails
@@ -233,6 +240,7 @@ PLATFORMS
 DEPENDENCIES
   acts_as_list
   awesome_print
+  default_form!
   kaminari
   minitest-hooks
   pg

@@ -1,0 +1,8 @@
+<%= render partial: 'show_business', locals: { meta_business: @meta_business, expand: true } %>
+<% if params[:expand].present? %>
+  <% @meta_business.meta_namespaces.each do |meta_namespace| %>
+    <%= turbo_stream.replace "tr_#{params[:business_identifier]}_#{meta_namespace.identifier.blank? ? '_' : meta_namespace.identifier}", partial: 'show_namespace', locals: { meta_namespace: meta_namespace } %>
+  <% end %>
+<% else %>
+  <%= render partial: 'show_namespace', collection: @meta_business.meta_namespaces, as: :meta_namespace %>
+<% end %>
