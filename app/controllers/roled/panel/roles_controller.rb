@@ -44,17 +44,19 @@ module Roled
     end
 
     def business_on
-      @busyness = Busyness.find_by identifier: params[:business_identifier].presence
-      @role.business_on @busyness
+      @meta_business = MeatBusiness.find_by identifier: params[:business_identifier].presence
+      @role.business_on @meta_business
       @role.save
+
+      render :namespaces
     end
 
     def business_off
-      @busyness = Busyness.find_by identifier: params[:business_identifier].presence
+      @meta_business = MetaBusiness.find_by identifier: params[:business_identifier].presence
       @role.role_hash.delete params[:business_identifier]
       @role.save
 
-      render :business_on
+      render :namespaces
     end
 
     def namespace_on
@@ -70,6 +72,8 @@ module Roled
       q_params.merge! params.permit(:business_identifier, :namespace_identifier)
 
       @meta_controllers = MetaController.default_where(q_params)
+
+      render :controllers
     end
 
     def namespace_off
@@ -86,7 +90,7 @@ module Roled
 
       @meta_controllers = MetaController.default_where(q_params)
 
-      render :namespace_on
+      render :controllers
     end
 
     def controller_on
