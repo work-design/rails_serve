@@ -31,5 +31,5 @@ before_action do |t|
 end
 ```
  
- ## License
- License 采用 [LGPL-3.0](https://opensource.org/licenses/LGPL-3.0).
+## 许可证
+遵循 [MIT](https://opensource.org/licenses/MIT) 协议
