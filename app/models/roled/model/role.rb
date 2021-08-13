@@ -13,7 +13,7 @@ module Roled
       has_many :who_roles, dependent: :destroy
       has_many :role_rules, dependent: :destroy, autosave: true, inverse_of: :role
       has_many :rules, through: :role_rules, dependent: :destroy
-      has_many :governs, ->{ distinct }, through: :role_rules
+      has_many :controllers, ->{ distinct }, through: :role_rules
       has_many :busynesses, -> { distinct }, through: :role_rules
       has_many :role_types, dependent: :delete_all
 
@@ -83,11 +83,11 @@ module Roled
       end
     end
 
-    def govern_on(govern)
+    def controller_on(controller)
       toggle = {
-        govern.business_identifier.to_s => {
-          govern.namespace_identifier.to_s => {
-            govern.controller_path => govern.role_hash
+        controller.business_identifier.to_s => {
+          controller.namespace_identifier.to_s => {
+            controller.controller_path => controller.role_hash
           }
         }
       }
@@ -95,15 +95,15 @@ module Roled
       role_hash.deep_merge!(toggle)
     end
 
-    def govern_off(govern)
-      role_hash.fetch(govern.business_identifier.to_s, {}).fetch(govern.namespace_identifier.to_s, {}).delete(govern.controller_path)
+    def controller_off(controller)
+      role_hash.fetch(controller.business_identifier.to_s, {}).fetch(controller.namespace_identifier.to_s, {}).delete(controller.controller_path)
 
-      if role_hash.dig(govern.business_identifier.to_s, govern.namespace_identifier.to_s).blank?
-        role_hash.fetch(govern.business_identifier.to_s, {}).delete(govern.namespace_identifier.to_s)
+      if role_hash.dig(controller.business_identifier.to_s, controller.namespace_identifier.to_s).blank?
+        role_hash.fetch(controller.business_identifier.to_s, {}).delete(controller.namespace_identifier.to_s)
       end
 
-      if role_hash.dig(govern.business_identifier.to_s).blank?
-        role_hash.delete(govern.business_identifier.to_s)
+      if role_hash.dig(controller.business_identifier.to_s).blank?
+        role_hash.delete(controller.business_identifier.to_s)
       end
     end
 

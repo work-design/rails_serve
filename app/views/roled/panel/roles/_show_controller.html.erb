@@ -9,11 +9,11 @@
       <% end %>
     <% end %>
     <% if @role.has_role?(business: meta_controller.business_identifier, namespace: meta_controller.namespace_identifier, controller: meta_controller.controller_path) %>
-      <%= button_to({ action: 'meta_controller_off' }, params: { meta_controller_id: meta_controller.id, expand: defined?(expand) && expand }, method: :patch, form: { data: { tree_remote_target: 'checkbox' } }) do %>
+      <%= button_to({ action: 'controller_off' }, params: { meta_controller_id: meta_controller.id, expand: defined?(expand) && expand }, method: :patch, form: { data: { tree_remote_target: 'checkbox' } }) do %>
         <i class="far fa-check-square fa-lg"></i>
       <% end %>
     <% else %>
-      <%= button_to({ action: 'meta_controller_on' }, params: { meta_controller_id: meta_controller.id, expand: defined?(expand) && expand }, method: :patch, form: { data: { tree_remote_target: 'checkbox' } }) do %>
+      <%= button_to({ action: 'controller_on' }, params: { meta_controller_id: meta_controller.id, expand: defined?(expand) && expand }, method: :patch, form: { data: { tree_remote_target: 'checkbox' } }) do %>
         <i class="far fa-square fa-lg"></i>
       <% end %>
     <% end %>

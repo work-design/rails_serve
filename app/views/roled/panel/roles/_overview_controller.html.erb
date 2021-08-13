@@ -1,0 +1,13 @@
+<tr>
+  <td><%= controller.name %></td>
+  <td>
+    <div class="tags">
+    <% controller.meta_actions.each do |meta_action| %>
+      <% if @role.rule_ids.include?(meta_action.id) %>
+        <div class="tag"><%= meta_action.desc_name %></div>
+      <% end %>
+    <% end %>
+    </div>
+  </td>
+</tr>
+

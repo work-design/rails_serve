@@ -5,21 +5,10 @@ module Roled
       :namespaces, :controllers, :actions,
       :business_on, :business_off, :namespace_on, :namespace_off, :controller_on, :controller_off, :action_on, :action_off
     ]
+    before_action :set_new_role, only: [:new, :create]
 
     def index
       @roles = Role.order(created_at: :asc)
-    end
-
-    def new
-      @role = Role.new
-    end
-
-    def create
-      @role = Role.new role_params
-
-      unless @role.save
-        render :new, locals: { model: @role }, status: :unprocessable_entity
-      end
     end
 
     def show
@@ -34,7 +23,7 @@ module Roled
     end
 
     def controllers
-      @namespace = MetaNamespace.find_by identifier: params[:namespace_identifier].presence
+      @meta_namespace = MetaNamespace.find_by identifier: params[:namespace_identifier].presence
       q_params = {
         business_identifier: nil,
         namespace_identifier: nil,
@@ -146,6 +135,10 @@ module Roled
 
     def set_role
       @role = Role.find params[:id]
+    end
+
+    def set_new_role
+      @role = Role.new role_params
     end
 
   end
