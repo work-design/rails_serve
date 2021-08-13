@@ -113,6 +113,8 @@ module Roled
       @meta_action = MetaAction.find params[:meta_action_id]
       @role.action_on(@meta_action)
       @role.save
+
+      render :action
     end
 
     def action_off
@@ -120,7 +122,7 @@ module Roled
       @role.action_off(@meta_action)
       @role.save
 
-      render :action_on
+      render :action
     end
 
     private
