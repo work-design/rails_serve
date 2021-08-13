@@ -24,7 +24,7 @@ module Roled
       #before_save :sync_who_types
       after_update :set_default, if: -> { default? && saved_change_to_default? }
       after_commit :delete_cache, if: -> { default? && saved_change_to_role_hash? }
-      after_save_commit :sync, if: -> { saved_change_to_role_hash? }
+      after_save :sync, if: -> { saved_change_to_role_hash? }
     end
 
     def has_role?(**options)
