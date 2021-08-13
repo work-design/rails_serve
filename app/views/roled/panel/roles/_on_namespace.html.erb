@@ -1,7 +1,7 @@
 <%= render partial: 'show_namespace', locals: { meta_namespace: @meta_namespace, expand: true } %>
 <% if params[:expand].present? %>
   <% @meta_controllers.each do |meta_controller| %>
-    <%= turbo_stream.replace "tr_#{meta_controller.identifier}", partial: 'show_meta_controller', locals: { meta_controller: meta_controller } %>
+    <%= turbo_stream.replace "tr_#{meta_controller.identifier}", partial: 'show_controller', locals: { meta_controller: meta_controller } %>
   <% end %>
 <% else %>
   <%= render partial: 'show_controller', collection: @meta_controllers, as: :meta_controller %>

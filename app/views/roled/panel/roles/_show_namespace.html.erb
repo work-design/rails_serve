@@ -11,12 +11,13 @@
     <% if @role.has_role?(business: params[:business_identifier], namespace: meta_namespace.identifier) %>
       <%= button_to({ action: 'namespace_off' }, params: { business_identifier: params[:business_identifier], namespace_identifier: meta_namespace.identifier, expand: defined?(expand) && expand }, method: :patch, form: { data: { tree_remote_target: 'checkbox' } }) do %>
         <i class="far fa-check-square fa-lg"></i>
+        <span><%= meta_namespace.name %></span>
       <% end %>
     <% else %>
       <%= button_to({ action: 'namespace_on' }, params: { business_identifier: params[:business_identifier], namespace_identifier: meta_namespace.identifier, expand: defined?(expand) && expand }, method: :patch, form: { data: { tree_remote_target: 'checkbox' } }) do %>
         <i class="far fa-square fa-lg"></i>
+        <span><%= meta_namespace.name %></span>
       <% end %>
     <% end %>
-    <span><%= meta_namespace.name %></span>
   </td>
 </tr>
