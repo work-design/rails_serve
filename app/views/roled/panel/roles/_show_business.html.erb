@@ -10,13 +10,16 @@
     <% if @role.has_role?(business: meta_business.identifier) %>
       <%= button_to({ action: 'business_off' }, params: { business_identifier: meta_business.identifier, expand: defined?(expand) && expand }, method: :patch, form: { data: { tree_remote_target: 'checkbox' } }) do %>
         <i class="far fa-check-square fa-lg"></i>
+        <span><%= meta_business.name %></span>
+        <span class="has-text-grey">(<%= meta_business.identifier %>)</span>
       <% end %>
     <% else %>
       <%= button_to({ action: 'business_on' }, params: { business_identifier: meta_business.identifier, expand: defined?(expand) && expand }, method: :patch, form: { data: { tree_remote_target: 'checkbox' } }) do %>
         <i class="far fa-square fa-lg"></i>
+        <span><%= meta_business.name %></span>
+        <span class="has-text-grey">(<%= meta_business.identifier %>)</span>
       <% end %>
     <% end %>
-    <span><%= meta_business.name %></span>
-    <span class="has-text-grey">(<%= meta_business.identifier %>)</span>
+    
   </td>
 </tr>

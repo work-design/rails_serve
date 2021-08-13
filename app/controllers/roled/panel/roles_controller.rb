@@ -44,7 +44,7 @@ module Roled
     end
 
     def business_on
-      @meta_business = MeatBusiness.find_by identifier: params[:business_identifier].presence
+      @meta_business = MetaBusiness.find_by identifier: params[:business_identifier].presence
       @role.business_on @meta_business
       @role.save
 

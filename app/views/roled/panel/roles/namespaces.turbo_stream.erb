@@ -1,1 +1,8 @@
-<%= turbo_stream.replace "tr_#{params[:business_identifier].blank? ? '_' : params[:business_identifier]}", partial: 'on_business' %>
+<%= turbo_stream.replace "tr_#{params[:business_identifier].blank? ? '_' : params[:business_identifier]}", partial: 'show_business', locals: { meta_business: @meta_business, expand: true } %>
+<% if params[:expand].present? %>
+  <% @meta_business.meta_namespaces.each do |meta_namespace| %>
+    <%= turbo_stream.replace "tr_#{meta_namespace.id_by_business(params[:business_identifier])}", partial: 'show_namespace', locals: { meta_namespace: meta_namespace, hide: true } %>
+  <% end %>
+<% else %>
+  <%= turbo_stream.after "tr_#{params[:business_identifier].blank? ? '_' : params[:business_identifier]}", partial: 'show_namespace', collection: @meta_business.meta_namespaces, as: :meta_namespace %>
+<% end %>
