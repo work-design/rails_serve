@@ -4,13 +4,15 @@
     <% if @role.has_role?(business: meta_action.business_identifier, namespace: meta_action.namespace_identifier, controller: meta_action.controller_path, action: meta_action.action_name) %>
       <%= button_to({ action: 'action_off' }, params: { meta_action_id: meta_action.id }, method: :patch) do %>
         <i class="far fa-check-square fa-lg"></i>
+        <span><%= meta_action.name %></span>
+        <span class="has-text-grey"><%= meta_action.action_name %></span>
       <% end %>
     <% else %>
       <%= button_to({ action: 'action_on' }, params: { meta_action_id: meta_action.id }, method: :patch) do %>
         <i class="far fa-square fa-lg"></i>
+        <span><%= meta_action.name %></span>
+        <span class="has-text-grey"><%= meta_action.action_name %></span>
       <% end %>
     <% end %>
-    <span><%= meta_action.name %></span>
-    <span class="has-text-grey"><%= meta_action.action_name %></span>
   </td>
 </tr>

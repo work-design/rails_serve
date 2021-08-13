@@ -8,16 +8,24 @@
         <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree-remote#expand"></i>
       <% end %>
     <% end %>
-    <% if @role.has_role?(business: meta_controller.business_identifier, namespace: meta_controller.namespace_identifier, controller: meta_controller.controller_path) %>
+    <% case @role.has_role?(business: meta_controller.business_identifier, namespace: meta_controller.namespace_identifier, controller: meta_controller.controller_path) when ->(o) { o&.compare meta_controller.meta_action_ids } %>
       <%= button_to({ action: 'controller_off' }, params: { meta_controller_id: meta_controller.id, expand: defined?(expand) && expand }, method: :patch, form: { data: { tree_remote_target: 'checkbox' } }) do %>
         <i class="far fa-check-square fa-lg"></i>
+        <span><%= meta_controller.name %></span>
+        <span class="has-text-grey">(<%= meta_controller.controller_path %>)</span>
+      <% end %>
+    <% when ->(o) { o.blank? } %>
+      <%= button_to({ action: 'controller_off' }, params: { meta_controller_id: meta_controller.id, expand: defined?(expand) && expand }, method: :patch, form: { data: { tree_remote_target: 'checkbox' } }) do %>
+        <i class="far fa-square fa-lg"></i>
+        <span><%= meta_controller.name %></span>
+        <span class="has-text-grey">(<%= meta_controller.controller_path %>)</span>
       <% end %>
     <% else %>
       <%= button_to({ action: 'controller_on' }, params: { meta_controller_id: meta_controller.id, expand: defined?(expand) && expand }, method: :patch, form: { data: { tree_remote_target: 'checkbox' } }) do %>
-        <i class="far fa-square fa-lg"></i>
+        <i class="far fa-minus-square fa-lg"></i>
+        <span><%= meta_controller.name %></span>
+        <span class="has-text-grey">(<%= meta_controller.controller_path %>)</span>
       <% end %>
     <% end %>
-    <span><%= meta_controller.name %></span>
-    <span class="has-text-grey">(<%= meta_controller.controller_path %>)</span>
   </td>
 </tr>

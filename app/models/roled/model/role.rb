@@ -47,7 +47,10 @@ module Roled
       opts = [business, namespace, controller, options[:action]].take_while(&->(i){ !i.nil? })
       return false if opts.blank?
       r = role_hash.dig(*opts)
-      logger.debug "  \e[35mRole: #{opts} is #{r}\e[0m"
+      if r.is_a?(Hash)
+        r = r.values
+      end
+      logger.debug "\e[35m  Role: #{opts} is #{r} \e[0m"
       r
     end
 
@@ -58,7 +61,7 @@ module Roled
 
     def delete_cache
       if Rails.cache.delete('default_role_hash')
-        logger.debug "-----> delete cache default role hash"
+        logger.debug "\e[35m  delete cache default role hash \e[0m"
       end
     end
 
@@ -106,6 +109,23 @@ module Roled
       if role_hash.dig(controller.business_identifier.to_s).blank?
         role_hash.delete(controller.business_identifier.to_s)
       end
+    end
+
+    def action_on(meta_action)
+      role_hash.deep_merge!(meta_action.business_identifier.to_s => {
+        meta_action.namespace_identifier.to_s => {
+          meta_action.controller_path => {
+            meta_action.action_name => meta_action.id
+          }
+        }
+      })
+    end
+
+    def action_off(meta_action)
+      role_hash.fetch(meta_action.business_identifier.to_s, {})
+      .fetch(meta_action.namespace_identifier.to_s, {})
+      .fetch(meta_action.controller_path, {})
+      .delete(meta_action.action_name)
     end
 
     def role_rule_hash

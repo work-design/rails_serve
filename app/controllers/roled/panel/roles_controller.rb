@@ -101,21 +101,13 @@ module Roled
 
     def action_on
       @meta_action = MetaAction.find params[:meta_action_id]
-
-      @role.role_hash.deep_merge!(@meta_action.business_identifier.to_s => {
-        @meta_action.namespace_identifier.to_s => {
-          @meta_action.controller_path => {
-            @meta_action.action_name => true
-          }
-        }
-      })
+      @role.action_on(@meta_action)
       @role.save
     end
 
     def action_off
       @meta_action = MetaAction.find params[:meta_action_id]
-
-      @role.role_hash.fetch(@meta_action.business_identifier.to_s, {}).fetch(@meta_action.namespace_identifier.to_s, {}).fetch(@meta_action.controller_path, {}).delete(@meta_action.action_name)
+      @role.action_off(@meta_action)
       @role.save
     end
 
