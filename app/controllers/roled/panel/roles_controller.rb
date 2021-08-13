@@ -97,6 +97,8 @@ module Roled
       @meta_controller = MetaController.find params[:meta_controller_id]
       @role.controller_on(@meta_controller)
       @role.save
+
+      render :actions
     end
 
     def controller_off
@@ -104,7 +106,7 @@ module Roled
       @role.controller_off(@meta_controller)
       @role.save
 
-      render :controller_on
+      render :actions
     end
 
     def action_on
