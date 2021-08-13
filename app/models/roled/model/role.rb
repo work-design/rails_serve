@@ -45,9 +45,10 @@ module Roled
       end
 
       opts = [business, namespace, controller, options[:action]].take_while(&->(i){ !i.nil? })
-      logger.debug "  \e[35m-----> Role: #{opts} \e[0m"
       return false if opts.blank?
-      role_hash.dig(*opts)
+      r = role_hash.dig(*opts)
+      logger.debug "  \e[35mRole: #{opts} is #{r}\e[0m"
+      r
     end
 
     def set_default
