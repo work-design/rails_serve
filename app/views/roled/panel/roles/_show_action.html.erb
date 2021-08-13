@@ -1,4 +1,4 @@
-<tr id="tr_<%= meta_action.identifier %>" data-controller="tree-remote" data-tree-remote-target="item">
+<tr id="tr_<%= meta_action.identifier %>" data-controller="tree-remote" data-tree-remote-target="item" data-tree-remote-hide-value="<%= defined?(hide) && hide ? true : false %>">
   <td>
     <span style="width: 4.29em; display: inline-block"></span>
     <% if @role.has_role?(business: meta_action.business_identifier, namespace: meta_action.namespace_identifier, controller: meta_action.controller_path, action: meta_action.action_name) %>
