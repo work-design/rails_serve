@@ -25,11 +25,10 @@ module Roled
     def controllers
       @meta_namespace = MetaNamespace.find_by identifier: params[:namespace_identifier].presence
       q_params = {
-        business_identifier: nil,
-        namespace_identifier: nil,
+        business_identifier: params[:business_identifier].presence,
+        namespace_identifier: params[:namespace_identifier].presence,
         allow: { business_identifier: nil, namespace_identifier: nil }
       }
-      q_params.merge! params.permit(:business_identifier, :namespace_identifier)
 
       @meta_controllers = MetaController.default_where(q_params)
     end

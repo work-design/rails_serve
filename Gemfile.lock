@@ -6,6 +6,13 @@ GIT
       rails_com (~> 1.2)
 
 GIT
+  remote: https://github.com/qinmingyuan/default_where.git
+  revision: f3a5fafcafd4eaffc0c8eff1385e12c7bd939e83
+  specs:
+    default_where (2.2.3)
+      activerecord (>= 4.0, <= 7.0)
+
+GIT
   remote: https://github.com/qinmingyuan/viter.git
   revision: 69e5b6e5585471aa973aa1fd807e38544295b886
   specs:
@@ -114,8 +121,6 @@ GEM
     coderay (1.1.3)
     concurrent-ruby (1.1.8)
     crass (1.0.6)
-    default_where (2.2.0)
-      activerecord (>= 4.0.0)
     erubi (1.10.0)
     faraday (1.7.0)
       faraday-em_http (~> 1.0)
@@ -241,6 +246,7 @@ DEPENDENCIES
   acts_as_list
   awesome_print
   default_form!
+  default_where!
   kaminari
   minitest-hooks
   pg
