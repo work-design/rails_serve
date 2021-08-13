@@ -1,8 +1,0 @@
-<%= render partial: 'show_controller', locals: { meta_controller: @meta_controller, expand: true } %>
-<% if params[:expand].present? %>
-  <% @meta_controller.meta_actions.each do |meta_action| %>
-    <%= turbo_stream.replace "tr_#{meta_action.identifier}", partial: 'show_action', locals: { meta_action: meta_action } %>
-  <% end %>
-<% else %>
-  <%= render partial: 'show_action', collection: @meta_controller.meta_actions, as: :meta_action %>
-<% end %>
