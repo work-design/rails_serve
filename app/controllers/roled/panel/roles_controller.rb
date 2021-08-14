@@ -37,7 +37,7 @@ module Roled
     end
 
     def business_on
-      @meta_business = MetaBusiness.find_by identifier: params[:business_identifier].presence
+      @meta_business = MetaBusiness.find_by identifier: params[:business_identifier]
       @role.business_on @meta_business
       @role.save
 
@@ -45,7 +45,7 @@ module Roled
     end
 
     def business_off
-      @meta_business = MetaBusiness.find_by identifier: params[:business_identifier].presence
+      @meta_business = MetaBusiness.find_by identifier: params[:business_identifier]
       @role.business_off(@meta_business)
       @role.save
 
@@ -53,35 +53,21 @@ module Roled
     end
 
     def namespace_on
-      @meta_namespace = MetaNamespace.find_by identifier: params[:namespace_identifier].presence
+      @meta_namespace = MetaNamespace.find_by identifier: params[:namespace_identifier]
       @role.namespace_on(@meta_namespace, params[:business_identifier])
       @role.save
 
-      q_params = {
-        business_identifier: nil,
-        namespace_identifier: nil,
-        allow: { business_identifier: nil, namespace_identifier: nil }
-      }
-      q_params.merge! params.permit(:business_identifier, :namespace_identifier)
-
-      @meta_controllers = MetaController.default_where(q_params)
+      @meta_controllers = MetaController.where(params.permit(:business_identifier, :namespace_identifier))
 
       render :controllers
     end
 
     def namespace_off
-      @meta_namespace = MetaNamespace.find_by identifier: params[:namespace_identifier].presence
+      @meta_namespace = MetaNamespace.find_by identifier: params[:namespace_identifier]
       @role.namespace_off(@meta_namespace, params[:business_identifier])
       @role.save
 
-      q_params = {
-        business_identifier: nil,
-        namespace_identifier: nil,
-        allow: { business_identifier: nil, namespace_identifier: nil }
-      }
-      q_params.merge! params.permit(:business_identifier, :namespace_identifier)
-
-      @meta_controllers = MetaController.default_where(q_params)
+      @meta_controllers = MetaController.where(params.permit(:business_identifier, :namespace_identifier))
 
       render :controllers
     end
