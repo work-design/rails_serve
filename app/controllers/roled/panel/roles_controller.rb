@@ -19,18 +19,12 @@ module Roled
     end
 
     def namespaces
-      @meta_business = MetaBusiness.find_by identifier: params[:business_identifier].presence
+      @meta_business = MetaBusiness.find_by identifier: params[:business_identifier]
     end
 
     def controllers
-      @meta_namespace = MetaNamespace.find_by identifier: params[:namespace_identifier].presence
-      q_params = {
-        business_identifier: params[:business_identifier].presence,
-        namespace_identifier: params[:namespace_identifier].presence,
-        allow: { business_identifier: nil, namespace_identifier: nil }
-      }
-
-      @meta_controllers = MetaController.default_where(q_params)
+      @meta_namespace = MetaNamespace.find_by identifier: params[:namespace_identifier]
+      @meta_controllers = MetaController.where(params.permit(:business_identifier, :namespace_identifier))
     end
 
     def actions
