@@ -143,7 +143,7 @@ module Roled
       role_rules.group_by(&:business_identifier).transform_values! do |businesses|
         businesses.group_by(&:namespace_identifier).transform_values! do |namespaces|
           namespaces.group_by(&:controller_path).transform_values! do |controllers|
-            controllers.each_with_object({}) { |i, h| h.merge! i.action_name => i.rule_id }
+            controllers.each_with_object({}) { |i, h| h.merge! i.action_name => i.meta_action_id }
           end
         end
       end
