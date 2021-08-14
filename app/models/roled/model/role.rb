@@ -75,6 +75,7 @@ module Roled
 
     def business_off(meta_business)
       role_hash.delete meta_business.identifier.to_s
+      role_hash
     end
 
     def namespace_on(meta_namespace, business_identifier)
