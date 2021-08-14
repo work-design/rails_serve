@@ -69,46 +69,47 @@ module Roled
       who_types.exists?(who)
     end
 
-    def business_on(busyness)
-      role_hash.merge! busyness.role_hash
+    def business_on(meta_business)
+      role_hash.merge! meta_business.role_hash
     end
 
-    def namespace_on(name_space, business_identifier)
-      role_hash.deep_merge!(business_identifier.to_s => {
-        name_space.identifier => name_space.role_hash(business_identifier.presence)
-      })
+    def business_off(meta_business)
+      role_hash.delete meta_business.identifier.to_s
     end
 
-    def namespace_off(name_space, business_identifier)
-      role_hash.fetch(business_identifier.to_s, {}).delete(name_space.identifier.to_s)
+    def namespace_on(meta_namespace, business_identifier)
+      role_hash.deep_merge! meta_namespace.role_path(business_identifier)
+    end
 
-      if role_hash.dig(business_identifier.to_s).blank?
+    def namespace_off(meta_namespace, business_identifier)
+      namespaces_hash = role_hash.fetch(business_identifier.to_s)
+      return if namespaces_hash.blank?
+      namespaces_hash.delete(meta_namespace.identifier.to_s)
+
+      if namespaces_hash.blank?
         role_hash.delete(business_identifier.to_s)
       end
     end
 
     def controller_on(controller)
-      toggle = {
-        controller.business_identifier.to_s => {
-          controller.namespace_identifier.to_s => {
-            controller.controller_path => controller.role_hash
-          }
-        }
-      }
-
-      role_hash.deep_merge!(toggle)
+      role_hash.deep_merge! controller.role_path
     end
 
     def controller_off(controller)
-      role_hash.fetch(controller.business_identifier.to_s, {}).fetch(controller.namespace_identifier.to_s, {}).delete(controller.controller_path)
+      namespaces_hash = role_hash.fetch(controller.business_identifier.to_s)
+      return if namespaces_hash.blank?
+      controllers_hash = namespaces_hash.fetch(controller.namespace_identifier.to_s)
+      return if controllers_hash.blank?
+      controllers_hash.delete(controller.controller_path)
 
-      if role_hash.dig(controller.business_identifier.to_s, controller.namespace_identifier.to_s).blank?
-        role_hash.fetch(controller.business_identifier.to_s, {}).delete(controller.namespace_identifier.to_s)
+      if controllers_hash.blank?
+        namespaces_hash.delete(controller.namespace_identifier.to_s)
       end
-
-      if role_hash.dig(controller.business_identifier.to_s).blank?
+      if namespaces_hash.blank?
         role_hash.delete(controller.business_identifier.to_s)
       end
+
+      role_hash
     end
 
     def action_on(meta_action)
@@ -133,7 +134,7 @@ module Roled
       if namespaces_hash.blank?
         role_hash.delete(meta_action.business_identifier.to_s)
       end
-      
+
       role_hash
     end
 

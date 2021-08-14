@@ -52,7 +52,7 @@ module Roled
 
     def business_off
       @meta_business = MetaBusiness.find_by identifier: params[:business_identifier].presence
-      @role.role_hash.delete params[:business_identifier]
+      @role.business_off(@meta_business)
       @role.save
 
       render :namespaces
