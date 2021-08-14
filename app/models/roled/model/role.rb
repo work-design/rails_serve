@@ -83,12 +83,12 @@ module Roled
     end
 
     def namespace_off(meta_namespace, business_identifier)
-      namespaces_hash = role_hash.fetch(business_identifier.to_s)
+      namespaces_hash = role_hash.fetch(business_identifier)
       return if namespaces_hash.blank?
-      namespaces_hash.delete(meta_namespace.identifier.to_s)
+      namespaces_hash.delete(meta_namespace.identifier)
 
       if namespaces_hash.blank?
-        role_hash.delete(business_identifier.to_s)
+        role_hash.delete(business_identifier)
       end
     end
 
@@ -97,17 +97,17 @@ module Roled
     end
 
     def controller_off(controller)
-      namespaces_hash = role_hash.fetch(controller.business_identifier.to_s)
+      namespaces_hash = role_hash.fetch(controller.business_identifier)
       return if namespaces_hash.blank?
-      controllers_hash = namespaces_hash.fetch(controller.namespace_identifier.to_s)
+      controllers_hash = namespaces_hash.fetch(controller.namespace_identifier)
       return if controllers_hash.blank?
       controllers_hash.delete(controller.controller_path)
 
       if controllers_hash.blank?
-        namespaces_hash.delete(controller.namespace_identifier.to_s)
+        namespaces_hash.delete(controller.namespace_identifier)
       end
       if namespaces_hash.blank?
-        role_hash.delete(controller.business_identifier.to_s)
+        role_hash.delete(controller.business_identifier)
       end
 
       role_hash
@@ -118,11 +118,11 @@ module Roled
     end
 
     def action_off(meta_action)
-      namespaces_hash = role_hash.fetch(meta_action.business_identifier.to_s)
+      namespaces_hash = role_hash.fetch(meta_action.business_identifier)
       return if namespaces_hash.blank?
-      controllers_hash = namespaces_hash.fetch(meta_action.namespace_identifier.to_s, {})
+      controllers_hash = namespaces_hash.fetch(meta_action.namespace_identifier)
       return if controllers_hash.blank?
-      actions_hash = controllers_hash.fetch(meta_action.controller_path, {})
+      actions_hash = controllers_hash.fetch(meta_action.controller_path)
       return if actions_hash.blank?
 
       actions_hash.delete(meta_action.action_name)
@@ -130,10 +130,10 @@ module Roled
         controllers_hash.delete(meta_action.controller_path)
       end
       if controllers_hash.blank?
-        namespaces_hash.delete(meta_action.namespace_identifier.to_s)
+        namespaces_hash.delete(meta_action.namespace_identifier)
       end
       if namespaces_hash.blank?
-        role_hash.delete(meta_action.business_identifier.to_s)
+        role_hash.delete(meta_action.business_identifier)
       end
 
       role_hash
