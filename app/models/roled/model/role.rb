@@ -48,7 +48,7 @@ module Roled
       return false if opts.blank?
       r = role_hash.dig(*opts)
       if r.is_a?(Hash)
-        r = r.values
+        r = r.values.presence
       end
       logger.debug "\e[35m  Role: #{opts} is #{r} \e[0m"
       r
@@ -112,20 +112,29 @@ module Roled
     end
 
     def action_on(meta_action)
-      role_hash.deep_merge!(meta_action.business_identifier.to_s => {
-        meta_action.namespace_identifier.to_s => {
-          meta_action.controller_path => {
-            meta_action.action_name => meta_action.id
-          }
-        }
-      })
+      role_hash.deep_merge!(meta_action.role_path)
     end
 
     def action_off(meta_action)
-      role_hash.fetch(meta_action.business_identifier.to_s, {})
-      .fetch(meta_action.namespace_identifier.to_s, {})
-      .fetch(meta_action.controller_path, {})
-      .delete(meta_action.action_name)
+      namespaces_hash = role_hash.fetch(meta_action.business_identifier.to_s)
+      return if namespaces_hash.blank?
+      controllers_hash = namespaces_hash.fetch(meta_action.namespace_identifier.to_s, {})
+      return if controllers_hash.blank?
+      actions_hash = controllers_hash.fetch(meta_action.controller_path, {})
+      return if actions_hash.blank?
+
+      actions_hash.delete(meta_action.action_name)
+      if actions_hash.blank?
+        controllers_hash.delete(meta_action.controller_path)
+      end
+      if controllers_hash.blank?
+        namespaces_hash.delete(meta_action.namespace_identifier.to_s)
+      end
+      if namespaces_hash.blank?
+        role_hash.delete(meta_action.business_identifier.to_s)
+      end
+      
+      role_hash
     end
 
     def role_rule_hash

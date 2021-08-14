@@ -7,5 +7,15 @@ module Roled
       has_many :roles, through: :role_rules
     end
 
+    def role_path
+      {
+        business_identifier.to_s => {
+          namespace_identifier.to_s => {
+            controller_path => { action_name => id }
+          }
+        }
+      }
+    end
+
   end
 end

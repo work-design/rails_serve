@@ -73,7 +73,7 @@ module Roled
     end
 
     def landmark_rules
-      _rule_ids = role_hash.deepest_values
+      _rule_ids = role_hash.leaves
       Rule.where(id: _rule_ids, landmark: true)
     end
 
