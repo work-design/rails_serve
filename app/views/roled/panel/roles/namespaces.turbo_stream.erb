@@ -4,5 +4,13 @@
     <%= turbo_stream.replace "tr_#{meta_namespace.id_by_business(params[:business_identifier])}", partial: 'show_namespace', locals: { meta_namespace: meta_namespace, hide: true } %>
   <% end %>
 <% else %>
-  <%= turbo_stream.after "tr_#{params[:business_identifier].blank? ? '_' : params[:business_identifier]}", partial: 'show_namespace', collection: @meta_business.meta_namespaces, as: :meta_namespace %>
+  <%=
+    turbo_stream.after(
+      "tr_#{params[:business_identifier].blank? ? '_' : params[:business_identifier]}",
+      partial: 'show_namespace',
+      collection: @meta_business.meta_namespaces,
+      as: :meta_namespace,
+      locals: { business_identifier: params[:business_identifier] }
+    )
+  %>
 <% end %>

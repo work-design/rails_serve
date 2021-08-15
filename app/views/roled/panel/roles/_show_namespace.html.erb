@@ -1,25 +1,25 @@
-<tr id="tr_<%= params[:business_identifier] %>_<%= meta_namespace.identifier.blank? ? '_' : meta_namespace.identifier %>" data-controller="tree-remote" data-tree-remote-target="item" data-tree-remote-hide-value="<%= defined?(hide) && hide ? true : false %>">
+<tr id="tr_<%= meta_namespace.id_by_business(business_identifier) %>" data-controller="tree-remote" data-tree-remote-target="item" data-tree-remote-hide-value="<%= defined?(hide) && hide ? true : false %>">
   <td>
     <span style="width: 1.43em; display: inline-block"></span>
-    <%= button_to({ action: 'controllers' }, params: { business_identifier: params[:business_identifier], namespace_identifier: meta_namespace.identifier }) do %>
+    <%= button_to({ action: 'controllers' }, params: { business_identifier: business_identifier, namespace_identifier: meta_namespace.identifier }) do %>
       <% if defined?(expand) && expand %>
         <i class="fas fa-fw fa-caret-down" style="cursor: pointer" data-action="click->tree-remote#collapse"></i>
       <% else %>
         <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree-remote#expand"></i>
       <% end %>
     <% end %>
-    <% case @role.namespace_role(meta_namespace, params[:business_identifier]) when 1 %>
-      <%= button_to({ action: 'namespace_off' }, params: { business_identifier: params[:business_identifier], namespace_identifier: meta_namespace.identifier, expand: defined?(expand) && expand }, method: :patch, form: { data: { tree_remote_target: 'checkbox' } }) do %>
+    <% case @role.namespace_role(meta_namespace, business_identifier) when 1 %>
+      <%= button_to({ action: 'namespace_off' }, params: { business_identifier: business_identifier, namespace_identifier: meta_namespace.identifier, expand: defined?(expand) && expand }, method: :patch, form: { data: { tree_remote_target: 'checkbox' } }) do %>
         <i class="far fa-check-square fa-lg"></i>
         <span><%= meta_namespace.name %></span>
       <% end %>
     <% when 0 %>
-      <%= button_to({ action: 'namespace_on' }, params: { business_identifier: params[:business_identifier], namespace_identifier: meta_namespace.identifier, expand: defined?(expand) && expand }, method: :patch, form: { data: { tree_remote_target: 'checkbox' } }) do %>
+      <%= button_to({ action: 'namespace_on' }, params: { business_identifier: business_identifier, namespace_identifier: meta_namespace.identifier, expand: defined?(expand) && expand }, method: :patch, form: { data: { tree_remote_target: 'checkbox' } }) do %>
         <i class="far fa-square fa-lg"></i>
         <span><%= meta_namespace.name %></span>
       <% end %>
     <% else %>
-      <%= button_to({ action: 'namespace_on' }, params: { business_identifier: params[:business_identifier], namespace_identifier: meta_namespace.identifier, expand: defined?(expand) && expand }, method: :patch, form: { data: { tree_remote_target: 'checkbox' } }) do %>
+      <%= button_to({ action: 'namespace_on' }, params: { business_identifier: business_identifier, namespace_identifier: meta_namespace.identifier, expand: defined?(expand) && expand }, method: :patch, form: { data: { tree_remote_target: 'checkbox' } }) do %>
         <i class="far fa-minus-square fa-lg"></i>
         <span><%= meta_namespace.name %></span>
       <% end %>
