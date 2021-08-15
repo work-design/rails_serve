@@ -14,7 +14,7 @@ module Roled
       meta_controller = MetaController.find_by controller_path: 'roled/panel/roles'
 
       assert_instance_of Hash, meta_controller.role_hash
-      assert_equal meta_controller.role_hash.keys, meta_controller.meta_actions.pluck(:action_name)
+      assert_equal meta_controller.role_hash[meta_controller.controller_path].keys, meta_controller.meta_actions.pluck(:action_name)
     end
 
   end

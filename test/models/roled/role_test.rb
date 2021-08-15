@@ -1,5 +1,7 @@
 require 'test_helper'
 
-class RoleTest < ActiveSupport::TestCase
+module Roled
+  class RoleTest < ActiveSupport::TestCase
 
+  end
 end

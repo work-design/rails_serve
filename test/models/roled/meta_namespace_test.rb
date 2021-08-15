@@ -12,9 +12,8 @@ module Roled
 
     test 'role_hash' do
       meta_namespace = MetaNamespace.find_by identifier: 'panel'
-      r = meta_namespace.role_hash('roled')
 
-      assert_includes r.keys, 'roled/panel/roles'
+      assert_includes meta_namespace.role_hash('roled')[meta_namespace.identifier], 'roled/panel/roles'
     end
 
   end
