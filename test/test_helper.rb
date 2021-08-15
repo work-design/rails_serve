@@ -14,8 +14,8 @@ class ActiveSupport::TestCase
   fixtures :all
 
   def before_all
-    Roled::Busyness.sync
-    Roled::NameSpace.sync
-    Roled::Govern.sync
+    Roled::MetaBusiness.sync
+    Roled::MetaNamespace.sync
+    Roled::MetaController.sync
   end
 end
