@@ -27,29 +27,14 @@ module Roled
       after_save :sync, if: -> { saved_change_to_role_hash? }
     end
 
-    def has_role?(**options)
-      if options.key?(:business)
-        business = options[:business].to_s
-      else
-        business = nil
-      end
-      if options.key?(:namespace)
-        namespace = options[:namespace].to_s
-      else
-        namespace = nil
-      end
-      if options.key?(:controller)
-        controller = options[:controller].to_s.delete_prefix('/').presence
-      else
-        controller = nil
-      end
-
-      opts = [business, namespace, controller, options[:action]].take_while(&->(i){ !i.nil? })
+    def has_role?(business: nil, namespace: nil, controller: nil, action: nil, **params)
+      controller = controller.to_s.delete_prefix('/').presence
+      business ||= RailsCom::Routes.controller_paths[controller][:business]
+      namespace ||= RailsCom::Routes.controller_paths[controller][:namespace] if controller.present?
+      opts = [business, namespace, controller, action].take_while(&->(i){ !i.nil? })
       return false if opts.blank?
+
       r = role_hash.dig(*opts)
-      if r.is_a?(Hash)
-        r = r.values.presence
-      end
       logger.debug "\e[35m  Role: #{opts} is #{r} \e[0m"
       r
     end
@@ -126,7 +111,7 @@ module Roled
         namespace: meta_controller.namespace_identifier,
         controller: meta_controller.controller_path
       )
-      r.compare meta_action_ids
+      #r.compare meta_action_ids
     end
 
     def action_on(meta_action)
