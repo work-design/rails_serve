@@ -12,3 +12,4 @@
 <% else %>
   <%= turbo_stream.after "tr_#{@meta_namespace.id_by_business(params[:business_identifier])}", partial: 'show_controller', collection: @meta_controllers, as: :meta_controller %>
 <% end %>
+<%= turbo_stream.replace "tr_#{@meta_business.identifier}", partial: 'show_business', locals: { meta_business: @meta_business, expand: true } %>
