@@ -1,6 +1,6 @@
 <%=
   turbo_stream.replace(
-    "tr_#{@meta_namespace.id_by_business(params[:business_identifier])}",
+    @meta_namespace.tr_id(params[:business_identifier]),
     partial: 'show_namespace',
     locals: { meta_namespace: @meta_namespace, business_identifier: params[:business_identifier], expand: true }
   )
@@ -10,6 +10,6 @@
     <%= turbo_stream.replace "tr_#{meta_controller.identifier}", partial: 'show_controller', locals: { meta_controller: meta_controller, hide: true } %>
   <% end %>
 <% else %>
-  <%= turbo_stream.after "tr_#{@meta_namespace.id_by_business(params[:business_identifier])}", partial: 'show_controller', collection: @meta_controllers, as: :meta_controller %>
+  <%= turbo_stream.after @meta_namespace.tr_id(params[:business_identifier]), partial: 'show_controller', collection: @meta_controllers, as: :meta_controller %>
 <% end %>
-<%= turbo_stream.replace "tr_#{@meta_business.identifier}", partial: 'show_business', locals: { meta_business: @meta_business, expand: true } %>
+<%= turbo_stream.replace @meta_business.tr_id, partial: 'show_business', locals: { meta_business: @meta_business, expand: true } %>

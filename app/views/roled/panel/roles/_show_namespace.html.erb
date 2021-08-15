@@ -1,4 +1,4 @@
-<tr id="tr_<%= meta_namespace.id_by_business(business_identifier) %>" data-controller="tree-remote" data-tree-remote-target="item" data-tree-remote-hide-value="<%= defined?(hide) && hide ? true : false %>">
+<tr id="<%= meta_namespace.tr_id(business_identifier) %>" data-controller="tree-remote" data-tree-remote-target="item" data-tree-remote-hide-value="<%= defined?(hide) && hide ? true : false %>">
   <td>
     <span style="width: 1.43em; display: inline-block"></span>
     <%= button_to({ action: 'controllers' }, params: { business_identifier: business_identifier, namespace_identifier: meta_namespace.identifier }) do %>
