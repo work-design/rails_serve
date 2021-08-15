@@ -8,13 +8,13 @@
         <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree-remote#expand"></i>
       <% end %>
     <% end %>
-    <% case @role.controller_role(meta_controller) when ->(o) { o&.compare meta_controller.meta_action_ids } %>
+    <% case @role.controller_role(meta_controller) when 1 %>
       <%= button_to({ action: 'controller_off' }, params: { meta_controller_id: meta_controller.id, expand: defined?(expand) && expand }, method: :patch, form: { data: { tree_remote_target: 'checkbox' } }) do %>
         <i class="far fa-check-square fa-lg"></i>
         <span><%= meta_controller.name %></span>
         <span class="has-text-grey">(<%= meta_controller.controller_path %>)</span>
       <% end %>
-    <% when ->(o) { o.blank? } %>
+    <% when 0 %>
       <%= button_to({ action: 'controller_on' }, params: { meta_controller_id: meta_controller.id, expand: defined?(expand) && expand }, method: :patch, form: { data: { tree_remote_target: 'checkbox' } }) do %>
         <i class="far fa-square fa-lg"></i>
         <span><%= meta_controller.name %></span>

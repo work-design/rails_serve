@@ -55,12 +55,23 @@ module Roled
     end
 
     def business_on(meta_business)
-      role_hash.merge! meta_business.role_hash
+      role_hash.deep_merge! meta_business.role_path
     end
 
     def business_off(meta_business)
       role_hash.delete meta_business.identifier.to_s
+
       role_hash
+    end
+
+    def business_role(meta_business)
+      r = has_role?(business: meta_business.identifier)
+
+      if r == meta_business.role_hash
+        1
+      elsif r.blank?
+        0
+      end
     end
 
     def namespace_on(meta_namespace, business_identifier)
@@ -75,13 +86,21 @@ module Roled
       if namespaces_hash.blank?
         role_hash.delete(business_identifier)
       end
+
+      role_hash
     end
 
     def namespace_role(meta_namespace, business_identifier = '')
-      has_role?(
+      r = has_role?(
         business: business_identifier,
         namespace: meta_namespace.identifier
       )
+
+      if r == meta_namespace.role_hash(business_identifier)
+        1
+      elsif r.blank?
+        0
+      end
     end
 
     def controller_on(meta_controller)
@@ -106,12 +125,12 @@ module Roled
     end
 
     def controller_role(meta_controller)
-      r = has_role?(
-        business: meta_controller.business_identifier,
-        namespace: meta_controller.namespace_identifier,
-        controller: meta_controller.controller_path
-      )
-      #r.compare meta_action_ids
+      r = has_role?(controller: meta_controller.controller_path)
+      if r == meta_controller.role_hash
+        1
+      elsif r.blank?
+        0
+      end
     end
 
     def action_on(meta_action)
