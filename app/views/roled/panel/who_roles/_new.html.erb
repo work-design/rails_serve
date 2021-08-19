@@ -1,5 +1,5 @@
 <%= form_with model: @who_role, url: panel_role_path(@role) do |f| %>
-  <%= render 'shared/error_messages', target: @who_role %>
+  <%= render 'error_messages', target: @who_role %>
   <%= f.text_field :who_id %>
   <%= f.submit %>
 <% end %>

@@ -14,14 +14,14 @@ GIT
 
 GIT
   remote: https://github.com/qinmingyuan/viter.git
-  revision: a94cdf740dc1407cee3e1907e74df095d3e73512
+  revision: 997cbc807babe4380f76ad0051518de12135702e
   specs:
     viter (0.1.0)
       rails
 
 GIT
   remote: https://github.com/work-design/rails_com.git
-  revision: 05c73e8fd2981c73fb9c881ab897995233110438
+  revision: 4829a61208ab5a358d43f43795c3e998b636a5b1
   specs:
     rails_com (1.2.9)
       acme-client
@@ -36,7 +36,7 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_ui.git
-  revision: 429276afe94b457b6211955b33017eb91ccbc3ce
+  revision: 60778d85c650357871ece6410ff61bbd9f9ebdec
   specs:
     rails_ui (0.1.0)
       rails
@@ -141,8 +141,8 @@ GEM
     faraday-net_http_persistent (1.2.0)
     faraday-patron (1.0.0)
     faraday-rack (1.0.0)
-    globalid (0.4.2)
-      activesupport (>= 4.2.0)
+    globalid (0.5.2)
+      activesupport (>= 5.0)
     http-2-next (0.5.0)
     http-form_data (2.3.0)
     httpx (0.16.1)
@@ -228,7 +228,7 @@ GEM
       sprockets (>= 3.0.0)
     thor (1.1.0)
     timers (4.3.3)
-    turbo-rails (0.7.1)
+    turbo-rails (0.7.3)
       rails (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
