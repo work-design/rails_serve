@@ -49,7 +49,7 @@ module Roled
       opts = [options[:business], options[:namespace], options[:controller].to_s.delete_prefix('/').presence, options[:action]].take_while(&->(i){ !i.nil? })
       return false if opts.blank?
       r = role_hash.dig(*opts)
-      logger.debug "  \e[35mUser: #{opts}\e[0m"
+      logger.debug "\e[35m  User: #{opts}  \e[0m"
       r
     end
 
@@ -74,7 +74,7 @@ module Roled
 
     def landmark_rules
       _rule_ids = role_hash.leaves
-      Rule.where(id: _rule_ids, landmark: true)
+      MetaAction.where(id: _rule_ids, landmark: true)
     end
 
     def sync_to_role_ids

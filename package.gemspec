@@ -1,9 +1,6 @@
-$:.push File.expand_path('lib', __dir__)
-require 'rails_role/version'
-
 Gem::Specification.new do |s|
   s.name = 'rails_role'
-  s.version = RailsRole::VERSION
+  s.version = '1.0.3'
   s.authors = ['qinmingyuan']
   s.email = ['mingyuan0715@foxmail.com']
   s.summary = 'Rails Role'
