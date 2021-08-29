@@ -2,9 +2,6 @@ module Roled
   class Admin::WhoRolesController < Admin::BaseController
     before_action :set_who, only: [:show, :edit, :update]
 
-    def show
-    end
-
     def edit
       @roles = Role.visible.default_where('who_types-any': params[:who_type])
     end

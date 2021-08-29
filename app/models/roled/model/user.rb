@@ -74,7 +74,7 @@ module Roled
 
     def landmark_rules
       _rule_ids = role_hash.leaves
-      MetaAction.where(id: _rule_ids, landmark: true)
+      Com::MetaAction.where(id: _rule_ids, landmark: true)
     end
 
     def sync_to_role_ids
