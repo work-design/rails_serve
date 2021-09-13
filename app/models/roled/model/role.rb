@@ -29,8 +29,8 @@ module Roled
 
     def has_role?(business: nil, namespace: nil, controller: nil, action: nil, **params)
       controller = controller.to_s.delete_prefix('/').presence
-      business ||= RailsCom::Routes.controller_paths[controller][:business]
-      namespace ||= RailsCom::Routes.controller_paths[controller][:namespace] if controller.present?
+      business ||= RailsExtend::Routes.controller_paths[controller][:business]
+      namespace ||= RailsExtend::Routes.controller_paths[controller][:namespace] if controller.present?
       opts = [business, namespace, controller, action].take_while(&->(i){ !i.nil? })
       return false if opts.blank?
 

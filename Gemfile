@@ -5,14 +5,14 @@ gemspec
 gem 'puma'
 gem 'pg'
 
-gem 'minitest-hooks'
-gem 'pry-rails'
-gem 'awesome_print'
-gem 'rails_com', github: 'work-design/rails_com'
-gem 'rails_ui', github: 'work-design/rails_ui'
 gem 'viter', github: 'qinmingyuan/viter'
-gem 'default_form', github: 'qinmingyuan/default_form'
+gem 'rails_com', github: 'work-design/rails_com'
+gem 'rails_design', github: 'work-design/rails_design'
 gem 'default_where', github: 'qinmingyuan/default_where'
 
-gem 'kaminari'
-gem 'acts_as_list'
+gem 'amazing_print'
+group :development, :test do
+  gem 'debug'
+  gem 'minitest-hooks'
+  gem 'sdoc'
+end

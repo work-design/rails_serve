@@ -38,7 +38,7 @@ module RailsRole::LinkHelper
     end
     path_params[:controller] ||= controller_path
     path_params[:action] ||= 'index'
-    r = RailsCom::Routes.controllers.dig(path_params[:controller].delete_prefix('/'), path_params[:action])
+    r = RailsExtend::Routes.controllers.dig(path_params[:controller].delete_prefix('/'), path_params[:action])
     Rails.application.routes.send :generate, nil, path_params, request.path_parameters  # 例如 'orders' -> 'trade/me/orders'
     if r.present?
       path_params[:business] = r[:business]
