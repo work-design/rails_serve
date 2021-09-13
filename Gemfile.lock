@@ -38,7 +38,7 @@ GIT
 PATH
   remote: .
   specs:
-    rails_role (1.0.3)
+    rails_role (1.0.4)
       rails_com (~> 1.2)
 
 GEM
