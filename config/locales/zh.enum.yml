@@ -2,10 +2,10 @@ zh:
   activerecord:
       role:
         who_types:
-          User: User
-          Organ: 组织
-          JobTitle: 职称
-          Member: Member
+          Auth::User: User
+          Org::Organ: 组织
+          Org::JobTitle: 职称
+          Org::Member: Member
       role_rule:
         status:
           available: 可用
