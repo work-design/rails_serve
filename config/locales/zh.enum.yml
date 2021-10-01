@@ -1,12 +1,13 @@
 zh:
   activerecord:
-      role:
+    enum:
+      roled/role:
         who_types:
           Auth::User: User
           Org::Organ: 组织
           Org::JobTitle: 职称
           Org::Member: Member
-      role_rule:
+      roled/role_rule:
         status:
           available: 可用
           unavailable: 不可用
