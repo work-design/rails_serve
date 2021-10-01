@@ -6,13 +6,11 @@ ENV['NODE_ENV'] ||= ENV['RACK_ENV'] || 'development'
 ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../Gemfile', __dir__)
 require 'bundler/setup' if File.exist?(ENV['BUNDLE_GEMFILE'])
 
-require 'pry'
-require 'viter'
+require 'rails_vite'
 require_relative '../test/dummy/config/application'
-require 'viter/dev_server_runner'
 
-Viter::Exporter.export
+RailsVite::Exporter.export
 APP_ROOT = File.expand_path('../test/dummy', __dir__)
 Dir.chdir(APP_ROOT) do
-  Viter::DevServerRunner.run(ARGV)
+  RailsVite::DevServerRunner.run(ARGV)
 end

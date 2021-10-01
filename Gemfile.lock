@@ -1,20 +1,6 @@
 GIT
-  remote: https://github.com/qinmingyuan/default_where.git
-  revision: bd6a1950ec0aea030cf741a38b58111a20d14b38
-  specs:
-    default_where (2.3.0)
-      activerecord (>= 4.0, <= 7.0)
-
-GIT
-  remote: https://github.com/qinmingyuan/viter.git
-  revision: a6c36456e695b32d427179c1bfc1c0df2c66792c
-  specs:
-    viter (0.1)
-      rails
-
-GIT
   remote: https://github.com/work-design/rails_com.git
-  revision: b78a8b743094cd50abc452d76733d79c1511f762
+  revision: 061b45039cc66ffff0fb798c19717761897e451f
   specs:
     rails_com (1.2.9)
       acme-client
@@ -23,6 +9,7 @@ GIT
       default_where (~> 2.2)
       http-form_data (~> 2.3)
       httpx (~> 0.16)
+      jbuilder
       kaminari
       rails (>= 6.1)
       rails_extend
@@ -30,9 +17,16 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_design.git
-  revision: 092a58af67ee302612df8cb5416149f6b9c7890a
+  revision: 9dd45dbb2fe715bbe68c3502e3d198d3fdefa73a
   specs:
     rails_design (0.0.1)
+      rails
+
+GIT
+  remote: https://github.com/work-design/rails_vite.git
+  revision: 231c4cf7eb14fc610ffd8d36b686df8e5d2351cd
+  specs:
+    rails_vite (0.0.1)
       rails
 
 PATH
@@ -114,11 +108,13 @@ GEM
       with_advisory_lock (>= 4.0.0)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
-    debug (1.0.0)
-      irb
+    debug (1.2.1)
+      irb (>= 1.3.6)
       reline (>= 0.2.7)
+    default_where (2.3.0)
+      activerecord (>= 4.0, <= 7.0)
     erubi (1.10.0)
-    faraday (1.7.2)
+    faraday (1.8.0)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
       faraday-excon (~> 1.1)
@@ -149,6 +145,8 @@ GEM
     io-console (0.5.9)
     irb (1.3.7)
       reline (>= 0.2.7)
+    jbuilder (2.11.2)
+      activesupport (>= 5.0.0)
     kaminari (1.2.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.1)
@@ -166,7 +164,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
-    marcel (1.0.1)
+    marcel (1.0.2)
     method_source (1.0.0)
     mini_mime (1.1.1)
     mini_portile2 (2.6.1)
@@ -175,11 +173,11 @@ GEM
       minitest (> 5.3)
     multipart-post (2.1.1)
     nio4r (2.5.8)
-    nokogiri (1.12.3)
+    nokogiri (1.12.5)
       mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
     pg (1.2.3)
-    puma (5.4.0)
+    puma (5.5.0)
       nio4r (~> 2.0)
     racc (1.5.2)
     rack (2.2.3)
@@ -229,7 +227,7 @@ GEM
       sprockets (>= 3.0.0)
     thor (1.1.0)
     timers (4.3.3)
-    turbo-rails (0.7.11)
+    turbo-rails (0.8.1)
       rails (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
@@ -246,15 +244,14 @@ PLATFORMS
 DEPENDENCIES
   amazing_print
   debug
-  default_where!
   minitest-hooks
   pg
   puma
   rails_com!
   rails_design!
   rails_role!
+  rails_vite!
   sdoc
-  viter!
 
 BUNDLED WITH
    2.2.22

@@ -2,6 +2,7 @@ zh:
   roled:
     title: 权限
     admin:
+      title: 权限配置
       who_roles:
         index:
           title: 用户权限
