@@ -10,9 +10,9 @@ module Roled
       attribute :role_hash, :json, default: {}
       attribute :default, :boolean
 
-      has_many :who_roles, dependent: :destroy
-      has_many :role_rules, dependent: :destroy, autosave: true, inverse_of: :role
-      has_many :rules, through: :role_rules, dependent: :destroy
+      has_many :who_roles, dependent: :destroy_async
+      has_many :role_rules, dependent: :destroy_async, autosave: true, inverse_of: :role
+      has_many :rules, through: :role_rules, dependent: :destroy_async
       has_many :controllers, ->{ distinct }, through: :role_rules
       has_many :busynesses, -> { distinct }, through: :role_rules
       has_many :role_types, dependent: :delete_all
