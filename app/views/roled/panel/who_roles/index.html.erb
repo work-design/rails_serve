@@ -15,7 +15,7 @@
       <td><time data-controller="time"><%= who_role.created_at.to_s(:rfc822) %></time></td>
       <td>
         <%= link_to panel_role_who_role_path(@role, who_role), method: :delete, aria: { label: t('.destroy') }, data: { confirm: t('.confirm') }, class: 'button is-small is-rounded is-light' do %>
-          <i class="fas fa-trash-alt"></i>
+          <i class="fa-light fa-trash-alt"></i>
         <% end %>
       </td>
     </tr>

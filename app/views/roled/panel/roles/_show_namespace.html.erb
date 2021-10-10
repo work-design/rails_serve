@@ -3,9 +3,9 @@
     <span style="width: 1.43em; display: inline-block"></span>
     <%= button_to({ action: 'controllers' }, params: { business_identifier: business_identifier, namespace_identifier: meta_namespace.identifier }) do %>
       <% if defined?(expand) && expand %>
-        <i class="fas fa-fw fa-caret-down" style="cursor: pointer" data-action="click->tree-remote#collapse"></i>
+        <i class="fa-light fa-fw fa-caret-down" style="cursor: pointer" data-action="click->tree-remote#collapse"></i>
       <% else %>
-        <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree-remote#expand"></i>
+        <i class="fa-light fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree-remote#expand"></i>
       <% end %>
     <% end %>
     <% case @role.namespace_role(meta_namespace, business_identifier) when 1 %>

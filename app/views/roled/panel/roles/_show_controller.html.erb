@@ -3,9 +3,9 @@
     <span style="width: 2.86em; display: inline-block"></span>
     <%= button_to({ action: 'actions' }, params: { meta_controller_id: meta_controller.id }) do %>
       <% if defined?(expand) && expand %>
-        <i class="fas fa-fw fa-caret-down" style="cursor: pointer" data-action="click->tree-remote#collapse"></i>
+        <i class="fa-light fa-fw fa-caret-down" style="cursor: pointer" data-action="click->tree-remote#collapse"></i>
       <% else %>
-        <i class="fas fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree-remote#expand"></i>
+        <i class="fa-light fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree-remote#expand"></i>
       <% end %>
     <% end %>
     <% case @role.controller_role(meta_controller) when 1 %>
