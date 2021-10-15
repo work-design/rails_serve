@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/work-design/rails_com.git
-  revision: 3af7acecca30116eb8f5cc8bd31ad4cc167ef83e
+  revision: 1e2f7f62cb8223f0e9ceb679f1c9093d73c0501f
   specs:
     rails_com (1.2.9)
       acme-client
@@ -17,7 +17,7 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_design.git
-  revision: 7498ce9e8436d982113e60db21f996cfa2f3669a
+  revision: 65eb236b8d21433f2308c38fcc61240d8bde2bc1
   specs:
     rails_design (0.0.1)
       rails
@@ -101,14 +101,14 @@ GEM
       zeitwerk (~> 2.3)
     acts_as_list (1.0.4)
       activerecord (>= 4.2)
-    amazing_print (1.3.0)
+    amazing_print (1.4.0)
     builder (3.2.4)
     closure_tree (7.3.0)
       activerecord (>= 4.2.10)
       with_advisory_lock (>= 4.0.0)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
-    debug (1.2.1)
+    debug (1.2.4)
       irb (>= 1.3.6)
       reline (>= 0.2.7)
     default_where (2.3.0)
@@ -165,7 +165,7 @@ GEM
       mini_mime (>= 0.1.1)
     marcel (1.0.2)
     method_source (1.0.0)
-    mini_mime (1.1.1)
+    mini_mime (1.1.2)
     mini_portile2 (2.6.1)
     minitest (5.14.4)
     minitest-hooks (1.5.0)
@@ -176,7 +176,7 @@ GEM
       mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
     pg (1.2.3)
-    puma (5.5.0)
+    puma (5.5.2)
       nio4r (~> 2.0)
     racc (1.5.2)
     rack (2.2.3)
@@ -225,7 +225,7 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     thor (1.1.0)
-    turbo-rails (0.8.1)
+    turbo-rails (7.1.0)
       rails (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
