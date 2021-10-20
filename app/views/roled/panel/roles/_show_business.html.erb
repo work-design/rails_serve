@@ -2,26 +2,26 @@
   <td>
     <%= button_to({ action: 'namespaces' }, params: { business_identifier: meta_business.identifier }) do %>
       <% if defined?(expand) && expand %>
-        <i class="fa-light fa-fw fa-caret-down" style="cursor: pointer" data-action="click->tree-remote#collapse"></i>
+        <i class="fa-solid fa-fw fa-caret-down" style="cursor: pointer" data-action="click->tree-remote#collapse"></i>
       <% else %>
         <i class="fa-solid fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree-remote#expand"></i>
       <% end %>
     <% end %>
     <% case @role.business_role(meta_business) when 1 %>
       <%= button_to({ action: 'business_off' }, params: { business_identifier: meta_business.identifier, expand: defined?(expand) && expand }, method: :patch, form: { data: { tree_remote_target: 'checkbox' } }) do %>
-        <i class="far fa-check-square fa-lg"></i>
+        <i class="fa-regular fa-check-square fa-lg"></i>
         <span><%= meta_business.name %></span>
         <span class="has-text-grey">(<%= meta_business.identifier %>)</span>
       <% end %>
     <% when 0 %>
       <%= button_to({ action: 'business_on' }, params: { business_identifier: meta_business.identifier, expand: defined?(expand) && expand }, method: :patch, form: { data: { tree_remote_target: 'checkbox' } }) do %>
-        <i class="far fa-square fa-lg"></i>
+        <i class="fa-regular fa-square fa-lg"></i>
         <span><%= meta_business.name %></span>
         <span class="has-text-grey">(<%= meta_business.identifier %>)</span>
       <% end %>
     <% else %>
       <%= button_to({ action: 'business_on' }, params: { business_identifier: meta_business.identifier, expand: defined?(expand) && expand }, method: :patch, form: { data: { tree_remote_target: 'checkbox' } }) do %>
-        <i class="far fa-minus-square fa-lg"></i>
+        <i class="fa-regular fa-minus-square fa-lg"></i>
         <span><%= meta_business.name %></span>
         <span class="has-text-grey">(<%= meta_business.identifier %>)</span>
       <% end %>

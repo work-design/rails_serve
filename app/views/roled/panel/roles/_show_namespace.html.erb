@@ -3,24 +3,24 @@
     <span style="width: 1.43em; display: inline-block"></span>
     <%= button_to({ action: 'controllers' }, params: { business_identifier: business_identifier, namespace_identifier: meta_namespace.identifier }) do %>
       <% if defined?(expand) && expand %>
-        <i class="fa-light fa-fw fa-caret-down" style="cursor: pointer" data-action="click->tree-remote#collapse"></i>
+        <i class="fa-solid fa-fw fa-caret-down" style="cursor: pointer" data-action="click->tree-remote#collapse"></i>
       <% else %>
         <i class="fa-solid fa-fw fa-caret-right" style="cursor: pointer" data-action="click->tree-remote#expand"></i>
       <% end %>
     <% end %>
     <% case @role.namespace_role(meta_namespace, business_identifier) when 1 %>
       <%= button_to({ action: 'namespace_off' }, params: { business_identifier: business_identifier, namespace_identifier: meta_namespace.identifier, expand: defined?(expand) && expand }, method: :patch, form: { data: { tree_remote_target: 'checkbox' } }) do %>
-        <i class="far fa-check-square fa-lg"></i>
+        <i class="fa-regular fa-check-square fa-lg"></i>
         <span><%= meta_namespace.name %></span>
       <% end %>
     <% when 0 %>
       <%= button_to({ action: 'namespace_on' }, params: { business_identifier: business_identifier, namespace_identifier: meta_namespace.identifier, expand: defined?(expand) && expand }, method: :patch, form: { data: { tree_remote_target: 'checkbox' } }) do %>
-        <i class="far fa-square fa-lg"></i>
+        <i class="fa-regular fa-square fa-lg"></i>
         <span><%= meta_namespace.name %></span>
       <% end %>
     <% else %>
       <%= button_to({ action: 'namespace_on' }, params: { business_identifier: business_identifier, namespace_identifier: meta_namespace.identifier, expand: defined?(expand) && expand }, method: :patch, form: { data: { tree_remote_target: 'checkbox' } }) do %>
-        <i class="far fa-minus-square fa-lg"></i>
+        <i class="fa-regular fa-minus-square fa-lg"></i>
         <span><%= meta_namespace.name %></span>
       <% end %>
     <% end %>
