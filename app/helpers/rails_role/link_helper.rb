@@ -11,11 +11,12 @@ module RailsRole::LinkHelper
       _html_options = html_options || {}
     end
 
-    if role_permit?(_options, _html_options)
+    text = _html_options.delete(:text)
+    if role_permit?(_options, _html_options) && false
       super
-    elsif _html_options[:text]
+    elsif text
       if block_given?
-        capture(&block)
+        content_tag(:div, _html_options.slice(:class), &block)
       else
         ERB::Util.html_escape(name)
       end
