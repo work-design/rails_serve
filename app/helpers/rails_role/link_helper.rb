@@ -12,7 +12,7 @@ module RailsRole::LinkHelper
     end
 
     text = _html_options.delete(:text)
-    if role_permit?(_options, _html_options) && false
+    if role_permit?(_options, _html_options)
       super
     elsif text
       if block_given?
