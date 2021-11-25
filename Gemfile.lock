@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/work-design/rails_com.git
-  revision: 9a9ada1bbd1b4a0b3a8212c88d8166a203774371
+  revision: 94b93ef857e6679501d9544eaf64a88980e7e2a9
   specs:
     rails_com (1.3.0)
       acme-client
@@ -21,14 +21,14 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_design.git
-  revision: 2827ff179bdf970f793fafa7b487d689267a02a2
+  revision: 9ed5f4aa2f33fe08afd937696378b1f8af013fc1
   specs:
     rails_design (0.0.1)
       rails
 
 GIT
   remote: https://github.com/work-design/rails_vite.git
-  revision: 231c4cf7eb14fc610ffd8d36b686df8e5d2351cd
+  revision: 9c3213edafc83d8b9273909ca05288ee34ebe1d3
   specs:
     rails_vite (0.0.1)
       rails
@@ -144,13 +144,13 @@ GEM
     http-form_data (2.3.0)
     httpx (0.18.0)
       http-2-next (>= 0.4.1)
-    i18n (1.8.10)
+    i18n (1.8.11)
       concurrent-ruby (~> 1.0)
     io-console (0.5.9)
-    io-wait (0.2.0)
+    io-wait (0.2.1)
     irb (1.3.7)
       reline (>= 0.2.7)
-    jbuilder (2.11.2)
+    jbuilder (2.11.3)
       activesupport (>= 5.0.0)
     kaminari (1.2.1)
       activesupport (>= 4.1.0)
@@ -202,7 +202,7 @@ GEM
     pg (1.2.3)
     puma (5.5.2)
       nio4r (~> 2.0)
-    racc (1.5.2)
+    racc (1.6.0)
     rack (2.2.3)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -226,8 +226,8 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.4.2)
       loofah (~> 2.3)
-    rails_extend (1.0.0)
-      rails (>= 6.1)
+    rails_extend (1.0.1)
+      rails (>= 5.0)
     railties (6.1.4.1)
       actionpack (= 6.1.4.1)
       activesupport (= 6.1.4.1)
@@ -244,9 +244,9 @@ GEM
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    sprockets-rails (3.2.2)
-      actionpack (>= 4.0)
-      activesupport (>= 4.0)
+    sprockets-rails (3.4.0)
+      actionpack (>= 5.2)
+      activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     strscan (3.0.1)
     thor (1.1.0)
@@ -261,7 +261,7 @@ GEM
     websocket-extensions (0.1.5)
     with_advisory_lock (4.6.0)
       activerecord (>= 4.2)
-    zeitwerk (2.4.2)
+    zeitwerk (2.5.1)
 
 PLATFORMS
   ruby
