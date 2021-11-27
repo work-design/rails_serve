@@ -3,6 +3,8 @@ module Roled
     extend ActiveSupport::Concern
 
     included do
+      attribute :type, :string
+
       belongs_to :who, polymorphic: true
       belongs_to :role
 
