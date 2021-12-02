@@ -3,13 +3,9 @@ module Roled
     extend ActiveSupport::Concern
 
     included do
-      attribute :cached_role_ids, :integer, array: true, default: []
-
       has_many :roles, class_name: 'Roled::Role', through: :who_roles
       has_many :role_rules, class_name: 'Roled::RoleRule', through: :who_roles
       has_many :meta_actions, class_name: 'Roled::MetaAction', through: :role_rules
-
-      after_save :sync_to_role_ids, if: ->{ saved_change_to_cached_role_ids? }
     end
 
     def admin?
@@ -74,10 +70,6 @@ module Roled
     def landmark_rules
       _rule_ids = role_hash.leaves
       Com::MetaAction.where(id: _rule_ids, landmark: true)
-    end
-
-    def sync_to_role_ids
-      #self.role_ids = cached_role_ids
     end
 
   end
