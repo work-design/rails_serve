@@ -5,7 +5,7 @@ module Roled
     included do
       include Ext::Base
 
-      has_many :who_roles, class_name: 'Roled::WhoUserRole', dependent: :destroy_async
+      has_many :who_roles, class_name: 'Roled::WhoUserRole', foreign_key: :who_id, dependent: :destroy_async
       has_many :roles, class_name: 'Roled::UserRole', through: :who_roles
     end
 
