@@ -1,4 +1,4 @@
 <%= f.text_field :name %>
 <%= f.text_area :description %>
-<%= f.select :who_types, options_for_select(Roled::Role.options_i18n(:who_types), @role.who_types), { wrap: { select: 'field-body control' } }, { multiple: true, data: { controller: 'choice' } } %>
+<%= f.select :type, options_for_select(Roled::Role.options_i18n(:type), @role.type) %>
 <%= f.check_box :visible %>

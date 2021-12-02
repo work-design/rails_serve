@@ -107,16 +107,14 @@ module Roled
 
     private
     def role_params
-      p = params.fetch(:role, {}).permit(
+      params.fetch(:role, {}).permit(
         :name,
         :code,
         :description,
         :visible,
         :default,
-        who_types: []
+        :type
       )
-      p.fetch(:who_types, []).reject!(&:blank?)
-      p
     end
 
     def set_role
