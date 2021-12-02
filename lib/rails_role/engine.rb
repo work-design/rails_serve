@@ -2,7 +2,12 @@ require 'rails_com'
 class RailsRole::Engine < Rails::Engine
 
   config.autoload_paths += Dir[
-    "#{config.root}/app/models/govern"
+    "#{config.root}/app/models/role",
+    "#{config.root}/app/models/who_role"
+  ]
+  config.eager_load_paths += Dir[
+    "#{config.root}/app/models/role",
+    "#{config.root}/app/models/who_role"
   ]
 
   config.generators do |g|

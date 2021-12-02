@@ -6,9 +6,9 @@ module Roled
       attribute :name, :string
       attribute :description, :string
       attribute :visible, :boolean, default: false
-      attribute :who_types, :string, array: true
       attribute :role_hash, :json, default: {}
       attribute :default, :boolean
+      attribute :type, :string
 
       has_many :who_roles, dependent: :destroy_async
       has_many :role_rules, dependent: :destroy_async, autosave: true, inverse_of: :role
@@ -40,14 +40,8 @@ module Roled
     end
 
     def set_default
-      self.class.where.not(id: self.id).update_all(default: false)
+      self.class.where.not(id: self.id).where(type: self.type).update_all(default: false)
       delete_cache
-    end
-
-    def delete_cache
-      if Rails.cache.delete('default_role_hash')
-        logger.debug "\e[35m  delete cache default role hash \e[0m"
-      end
     end
 
     def sync_who_types

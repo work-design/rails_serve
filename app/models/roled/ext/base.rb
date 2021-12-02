@@ -1,11 +1,10 @@
 module Roled
-  module Model::User
+  module Ext::Base
     extend ActiveSupport::Concern
 
     included do
       attribute :cached_role_ids, :integer, array: true, default: []
 
-      has_many :who_roles, class_name: 'Roled::WhoRole', as: :who, dependent: :destroy_async
       has_many :roles, class_name: 'Roled::Role', through: :who_roles
       has_many :role_rules, class_name: 'Roled::RoleRule', through: :who_roles
       has_many :meta_actions, class_name: 'Roled::MetaAction', through: :role_rules

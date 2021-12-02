@@ -1,7 +1,7 @@
 module Roled
   class User < ApplicationRecord
-    include Model::User
+    include Ext::User
 
-    self.table_name = 'users'
+    self.table_name = Auth::User.table_name if defined? RailsAuth
   end
 end

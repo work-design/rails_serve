@@ -2,11 +2,11 @@ zh:
   activerecord:
     enum:
       roled/role:
-        who_types:
-          Auth::User: User
-          Org::Organ: 组织
-          Org::JobTitle: 职称
-          Org::Member: Member
+        type:
+          Roled::UserRole: User
+          Roled::OrganRole: 组织
+          Roled::JobTitleRole: 职称
+          Roled::MemberRole: Member
       roled/role_rule:
         status:
           available: 可用
