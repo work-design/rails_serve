@@ -3,10 +3,8 @@ module Roled
     extend ActiveSupport::Concern
 
     included do
-      include Ext::Base
-
       has_many :who_roles, class_name: 'Roled::WhoOrganRole', foreign_key: :who_id, dependent: :destroy_async
-      has_many :roles, class_name: 'Roled::UserRole', through: :who_roles
+      include Ext::Base
     end
 
     def default_role_hash

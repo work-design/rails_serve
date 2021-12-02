@@ -3,14 +3,15 @@ module Roled
     before_action :set_who, only: [:show, :edit, :update]
 
     def edit
-      @roles = Role.visible.default_where('who_types-any': params[:who_type])
+      type = "Roled::#{params[:who_type].split('::')[-1]}Role"
+      @roles = Role.visible.default_where(type: type)
     end
 
     def update
-      if @who.class.column_names.include? 'cached_role_ids'
-        @who.update cached_role_ids: who_params[:role_ids]
-      else
-        @who.update who_params
+      @who_role = @who.who_roles.find_or_initialize_by(role_id: params[:role_id])
+
+      if @who_role.save
+        render 'update'
       end
     end
 

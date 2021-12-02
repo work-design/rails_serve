@@ -8,6 +8,11 @@ module Roled
       has_many :meta_actions, class_name: 'Roled::MetaAction', through: :role_rules
     end
 
+    def available_roles
+      type = "Roled::#{self.class.name.split('::')[-1]}Role"
+      Role.visible.where(type: type)
+    end
+
     def admin?
       if respond_to?(:account_identities) && (RailsRole.config.default_admin_accounts & account_identities).length > 0
         true
