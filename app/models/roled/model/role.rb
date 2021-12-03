@@ -210,5 +210,9 @@ module Roled
       RoleRule.where(id: moved_ids).delete_all if moved_ids.present?
     end
 
+    def delete_cache
+      puts 'should implement in subclass'
+    end
+
   end
 end

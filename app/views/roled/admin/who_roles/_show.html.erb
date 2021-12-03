@@ -1,10 +1,12 @@
 <div class="ui top attached segment">
-  <div class="ui labels">
-    <% @who.roles.each do |role| %>
-      <span class="ui green label"><%= role.name %></span>
+  <% @who.available_roles.each do |role| %>
+    <%= form_with theme: nil, url: { controller: 'roled/admin/who_roles', action: 'update', who_type: 'Org::Member', who_id: @who.id }, method: 'patch', data: { controller: 'input' }, class: 'is-inline' do |f| %>
+      <label>
+        <%= f.check_box :role_id, { checked: @who.role_ids.include?(role.id), data: { input_target: 'checkbox', action: 'input#toggle' }, id: nil }, role.id, role.id %>
+        <%= role.name %>
+      </label>
     <% end %>
-  </div>
-  <%= link_to 'edit', edit_who_roles_path(params[:who_type], params[:who_id]), class: 'ui label' %>
+  <% end %>
 </div>
 
 <table class="ui striped bottom attached table">
@@ -17,7 +19,7 @@
   </thead>
 
   <tbody>
-  <% @who.verbose_role.each do |govern, rule| %>
+  <% @who.role_hash.each do |govern, rule| %>
     <tr>
       <td><%= govern[1] || govern[0] %></td>
       <td>
