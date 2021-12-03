@@ -8,10 +8,13 @@ module Roled
     end
 
     def update
-      @who_role = @who.who_roles.find_or_initialize_by(role_id: params[:role_id])
+      @who_role = @who.who_roles.find_by(role_id: params[:role_id])
 
-      if @who_role.save
-        render 'update'
+      if params['checked'] == 'false' && @who_role
+        @who_role.destroy
+      elsif params['checked'] == 'true' && @who_role.blank?
+        @who_role = @who.who_roles.create(role_id: params[:role_id])
+        @who_role.save
       end
     end
 
