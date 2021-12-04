@@ -32,12 +32,6 @@ module Roled
       result
     end
 
-    def default_role_hash
-      Rails.cache.fetch('default_role_hash') do
-        Role.find_by(default: true)&.role_hash || {}
-      end
-    end
-
     def has_role?(**options)
       if respond_to?(:admin?) && admin?
         return true

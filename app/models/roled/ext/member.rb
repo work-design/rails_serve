@@ -8,7 +8,7 @@ module Roled
     end
 
     def default_role_hash
-      Rails.cache.fetch('default_role_hash') do
+      Rails.cache.fetch('member_role_hash') do
         MemberRole.find_by(default: true)&.role_hash || {}
       end
     end
