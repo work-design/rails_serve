@@ -64,10 +64,10 @@ module RailsRole::LinkHelper
 
     result = organ_permitted && user_permitted
     if RailsRole.config.debug || !result
-      logger.debug "  \e[35mOptions: #{_options}\e[0m"
-      logger.debug "  \e[35mParams: #{path_params}\e[0m"
-      logger.debug "  \e[35mOrgan: #{organ_permitted}\e[0m"
-      logger.debug "  \e[35mUser: #{rails_role_user&.class&.name}_#{rails_role_user&.id}: #{user_permitted.inspect}\e[0m"
+      logger.debug "\e[35m  Options: #{_options}  \e[0m"
+      logger.debug "\e[35m  Params: #{path_params}  \e[0m"
+      logger.debug "\e[35m  #{current_organ&.class_name}_#{current_organ&.id}: #{organ_permitted.inspect}  \e[0m"
+      logger.debug "\e[35m  #{rails_role_user&.class_name}_#{rails_role_user&.id}: #{user_permitted.inspect}  \e[0m"
     end
 
     result
