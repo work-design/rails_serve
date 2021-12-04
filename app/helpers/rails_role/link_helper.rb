@@ -50,14 +50,15 @@ module RailsRole::LinkHelper
       path_params[:controller] = path_params[:controller]
     end
     extra_params = path_params.except(:controller, :action, :business, :namespace)
+    meta_params = path_params.slice(:business, :namespace, :controller, :action).symbolize_keys
 
     if defined?(current_organ) && current_organ
-      organ_permitted = current_organ.has_role?(params: extra_params, **path_params.slice(:business, :namespace, :controller, :action).symbolize_keys)
+      organ_permitted = current_organ.has_role?(params: extra_params, **meta_params)
     else
       organ_permitted = true
     end
     if defined?(rails_role_user) && rails_role_user
-      user_permitted = rails_role_user.has_role?(params: extra_params, **path_params.slice(:business, :namespace, :controller, :action).symbolize_keys)
+      user_permitted = rails_role_user.has_role?(params: extra_params, **meta_params)
     else
       user_permitted = true
     end
@@ -65,7 +66,8 @@ module RailsRole::LinkHelper
     result = organ_permitted && user_permitted
     if RailsRole.config.debug || !result
       logger.debug "\e[35m  Options: #{_options}  \e[0m"
-      logger.debug "\e[35m  Params: #{path_params}  \e[0m"
+      logger.debug "\e[35m  Meta Params: #{meta_params}  \e[0m"
+      logger.debug "\e[35m  Extra Params: #{extra_params}  \e[0m"
       logger.debug "\e[35m  #{current_organ&.class_name}_#{current_organ&.id}: #{organ_permitted.inspect}  \e[0m"
       logger.debug "\e[35m  #{rails_role_user&.class_name}_#{rails_role_user&.id}: #{user_permitted.inspect}  \e[0m"
     end
