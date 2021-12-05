@@ -39,15 +39,17 @@ module RailsRole::LinkHelper
     end
     path_params[:controller] ||= controller_path
     path_params[:action] ||= 'index'
-    r = RailsExtend::Routes.controllers.dig(path_params[:controller].delete_prefix('/'), path_params[:action])
-    Rails.application.routes.send :generate, nil, path_params, request.path_parameters  # 例如 'orders' -> 'trade/me/orders'
-    if r.present?
-      path_params[:business] = r[:business]
-      path_params[:namespace] = r[:namespace]
+    dup_params = path_params.dup
+    Rails.application.routes.send :generate, nil, dup_params, request.path_parameters  # 例如 'orders' -> 'trade/me/orders', 这里会直接改变 dup_params 的值
+    possible_result = RailsExtend::Routes.controllers.dig(dup_params[:controller], dup_params[:action])
+
+    if possible_result.present?
+      path_params[:business] = possible_result[:business]
+      path_params[:namespace] = possible_result[:namespace]
+      path_params[:controller] = dup_params[:controller]
     else
-      path_params[:business] = params[:business]
-      path_params[:namespace] = params[:namespace]
-      path_params[:controller] = path_params[:controller]
+      path_params[:business] = params[:business].to_s
+      path_params[:namespace] = params[:namespace].to_s
     end
     extra_params = path_params.except(:controller, :action, :business, :namespace)
     meta_params = path_params.slice(:business, :namespace, :controller, :action).symbolize_keys
