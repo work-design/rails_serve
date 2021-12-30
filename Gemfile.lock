@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/work-design/rails_com.git
-  revision: 23c71689ae1b87574a61b1d916f13bde80ebcc87
+  revision: aa23bcf4634c618df4d1f5f05aecc61e617343f7
   specs:
     rails_com (1.3.0)
       acme-client
@@ -21,14 +21,14 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_design.git
-  revision: 214035b9a720fd6497cb8d5019ae44f4532ce7e9
+  revision: 74f98d6e4b305a41c39944a33b84afeda60012a0
   specs:
     rails_design (0.0.1)
       rails
 
 GIT
   remote: https://github.com/work-design/rails_vite.git
-  revision: 9c3213edafc83d8b9273909ca05288ee34ebe1d3
+  revision: 97a0a69f98c313bc2ab63a77e14de5f6cd39f9eb
   specs:
     rails_vite (0.0.1)
       rails
@@ -117,7 +117,7 @@ GEM
       reline (>= 0.2.7)
     default_where (2.3.0)
       activerecord (>= 4.0, <= 7.0)
-    digest (3.0.0)
+    digest (3.1.0)
     erubi (1.10.0)
     faraday (1.8.0)
       faraday-em_http (~> 1.0)
@@ -153,18 +153,18 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    kaminari (1.2.1)
+    kaminari (1.2.2)
       activesupport (>= 4.1.0)
-      kaminari-actionview (= 1.2.1)
-      kaminari-activerecord (= 1.2.1)
-      kaminari-core (= 1.2.1)
-    kaminari-actionview (1.2.1)
+      kaminari-actionview (= 1.2.2)
+      kaminari-activerecord (= 1.2.2)
+      kaminari-core (= 1.2.2)
+    kaminari-actionview (1.2.2)
       actionview
-      kaminari-core (= 1.2.1)
-    kaminari-activerecord (1.2.1)
+      kaminari-core (= 1.2.2)
+    kaminari-activerecord (1.2.2)
       activerecord
-      kaminari-core (= 1.2.1)
-    kaminari-core (1.2.1)
+      kaminari-core (= 1.2.2)
+    kaminari-core (1.2.2)
     loofah (2.13.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
