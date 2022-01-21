@@ -1,35 +1,8 @@
-<div class="ui top attached segment">
-  <% @who.available_roles.each do |role| %>
-    <%= form_with theme: nil, url: { controller: 'roled/admin/who_roles', action: 'update', who_type: @who.class_name, who_id: @who.id }, method: 'patch', data: { controller: 'input' }, class: 'is-inline' do |f| %>
-      <label>
-        <%= f.check_box :role_id, { checked: @who.role_ids.include?(role.id), data: { input_target: 'checkbox', action: 'input#toggle' }, id: nil }, role.id, role.id %>
-        <%= role.name %>
-      </label>
-    <% end %>
+<% @who.available_roles.each do |role| %>
+  <%= form_with theme: nil, url: { controller: 'roled/admin/who_roles', action: 'update', who_type: @who.class_name, who_id: @who.id }, method: 'patch', data: { controller: 'input' }, class: 'is-inline' do |f| %>
+    <label>
+      <%= f.check_box :role_id, { checked: @who.role_ids.include?(role.id), data: { input_target: 'checkbox', action: 'input#toggle' }, id: nil }, role.id, role.id %>
+      <%= role.name %>
+    </label>
   <% end %>
-</div>
-
-<table class="ui striped bottom attached table">
-  <thead>
-    <tr>
-      <th class="there wide">Govern</th>
-      <th class="thirteen wide">Contain Rules</th>
-      <th class="two wide"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-  <% @who.role_hash.each do |govern, rule| %>
-    <tr>
-      <td><%= govern[1] || govern[0] %></td>
-      <td>
-        <% rule.each do |key, name| %>
-        <span class="ui teal label"><%= name[0] %></span>
-        <% end %>
-      </td>
-      <td>
-      </td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+<% end %>
