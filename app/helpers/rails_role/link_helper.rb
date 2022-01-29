@@ -62,7 +62,7 @@ module RailsRole::LinkHelper
     else
       organ_permitted = true
     end
-    if defined?(rails_role_user) && rails_role_user
+    if whether_filter(:require_role) && defined?(rails_role_user) && rails_role_user
       user_permitted = rails_role_user.has_role?(params: extra_params, **meta_params)
     else
       user_permitted = true
