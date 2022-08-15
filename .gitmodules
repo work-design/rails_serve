@@ -1,0 +1,6 @@
+[submodule "docker"]
+	path = docker
+	url = git@github.com:work-design/docker.git
+[submodule "test/dummy"]
+	path = test/dummy
+	url = https://github.com/work-design/dummy.git
