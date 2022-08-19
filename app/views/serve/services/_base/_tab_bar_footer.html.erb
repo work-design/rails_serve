@@ -1,0 +1,20 @@
+<div class="level is-flex mb-0 py-2 has-border-top">
+  <div class="level-left is-flex pl-4">
+    <%= link_to({ controller: 'trade/my/carts', action: 'show', id: @cart.id }, class: 'level-item mb-0') do %>
+      <i class="fa-solid fa-bag-shopping fa-2x fa-weui-badge">
+        <span class="weui-badge"><%= @cart.items.count %></span>
+      </i>
+    <% end %>
+    <div class="level-item pl-4 is-align-items-baseline">
+      <%= @cart.item_amount.to_money.format(html_wrap: true).html_safe %>
+    </div>
+  </div>
+  <div class="level-right mt-0 pr-4">
+    <div class="level-item">
+      <%= link_to({ controller: 'trade/my/carts', action: 'show', id: @cart.id }, class: 'weui-btn weui-btn_mini weui-btn_primary') do %>
+        <span>去购物车</span>
+        <i class="fa-solid fa-angle-right"></i>
+      <% end %>
+    </div>
+  </div>
+</div>
