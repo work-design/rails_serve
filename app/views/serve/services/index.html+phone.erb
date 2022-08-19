@@ -1,0 +1,7 @@
+<%= render 'top_bar' %>
+<%= render 'filter_form' %>
+<%= render 'filter_table' %>
+
+<%= render layout: 'index_table' do %>
+  <%= render partial: 'index_tbody', layout: 'index_tr', collection: @services, as: :model %>
+<% end %>
