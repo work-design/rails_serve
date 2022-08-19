@@ -1,0 +1,5 @@
+zh:
+  activerecord:
+    attributes:
+      serve/service:
+        price: 价格

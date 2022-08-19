@@ -1,3 +1,5 @@
-class Serve::Admin::ServicesController < Serve::Admin::BaseController
+module Serve
+  class Admin::ServicesController < Admin::BaseController
 
+  end
 end

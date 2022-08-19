@@ -1,0 +1,11 @@
+zh:
+  serve:
+    title: 服务
+    admin:
+      title: 服务管理
+      services:
+        index:
+          title: 服务项目
+      servers:
+        index:
+          title: 服务人员
