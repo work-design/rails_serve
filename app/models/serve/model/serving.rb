@@ -14,5 +14,9 @@ module Serve
       belongs_to :item, class_name: 'Trade::Item'
     end
 
+    def sync_from
+
+    end
+
   end
 end

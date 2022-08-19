@@ -9,6 +9,15 @@ module Serve
 
       has_many :servers, dependent: :destroy
       has_many :members, through: :servers
+      has_many :servings
+    end
+
+    def order_paid(item)
+      rest = item.number - item.servings.count
+      rest.times do
+        servings.build(item_id: item.id)
+      end
+      save
     end
 
   end
