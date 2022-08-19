@@ -1,2 +1,2 @@
 <%= f.text_field :name %>
-<%= f.text_field :member_id %>
+<%= f.collection_select :member_id, @members, :id, :name %>
