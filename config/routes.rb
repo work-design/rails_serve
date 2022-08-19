@@ -13,4 +13,7 @@ Rails.application.routes.draw do
       end
     end
   end
+  resolve 'Serve::Service' do |service, options|
+    [:serve, service, options]
+  end
 end
