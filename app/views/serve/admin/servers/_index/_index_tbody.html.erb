@@ -1,0 +1,7 @@
+<td><%= model.name %></td>
+<td>
+  <div class="is-several">
+    <%= image_tag model.member.avatar, class: 'image is-24x24' if model.member.avatar.attached? %>
+    <span><%= model.member.name %></span>
+  </div>
+</td>
