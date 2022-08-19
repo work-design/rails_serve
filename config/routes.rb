@@ -4,6 +4,11 @@ Rails.application.routes.draw do
       resources :services do
         resources :servers
       end
+      resources :servings do
+        member do
+          get :qrcode
+        end
+      end
 
       namespace :admin, defaults: { namespace: 'admin' } do
         root 'home#index'
