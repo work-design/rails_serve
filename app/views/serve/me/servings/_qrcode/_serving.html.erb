@@ -1,21 +1,21 @@
 <div class="weui-form-preview">
   <div class="weui-form-preview__bd">
     <div class="weui-form-preview__item">
-      <label class="weui-form-preview__label"><%= Ship::Box.human_attribute_name(:box_specification_id) %></label>
-      <span class="weui-form-preview__value"><%= @box.box_specification.measure %></span>
+      <label class="weui-form-preview__label"><%= Serve::Serving.human_attribute_name(:box_specification_id) %></label>
+      <span class="weui-form-preview__value"><%= @serving.box_specification.measure %></span>
     </div>
     <div class="weui-form-preview__item">
-      <label class="weui-form-preview__label"><%= Ship::Box.human_attribute_name(:code) %></label>
-      <span class="weui-form-preview__value"><%= @box.code %></span>
+      <label class="weui-form-preview__label"><%= Serve::Serving.human_attribute_name(:code) %></label>
+      <span class="weui-form-preview__value"><%= @serving.code %></span>
     </div>
     <div class="weui-form-preview__item">
-      <label class="weui-form-preview__label"><%= Ship::Box.human_attribute_name(:status) %></label>
-      <span class="weui-form-preview__value"><%= @box.status_i18n %></span>
+      <label class="weui-form-preview__label"><%= Serve::Serving.human_attribute_name(:status) %></label>
+      <span class="weui-form-preview__value"><%= @serving.status_i18n %></span>
     </div>
     <div class="weui-form-preview__item">
-      <label class="weui-form-preview__label"><%= Trade::Rent.human_attribute_name(:start_at) %></label>
+      <label class="weui-form-preview__label"><%= Serve::Serving.human_attribute_name(:start_at) %></label>
       <span class="weui-form-preview__value has-text-success">
-        <time data-controller="time"><%= @box.current_rent.start_at.to_fs(:iso8601) %></time>
+        <time data-controller="time"><%= @serving.current_rent.start_at.to_fs(:iso8601) %></time>
       </span>
     </div>
   </div>
