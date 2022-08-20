@@ -2,18 +2,19 @@
   <strong><%= serving.item.good.name %></strong>
 </p>
 <div class="has-text-centered">
-<% if serving.member %>
-  <div class="is-several">
-    <i></i>
-    <span><%= serving.member.name %></span>
-  </div>
-<% else %>
+<% unless serving.member %>
   <%= image_tag serving.qrcode_enter_url, class: 'image' %>
   <p class="has-text-centered">出示二维码核销</p>
 <% end %>
 </div>
 <div class="weui-form-preview">
   <div class="weui-form-preview__bd">
+    <div class="weui-form-preview__item">
+      <label class="weui-form-preview__label"><%= Serve::Serving.human_attribute_name(:member_id) %></label>
+      <span class="weui-form-preview__value">
+        <span><%= serving.member&.name %></span>
+      </span>
+    </div>
     <div class="weui-form-preview__item">
       <label class="weui-form-preview__label"><%= Serve::Serving.human_attribute_name(:start_at) %></label>
       <span class="weui-form-preview__value has-text-success">
