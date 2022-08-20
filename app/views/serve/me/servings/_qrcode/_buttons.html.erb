@@ -1,7 +1,7 @@
 <div>
   <div class="buttons are-large is-centered">
-  <% if @box.current_rent %>
-    <%= button_to({ controller: 'rents', action: 'finish', box_id: @box.id, id: @box.current_rent.id }, method: :patch, class: 'button is-warning') do %>
+  <% if @serving.start_at.blank? %>
+    <%= button_to({ action: 'start' }, method: :patch, class: 'button is-warning') do %>
       <span>开始服务</span>
     <% end %>
   <% end %>
