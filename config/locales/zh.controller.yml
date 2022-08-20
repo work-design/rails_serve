@@ -1,6 +1,9 @@
 zh:
   serve:
     title: 服务
+    services:
+      index:
+        title: 服务项目
     my:
       servings:
         index:

@@ -1,4 +1,9 @@
-<td><%= model.name %></td>
+<td>
+  <div class="is-several">
+    <%= image_tag model.logo, class: 'image is-24x24' if model.logo.attached? %>
+    <span><%= model.name %></span>
+  </div>
+</td>
 <td><%= model.price %></td>
 <td><%= model.vip_price %></td>
 <td><%= model.unit %></td>
