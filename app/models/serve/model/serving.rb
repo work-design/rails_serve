@@ -19,7 +19,7 @@ module Serve
     end
 
     def enter_url
-      Rails.application.routes.url_for(controller: 'serve/servings', action: 'qrcode', id: self.id)
+      Rails.application.routes.url_for(controller: 'serve/servings', action: 'qrcode', id: self.id, host: item.organ.host)
     end
 
     def qrcode_enter_png

@@ -9,11 +9,15 @@ Rails.application.routes.draw do
           get :qrcode
         end
       end
-
       namespace :admin, defaults: { namespace: 'admin' } do
         root 'home#index'
         resources :services do
           resources :servers
+        end
+      end
+      namespace :my, defaults: { namespace: 'my' } do
+        resources :items, only: [] do
+          resources :servings
         end
       end
     end

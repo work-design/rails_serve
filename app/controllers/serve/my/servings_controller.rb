@@ -1,14 +1,14 @@
 module Serve
   class My::ServingsController < My::BaseController
-    before_action :set_service
+    before_action :set_item
 
     def index
-      @servings = @service.servings.where(item_id: params[:item_id])
+      @servings = @item.servings
     end
 
     private
-    def set_service
-      @service = Service.find params[:service_id]
+    def set_item
+      @item = Trade::Item.find params[:item_id]
     end
 
   end
