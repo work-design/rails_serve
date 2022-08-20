@@ -1,6 +1,10 @@
 zh:
   serve:
     title: 服务
+    my:
+      servings:
+        index:
+          title: 服务
     admin:
       title: 服务管理
       services:
