@@ -1,14 +1,19 @@
 module Serve
   class Me::ServingsController < Me::BaseController
-    before_action :set_item
+    before_action :set_serving, only: [:qrcode, :claim]
 
-    def index
-      @servings = @item.servings
+    def qrcode
+
+    end
+
+    def claim
+      @serving.member = current_member
+      @serving.save
     end
 
     private
-    def set_item
-      @item = Trade::Item.find params[:item_id]
+    def set_serving
+      @serving = Serving.find params[:id]
     end
 
   end

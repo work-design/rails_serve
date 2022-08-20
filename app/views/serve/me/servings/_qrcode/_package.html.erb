@@ -1,0 +1,7 @@
+<tr>
+  <td>
+    <i class="fa-solid fa-box"></i>
+    <span class="pl-1"><%= model.id %></span>
+  </td>
+  <td><time data-controller="time" data-format="yyyy-MM-dd HH:mm:ss"><%= model.boxed_in_at.to_fs(:iso8601) %></time></td>
+</tr>

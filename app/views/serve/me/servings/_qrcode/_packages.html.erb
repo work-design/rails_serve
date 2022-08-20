@@ -1,0 +1,9 @@
+<table class="table is-striped is-borderless is-fullwidth">
+  <thead>
+    <tr class="has-text-weight-normal is-size-7">
+      <th><%= Ship::Package.human_attribute_name(:id) %></th>
+      <th><%= Ship::Package.human_attribute_name(:boxed_in_at) %></th>
+    </tr>
+  </thead>
+  <%= render partial: 'package', collection: @box.packages, as: :model %>
+</table>
