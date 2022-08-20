@@ -2,6 +2,10 @@ module Serve
   class Me::ServingsController < Me::BaseController
     before_action :set_serving, only: [:qrcode, :start, :finish]
 
+    def index
+      @servings = current_member.servings.page(params[:page])
+    end
+
     def qrcode
 
     end

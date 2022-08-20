@@ -8,6 +8,10 @@ zh:
       servings:
         index:
           title: 服务
+    me:
+      servings:
+        index:
+          title: 我的服务
     admin:
       title: 服务管理
       services:
