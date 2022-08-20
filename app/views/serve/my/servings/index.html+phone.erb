@@ -1,1 +1,7 @@
-<%= render partial: 'serving', collection: @servings, as: :serving %>
+<%= render 'top_bar' %>
+
+<div class="weui-panel">
+  <div class="weui-panel__bd">
+    <%= render partial: 'serving', collection: @servings, as: :serving %>
+  </div>
+</div>

@@ -1,6 +1,30 @@
 <p class="has-text-centered">
-  <span><%= serving.item.good.name %></span>
+  <strong><%= serving.item.good.name %></strong>
 </p>
-<p class="has-text-centered">
-  <%= image_tag serving.qrcode_enter_url %>
-</p>
+<div class="has-text-centered">
+<% if serving.member %>
+  <div class="is-several">
+    <i></i>
+    <span><%= serving.member.name %></span>
+  </div>
+<% else %>
+  <%= image_tag serving.qrcode_enter_url, class: 'image' %>
+  <p class="has-text-centered">出示二维码核销</p>
+<% end %>
+</div>
+<div class="weui-form-preview">
+  <div class="weui-form-preview__bd">
+    <div class="weui-form-preview__item">
+      <label class="weui-form-preview__label"><%= Serve::Serving.human_attribute_name(:start_at) %></label>
+      <span class="weui-form-preview__value has-text-success">
+        <time data-controller="time"><%= serving.start_at&.to_fs(:iso8601) %></time>
+      </span>
+    </div>
+    <div class="weui-form-preview__item">
+      <label class="weui-form-preview__label"><%= Serve::Serving.human_attribute_name(:finish_at) %></label>
+      <span class="weui-form-preview__value has-text-danger">
+        <time data-controller="time"><%= serving.finish_at&.to_fs(:iso8601) %></time>
+      </span>
+    </div>
+  </div>
+</div>
