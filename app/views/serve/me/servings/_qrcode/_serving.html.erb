@@ -9,6 +9,12 @@
       <span class="weui-form-preview__value"><%= @serving.item.uuid %></span>
     </div>
     <div class="weui-form-preview__item">
+      <label class="weui-form-preview__label"><%= Serve::Serving.human_attribute_name(:member_id) %></label>
+      <span class="weui-form-preview__value">
+        <span><%= @serving.member&.name %></span>
+      </span>
+    </div>
+    <div class="weui-form-preview__item">
       <label class="weui-form-preview__label"><%= Serve::Serving.human_attribute_name(:start_at) %></label>
       <span class="weui-form-preview__value has-text-success">
         <time data-controller="time"><%= @serving.start_at&.to_fs(:iso8601) %></time>
