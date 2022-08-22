@@ -1,1 +1,4 @@
 <strong><%= model.name %></strong>
+<span class="has-text-danger">
+  <%= model.price.to_money.format(html_wrap: true).html_safe %>
+</span>
