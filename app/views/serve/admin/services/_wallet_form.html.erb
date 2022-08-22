@@ -1,0 +1,19 @@
+<%= form_with model: @service, url: { action: 'update_vip' } do |f| %>
+  <%= render 'error_messages', target: f.object %>
+  <% @wallet_templates.each do |wallet_template| %>
+    <%= f.fields :wallet_price, all: { normal: nil }, wrap: { input: 'field' } do |ef| %>
+      <div class="field is-horizontal" data-controller="enter">
+        <label class="field-label is-normal"><%= wallet_template.name %></label>
+        <div class="field-body">
+          <%= ef.hidden_field :code, value: wallet_template.code, index: wallet_template.id, disabled: true %>
+          <%= ef.number_field :price, step: 0.01, value: @service.wallet_price.fetch(wallet_template.code, @service.price), index: wallet_template.id, disabled: true %>
+          <div class="field is-narrow has-addons is-flex">
+            <i class="fa-solid fa-plus" style="cursor: pointer" data-action="click->enter#open"></i>
+            <i class="fa-solid fa-minus pl-1" style="cursor: pointer" data-action="click->enter#close"></i>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+  <%= f.submit %>
+<% end %>
