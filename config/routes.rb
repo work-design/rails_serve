@@ -15,6 +15,8 @@ Rails.application.routes.draw do
           member do
             get :wallet
             patch :update_wallet
+            get :card
+            patch :update_card
           end
           resources :servers
         end

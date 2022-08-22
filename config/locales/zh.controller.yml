@@ -23,6 +23,8 @@ zh:
           title: 服务项目
         wallet:
           title: 钱包支付
+        card:
+          title: 会员价
       servers:
         index:
           title: 服务人员
