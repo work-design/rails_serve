@@ -21,6 +21,8 @@ zh:
       services:
         index:
           title: 服务项目
+        wallet:
+          title: 钱包支付
       servers:
         index:
           title: 服务人员

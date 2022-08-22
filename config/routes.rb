@@ -12,6 +12,10 @@ Rails.application.routes.draw do
       namespace :admin, defaults: { namespace: 'admin' } do
         root 'home#index'
         resources :services do
+          member do
+            get :wallet
+            patch :update_wallet
+          end
           resources :servers
         end
       end

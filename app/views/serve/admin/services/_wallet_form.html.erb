@@ -1,4 +1,4 @@
-<%= form_with model: @service, url: { action: 'update_vip' } do |f| %>
+<%= form_with model: @service, url: { action: 'update_wallet' } do |f| %>
   <%= render 'error_messages', target: f.object %>
   <% @wallet_templates.each do |wallet_template| %>
     <%= f.fields :wallet_price, all: { normal: nil }, wrap: { input: 'field' } do |ef| %>
