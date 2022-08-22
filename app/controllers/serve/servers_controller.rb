@@ -1,5 +1,5 @@
 module Serve
-  class Admin::ServersController < Admin::BaseController
+  class ServersController < BaseController
     before_action :set_service
 
     private
