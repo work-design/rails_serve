@@ -23,7 +23,9 @@
     <% model.wallet_price.each do |key, value| %>
       <div class="tags has-addons control mb-0">
         <div class="tag is-success"><%= key %></div>
-        <div class="tag is-light"><%= value.to_money.format(html_wrap: true).html_safe %></div>
+        <div class="tag is-light">
+          <span><%= value %></span>
+        </div>
       </div>
     <% end %>
   </div>
