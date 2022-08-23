@@ -1,6 +1,6 @@
 <div class="weui-panel is-borderless">
   <div data-controller="mini-program" data-mini-program-pt-class="pt-0" class="weui-panel__hd as-bar">
-    <%= link_to({ action: 'index' }, class: 'px-4') do %>
+    <%= link_to({ controller: 'trade/my/orders', action: 'show', id: @item.order_id }, class: 'px-4') do %>
       <i class="fa-regular fa-angle-left"></i>
     <% end %>
     <div class="weui-title"><%= t('.title') %></div>
