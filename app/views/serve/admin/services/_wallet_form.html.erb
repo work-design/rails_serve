@@ -5,8 +5,8 @@
       <div class="field is-horizontal" data-controller="enter">
         <label class="field-label is-normal"><%= wallet_template.name %></label>
         <div class="field-body">
-          <%= ef.hidden_field :code, value: wallet_template.code, index: wallet_template.id, disabled: true %>
-          <%= ef.number_field :price, step: wallet_template.step, value: @service.wallet_price.fetch(wallet_template.code, wallet_template.step), index: wallet_template.id, disabled: true %>
+          <%= ef.hidden_field :code, value: wallet_template.code, index: wallet_template.id, disabled: !@service.wallet_price.key?(wallet_template.code) %>
+          <%= ef.number_field :price, step: wallet_template.step, value: @service.wallet_price.fetch(wallet_template.code, wallet_template.step), index: wallet_template.id, disabled: !@service.wallet_price.key?(wallet_template.code) %>
           <div class="field is-narrow has-addons is-flex">
             <span><%= wallet_template.unit %></span>
             <i class="fa-solid fa-plus" style="cursor: pointer" data-action="click->enter#open"></i>

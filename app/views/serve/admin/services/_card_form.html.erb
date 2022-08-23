@@ -5,8 +5,8 @@
       <div class="field is-horizontal" data-controller="enter">
         <label class="field-label is-normal"><%= card_template.name %></label>
         <div class="field-body">
-          <%= ef.hidden_field :code, value: card_template.code, index: card_template.id, disabled: true %>
-          <%= ef.number_field :price, step: 0.01, value: @service.card_price.fetch(card_template.code, @service.price), index: card_template.id, disabled: true %>
+          <%= ef.hidden_field :code, value: card_template.code, index: card_template.id, disabled: !@service.card_price.key?(card_template.code) %>
+          <%= ef.number_field :price, step: 0.01, value: @service.card_price.fetch(card_template.code, @service.price), index: card_template.id, disabled: !@service.card_price.key?(card_template.code) %>
           <div class="field is-narrow has-addons is-flex">
             <i class="fa-solid fa-plus" style="cursor: pointer" data-action="click->enter#open"></i>
             <i class="fa-solid fa-minus pl-1" style="cursor: pointer" data-action="click->enter#close"></i>
