@@ -1,0 +1,10 @@
+<div class="menu-label" data-controller="empty">
+  <i class="fa-solid fa-chart-line fa-fw"></i>
+  <span><%= t('serve.me.title') %></span>
+  <%= link_to({ controller: 'serve/admin/home' }, aria: { label: '管理' }) do %>
+    <i class="fa-light fa-cog"></i>
+  <% end %>
+</div>
+<div class="menu-list">
+  <%= link_to t('serve.me.servings.index.title'), { controller: 'serve/me/servings' }, class: active_helper(controllers: ['servings'], active: 'is-active') %>
+</div>

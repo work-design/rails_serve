@@ -31,7 +31,7 @@ module Serve
     def wallet_price_params
       r = {}
 
-      params.dig(:service, :wallet_price).each do |_, v|
+      params.fetch(:service, {}).fetch(:wallet_price, {}).each do |_, v|
         r.merge! v[:code] => v[:price]
       end
 

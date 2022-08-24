@@ -1,4 +1,7 @@
-<strong><%= model.name %></strong>
+<div class="is-several">
+  <%= image_tag model.logo, class: 'image is-24x24' if model.logo.attached? %>
+  <span><%= model.name %></span>
+</div>
 <span class="has-text-danger">
   <%= model.price.to_money.format(html_wrap: true).html_safe %>
 </span>
