@@ -3,8 +3,10 @@
 </p>
 <div class="has-text-centered">
 <% unless serving.member %>
-  <%= image_tag serving.qrcode_enter_url, class: 'image' %>
-  <p class="has-text-centered">出示二维码核销</p>
+  <figure class="image">
+    <%= image_tag serving.qrcode_enter_url %>
+    <figcaption class="has-text-centered">出示二维码核销</figcaption>
+  </figure>
 <% end %>
 </div>
 <div class="weui-form-preview">
