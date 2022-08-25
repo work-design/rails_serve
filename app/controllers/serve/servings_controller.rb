@@ -4,7 +4,7 @@ module Serve
     before_action :set_serving, only: [:qrcode]
 
     def qrcode
-      if current_user.organ_ids.include?(@serving.organ_id)
+      if current_user.organ_ids.include?(@serving.service.organ_id)
         redirect_to({ controller: 'serve/me/servings', action: 'qrcode', id: params[:id], host: @serving.service.organ.host }, allow_other_host: true)
       end
     end
