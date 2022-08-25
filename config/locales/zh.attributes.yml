@@ -3,3 +3,5 @@ zh:
     attributes:
       serve/service:
         price: 价格
+      serve/serving:
+        member_id: 服务技师
