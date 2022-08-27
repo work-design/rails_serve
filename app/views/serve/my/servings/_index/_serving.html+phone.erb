@@ -9,25 +9,5 @@
   </figure>
 <% end %>
 </div>
-<div class="weui-form-preview">
-  <div class="weui-form-preview__bd">
-    <div class="weui-form-preview__item">
-      <label class="weui-form-preview__label"><%= Serve::Serving.human_attribute_name(:member_id) %></label>
-      <span class="weui-form-preview__value">
-        <span><%= serving.member&.name %></span>
-      </span>
-    </div>
-    <div class="weui-form-preview__item">
-      <label class="weui-form-preview__label"><%= Serve::Serving.human_attribute_name(:start_at) %></label>
-      <span class="weui-form-preview__value has-text-success">
-        <time data-controller="time"><%= serving.start_at&.to_fs(:iso8601) %></time>
-      </span>
-    </div>
-    <div class="weui-form-preview__item">
-      <label class="weui-form-preview__label"><%= Serve::Serving.human_attribute_name(:finish_at) %></label>
-      <span class="weui-form-preview__value has-text-danger">
-        <time data-controller="time"><%= serving.finish_at&.to_fs(:iso8601) %></time>
-      </span>
-    </div>
-  </div>
-</div>
+<%= render partial: 'serving_preview', locals: { serving: serving } %>
+<%= turbo_stream_from serving %>
